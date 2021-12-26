@@ -1,0 +1,4 @@
+<span [id]="id">
+    <whc-label *ngIf="label" [for]="id + '-input'">{{label}}</whc-label>
+    <input type="text" class="form-text" [id]="id + '-input'"/>
+</span>
