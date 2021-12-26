@@ -3,11 +3,53 @@
         <h1>Boarding Party</h1>
     </div>
     <div class="row">
+        <whc-card>
+            <h2 header>Player Details</h2>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h3><whc-label for="txtPlayerName">Captain Name</whc-label></h3>
+                        <whc-text-input id="txtPlayerName"></whc-text-input>
+                    </div>
+                    <div class="col">
+                        <h3><whc-label for="txtShipName">Ship Name</whc-label></h3>
+                        <whc-text-input id="txtShipName"></whc-text-input>
+                    </div>
+                </div>
+            </div>
+        </whc-card>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
         <div class="col">
-            <whc-button>Start</whc-button>
+            <whc-card>
+                <h2 header>Create Room</h2>
+                <div class="row">
+                    <h3><whc-label for="txtRoomName">Name</whc-label></h3>
+                    <whc-text-input id="txtRoomName"></whc-text-input>
+                </div>
+                <div class="row">
+                    <h3><whc-label for="txtRoomName">Password</whc-label></h3>
+                    <whc-text-input id="txtRoomName"></whc-text-input>
+                </div>
+                <div class="row">
+                    <whc-button>Start</whc-button>
+                </div>
+            </whc-card>
         </div>
         <div class="col">
-            <whc-button>Join</whc-button>
+            <whc-card>
+                <h2 header>Join Room</h2>
+                <div class="row">
+                    <h3><whc-label for="txtCode">Room Code</whc-label></h3>
+                    <whc-text-input id="txtCode"></whc-text-input>
+                </div>
+                <div class="row">
+                <whc-button disabled=false>Join</whc-button>
+                </div>
+            </whc-card>
         </div>
     </div>
 </div>
