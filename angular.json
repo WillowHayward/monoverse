@@ -5,7 +5,7 @@
       "projectType": "application",
       "root": "apps/boarding-party",
       "sourceRoot": "apps/boarding-party/src",
-      "prefix": "monoverse",
+      "prefix": "bp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -181,7 +181,7 @@
       "projectType": "application",
       "root": "apps/will-hay-code",
       "sourceRoot": "apps/will-hay-code/src",
-      "prefix": "monoverse",
+      "prefix": "whc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
