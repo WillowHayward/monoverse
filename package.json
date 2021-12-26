@@ -42,6 +42,7 @@
     "@nrwl/eslint-plugin-nx": "13.4.1",
     "@nrwl/jest": "13.4.1",
     "@nrwl/linter": "13.4.1",
+    "@nrwl/storybook": "^13.4.1",
     "@nrwl/tao": "13.4.1",
     "@nrwl/workspace": "13.4.1",
     "@trumbitta/nx-plugin-openapi": "^1.10.0",
