@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, Component, OnInit } from '@angular/core';
+import { BoardingParty } from '../../engine/game';
 
 @Component({
   selector: 'bp-create',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  start(): void {
+    /*const players = this.count.value;
+    const game = new BoardingParty(players);*/
   }
 
 }
