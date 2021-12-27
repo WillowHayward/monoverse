@@ -9,10 +9,11 @@ import { CreateComponent } from './create/create.component';
 import { JoinComponent } from './join/join.component';
 
 import { UiModule } from '@monoverse/ui';
+import { PlayerDetailsComponent } from './player-details/player-details.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LobbyComponent, LandingComponent, CreateComponent, JoinComponent],
+  declarations: [AppComponent, LobbyComponent, LandingComponent, CreateComponent, JoinComponent, PlayerDetailsComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
