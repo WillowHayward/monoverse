@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monoverse/ui": ["libs/ui/src/index.ts"]
+      "@monoverse/ui": ["libs/ui/src/index.ts"],
+      "@willhaycode/lipwig-js": ["libs/lipwig-js/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

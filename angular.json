@@ -123,6 +123,81 @@
       "tags": [],
       "implicitDependencies": ["boarding-party"]
     },
+    "lipwig": {
+      "root": "apps/lipwig",
+      "sourceRoot": "apps/lipwig/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/lipwig",
+            "main": "apps/lipwig/src/main.ts",
+            "tsConfig": "apps/lipwig/tsconfig.app.json",
+            "assets": ["apps/lipwig/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/lipwig/src/environments/environment.ts",
+                  "with": "apps/lipwig/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "lipwig:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/lipwig/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/lipwig"],
+          "options": {
+            "jestConfig": "apps/lipwig/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "lipwig-js": {
+      "root": "libs/lipwig-js",
+      "sourceRoot": "libs/lipwig-js/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/lipwig-js/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lipwig-js"],
+          "options": {
+            "jestConfig": "libs/lipwig-js/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "ui": {
       "projectType": "library",
       "root": "libs/ui",
