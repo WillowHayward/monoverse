@@ -18,7 +18,8 @@
       "@monoverse/ui": ["libs/ui/src/index.ts"],
       "@willhaycode/deck": ["libs/deck/src/index.ts"],
       "@willhaycode/event-manager": ["libs/event-manager/src/index.ts"],
-      "@willhaycode/lipwig-js": ["libs/lipwig-js/src/index.ts"]
+      "@willhaycode/lipwig-js": ["libs/lipwig-js/src/index.ts"],
+      "@willhaycode/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

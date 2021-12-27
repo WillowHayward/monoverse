@@ -5,11 +5,11 @@ import * as http from 'http';
 import * as https from 'https';
 import * as WebSocket from 'websocket';
 import * as winston from 'winston';
-import { EventManager } from 'lipwig-events';
+import { EventManager } from '@willhaycode/event-manager';
 import { Room } from './Room';
 import { defaultConfig, ErrorCode, LipwigOptions, LipwigConfig, Message, RoomConfig, UserOptions } from './Types';
 import { User } from './User';
-import { Utility } from './Utility';
+import { generateString } from '@willhaycode/utils';
 
 type RoomMap = {
     [index: string]: Room;
@@ -248,7 +248,7 @@ export class Lipwig extends EventManager {
 
         let id: string;
         do {
-            id = Utility.generateString();
+            id = generateString();
         } while (this.find(id) !== undefined);
 
         const room: Room = new Room(id, connection, options);

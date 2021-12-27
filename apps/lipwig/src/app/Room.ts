@@ -4,7 +4,7 @@
 import { connection as WebSocketConnection } from 'websocket'; // TODO: This is just for the types, not used at any point
 import { ErrorCode, Message, RoomOptions, RoomConfig, UserOptions } from './Types';
 import { User } from './User';
-import { Utility } from './Utility';
+import { generateString } from '@willhaycode/utils';
 
 type UserMap = {
     [index: string] : User;
@@ -41,7 +41,7 @@ export class Room {
         let id: string;
 
         do {
-            id = Utility.generateString();
+            id = generateString();
         } while (this.users[id] !== undefined);
 
         const user: User = new User(id, socket);
