@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { TextInputComponent } from './text-input/text-input.component';
 import { LabelComponent } from './label/label.component';
 import { CardComponent } from './card/card.component';
+import { CounterComponent } from './counter/counter.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -11,13 +12,15 @@ import { CardComponent } from './card/card.component';
     ButtonComponent,
     TextInputComponent,
     LabelComponent,
-    CardComponent
+    CardComponent,
+    CounterComponent
   ],
   exports: [
     ButtonComponent,
     TextInputComponent,
     LabelComponent,
-    CardComponent
+    CardComponent,
+    CounterComponent
   ],
 })
 export class UiModule {}
