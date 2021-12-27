@@ -123,6 +123,29 @@
       "tags": [],
       "implicitDependencies": ["boarding-party"]
     },
+    "event-manager": {
+      "root": "libs/event-manager",
+      "sourceRoot": "libs/event-manager/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/event-manager/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/event-manager"],
+          "options": {
+            "jestConfig": "libs/event-manager/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "lipwig": {
       "root": "apps/lipwig",
       "sourceRoot": "apps/lipwig/src",

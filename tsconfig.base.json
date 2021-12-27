@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@monoverse/ui": ["libs/ui/src/index.ts"],
+      "@willhaycode/event-manager": ["libs/event-manager/src/index.ts"],
       "@willhaycode/lipwig-js": ["libs/lipwig-js/src/index.ts"]
     }
   },
