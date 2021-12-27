@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bp-lobby',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lobby.component.scss']
 })
 export class LobbyComponent implements OnInit {
+    @Input() code = '';
 
   constructor() { }
 

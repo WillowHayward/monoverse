@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'; import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -16,7 +15,27 @@ import { PlayerDetailsComponent } from './player-details/player-details.componen
   declarations: [AppComponent, LobbyComponent, LandingComponent, CreateComponent, JoinComponent, PlayerDetailsComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
+    RouterModule.forRoot(
+        [
+            {
+                path: '',
+                component: LandingComponent
+            },
+            {
+                path: 'create',
+                component: CreateComponent
+            },
+            {
+                path: 'join/:code',
+                component: JoinComponent
+            },
+            {
+                path: 'lobby',
+                component: LobbyComponent
+            },
+        ], 
+        { initialNavigation: 'enabledBlocking' }
+    ),
     UiModule,
   ],
   providers: [],

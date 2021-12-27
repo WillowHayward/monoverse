@@ -3,6 +3,12 @@
 @import "variables";
 @import "themes/pirate";
 
+.title {
+    @extend .display-2;
+
+    color: white;
+}
+
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/root";
