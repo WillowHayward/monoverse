@@ -1,6 +1,8 @@
 @use "~scss/base.scss" as *;
 
 :host {
+    margin: 0.75rem;
+
     .outer {
         .btn-primary {
             padding: 0.25rem;
