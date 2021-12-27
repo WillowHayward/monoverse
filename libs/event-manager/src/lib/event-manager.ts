@@ -65,7 +65,7 @@ export class EventManager {
         }
         const callback: CallbackEntry = {
             once: once,
-            fn: fn.bind(context.object),
+            fn: fn.bind(context['object']),
             context: context
         };
         this.events[event].push(callback);

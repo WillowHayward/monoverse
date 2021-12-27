@@ -1,1 +1,1 @@
-export * from './lib/lipwig-js';
+export * from './lib/Lipwig';
