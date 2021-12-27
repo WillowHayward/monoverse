@@ -3,7 +3,7 @@
  * @description: A stub class to allow for testing client connections
  */
 import * as WebSocket from 'websocket';
-import { EventManager } from 'lipwig-events';
+import { EventManager } from '@willhaycode/event-manager';
 import { Message, ErrorCode } from './Types';
 
 export class Stub extends EventManager {
