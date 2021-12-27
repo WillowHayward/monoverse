@@ -123,6 +123,29 @@
       "tags": [],
       "implicitDependencies": ["boarding-party"]
     },
+    "deck": {
+      "root": "libs/deck",
+      "sourceRoot": "libs/deck/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/deck/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/deck"],
+          "options": {
+            "jestConfig": "libs/deck/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "event-manager": {
       "root": "libs/event-manager",
       "sourceRoot": "libs/event-manager/src",
