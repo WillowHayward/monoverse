@@ -1,0 +1,19 @@
+$gold:  #e8e550;
+$wood:  #c28244;
+$primary: $wood;
+$border-color: $gold;
+$input-bg: $wood;
+
+$input-border: thick solid $border-color;
+$outer-border: thin solid black;
+
+.btn-primary, .form-text {
+    border: $input-border;
+}
+
+.outer {
+    display: inline-block;
+    border: $outer-border;
+}
+
+

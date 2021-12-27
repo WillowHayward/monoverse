@@ -1,1 +1,12 @@
 @use "~scss/base.scss" as *;
+
+:host {
+    .outer {
+        .btn-primary {
+            margin: 0;
+            padding: 0.25rem;
+            color: black;
+            border: $input-border;
+        }
+    }
+}
