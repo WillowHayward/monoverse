@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 
+# logging
+/logs
+
 # dependencies
 /node_modules
 

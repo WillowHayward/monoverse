@@ -5,6 +5,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as WebSocket from 'websocket';
 import * as winston from 'winston';
+import 'winston-daily-rotate-file';
 import { EventManager } from '@willhaycode/event-manager';
 import { Room } from './Room';
 import { defaultConfig, ErrorCode, LipwigOptions, LipwigConfig, Message, RoomConfig, UserOptions } from './Types';
@@ -26,19 +27,45 @@ export class Lipwig extends EventManager {
         super();
 
         const options: LipwigOptions = {
-         ...defaultConfig,
-         ...config
-       }
+            ...defaultConfig,
+            ...config
+        }
 
-       const transports = [];
+        const dailyFileConfig = {
+            dirname: 'logs',
+            filename: 'application-%DATE%.log',
+            datePattern: 'YYYY-MM-DD-HH',
+            zippedArchive: true,
+            maxSize: '20m',
+            maxFiles: '14d'
+        }
+
+        const fileTransport = new winston.transports.DailyRotateFile(dailyFileConfig);
+        fileTransport.on('rotate', function(oldFilename, newFilename) {
+            console.log('Rotating Log File', oldFilename, newFilename);
+        });
+
+        const transports = [
+            fileTransport,
+        ];
+
+        dailyFileConfig.filename = 'application-%DATE%.exception.log';
+        const fileExceptionHandler = new winston.transports.DailyRotateFile(dailyFileConfig);
+        fileExceptionHandler.on('rotate', function(oldFilename, newFilename) {
+            console.log('Rotating Exception Log File', oldFilename, newFilename);
+        });
+
+        const exceptionHandlers = [
+            fileExceptionHandler,
+        ];
 
         this.logger = winston.createLogger({
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.json()
           ),
-          transports: [
-          ]
+          transports: transports,
+          exceptionHandlers: exceptionHandlers
         });
 
         if (options.http === undefined) {
