@@ -1,4 +1,6 @@
 import { Lipwig } from './app/Lipwig';
+const commandLineArgs = require('command-line-args');
+const commandLineUsage = require('command-line-usage');
 const commandLineOptions = [
   {
     name: 'config',
@@ -16,7 +18,7 @@ const commandLineOptions = [
 
 let options;
 try {
-  options = require('command-line-args')(commandLineOptions);
+  options = commandLineArgs(commandLineOptions);
 } catch {
     const usageOptions = [
       /**{
@@ -30,12 +32,12 @@ try {
     {
       content: 'Project home: {underline https://github.com/me/example}'
     }*/]
-  const usage = require('command-line-usage')(usageOptions);
+  const usage = commandLineUsage(usageOptions);
   console.log(usage);
   process.exit();
 }
 
-let configFileLocation = process.cwd() + '/lipwig.config.js';
+const configFileLocation = process.cwd() + '/lipwig.config.js';
 
 //configFileLocation = options.config ? options.config : './lipwig.config.js';
 // TODO: Args parsing here, keep the core classes clean
@@ -51,8 +53,7 @@ process.argv.forEach(function(value, index) {
     if (index === 0) {
         return;
     }
-    
 });
 
-const lipwig = new Lipwig(config);
+new Lipwig(config);
 

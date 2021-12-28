@@ -4,10 +4,10 @@
  */
 import * as WebSocket from 'websocket';
 import { EventManager } from '@willhaycode/event-manager';
-import { Message, ErrorCode } from './Types';
+import { Message } from './Types';
 
 export class Stub extends EventManager {
-    public id: string = '';
+    public id = '';
     private socket: WebSocket.connection | null;
     private queue: Message[];
     constructor(url: string) {

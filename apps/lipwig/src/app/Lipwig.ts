@@ -172,7 +172,14 @@ export class Lipwig extends EventManager {
         const connection: WebSocket.connection = request.accept(request.requestedProtocols[0], request.origin);
         this.connections.push(connection);
         connection.on('message', (message: WebSocket.IMessage): void => {
-            const text: string = message.utf8Data!.toString();
+            if (!message.utf8Data) {
+                const error = ErrorCode.MALFORMED;
+                this.reportError(connection, error, 'Could not parse utf8Data');
+
+                return;
+            }
+
+            const text: string = message.utf8Data.toString();
             const parsed: Message | ErrorCode = this.getMessage(text);
             console.log(text);
 

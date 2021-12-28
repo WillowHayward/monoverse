@@ -100,7 +100,7 @@ describe('Errors', function() {
             done();
             const host = new Stub(url);
             host.on('connected', function() {
-                let message = {
+                const message = {
                     event: 'create',
                     data: [],
                     sender: '',
