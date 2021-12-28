@@ -3,7 +3,7 @@ export class BoardingParty {
     private host: Host;
     private clients: Client[];
     constructor(players: number) {
-        const url = 'localhost:8989';
+        const url = 'ws://localhost:8989';
         const options = {
             size: players,
         };

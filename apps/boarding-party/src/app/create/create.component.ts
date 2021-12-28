@@ -17,8 +17,8 @@ export class CreateComponent implements OnInit {
     this.router.navigate(['/lobby'], {
         skipLocationChange: true
     });
-    /*const players = this.count.value;
-    const game = new BoardingParty(players);*/
+    const players = 2;
+    const game = new BoardingParty(players);
   }
 
 }
