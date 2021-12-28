@@ -26,14 +26,19 @@ export class User {
         return this.id;
     }
 
+    public getSocket(): WebSocket.connection {
+        return this.socket;
+    }
+
     public send(message: Message): void {
+        message.recipient = [this.id];
         const text: string = JSON.stringify(message);
+        console.log(text);
         if (this.socket === null) {
             this.queue.push(message);
-            console.log('Queud Message', text);
+            console.log('Queued Message', text);
             return;
         }
-        console.log(text);
         this.socket.sendUTF(text);
     }
 

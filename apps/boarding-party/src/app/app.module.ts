@@ -7,7 +7,7 @@ import { LandingComponent } from './landing/landing.component';
 import { CreateComponent } from './create/create.component';
 import { JoinComponent } from './join/join.component';
 
-import { UiModule } from '@monoverse/ui';
+import { UiModule } from '@willhaycode/ui';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 
 

@@ -1,6 +1,7 @@
 /**
  * @author: WillHayCode
  */
+import { EventManager } from '@willhaycode/event-manager';
 import { connection as WebSocketConnection } from 'websocket'; // TODO: This is just for the types, not used at any point
 import { ErrorCode, Message, RoomOptions, RoomConfig, UserOptions } from './Types';
 import { User } from './User';
@@ -10,12 +11,13 @@ type UserMap = {
     [index: string] : User;
 };
 
-export class Room {
+export class Room extends EventManager {
     private options: RoomOptions;
     protected host: User;
     private users: UserMap;
     private id: string;
     constructor(id: string, host: WebSocketConnection, options: RoomConfig) {
+        super();
         options.name = options.name || '';
         options.password = options.password || '';
         options.size = options.size || 8;
@@ -35,7 +37,7 @@ export class Room {
 
         this.host = new User('', host);
         this.host.send(message);
-        console.info('Room Created', id);
+        console.info('Room Created', id, this.options);
     }
 
     public join(socket: WebSocketConnection, data: UserOptions): ErrorCode {
@@ -114,6 +116,7 @@ export class Room {
     }
 
     public route(message: Message): ErrorCode {
+        this.emit('message', message);
         const users: User[] = [];
         let missingUser = false;
         if (message.sender !== this.id) {
