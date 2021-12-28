@@ -35,6 +35,7 @@ export class Room {
 
         this.host = new User('', host);
         this.host.send(message);
+        console.info('Room Created', id);
     }
 
     public join(socket: WebSocketConnection, data: UserOptions): ErrorCode {
@@ -171,6 +172,7 @@ export class Room {
         message.recipient = [this.id];
         this.host.send(message);
         this.host.close();
+        console.info('Room Closed', this.id);
     }
 
     public kick(id: string, reason: string) : ErrorCode {

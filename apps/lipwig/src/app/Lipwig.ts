@@ -33,7 +33,7 @@ export class Lipwig extends EventManager {
 
         const dailyFileConfig = {
             dirname: 'logs',
-            filename: 'application-%DATE%.log',
+            filename: 'lipwig-%DATE%.log',
             datePattern: 'YYYY-MM-DD-HH',
             zippedArchive: true,
             maxSize: '20m',
@@ -49,7 +49,13 @@ export class Lipwig extends EventManager {
             fileTransport,
         ];
 
-        dailyFileConfig.filename = 'application-%DATE%.exception.log';
+        let consoleLogger: Console | null;
+
+        if (process.env.NODE_ENV == 'development') {
+            consoleLogger = new console.Console({ stdout: process.stdout, stderr: process.stderr });
+        }
+
+        dailyFileConfig.filename = 'lipwig-%DATE%.exception.log';
         const fileExceptionHandler = new winston.transports.DailyRotateFile(dailyFileConfig);
         fileExceptionHandler.on('rotate', function(oldFilename, newFilename) {
             console.log('Rotating Exception Log File', oldFilename, newFilename);
@@ -68,16 +74,35 @@ export class Lipwig extends EventManager {
           exceptionHandlers: exceptionHandlers
         });
 
+		console.log = (...args: unknown[]) => {
+            this.logger.info.call(this.logger, ...args);
+        }
+		console.info = (...args: unknown[]) => {
+            this.logger.info.call(this.logger, ...args);
+            if (consoleLogger) {
+                consoleLogger.info(...args);
+            }
+        }
+		console.warn = (...args: unknown[]) => {
+            this.logger.warn.call(this.logger, ...args);
+        }
+		console.error = (...args: unknown[]) => {
+            this.logger.error.call(this.logger, ...args);
+        }
+		console.debug = (...args: unknown[]) => {
+            this.logger.debug.call(this.logger, ...args);
+        }
+
         if (options.http === undefined) {
             const server: http.Server = http.createServer();
 
             server.on('error', (err: Error): void => {
-                console.log(err);
-                console.log('Port ' + options.port + ' in use');
+                console.error(err);
+                console.error('Port ' + options.port + ' in use');
             });
 
             server.listen(options.port, () => {
-                console.log('Listening on ' + options.port);
+                console.info('Listening on ' + options.port);
                 this.emit('started');
             });
 
@@ -149,6 +174,7 @@ export class Lipwig extends EventManager {
         connection.on('message', (message: WebSocket.IMessage): void => {
             const text: string = message.utf8Data!.toString();
             const parsed: Message | ErrorCode = this.getMessage(text);
+            console.log(text);
 
             if (typeof parsed === 'number') {
                 // ErrorCode
@@ -157,15 +183,9 @@ export class Lipwig extends EventManager {
 
                 return;
             }
-
             const response: ErrorCode = this.handle(parsed, connection);
 
-            if (response == ErrorCode.SUCCESS) {
-                this.logger.log({
-                    'level': 'info',
-                    'message': text
-                });
-            } else {
+            if (response !== ErrorCode.SUCCESS) {
                 this.reportError(connection, response, text);
             }
         });
@@ -219,10 +239,7 @@ export class Lipwig extends EventManager {
             recipient: []
         };
         const text: string = JSON.stringify(message);
-        this.logger.log({
-          'level': 'error', 
-          'message': text
-        });
+        console.log(text);
         connection.send(text);
     }
 

@@ -27,12 +27,13 @@ export class User {
     }
 
     public send(message: Message): void {
+        const text: string = JSON.stringify(message);
         if (this.socket === null) {
             this.queue.push(message);
-
+            console.log('Queud Message', text);
             return;
         }
-        const text: string = JSON.stringify(message);
+        console.log(text);
         this.socket.sendUTF(text);
     }
 
