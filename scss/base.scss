@@ -1,8 +1,8 @@
 @import "bootstrap/scss/functions";
 
 @import "variables";
-@import "themes/pirate";
 
+@import "theme";
 .title {
     @extend .display-2;
 

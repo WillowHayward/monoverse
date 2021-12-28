@@ -21,6 +21,9 @@
               "apps/boarding-party/src/favicon.ico",
               "apps/boarding-party/src/assets"
             ],
+            "stylePreprocessorOptions": {
+                "includePaths": ["scss/themes/pirate"]
+            },
             "styles": ["apps/boarding-party/src/styles.scss"],
             "scripts": []
           },
@@ -241,6 +244,9 @@
               "apps/lipwig-admin/src/favicon.ico",
               "apps/lipwig-admin/src/assets"
             ],
+            "stylePreprocessorOptions": {
+                "includePaths": ["scss/themes/default"]
+            },
             "styles": ["apps/lipwig-admin/src/styles.scss"],
             "scripts": []
           },
@@ -462,6 +468,9 @@
               "apps/will-hay-code/src/favicon.ico",
               "apps/will-hay-code/src/assets"
             ],
+            "stylePreprocessorOptions": {
+                "includePaths": ["scss/themes/default"]
+            },
             "styles": ["apps/will-hay-code/src/styles.scss"],
             "scripts": []
           },
