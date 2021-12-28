@@ -31,6 +31,15 @@ export class EventManager {
         this.addEvent(event, fn, context, true);
     }
 
+    public expect(event: string): Promise<unknown[]> {
+        return new Promise((resolve) => {
+            this.once(event, (...args: unknown[]) => {
+                resolve(args);
+            });
+        });
+
+    }
+
     public emit(event: string, ...args: unknown[]): void {
         const callbacks: CallbackEntry[] = this.events[event];
         if (callbacks === undefined) {
