@@ -3,12 +3,14 @@ $gold:  #e8e550;
 $wood:  #c28244;
 $parchment: #ebd5b3;
 $ocean:     #0b2bb4;
+
 $primary: $wood;
 $border-color: $gold;
 $input-bg: $wood;
 $card-bg: $parchment;
-
+$body-bg: $ocean;
 $input-border: thick solid $border-color;
+
 $outer-border: thin solid black;
 
 .btn-primary, .form-text {

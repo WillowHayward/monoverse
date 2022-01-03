@@ -2,16 +2,24 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
 
 import { UiModule } from '@willhaycode/ui';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent, LoginPageComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
+    RouterModule.forRoot([
+        {
+            path: '',
+            component: LoginPageComponent,
+        },
+    ], 
+    { 
+        initialNavigation: 'enabledBlocking' 
+    }),
     UiModule,
   ],
   providers: [],
