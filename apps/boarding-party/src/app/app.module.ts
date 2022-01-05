@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core'; import { BrowserModule } from '@angula
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@willhaycode/ui';
+
 import { LobbyComponent } from './lobby/lobby.component';
 import { LandingComponent } from './landing/landing.component';
 import { CreateComponent } from './create/create.component';
 import { JoinComponent } from './join/join.component';
 
-import { UiModule } from '@willhaycode/ui';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 
 
