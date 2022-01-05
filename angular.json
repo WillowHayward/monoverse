@@ -228,7 +228,7 @@
       "projectType": "application",
       "root": "apps/lipwig-admin",
       "sourceRoot": "apps/lipwig-admin/src",
-      "prefix": "willhaycode",
+      "prefix": "whc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -376,7 +376,7 @@
       "projectType": "application",
       "root": "apps/magazine",
       "sourceRoot": "apps/magazine/src",
-      "prefix": "willhaycode",
+      "prefix": "whc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
