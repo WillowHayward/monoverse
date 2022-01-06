@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from '../../engine/Main';
 
 @Component({
   selector: 'willhaycode-landing',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-
+    private game: Game;
   constructor() { }
 
   ngOnInit(): void {
+      this.game = new Game('render');
   }
 
 }

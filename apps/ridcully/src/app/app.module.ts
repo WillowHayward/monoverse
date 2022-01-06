@@ -11,7 +11,10 @@ import { LandingComponent } from './landing/landing.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-
+        {
+            path: '',
+            component: LandingComponent,
+        }
     ], { initialNavigation: 'enabledBlocking' }),
     UiModule,
   ],
