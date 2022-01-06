@@ -1,9 +1,5 @@
 import * as BABYLON from 'babylonjs';
-import { Loader } from './Loader';
-import { Stage } from './Stage';
-import { Camera } from './Camera';
-import { Mesh } from './Asset';
-import { Actor } from './Actor';
+import { Loader, Stage, Camera, Mesh, Actor, } from '@willhaycode/fps';
 
 export class Player extends Actor {
   private meshName = 'medium';

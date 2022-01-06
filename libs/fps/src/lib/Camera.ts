@@ -1,5 +1,5 @@
 import * as BABYLON from 'babylonjs';
-import { Player } from './Player';
+import { Actor } from './Actor';
 import { Stage } from './Stage';
 
 export class Camera extends BABYLON.UniversalCamera {
@@ -17,7 +17,7 @@ export class Camera extends BABYLON.UniversalCamera {
     console.log(name, 'Initialised');
   }
 
-  public tick(delta: number, follow?: Player) { 
+  public tick(delta: number, follow?: Actor) { 
     if (follow) {
       if (!this.parent) {
         this.parent = follow.headNode;

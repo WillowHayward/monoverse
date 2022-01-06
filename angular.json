@@ -172,6 +172,29 @@
       },
       "tags": []
     },
+    "fps": {
+      "root": "libs/fps",
+      "sourceRoot": "libs/fps/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/fps/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/fps"],
+          "options": {
+            "jestConfig": "libs/fps/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "lipwig": {
       "root": "apps/lipwig",
       "sourceRoot": "apps/lipwig/src",

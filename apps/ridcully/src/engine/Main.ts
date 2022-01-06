@@ -1,7 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
+import { Stage } from '@willhaycode/fps';
 import { Player } from './Player';
-import { Stage } from './Stage';
 
 export class Game {
   private engine: BABYLON.Engine;
