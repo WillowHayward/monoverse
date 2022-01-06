@@ -105,7 +105,7 @@ export class Loader extends BABYLON.AssetsManager {
     }*/
 
     public get(id: string): Promise<Asset> {
-      const promiseFunction = ((resolve: (value?: Asset) => void,
+      const promiseFunction = ((resolve: (value: Asset) => void,
         reject: (reason: {
           message?: string,
           exception?: unknown
@@ -177,7 +177,7 @@ export class Loader extends BABYLON.AssetsManager {
     //public getModel(
     private loadTexture(type: string, texture: string): Promise<Texture> {
       const promise = new Promise<Texture> (
-        (resolve: (value?: Texture) => void,
+        (resolve: (value: Texture) => void,
         reject: (reason: {
           message?: string,
           exception?: unknown
@@ -211,7 +211,7 @@ export class Loader extends BABYLON.AssetsManager {
 
     private loadMesh(type: string, mesh: string): Promise<Mesh> {
       const promise = new Promise<Mesh>(
-        (resolve: (value?: Mesh) => void,
+        (resolve: (value: Mesh) => void,
         reject: (reason: {
           message?: string,
           exception?: unknown

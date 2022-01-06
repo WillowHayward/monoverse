@@ -43,6 +43,7 @@ export class MouseState {
         case 0:
           this.leftClicked = true;
           this.leftJustClicked = true;
+          break;
         default:
           return;
       }
@@ -61,6 +62,7 @@ export class MouseState {
         case 0:
           this.leftClicked = false;
           this.leftJustReleased = true;
+          break;
         default:
           return;
       }

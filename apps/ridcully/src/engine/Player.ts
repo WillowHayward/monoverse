@@ -46,7 +46,7 @@ export class Player extends Actor {
     return camera;
   }
 
-  public tick(delta: number) {
+  public override tick(delta: number) {
     super.tick(delta);
     if (this.camera) {
       this.camera.tick(delta, this);

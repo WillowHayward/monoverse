@@ -7,11 +7,10 @@ import { Game } from '../../engine/Main';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-    private game: Game;
   constructor() { }
 
   ngOnInit(): void {
-      this.game = new Game('render');
+        new Game('render');
   }
 
 }

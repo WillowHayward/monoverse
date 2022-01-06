@@ -63,14 +63,14 @@ export class Stage extends BABYLON.Scene {
     });
   }
 
-  public enablePhysics(gravity?: BABYLON.Nullable<BABYLON.Vector3>, plugin?: BABYLON.IPhysicsEnginePlugin): boolean {
+  public override enablePhysics(gravity?: BABYLON.Nullable<BABYLON.Vector3>, plugin?: BABYLON.IPhysicsEnginePlugin): boolean {
     const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
     const physicsPlugin = new BABYLON.CannonJSPlugin();
 
     return super.enablePhysics(gravityVector, physicsPlugin);
   }
 
-  public enableDepthRenderer(camera?: BABYLON.Nullable<BABYLON.Camera>, storeNonLinearDepth?: boolean, force32bitsFloat?: boolean): BABYLON.DepthRenderer {
+  public override enableDepthRenderer(camera?: BABYLON.Nullable<BABYLON.Camera>, storeNonLinearDepth?: boolean, force32bitsFloat?: boolean): BABYLON.DepthRenderer {
     if (!this.renderer) {
       this.renderer = super.enableDepthRenderer(camera, storeNonLinearDepth, force32bitsFloat);
     }

@@ -59,7 +59,7 @@ export class Actor {
 
   public setMesh(type: string, mesh: string): Promise<Mesh> {
     const promise = new Promise<Mesh> (
-      (resolve: (value?: Mesh) => void, 
+      (resolve: (value: Mesh) => void, 
        reject: (reason: {
         message?: string,
         exception?: unknown
