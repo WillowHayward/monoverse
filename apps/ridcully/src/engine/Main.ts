@@ -42,7 +42,7 @@ export class Game {
     const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", this.scene);
     const extensions = ['_right.png', '_top.png', '_front.png', '_left.png', '_bottom.png', '_back.png']
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("texture/sky/sky", this.scene, extensions);
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("assets/texture/sky/sky", this.scene, extensions);
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);

@@ -56,7 +56,7 @@ export class Loader extends BABYLON.AssetsManager {
 
     public get ProtoTexture(): BABYLON.Texture {
       if (!this.protoTexture) {
-        this.protoTexture = new BABYLON.Texture('textures/proto/purple.png', this.scene);
+        this.protoTexture = new BABYLON.Texture('assets/texture/proto/purple.png', this.scene);
       }
       this.protoTexture.name
       return this.protoTexture.clone();
@@ -182,7 +182,7 @@ export class Loader extends BABYLON.AssetsManager {
           message?: string,
           exception?: unknown
         }) => void) => {
-          const task = this.addTextureTask(type + texture, 'texture/' + type + texture + '.png', false, false);
+          const task = this.addTextureTask(type + texture, 'assets/texture/' + type + texture + '.png', false, false);
           task.onSuccess = (task:BABYLON.TextureAssetTask) => {
             const text = task.texture;
             resolve(text);
@@ -216,7 +216,7 @@ export class Loader extends BABYLON.AssetsManager {
           message?: string,
           exception?: unknown
         }) => void) => {
-          const task = this.addMeshTask(type + mesh, '', 'mesh/' + type, mesh + '.glb');
+          const task = this.addMeshTask(type + mesh, '', 'assets/mesh/' + type, mesh + '.glb');
           task.onSuccess = (task:BABYLON.MeshAssetTask) => {
             //const text = task.texture;
             const rootMesh = <Mesh> task.loadedMeshes[0];
