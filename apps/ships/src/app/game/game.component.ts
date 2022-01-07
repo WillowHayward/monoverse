@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ships } from '../../engine/Ships';
 
 @Component({
   selector: 'ships-game',
@@ -10,6 +11,7 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+      new Ships('render');
   }
 
 }
