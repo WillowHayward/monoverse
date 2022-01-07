@@ -1,0 +1,252 @@
+<h1 id="codeContainer" class="hidden">Room Code: <span id="code"></span></h1>
+<h1 id="rulesContainer">
+  <a href="https://jellybean.games/wp-content/uploads/2020/06/French-Toast_Rulebook_v1-small-min.pdf"  target="_blank">Rules</a>
+</h1>
+
+<div class="page" id="menu">
+  <div id="menuContainer">
+    <div id="menuLogo">
+      <img id="logo" src="assets/logo.png" /><br/>
+      <h2><a href="https://www.kickstarter.com/projects/peterchayward/644040586?ref=160hf1&token=d64e18eb">Coming to Kickstarter on Tuesday!</a></h2>
+    </div>
+    <div id="menuHost">
+      <h2>Host Game</h2>
+      <h3>Your Name</h3>
+      <input type="text" id="txtNameHost" />
+      <br/>
+      <br/>
+      <input type="button" id="btnHost" value="Host Game" disabled />
+    </div>
+    <div id="menuJoin">
+      <h2>Join Game</h2>
+      <h3>Room Code</h3>
+      <input type="text" id="txtCode" />
+      <h3>Your Name</h3>
+      <input type="text" id="txtNameClient" />
+      <br/>
+      <br/>
+      <input type="button" id="btnJoin" value="Join Game" disabled />
+    </div>
+  </div>
+</div>
+
+<div class="page hidden" id="loading">Loading...</div>
+
+<div class="page hidden" id="lobby">
+  <div id="settingsContainer">
+    <span class="toastmaster">
+      <span class="settingsColumn">
+        <h3>Mode: <span class="displayMode"></span></h3>
+        <input type="button" id="btnChangeToTeams" value="Change to teams" />
+        <input type="button" class="hidden" id="btnChangeToCoop" value="Change to cooperative" />
+      </span>
+
+      <span class="settingsColumn">
+        <h3>Deck</h3>
+        <input id="rdDeckBasic" type="radio" value="basic" name="deckOptions" checked />
+        <label for="rdDeckBasic">Use Basic Deck</label><br/>
+        <input id="rdDeckAdvanced" type="radio" value="advanced" name="deckOptions" />
+        <label for="rdDeckAdvanced">Use Advanced Deck</label>
+      </span>
+
+      <span class="settingsColumn">
+        <h3>Misc</h3>
+        <input type="checkbox" id="chkTimer" checked />
+        <label for="chkTimer">Use Timer</label>
+      </span>
+
+      <span class="settingsColumn">
+        <br/>
+        <br/>
+        <input type="button" id="btnStart" value="Start Game" disabled="true" />
+      </span>
+    </span>
+
+    <span class="client">
+      <strong>Mode:</strong><span class="displayMode"></span><br/>
+      <strong>Deck:</strong><span id="displayDeck"></span><br/>
+      <strong>Timer:</strong><span id="displayTimer"></span>
+    </span>
+  </div>
+
+  <div id="listsContainer">
+    <span id="listColumnLeft" class="listColumn">
+      <div class="hidden" id="teamOneListContainer">
+        <h3>Team 1</h3>
+        <input type="button" class="btnJoinTeam" id="btnJoinTeamOne" value="Join" />
+        <ul id="teamOneList"></ul>
+      </div>
+    </span>
+
+    <span id="listColumnCenter" class="listColumn">
+      <div class="userListFloat" id="userListContainer">
+        <h3>Players</h3>
+        <ul id="userList"></ul>
+      </div>
+    </span>
+
+    <span id="listColumnRight" lass="listColumn">
+      <div class="hidden" id="teamTwoListContainer">
+        <h3>Team 2</h3>
+        <input type="button" class="btnJoinTeam" id="btnJoinTeamTwo" value="Join" />
+        <ul id="teamTwoList"></ul>
+      </div>
+    </span>
+  </div>
+
+  <em id="alienQuote">
+    When the aliens landed, the first thing they saw on Earth was French Toast. <br/>
+    They immediately reported their discovery to their planet. On the alien homeworld, French Toast became famous - the first human object ever encountered! <br/>
+    And so as they discovered more items, their accounts were always met with the same question: <br/>
+    “Is it like French Toast?” <br/>
+    Share the word of the new Earthling artifacts you’ve discovered with the rest of your species, describing them the only way you know how - by comparing them to French Toast! <br/>
+  </em>
+</div>
+
+<div class="page hidden" id="lateArrival">
+  <input type="button" id="btnJoinTeamOneLate" />
+  <input type="button" id="btnJoinTeamTwoLate" />
+</div>
+
+<div class="page hidden" id="game">
+  <div id="dashboardContainer">
+    <div id="dashboardLeft" class="toastmaster">
+      <img id="word" /><br/>
+
+    </div>
+    <div id="dashboardCenter">
+      <div id="guessStage" class="hidden">
+        <div class="hidden" id="timerDisplay">30</div>
+        <input type="button" class="hidden toastmaster" id="btnEndGuessing" value="End Guessing" />
+      </div>
+
+      <span class="toastmaster">
+        <div id="hintsStage">
+          <input type="button" id="btnCommitHints" value="Commit Hints" /><br/>
+          <span id="hintsError" class="error"></span>
+        </div>
+        
+        <div id="discussStage" class="hidden">
+          <input type="button" id="btnStartGuessing" value="Start Guessing" />
+        </div>
+      </span>
+    </div>
+    <div id="dashboardRight" class="toastmaster">
+      <input type="button" id="btnPickWinner" value="Pick Winner" /><br/>
+      <ul class="hidden" id="ulWinnerList"></ul><br/>
+
+    </div>
+  </div>
+  <div id="scaleContainer"><div id="scaleInnerContainer">
+    <div id="scaleLabels">
+      <img src="assets/range/range0.png" class="range" />
+      <img src="assets/range/range1.png" class="range" />
+      <img src="assets/range/range2.png" class="range" />
+      <img src="assets/range/range3.png" class="range" />
+      <img src="assets/range/range4.png" class="range" />
+      <img src="assets/range/range5.png" class="range" />
+    </div>
+    
+    <div id="scaleHints">
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer0" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer1" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer2" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer3" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer4" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+      <span class="scaleHintContainer">
+        <div class="scaleHintImgContainer">
+          <img class="scale hint" /><br/>
+        </div>
+        <div class="scaleHintPointerImgContainer">
+          <img class="pointer hidden" src="assets/pointer.png" />
+        </div>
+        <div class="scaleHintPointerBtnContainer">
+          <input type="button" class="toastmaster btnPoint" value="Point" name="pointer5" />
+          <input type="button" class="toastmaster btnUnpoint hidden" value="Unpoint" />
+        </div>
+      </span>
+
+    </div>
+  </div></div>
+
+  <div class="toastmaster hidden" id="handContainer">
+    <!--<div id="handContainer">-->
+    <img class="hand hint" />
+    <img class="hand hint" />
+    <img class="hand hint" />
+    <img class="hand hint" />
+    <img class="hand hint" />
+    <img class="hand hint" />
+  </div>
+</div>
+<div class="page hidden" id="endScreen">
+  <img id="endScreenWord" />
+  <div class="hidden" id="allWin">
+    Congratulations! <span id="coopWinnerName"></span> guessed the word!
+  </div>
+  <div class="hidden" id="allLose">
+    Oh no! Nobody was able the guess the word.
+  </div>
+  <input type="button" id="btnPlayAgain" value="Play Again" />
+</div>
