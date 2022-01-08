@@ -639,6 +639,32 @@
       },
       "tags": []
     },
+    "lipwig-ui": {
+      "projectType": "library",
+      "root": "libs/lipwig-ui",
+      "sourceRoot": "libs/lipwig-ui/src",
+      "prefix": "lipwig",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lipwig-ui"],
+          "options": {
+            "jestConfig": "libs/lipwig-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lipwig-ui/src/**/*.ts",
+              "libs/lipwig-ui/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "magazine": {
       "projectType": "application",
       "root": "apps/magazine",
