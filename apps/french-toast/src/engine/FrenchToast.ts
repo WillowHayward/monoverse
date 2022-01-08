@@ -1,3 +1,5 @@
+import { JSDeck } from '@willhaycode/deck';
+import { Host, Client } from '@willhaycode/lipwig-js';
 import { Player } from './Player'
 import { Game } from './Game'
 import { LocalClient } from './LocalClient'
@@ -41,17 +43,17 @@ export class FrenchToast {
   }
 
   private hostGame() {
-    const lw = Lipwig.create(this.server);
-    lw.host = true;
+    const host = new Host(this.server);
+
 
     document.getElementById('menu').classList.add('hidden');
     document.getElementById('loading').classList.remove('hidden');
-    lw.on('created', (code) => {
-      const game = new Game(lw, this.decks);
+    host.on('created', (code) => {
+      const game = new Game(host, this.decks);
       document.getElementById('btnStart').classList.remove('hidden');
 
-      const client = new LocalClient(lw);
-      const localUser = new LocalUser(client, lw)
+      const client = new LocalClient(host);
+      const localUser = new LocalUser(client, host)
       client.user = localUser;
 
       const nameElement =<HTMLInputElement> document.getElementById('txtNameHost');
@@ -67,20 +69,18 @@ export class FrenchToast {
     const nameElement = <HTMLInputElement> document.getElementById('txtNameClient');
     const name = nameElement.value;
 
-    const lw = Lipwig.join(this.server, code, {
+    const client = new Client(this.server, code, {
       'name': name
     });
-    lw.host = false;
 
     document.getElementById('menu').classList.add('hidden');
     document.getElementById('loading').classList.remove('hidden');
 
-    lw.on('joined', () => {
-      console.log(lw.id);
-      new Player(false, lw, name, code);
+    client.on('joined', () => {
+      new Player(false, client, name, code);
     });
 
-    lw.on('error', () => {
+    client.on('error', () => {
       alert('Error joining room - check room code and try again');
       document.getElementById('loading').classList.add('hidden');
       document.getElementById('menu').classList.remove('hidden');
