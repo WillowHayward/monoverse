@@ -337,6 +337,9 @@
               "apps/jabberwocky/src/favicon.ico",
               "apps/jabberwocky/src/assets"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["scss/themes/jabberwocky"]
+            },
             "styles": ["apps/jabberwocky/src/styles.scss"],
             "scripts": []
           },
