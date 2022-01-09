@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { UiModule } from '@willhaycode/ui';
-import { LipwigUiModule, LandingPageComponent } from '@willhaycode/lipwig-ui';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@willhaycode/ui';
+import { LipwigUiModule } from '@willhaycode/lipwig-ui';
+
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandingPageComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
@@ -16,8 +18,8 @@ import { RouterModule } from '@angular/router';
             component: LandingPageComponent,
         },
     ], { initialNavigation: 'enabledBlocking' }),
-    UiModule,
     LipwigUiModule,
+    UiModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
