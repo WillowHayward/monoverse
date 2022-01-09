@@ -14,9 +14,11 @@ import { DetailsCardComponent } from './details-card/details-card.component';
     JoinCardComponent,
     DetailsCardComponent
   ],
+  exports: [
+    CreateCardComponent,
+    LandingPageComponent,
+    JoinCardComponent,
+    DetailsCardComponent
+  ],
 })
 export class LipwigUiModule {}
-
-export {
-    LandingPageComponent
-}
