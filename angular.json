@@ -1063,6 +1063,128 @@
       },
       "tags": []
     },
+    "skeleton-animate": {
+      "projectType": "application",
+      "root": "apps/skeleton-animate",
+      "sourceRoot": "apps/skeleton-animate/src",
+      "prefix": "willhaycode",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/skeleton-animate",
+            "index": "apps/skeleton-animate/src/index.html",
+            "main": "apps/skeleton-animate/src/main.ts",
+            "polyfills": "apps/skeleton-animate/src/polyfills.ts",
+            "tsConfig": "apps/skeleton-animate/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/skeleton-animate/src/favicon.ico",
+              "apps/skeleton-animate/src/assets"
+            ],
+            "styles": ["apps/skeleton-animate/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/skeleton-animate/src/environments/environment.ts",
+                  "with": "apps/skeleton-animate/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "skeleton-animate:build:production"
+            },
+            "development": {
+              "browserTarget": "skeleton-animate:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "skeleton-animate:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/skeleton-animate/src/**/*.ts",
+              "apps/skeleton-animate/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/skeleton-animate"],
+          "options": {
+            "jestConfig": "apps/skeleton-animate/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "skeleton-animate-e2e": {
+      "root": "apps/skeleton-animate-e2e",
+      "sourceRoot": "apps/skeleton-animate-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/skeleton-animate-e2e/cypress.json",
+            "devServerTarget": "skeleton-animate:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "skeleton-animate:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/skeleton-animate-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["skeleton-animate"]
+    },
     "ui": {
       "projectType": "library",
       "root": "libs/ui",
