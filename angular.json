@@ -126,6 +126,151 @@
       "tags": [],
       "implicitDependencies": ["boarding-party"]
     },
+    "character": {
+      "root": "libs/character",
+      "sourceRoot": "libs/character/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/character/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/character"],
+          "options": {
+            "jestConfig": "libs/character/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "character-builder": {
+      "projectType": "application",
+      "root": "apps/character-builder",
+      "sourceRoot": "apps/character-builder/src",
+      "prefix": "willhaycode",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/character-builder",
+            "index": "apps/character-builder/src/index.html",
+            "main": "apps/character-builder/src/main.ts",
+            "polyfills": "apps/character-builder/src/polyfills.ts",
+            "tsConfig": "apps/character-builder/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/character-builder/src/favicon.ico",
+              "apps/character-builder/src/assets"
+            ],
+            "styles": ["apps/character-builder/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/character-builder/src/environments/environment.ts",
+                  "with": "apps/character-builder/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "character-builder:build:production"
+            },
+            "development": {
+              "browserTarget": "character-builder:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "character-builder:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/character-builder/src/**/*.ts",
+              "apps/character-builder/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/character-builder"],
+          "options": {
+            "jestConfig": "apps/character-builder/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "character-builder-e2e": {
+      "root": "apps/character-builder-e2e",
+      "sourceRoot": "apps/character-builder-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/character-builder-e2e/cypress.json",
+            "devServerTarget": "character-builder:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "character-builder:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/character-builder-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["character-builder"]
+    },
     "deck": {
       "root": "libs/deck",
       "sourceRoot": "libs/deck/src",

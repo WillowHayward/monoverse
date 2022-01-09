@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@willhaycode/character": ["libs/character/src/index.ts"],
       "@willhaycode/deck": ["libs/deck/src/index.ts"],
       "@willhaycode/event-manager": ["libs/event-manager/src/index.ts"],
       "@willhaycode/fps": ["libs/fps/src/index.ts"],
