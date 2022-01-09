@@ -169,6 +169,9 @@
               "apps/character-builder/src/favicon.ico",
               "apps/character-builder/src/assets"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["scss/themes/default"]
+            },
             "styles": ["apps/character-builder/src/styles.scss"],
             "scripts": []
           },
