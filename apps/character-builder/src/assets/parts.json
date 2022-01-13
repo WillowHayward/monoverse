@@ -1,0 +1,26 @@
+{
+    "arms": [
+        "tint1_arm"
+    ],
+    "legs": [
+        "tint1_leg"
+    ],
+    "heads": [
+        "tint1_head"
+    ],
+    "necks": [
+        "tint1_neck"
+    ],
+    "hands": [
+        "tint1_hand"
+    ],
+    "shoes": [
+        "blackShoe2"
+    ],
+    "pants": [
+        "pantsLightBlue_long"
+    ],
+    "belts": [
+        "pantsLightBlue"
+    ]
+}
