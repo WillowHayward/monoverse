@@ -1,3908 +1,3908 @@
 {
-   "skin.png": [
-      {
-         "name": "arm_tone1",
-         "x": "173",
-         "y": "608",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone1",
-         "x": "439",
-         "y": "908",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone1",
-         "x": "173",
-         "y": "0",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone1",
-         "x": "439",
-         "y": "37",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone1",
-         "x": "343",
-         "y": "744",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone2",
-         "x": "343",
-         "y": "472",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone2",
-         "x": "346",
-         "y": "201",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone2",
-         "x": "0",
-         "y": "672",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone2",
-         "x": "532",
-         "y": "857",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone2",
-         "x": "343",
-         "y": "929",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone3",
-         "x": "173",
-         "y": "472",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone3",
-         "x": "407",
-         "y": "201",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone3",
-         "x": "0",
-         "y": "504",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone3",
-         "x": "513",
-         "y": "365",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone3",
-         "x": "343",
-         "y": "855",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone4",
-         "x": "173",
-         "y": "336",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone4",
-         "x": "593",
-         "y": "0",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone4",
-         "x": "0",
-         "y": "336",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone4",
-         "x": "513",
-         "y": "529",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone4",
-         "x": "343",
-         "y": "818",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone5",
-         "x": "343",
-         "y": "336",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone5",
-         "x": "593",
-         "y": "71",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone5",
-         "x": "0",
-         "y": "0",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone5",
-         "x": "513",
-         "y": "201",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone5",
-         "x": "343",
-         "y": "966",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone6",
-         "x": "173",
-         "y": "744",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone6",
-         "x": "532",
-         "y": "71",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone6",
-         "x": "0",
-         "y": "168",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone6",
-         "x": "532",
-         "y": "693",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone6",
-         "x": "346",
-         "y": "0",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone7",
-         "x": "173",
-         "y": "880",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone7",
-         "x": "606",
-         "y": "142",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone7",
-         "x": "173",
-         "y": "168",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone7",
-         "x": "439",
-         "y": "744",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone7",
-         "x": "343",
-         "y": "781",
-         "width": "96",
-         "height": "37"
-      },
-      {
-         "name": "arm_tone8",
-         "x": "343",
-         "y": "608",
-         "width": "170",
-         "height": "136"
-      },
-      {
-         "name": "hand_tone8",
-         "x": "532",
-         "y": "0",
-         "width": "61",
-         "height": "71"
-      },
-      {
-         "name": "head_tone8",
-         "x": "0",
-         "y": "840",
-         "width": "173",
-         "height": "168"
-      },
-      {
-         "name": "leg_tone8",
-         "x": "346",
-         "y": "37",
-         "width": "93",
-         "height": "164"
-      },
-      {
-         "name": "neck_tone8",
-         "x": "343",
-         "y": "892",
-         "width": "96",
-         "height": "37"
-      }
-   ],
-   "shoes.png": [
-      {
-         "name": "shoe_black_1",
-         "x": "0",
-         "y": "378",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_black_2",
-         "x": "0",
-         "y": "336",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_black_3",
-         "x": "0",
-         "y": "294",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_black_4",
-         "x": "0",
-         "y": "252",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_black_5",
-         "x": "0",
-         "y": "210",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_blue_1",
-         "x": "0",
-         "y": "168",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_blue_2",
-         "x": "0",
-         "y": "126",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_blue_3",
-         "x": "0",
-         "y": "84",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_blue_4",
-         "x": "0",
-         "y": "42",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_blue_5",
-         "x": "0",
-         "y": "0",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "brown2shoe1",
-         "x": "188",
-         "y": "210",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "brown2shoe2",
-         "x": "188",
-         "y": "168",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "brown2shoe3",
-         "x": "188",
-         "y": "126",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "brown2shoe4",
-         "x": "188",
-         "y": "84",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "brown2shoe5",
-         "x": "188",
-         "y": "42",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_brown_1",
-         "x": "94",
-         "y": "210",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_brown_2",
-         "x": "188",
-         "y": "378",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_brown_3",
-         "x": "188",
-         "y": "336",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_brown_4",
-         "x": "188",
-         "y": "294",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_brown_5",
-         "x": "188",
-         "y": "252",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_grey_1",
-         "x": "188",
-         "y": "0",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_grey_2",
-         "x": "94",
-         "y": "462",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_grey_3",
-         "x": "94",
-         "y": "420",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_grey_4",
-         "x": "94",
-         "y": "378",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_grey_5",
-         "x": "94",
-         "y": "336",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_red_1",
-         "x": "94",
-         "y": "294",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_red_2",
-         "x": "94",
-         "y": "252",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_red_3",
-         "x": "188",
-         "y": "420",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_red_4",
-         "x": "94",
-         "y": "168",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_red_5",
-         "x": "94",
-         "y": "126",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_tan_1",
-         "x": "94",
-         "y": "84",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_tan_2",
-         "x": "94",
-         "y": "42",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_tan_3",
-         "x": "94",
-         "y": "0",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_tan_4",
-         "x": "0",
-         "y": "462",
-         "width": "94",
-         "height": "42"
-      },
-      {
-         "name": "shoe_tan_5",
-         "x": "0",
-         "y": "420",
-         "width": "94",
-         "height": "42"
-      }
-   ],
-   "shirts.png": [
-      {
-         "name": "sleeve_white_long",
-         "x": "0",
-         "y": "426",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_white_short",
-         "x": "703",
-         "y": "1914",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_white_shorter",
-         "x": "171",
-         "y": "1044",
-         "width": "67",
-         "height": "86"
-      },
-      {
-         "name": "sleeve_yellow_long",
-         "x": "0",
-         "y": "568",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_yellow_short",
-         "x": "467",
-         "y": "1914",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_yellow_shorter",
-         "x": "936",
-         "y": "546",
-         "width": "66",
-         "height": "86"
-      },
-      {
-         "name": "sleeve_blue_long",
-         "x": "0",
-         "y": "0",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_blue_short",
-         "x": "936",
-         "y": "0",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_blue_shorter",
-         "x": "936",
-         "y": "460",
-         "width": "66",
-         "height": "86"
-      },
-      {
-         "name": "shirt_blue_1",
-         "x": "477",
-         "y": "0",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_2",
-         "x": "475",
-         "y": "1392",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_3",
-         "x": "475",
-         "y": "1218",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_4",
-         "x": "0",
-         "y": "1484",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_5",
-         "x": "467",
-         "y": "1740",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_6",
-         "x": "467",
-         "y": "1566",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_7",
-         "x": "324",
-         "y": "870",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_blue_8",
-         "x": "324",
-         "y": "696",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "sleeve_green_long",
-         "x": "0",
-         "y": "710",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_green_short",
-         "x": "585",
-         "y": "1914",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_green_shorter",
-         "x": "322",
-         "y": "1566",
-         "width": "67",
-         "height": "86"
-      },
-      {
-         "name": "shirt_green_1",
-         "x": "324",
-         "y": "0",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_2",
-         "x": "322",
-         "y": "1392",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_3",
-         "x": "322",
-         "y": "1218",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_4",
-         "x": "161",
-         "y": "1484",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_5",
-         "x": "314",
-         "y": "1832",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_6",
-         "x": "475",
-         "y": "1044",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_7",
-         "x": "171",
-         "y": "870",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_green_8",
-         "x": "477",
-         "y": "348",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "sleeve_grey_long",
-         "x": "0",
-         "y": "142",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_grey_short",
-         "x": "936",
-         "y": "96",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_grey_shorter",
-         "x": "936",
-         "y": "374",
-         "width": "66",
-         "height": "86"
-      },
-      {
-         "name": "shirt_grey_1",
-         "x": "322",
-         "y": "1044",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_2",
-         "x": "161",
-         "y": "1832",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_3",
-         "x": "171",
-         "y": "522",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_4",
-         "x": "0",
-         "y": "1658",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_5",
-         "x": "161",
-         "y": "1658",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_6",
-         "x": "171",
-         "y": "0",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_7",
-         "x": "171",
-         "y": "174",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_grey_8",
-         "x": "171",
-         "y": "348",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "sleeve_navy_long",
-         "x": "0",
-         "y": "994",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_navy_short",
-         "x": "934",
-         "y": "1392",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_navy_shorter",
-         "x": "238",
-         "y": "1044",
-         "width": "67",
-         "height": "86"
-      },
-      {
-         "name": "shirt_navy_1",
-         "x": "314",
-         "y": "1658",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_2",
-         "x": "324",
-         "y": "348",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_3",
-         "x": "324",
-         "y": "522",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_4",
-         "x": "0",
-         "y": "1310",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_5",
-         "x": "324",
-         "y": "174",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_6",
-         "x": "171",
-         "y": "696",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_7",
-         "x": "477",
-         "y": "174",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_navy_8",
-         "x": "477",
-         "y": "696",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "sleeve_pine_long",
-         "x": "0",
-         "y": "284",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_pine_short",
-         "x": "936",
-         "y": "192",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_pine_shorter",
-         "x": "389",
-         "y": "1566",
-         "width": "67",
-         "height": "86"
-      },
-      {
-         "name": "shirt_pine_1",
-         "x": "628",
-         "y": "1044",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_2",
-         "x": "630",
-         "y": "174",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_3",
-         "x": "781",
-         "y": "1044",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_4",
-         "x": "0",
-         "y": "1136",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_5",
-         "x": "630",
-         "y": "522",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_6",
-         "x": "934",
-         "y": "1044",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_7",
-         "x": "783",
-         "y": "348",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_pine_8",
-         "x": "781",
-         "y": "1218",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "sleeve_red_long",
-         "x": "0",
-         "y": "852",
-         "width": "171",
-         "height": "142"
-      },
-      {
-         "name": "sleeve_red_short",
-         "x": "821",
-         "y": "1914",
-         "width": "118",
-         "height": "96"
-      },
-      {
-         "name": "sleeve_red_shorter",
-         "x": "936",
-         "y": "288",
-         "width": "66",
-         "height": "86"
-      },
-      {
-         "name": "shirt_red_1",
-         "x": "783",
-         "y": "174",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_2",
-         "x": "926",
-         "y": "1740",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_3",
-         "x": "926",
-         "y": "1566",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_4",
-         "x": "161",
-         "y": "1310",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_5",
-         "x": "783",
-         "y": "522",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_6",
-         "x": "934",
-         "y": "1218",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_7",
-         "x": "783",
-         "y": "870",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_red_8",
-         "x": "783",
-         "y": "696",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_1",
-         "x": "630",
-         "y": "0",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_2",
-         "x": "628",
-         "y": "1392",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_3",
-         "x": "628",
-         "y": "1218",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_4",
-         "x": "0",
-         "y": "1832",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_5",
-         "x": "620",
-         "y": "1740",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_6",
-         "x": "620",
-         "y": "1566",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_7",
-         "x": "477",
-         "y": "870",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_yellow_8",
-         "x": "477",
-         "y": "522",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_1",
-         "x": "783",
-         "y": "0",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_2",
-         "x": "781",
-         "y": "1392",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_3",
-         "x": "630",
-         "y": "348",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_4",
-         "x": "161",
-         "y": "1136",
-         "width": "161",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_5",
-         "x": "773",
-         "y": "1740",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_6",
-         "x": "773",
-         "y": "1566",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_7",
-         "x": "630",
-         "y": "870",
-         "width": "153",
-         "height": "174"
-      },
-      {
-         "name": "shirt_white_8",
-         "x": "630",
-         "y": "696",
-         "width": "153",
-         "height": "174"
-      }
-   ],
-   "pants.png": [
-      {
-         "name": "pants_yellow_long",
-         "x": "417",
-         "y": "614",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_yellow_short",
-         "x": "639",
-         "y": "118",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_yellow_shorter",
-         "x": "746",
-         "y": "118",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_blue_11",
-         "x": "0",
-         "y": "940",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_12",
-         "x": "0",
-         "y": "893",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_13",
-         "x": "0",
-         "y": "846",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_14",
-         "x": "0",
-         "y": "799",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_1_long",
-         "x": "417",
-         "y": "448",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "belt_blue_1_short",
-         "x": "635",
-         "y": "782",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "belt_blue_1_shorter",
-         "x": "746",
-         "y": "433",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_blue_21",
-         "x": "0",
-         "y": "611",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_22",
-         "x": "0",
-         "y": "564",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_23",
-         "x": "0",
-         "y": "517",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_24",
-         "x": "0",
-         "y": "470",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_blue_2_long",
-         "x": "306",
-         "y": "282",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "belt_blue_2_short",
-         "x": "528",
-         "y": "900",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "belt_blue_2_shorter",
-         "x": "784",
-         "y": "0",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_brown_1",
-         "x": "0",
-         "y": "282",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_brown_2",
-         "x": "0",
-         "y": "235",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_brown_3",
-         "x": "0",
-         "y": "188",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_brown_4",
-         "x": "0",
-         "y": "141",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_brown_long",
-         "x": "528",
-         "y": "166",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_brown_short",
-         "x": "639",
-         "y": "236",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_brown_shorter",
-         "x": "846",
-         "y": "643",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_green_1",
-         "x": "0",
-         "y": "47",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_green_2",
-         "x": "0",
-         "y": "94",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_green_3",
-         "x": "0",
-         "y": "705",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_green_4",
-         "x": "0",
-         "y": "329",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_green_long",
-         "x": "417",
-         "y": "780",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_green_short",
-         "x": "639",
-         "y": "472",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_green_shorter",
-         "x": "746",
-         "y": "223",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_grey_1",
-         "x": "153",
-         "y": "188",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_grey_2",
-         "x": "153",
-         "y": "329",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_grey_3",
-         "x": "0",
-         "y": "376",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_grey_4",
-         "x": "306",
-         "y": "47",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_grey_long",
-         "x": "459",
-         "y": "0",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_grey_short",
-         "x": "639",
-         "y": "354",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_grey_shorter",
-         "x": "742",
-         "y": "590",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_lightblue_1",
-         "x": "153",
-         "y": "282",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_lightblue_2",
-         "x": "0",
-         "y": "752",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_lightblue_3",
-         "x": "153",
-         "y": "235",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_lightblue_4",
-         "x": "153",
-         "y": "376",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_lightblue_long",
-         "x": "528",
-         "y": "498",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_lightblue_short",
-         "x": "635",
-         "y": "664",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_lightblue_shorter",
-         "x": "742",
-         "y": "905",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_navy_1",
-         "x": "153",
-         "y": "799",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_navy_2",
-         "x": "153",
-         "y": "705",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_navy_3",
-         "x": "153",
-         "y": "846",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_navy_4",
-         "x": "306",
-         "y": "0",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_navy_long",
-         "x": "528",
-         "y": "332",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_navy_short",
-         "x": "570",
-         "y": "0",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_navy_shorter",
-         "x": "742",
-         "y": "800",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_pine_1",
-         "x": "153",
-         "y": "658",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_pine_2",
-         "x": "153",
-         "y": "940",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_pine_3",
-         "x": "153",
-         "y": "893",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_pine_4",
-         "x": "306",
-         "y": "141",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_pine_long",
-         "x": "306",
-         "y": "780",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_pine_short",
-         "x": "528",
-         "y": "782",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_pine_shorter",
-         "x": "742",
-         "y": "695",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_red_1",
-         "x": "306",
-         "y": "235",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_red_2",
-         "x": "306",
-         "y": "188",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_red_3",
-         "x": "306",
-         "y": "94",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_red_4",
-         "x": "153",
-         "y": "752",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_red_long",
-         "x": "306",
-         "y": "614",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_red_short",
-         "x": "528",
-         "y": "664",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_red_shorter",
-         "x": "846",
-         "y": "748",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_tan_1",
-         "x": "0",
-         "y": "0",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_tan_2",
-         "x": "153",
-         "y": "423",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_tan_3",
-         "x": "0",
-         "y": "658",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_tan_4",
-         "x": "0",
-         "y": "423",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_tan_long",
-         "x": "417",
-         "y": "282",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_tan_short",
-         "x": "677",
-         "y": "0",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_tan_shorter",
-         "x": "746",
-         "y": "328",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_white_1",
-         "x": "153",
-         "y": "611",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_white_2",
-         "x": "153",
-         "y": "564",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_white_3",
-         "x": "153",
-         "y": "517",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_white_4",
-         "x": "153",
-         "y": "470",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "pants_white_long",
-         "x": "306",
-         "y": "448",
-         "width": "111",
-         "height": "166"
-      },
-      {
-         "name": "pants_white_short",
-         "x": "635",
-         "y": "900",
-         "width": "107",
-         "height": "118"
-      },
-      {
-         "name": "pants_white_shorter",
-         "x": "846",
-         "y": "538",
-         "width": "104",
-         "height": "105"
-      },
-      {
-         "name": "belt_yellow_1",
-         "x": "153",
-         "y": "141",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_yellow_2",
-         "x": "153",
-         "y": "94",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_yellow_3",
-         "x": "153",
-         "y": "47",
-         "width": "153",
-         "height": "47"
-      },
-      {
-         "name": "belt_yellow_4",
-         "x": "153",
-         "y": "0",
-         "width": "153",
-         "height": "47"
-      }
-   ],
-   "hair.png": [
-      {
-         "name": "hair_black_7",
-         "x": "979",
-         "y": "524",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_black_8",
-         "x": "1454",
-         "y": "119",
-         "width": "158",
-         "height": "138"
-      },
-      {
-         "name": "hair_black_9",
-         "x": "1454",
-         "y": "1381",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_black_10",
-         "x": "1454",
-         "y": "1262",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_black_11",
-         "x": "0",
-         "y": "910",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_black_12",
-         "x": "1454",
-         "y": "0",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_black_13",
-         "x": "1453",
-         "y": "1922",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_black_14",
-         "x": "821",
-         "y": "405",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_black_1",
-         "x": "171",
-         "y": "454",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_black_2",
-         "x": "1453",
-         "y": "1637",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_black_3",
-         "x": "501",
-         "y": "227",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_black_4",
-         "x": "1298",
-         "y": "690",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_black_5",
-         "x": "168",
-         "y": "1466",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_black_6",
-         "x": "336",
-         "y": "908",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_blonde_7",
-         "x": "823",
-         "y": "1087",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_blonde_8",
-         "x": "979",
-         "y": "1206",
-         "width": "159",
-         "height": "138"
-      },
-      {
-         "name": "hair_blonde_9",
-         "x": "979",
-         "y": "1344",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_blonde_10",
-         "x": "979",
-         "y": "1463",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_blonde_11",
-         "x": "0",
-         "y": "260",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_blonde_12",
-         "x": "979",
-         "y": "1582",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_blonde_13",
-         "x": "979",
-         "y": "1701",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_blonde_14",
-         "x": "634",
-         "y": "2001",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_blonde_1",
-         "x": "1296",
-         "y": "1114",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_blonde_2",
-         "x": "501",
-         "y": "0",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_blonde_3",
-         "x": "1295",
-         "y": "404",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_blonde_4",
-         "x": "336",
-         "y": "227",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_blonde_5",
-         "x": "336",
-         "y": "1334",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_blonde_6",
-         "x": "168",
-         "y": "1040",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_brown1_7",
-         "x": "1138",
-         "y": "1590",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown1_8",
-         "x": "1138",
-         "y": "1452",
-         "width": "158",
-         "height": "138"
-      },
-      {
-         "name": "hair_brown1_9",
-         "x": "1137",
-         "y": "1820",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown1_10",
-         "x": "1296",
-         "y": "119",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown1_11",
-         "x": "0",
-         "y": "650",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_brown1_12",
-         "x": "1295",
-         "y": "1828",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown1_13",
-         "x": "982",
-         "y": "1047",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown1_14",
-         "x": "476",
-         "y": "2001",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_brown1_1",
-         "x": "982",
-         "y": "762",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_brown1_2",
-         "x": "661",
-         "y": "0",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_brown1_3",
-         "x": "1137",
-         "y": "405",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_brown1_4",
-         "x": "336",
-         "y": "0",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_brown1_5",
-         "x": "500",
-         "y": "1121",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_brown1_6",
-         "x": "0",
-         "y": "1040",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_brown2_7",
-         "x": "979",
-         "y": "405",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown2_8",
-         "x": "979",
-         "y": "1820",
-         "width": "158",
-         "height": "138"
-      },
-      {
-         "name": "hair_brown2_9",
-         "x": "980",
-         "y": "0",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown2_10",
-         "x": "979",
-         "y": "643",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown2_11",
-         "x": "0",
-         "y": "130",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_brown2_12",
-         "x": "1296",
-         "y": "1399",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown2_13",
-         "x": "1296",
-         "y": "0",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_brown2_14",
-         "x": "661",
-         "y": "1952",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_brown2_1",
-         "x": "1140",
-         "y": "829",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_brown2_2",
-         "x": "661",
-         "y": "227",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_brown2_3",
-         "x": "1138",
-         "y": "1166",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_brown2_4",
-         "x": "336",
-         "y": "454",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_brown2_5",
-         "x": "500",
-         "y": "1334",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_brown2_6",
-         "x": "0",
-         "y": "1466",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_grey_7",
-         "x": "823",
-         "y": "968",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_grey_8",
-         "x": "820",
-         "y": "1857",
-         "width": "159",
-         "height": "138"
-      },
-      {
-         "name": "hair_grey_9",
-         "x": "820",
-         "y": "1738",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_grey_10",
-         "x": "820",
-         "y": "1619",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_grey_11",
-         "x": "0",
-         "y": "390",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_grey_12",
-         "x": "664",
-         "y": "1215",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_grey_13",
-         "x": "664",
-         "y": "1096",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_grey_14",
-         "x": "318",
-         "y": "2001",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_grey_1",
-         "x": "1138",
-         "y": "0",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_grey_2",
-         "x": "501",
-         "y": "454",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_grey_3",
-         "x": "980",
-         "y": "119",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_grey_4",
-         "x": "336",
-         "y": "681",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_grey_5",
-         "x": "336",
-         "y": "1760",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_grey_6",
-         "x": "168",
-         "y": "1253",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_red_7",
-         "x": "664",
-         "y": "858",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_red_8",
-         "x": "823",
-         "y": "830",
-         "width": "159",
-         "height": "138"
-      },
-      {
-         "name": "hair_red_9",
-         "x": "821",
-         "y": "286",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_red_10",
-         "x": "664",
-         "y": "977",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_red_11",
-         "x": "0",
-         "y": "780",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_red_12",
-         "x": "159",
-         "y": "1892",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_red_13",
-         "x": "661",
-         "y": "1833",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_red_14",
-         "x": "792",
-         "y": "1999",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_red_1",
-         "x": "661",
-         "y": "454",
-         "width": "159",
-         "height": "285"
-      },
-      {
-         "name": "hair_red_2",
-         "x": "500",
-         "y": "1547",
-         "width": "161",
-         "height": "227"
-      },
-      {
-         "name": "hair_red_3",
-         "x": "661",
-         "y": "1547",
-         "width": "159",
-         "height": "286"
-      },
-      {
-         "name": "hair_red_4",
-         "x": "171",
-         "y": "681",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_red_5",
-         "x": "500",
-         "y": "908",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_red_6",
-         "x": "0",
-         "y": "1679",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_tan_7",
-         "x": "1138",
-         "y": "285",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_tan_8",
-         "x": "1140",
-         "y": "691",
-         "width": "158",
-         "height": "138"
-      },
-      {
-         "name": "hair_tan_9",
-         "x": "1454",
-         "y": "257",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_tan_10",
-         "x": "1295",
-         "y": "1709",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_tan_11",
-         "x": "0",
-         "y": "520",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_tan_12",
-         "x": "1296",
-         "y": "1518",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_tan_13",
-         "x": "1296",
-         "y": "238",
-         "width": "158",
-         "height": "119"
-      },
-      {
-         "name": "hair_tan_14",
-         "x": "1296",
-         "y": "357",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_tan_1",
-         "x": "1453",
-         "y": "404",
-         "width": "158",
-         "height": "285"
-      },
-      {
-         "name": "hair_tan_2",
-         "x": "501",
-         "y": "681",
-         "width": "160",
-         "height": "227"
-      },
-      {
-         "name": "hair_tan_3",
-         "x": "168",
-         "y": "1679",
-         "width": "168",
-         "height": "213"
-      },
-      {
-         "name": "hair_tan_4",
-         "x": "1454",
-         "y": "976",
-         "width": "158",
-         "height": "286"
-      },
-      {
-         "name": "hair_tan_5",
-         "x": "171",
-         "y": "0",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_tan_6",
-         "x": "336",
-         "y": "1121",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_white_7",
-         "x": "171",
-         "y": "908",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_white_8",
-         "x": "820",
-         "y": "692",
-         "width": "159",
-         "height": "138"
-      },
-      {
-         "name": "hair_white_9",
-         "x": "820",
-         "y": "573",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_white_10",
-         "x": "661",
-         "y": "739",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_white_11",
-         "x": "0",
-         "y": "0",
-         "width": "171",
-         "height": "130"
-      },
-      {
-         "name": "hair_white_12",
-         "x": "0",
-         "y": "1892",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_white_13",
-         "x": "820",
-         "y": "454",
-         "width": "159",
-         "height": "119"
-      },
-      {
-         "name": "hair_white_14",
-         "x": "950",
-         "y": "1995",
-         "width": "158",
-         "height": "47"
-      },
-      {
-         "name": "hair_white_1",
-         "x": "820",
-         "y": "1334",
-         "width": "159",
-         "height": "285"
-      },
-      {
-         "name": "hair_white_2",
-         "x": "500",
-         "y": "1774",
-         "width": "161",
-         "height": "227"
-      },
-      {
-         "name": "hair_white_3",
-         "x": "821",
-         "y": "0",
-         "width": "159",
-         "height": "286"
-      },
-      {
-         "name": "hair_white_4",
-         "x": "171",
-         "y": "227",
-         "width": "165",
-         "height": "227"
-      },
-      {
-         "name": "hair_white_5",
-         "x": "336",
-         "y": "1547",
-         "width": "164",
-         "height": "213"
-      },
-      {
-         "name": "hair_white_6",
-         "x": "0",
-         "y": "1253",
-         "width": "168",
-         "height": "213"
-      }
-   ],
-   "facialHair.png": [
-      {
-         "name": "facialhair_black_1",
-         "x": "253",
-         "y": "150",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "facialhair_black_10",
-         "x": "162",
-         "y": "380",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_black_11",
-         "x": "165",
-         "y": "146",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_black_12",
-         "x": "165",
-         "y": "166",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_black_13",
-         "x": "165",
-         "y": "114",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_black_14",
-         "x": "256",
-         "y": "70",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_black_15",
-         "x": "291",
-         "y": "44",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_black_16",
-         "x": "331",
-         "y": "384",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_black_2",
-         "x": "322",
-         "y": "52",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_black_3",
-         "x": "341",
-         "y": "309",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_black_4",
-         "x": "115",
-         "y": "148",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_black_5",
-         "x": "323",
-         "y": "240",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_black_6",
-         "x": "115",
-         "y": "174",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_black_7",
-         "x": "58",
-         "y": "118",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_black_8",
-         "x": "253",
-         "y": "331",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_black_9",
-         "x": "0",
-         "y": "360",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_blonde_1",
-         "x": "100",
-         "y": "498",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_blonde_10",
-         "x": "165",
-         "y": "38",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_blonde_11",
-         "x": "253",
-         "y": "102",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_blonde_12",
-         "x": "209",
-         "y": "392",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_blonde_13",
-         "x": "241",
-         "y": "462",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_blonde_14",
-         "x": "291",
-         "y": "0",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_blonde_15",
-         "x": "212",
-         "y": "102",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_blonde_16",
-         "x": "340",
-         "y": "489",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_blonde_2",
-         "x": "296",
-         "y": "166",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_blonde_3",
-         "x": "323",
-         "y": "334",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_blonde_4",
-         "x": "115",
-         "y": "232",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_blonde_5",
-         "x": "322",
-         "y": "108",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_blonde_6",
-         "x": "115",
-         "y": "32",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_blonde_7",
-         "x": "58",
-         "y": "0",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_blonde_8",
-         "x": "288",
-         "y": "191",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_blonde_9",
-         "x": "0",
-         "y": "420",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_brown_1",
-         "x": "253",
-         "y": "136",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_brown_10",
-         "x": "162",
-         "y": "418",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_brown_11",
-         "x": "241",
-         "y": "442",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_brown_12",
-         "x": "212",
-         "y": "0",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_brown_13",
-         "x": "212",
-         "y": "50",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_brown_14",
-         "x": "291",
-         "y": "17",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_brown_15",
-         "x": "291",
-         "y": "34",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_brown_16",
-         "x": "339",
-         "y": "384",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_brown_2",
-         "x": "297",
-         "y": "108",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_brown_3",
-         "x": "323",
-         "y": "0",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_brown_4",
-         "x": "100",
-         "y": "472",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_brown_5",
-         "x": "320",
-         "y": "401",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_brown_6",
-         "x": "115",
-         "y": "90",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_brown_7",
-         "x": "58",
-         "y": "354",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_brown_8",
-         "x": "288",
-         "y": "331",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_brown_9",
-         "x": "0",
-         "y": "120",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_brownalt_1",
-         "x": "241",
-         "y": "494",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_brownalt_10",
-         "x": "150",
-         "y": "456",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_brownalt_11",
-         "x": "212",
-         "y": "82",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_brownalt_12",
-         "x": "209",
-         "y": "310",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_brownalt_13",
-         "x": "209",
-         "y": "360",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_brownalt_14",
-         "x": "288",
-         "y": "70",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_brownalt_15",
-         "x": "209",
-         "y": "442",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_brownalt_16",
-         "x": "297",
-         "y": "97",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_brownalt_2",
-         "x": "316",
-         "y": "489",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_brownalt_3",
-         "x": "323",
-         "y": "309",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_brownalt_4",
-         "x": "115",
-         "y": "122",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_brownalt_5",
-         "x": "320",
-         "y": "64",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_brownalt_6",
-         "x": "115",
-         "y": "348",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_brownalt_7",
-         "x": "58",
-         "y": "236",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_brownalt_8",
-         "x": "285",
-         "y": "401",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_brownalt_9",
-         "x": "0",
-         "y": "300",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_grey_1",
-         "x": "323",
-         "y": "196",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_grey_10",
-         "x": "253",
-         "y": "401",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_grey_11",
-         "x": "256",
-         "y": "87",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_grey_12",
-         "x": "305",
-         "y": "97",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_grey_13",
-         "x": "143",
-         "y": "498",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_grey_14",
-         "x": "322",
-         "y": "34",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_grey_15",
-         "x": "323",
-         "y": "284",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_grey_16",
-         "x": "115",
-         "y": "206",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_grey_2",
-         "x": "115",
-         "y": "258",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_grey_3",
-         "x": "58",
-         "y": "295",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_grey_4",
-         "x": "288",
-         "y": "261",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_grey_5",
-         "x": "0",
-         "y": "240",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_grey_6",
-         "x": "165",
-         "y": "0",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_grey_7",
-         "x": "197",
-         "y": "488",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_grey_8",
-         "x": "209",
-         "y": "114",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_grey_9",
-         "x": "197",
-         "y": "456",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_red_1",
-         "x": "253",
-         "y": "163",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_red_10",
-         "x": "165",
-         "y": "76",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_red_11",
-         "x": "165",
-         "y": "286",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_red_12",
-         "x": "209",
-         "y": "260",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_red_13",
-         "x": "209",
-         "y": "228",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_red_14",
-         "x": "253",
-         "y": "418",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_red_15",
-         "x": "287",
-         "y": "87",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_red_16",
-         "x": "186",
-         "y": "494",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_red_2",
-         "x": "296",
-         "y": "175",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_red_3",
-         "x": "341",
-         "y": "334",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_red_4",
-         "x": "115",
-         "y": "290",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_red_5",
-         "x": "320",
-         "y": "445",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_red_6",
-         "x": "115",
-         "y": "316",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_red_7",
-         "x": "58",
-         "y": "177",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_red_8",
-         "x": "256",
-         "y": "0",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_red_9",
-         "x": "0",
-         "y": "180",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_tan_1",
-         "x": "253",
-         "y": "122",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_tan_10",
-         "x": "115",
-         "y": "418",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_tan_11",
-         "x": "165",
-         "y": "306",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_tan_12",
-         "x": "165",
-         "y": "326",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_tan_13",
-         "x": "209",
-         "y": "164",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_tan_14",
-         "x": "284",
-         "y": "494",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_tan_15",
-         "x": "115",
-         "y": "456",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_tan_16",
-         "x": "243",
-         "y": "102",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_tan_2",
-         "x": "316",
-         "y": "498",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_tan_3",
-         "x": "341",
-         "y": "284",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_tan_4",
-         "x": "115",
-         "y": "64",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_tan_5",
-         "x": "296",
-         "y": "122",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_tan_6",
-         "x": "115",
-         "y": "0",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_tan_7",
-         "x": "58",
-         "y": "413",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_tan_8",
-         "x": "253",
-         "y": "261",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_tan_9",
-         "x": "0",
-         "y": "60",
-         "width": "56",
-         "height": "58"
-      },
-      {
-         "name": "facialhair_white_1",
-         "x": "253",
-         "y": "177",
-         "width": "41",
-         "height": "12"
-      },
-      {
-         "name": "facialhair_white_10",
-         "x": "115",
-         "y": "380",
-         "width": "45",
-         "height": "36"
-      },
-      {
-         "name": "facialhair_white_11",
-         "x": "165",
-         "y": "266",
-         "width": "42",
-         "height": "18"
-      },
-      {
-         "name": "facialhair_white_12",
-         "x": "165",
-         "y": "216",
-         "width": "42",
-         "height": "48"
-      },
-      {
-         "name": "facialhair_white_13",
-         "x": "209",
-         "y": "196",
-         "width": "42",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_white_14",
-         "x": "285",
-         "y": "471",
-         "width": "30",
-         "height": "15"
-      },
-      {
-         "name": "facialhair_white_15",
-         "x": "291",
-         "y": "54",
-         "width": "29",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_white_16",
-         "x": "323",
-         "y": "384",
-         "width": "6",
-         "height": "8"
-      },
-      {
-         "name": "facialhair_white_2",
-         "x": "322",
-         "y": "43",
-         "width": "22",
-         "height": "7"
-      },
-      {
-         "name": "facialhair_white_3",
-         "x": "323",
-         "y": "359",
-         "width": "16",
-         "height": "23"
-      },
-      {
-         "name": "facialhair_white_4",
-         "x": "50",
-         "y": "480",
-         "width": "48",
-         "height": "24"
-      },
-      {
-         "name": "facialhair_white_5",
-         "x": "323",
-         "y": "152",
-         "width": "24",
-         "height": "42"
-      },
-      {
-         "name": "facialhair_white_6",
-         "x": "0",
-         "y": "480",
-         "width": "48",
-         "height": "30"
-      },
-      {
-         "name": "facialhair_white_7",
-         "x": "58",
-         "y": "59",
-         "width": "55",
-         "height": "57"
-      },
-      {
-         "name": "facialhair_white_8",
-         "x": "253",
-         "y": "191",
-         "width": "33",
-         "height": "68"
-      },
-      {
-         "name": "facialhair_white_9",
-         "x": "0",
-         "y": "0",
-         "width": "56",
-         "height": "58"
-      }
-   ],
-   "face.png": [
-      {
-         "name": "brow_black_1",
-         "x": "41",
-         "y": "429",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_black_2",
-         "x": "0",
-         "y": "427",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_black_3",
-         "x": "41",
-         "y": "395",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_blonde_1",
-         "x": "81",
-         "y": "378",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_blonde_2",
-         "x": "0",
-         "y": "372",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_blonde_3",
-         "x": "80",
-         "y": "463",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_brown1_1",
-         "x": "80",
-         "y": "446",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_brown1_2",
-         "x": "0",
-         "y": "361",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_brown1_3",
-         "x": "80",
-         "y": "480",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_brown2_1",
-         "x": "0",
-         "y": "483",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_brown2_2",
-         "x": "0",
-         "y": "383",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_brown2_3",
-         "x": "40",
-         "y": "466",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "eye_black_large",
-         "x": "129",
-         "y": "266",
-         "width": "21",
-         "height": "21"
-      },
-      {
-         "name": "eye_black_small",
-         "x": "131",
-         "y": "168",
-         "width": "15",
-         "height": "16"
-      },
-      {
-         "name": "eye_blue_large",
-         "x": "121",
-         "y": "365",
-         "width": "21",
-         "height": "21"
-      },
-      {
-         "name": "eye_blue_small",
-         "x": "122",
-         "y": "236",
-         "width": "15",
-         "height": "16"
-      },
-      {
-         "name": "eye_brown_large",
-         "x": "129",
-         "y": "287",
-         "width": "21",
-         "height": "21"
-      },
-      {
-         "name": "eye_brown_small",
-         "x": "131",
-         "y": "152",
-         "width": "15",
-         "height": "16"
-      },
-      {
-         "name": "eye_green_large",
-         "x": "129",
-         "y": "329",
-         "width": "21",
-         "height": "21"
-      },
-      {
-         "name": "eye_green_small",
-         "x": "131",
-         "y": "215",
-         "width": "15",
-         "height": "16"
-      },
-      {
-         "name": "eye_pine_large",
-         "x": "129",
-         "y": "308",
-         "width": "21",
-         "height": "21"
-      },
-      {
-         "name": "eye_pine_small",
-         "x": "131",
-         "y": "184",
-         "width": "15",
-         "height": "16"
-      },
-      {
-         "name": "face_1",
-         "x": "0",
-         "y": "152",
-         "width": "100",
-         "height": "101"
-      },
-      {
-         "name": "face_2",
-         "x": "0",
-         "y": "253",
-         "width": "98",
-         "height": "108"
-      },
-      {
-         "name": "face_3",
-         "x": "0",
-         "y": "0",
-         "width": "112",
-         "height": "65"
-      },
-      {
-         "name": "face_4",
-         "x": "0",
-         "y": "65",
-         "width": "111",
-         "height": "87"
-      },
-      {
-         "name": "brow_grey_1",
-         "x": "0",
-         "y": "449",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_grey_2",
-         "x": "0",
-         "y": "416",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_grey_3",
-         "x": "0",
-         "y": "466",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "mouth_glad",
-         "x": "98",
-         "y": "253",
-         "width": "34",
-         "height": "13"
-      },
-      {
-         "name": "mouth_happy",
-         "x": "81",
-         "y": "421",
-         "width": "34",
-         "height": "13"
-      },
-      {
-         "name": "mouth_oh",
-         "x": "131",
-         "y": "200",
-         "width": "15",
-         "height": "15"
-      },
-      {
-         "name": "mouth_sad",
-         "x": "80",
-         "y": "497",
-         "width": "34",
-         "height": "13"
-      },
-      {
-         "name": "mouth_straight",
-         "x": "0",
-         "y": "500",
-         "width": "36",
-         "height": "6"
-      },
-      {
-         "name": "mouth_teethlower",
-         "x": "81",
-         "y": "395",
-         "width": "34",
-         "height": "13"
-      },
-      {
-         "name": "mouth_teethupper",
-         "x": "81",
-         "y": "408",
-         "width": "34",
-         "height": "13"
-      },
-      {
-         "name": "brow_red_1",
-         "x": "40",
-         "y": "449",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_red_2",
-         "x": "0",
-         "y": "394",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_red_3",
-         "x": "41",
-         "y": "361",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_tan_1",
-         "x": "41",
-         "y": "412",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_tan_2",
-         "x": "0",
-         "y": "405",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_tan_3",
-         "x": "81",
-         "y": "361",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "nose_tone1_1",
-         "x": "98",
-         "y": "266",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone1_2",
-         "x": "111",
-         "y": "65",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone1_3",
-         "x": "120",
-         "y": "482",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone2_1",
-         "x": "100",
-         "y": "173",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone2_2",
-         "x": "111",
-         "y": "89",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone2_3",
-         "x": "120",
-         "y": "467",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone3_1",
-         "x": "100",
-         "y": "152",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone3_2",
-         "x": "111",
-         "y": "113",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone3_3",
-         "x": "114",
-         "y": "497",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone4_1",
-         "x": "100",
-         "y": "215",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone4_2",
-         "x": "112",
-         "y": "0",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone4_3",
-         "x": "100",
-         "y": "236",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone5_1",
-         "x": "100",
-         "y": "194",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone5_2",
-         "x": "115",
-         "y": "419",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone5_3",
-         "x": "111",
-         "y": "137",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone6_1",
-         "x": "98",
-         "y": "287",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone6_2",
-         "x": "112",
-         "y": "24",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone6_3",
-         "x": "112",
-         "y": "48",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone7_1",
-         "x": "98",
-         "y": "329",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone7_2",
-         "x": "120",
-         "y": "443",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone7_3",
-         "x": "136",
-         "y": "497",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "nose_tone8_1",
-         "x": "98",
-         "y": "308",
-         "width": "31",
-         "height": "21"
-      },
-      {
-         "name": "nose_tone8_2",
-         "x": "115",
-         "y": "395",
-         "width": "24",
-         "height": "24"
-      },
-      {
-         "name": "nose_tone8_3",
-         "x": "121",
-         "y": "350",
-         "width": "22",
-         "height": "15"
-      },
-      {
-         "name": "brow_white_1",
-         "x": "40",
-         "y": "483",
-         "width": "40",
-         "height": "17"
-      },
-      {
-         "name": "brow_white_2",
-         "x": "0",
-         "y": "438",
-         "width": "41",
-         "height": "11"
-      },
-      {
-         "name": "brow_white_3",
-         "x": "41",
-         "y": "378",
-         "width": "40",
-         "height": "17"
-      }
-   ]
+	"face.png": [
+		{
+			"name": "brow_black_1",
+			"x": "41",
+			"y": "429",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_black_2",
+			"x": "0",
+			"y": "427",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_black_3",
+			"x": "41",
+			"y": "395",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_blonde_1",
+			"x": "81",
+			"y": "378",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_blonde_2",
+			"x": "0",
+			"y": "372",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_blonde_3",
+			"x": "80",
+			"y": "463",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_brown1_1",
+			"x": "80",
+			"y": "446",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_brown1_2",
+			"x": "0",
+			"y": "361",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_brown1_3",
+			"x": "80",
+			"y": "480",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_brown2_1",
+			"x": "0",
+			"y": "483",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_brown2_2",
+			"x": "0",
+			"y": "383",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_brown2_3",
+			"x": "40",
+			"y": "466",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "eye_black_large",
+			"x": "129",
+			"y": "266",
+			"width": "21",
+			"height": "21"
+		},
+		{
+			"name": "eye_black_small",
+			"x": "131",
+			"y": "168",
+			"width": "15",
+			"height": "16"
+		},
+		{
+			"name": "eye_blue_large",
+			"x": "121",
+			"y": "365",
+			"width": "21",
+			"height": "21"
+		},
+		{
+			"name": "eye_blue_small",
+			"x": "122",
+			"y": "236",
+			"width": "15",
+			"height": "16"
+		},
+		{
+			"name": "eye_brown_large",
+			"x": "129",
+			"y": "287",
+			"width": "21",
+			"height": "21"
+		},
+		{
+			"name": "eye_brown_small",
+			"x": "131",
+			"y": "152",
+			"width": "15",
+			"height": "16"
+		},
+		{
+			"name": "eye_green_large",
+			"x": "129",
+			"y": "329",
+			"width": "21",
+			"height": "21"
+		},
+		{
+			"name": "eye_green_small",
+			"x": "131",
+			"y": "215",
+			"width": "15",
+			"height": "16"
+		},
+		{
+			"name": "eye_pine_large",
+			"x": "129",
+			"y": "308",
+			"width": "21",
+			"height": "21"
+		},
+		{
+			"name": "eye_pine_small",
+			"x": "131",
+			"y": "184",
+			"width": "15",
+			"height": "16"
+		},
+		{
+			"name": "face_1",
+			"x": "0",
+			"y": "152",
+			"width": "100",
+			"height": "101"
+		},
+		{
+			"name": "face_2",
+			"x": "0",
+			"y": "253",
+			"width": "98",
+			"height": "108"
+		},
+		{
+			"name": "face_3",
+			"x": "0",
+			"y": "0",
+			"width": "112",
+			"height": "65"
+		},
+		{
+			"name": "face_4",
+			"x": "0",
+			"y": "65",
+			"width": "111",
+			"height": "87"
+		},
+		{
+			"name": "brow_grey_1",
+			"x": "0",
+			"y": "449",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_grey_2",
+			"x": "0",
+			"y": "416",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_grey_3",
+			"x": "0",
+			"y": "466",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "mouth_glad",
+			"x": "98",
+			"y": "253",
+			"width": "34",
+			"height": "13"
+		},
+		{
+			"name": "mouth_happy",
+			"x": "81",
+			"y": "421",
+			"width": "34",
+			"height": "13"
+		},
+		{
+			"name": "mouth_oh",
+			"x": "131",
+			"y": "200",
+			"width": "15",
+			"height": "15"
+		},
+		{
+			"name": "mouth_sad",
+			"x": "80",
+			"y": "497",
+			"width": "34",
+			"height": "13"
+		},
+		{
+			"name": "mouth_straight",
+			"x": "0",
+			"y": "500",
+			"width": "36",
+			"height": "6"
+		},
+		{
+			"name": "mouth_teethlower",
+			"x": "81",
+			"y": "395",
+			"width": "34",
+			"height": "13"
+		},
+		{
+			"name": "mouth_teethupper",
+			"x": "81",
+			"y": "408",
+			"width": "34",
+			"height": "13"
+		},
+		{
+			"name": "brow_red_1",
+			"x": "40",
+			"y": "449",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_red_2",
+			"x": "0",
+			"y": "394",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_red_3",
+			"x": "41",
+			"y": "361",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_tan_1",
+			"x": "41",
+			"y": "412",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_tan_2",
+			"x": "0",
+			"y": "405",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_tan_3",
+			"x": "81",
+			"y": "361",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "nose_tone1_1",
+			"x": "98",
+			"y": "266",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone1_2",
+			"x": "111",
+			"y": "65",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone1_3",
+			"x": "120",
+			"y": "482",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone2_1",
+			"x": "100",
+			"y": "173",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone2_2",
+			"x": "111",
+			"y": "89",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone2_3",
+			"x": "120",
+			"y": "467",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone3_1",
+			"x": "100",
+			"y": "152",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone3_2",
+			"x": "111",
+			"y": "113",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone3_3",
+			"x": "114",
+			"y": "497",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone4_1",
+			"x": "100",
+			"y": "215",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone4_2",
+			"x": "112",
+			"y": "0",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone4_3",
+			"x": "100",
+			"y": "236",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone5_1",
+			"x": "100",
+			"y": "194",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone5_2",
+			"x": "115",
+			"y": "419",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone5_3",
+			"x": "111",
+			"y": "137",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone6_1",
+			"x": "98",
+			"y": "287",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone6_2",
+			"x": "112",
+			"y": "24",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone6_3",
+			"x": "112",
+			"y": "48",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone7_1",
+			"x": "98",
+			"y": "329",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone7_2",
+			"x": "120",
+			"y": "443",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone7_3",
+			"x": "136",
+			"y": "497",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "nose_tone8_1",
+			"x": "98",
+			"y": "308",
+			"width": "31",
+			"height": "21"
+		},
+		{
+			"name": "nose_tone8_2",
+			"x": "115",
+			"y": "395",
+			"width": "24",
+			"height": "24"
+		},
+		{
+			"name": "nose_tone8_3",
+			"x": "121",
+			"y": "350",
+			"width": "22",
+			"height": "15"
+		},
+		{
+			"name": "brow_white_1",
+			"x": "40",
+			"y": "483",
+			"width": "40",
+			"height": "17"
+		},
+		{
+			"name": "brow_white_2",
+			"x": "0",
+			"y": "438",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "brow_white_3",
+			"x": "41",
+			"y": "378",
+			"width": "40",
+			"height": "17"
+		}
+	],
+	"facialHair.png": [
+		{
+			"name": "facialhair_black_1",
+			"x": "253",
+			"y": "150",
+			"width": "41",
+			"height": "11"
+		},
+		{
+			"name": "facialhair_black_10",
+			"x": "162",
+			"y": "380",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_black_11",
+			"x": "165",
+			"y": "146",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_black_12",
+			"x": "165",
+			"y": "166",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_black_13",
+			"x": "165",
+			"y": "114",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_black_14",
+			"x": "256",
+			"y": "70",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_black_15",
+			"x": "291",
+			"y": "44",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_black_16",
+			"x": "331",
+			"y": "384",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_black_2",
+			"x": "322",
+			"y": "52",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_black_3",
+			"x": "341",
+			"y": "309",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_black_4",
+			"x": "115",
+			"y": "148",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_black_5",
+			"x": "323",
+			"y": "240",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_black_6",
+			"x": "115",
+			"y": "174",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_black_7",
+			"x": "58",
+			"y": "118",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_black_8",
+			"x": "253",
+			"y": "331",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_black_9",
+			"x": "0",
+			"y": "360",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_blonde_1",
+			"x": "100",
+			"y": "498",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_blonde_10",
+			"x": "165",
+			"y": "38",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_blonde_11",
+			"x": "253",
+			"y": "102",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_blonde_12",
+			"x": "209",
+			"y": "392",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_blonde_13",
+			"x": "241",
+			"y": "462",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_blonde_14",
+			"x": "291",
+			"y": "0",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_blonde_15",
+			"x": "212",
+			"y": "102",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_blonde_16",
+			"x": "340",
+			"y": "489",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_blonde_2",
+			"x": "296",
+			"y": "166",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_blonde_3",
+			"x": "323",
+			"y": "334",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_blonde_4",
+			"x": "115",
+			"y": "232",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_blonde_5",
+			"x": "322",
+			"y": "108",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_blonde_6",
+			"x": "115",
+			"y": "32",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_blonde_7",
+			"x": "58",
+			"y": "0",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_blonde_8",
+			"x": "288",
+			"y": "191",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_blonde_9",
+			"x": "0",
+			"y": "420",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_brown_1",
+			"x": "253",
+			"y": "136",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_brown_10",
+			"x": "162",
+			"y": "418",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_brown_11",
+			"x": "241",
+			"y": "442",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_brown_12",
+			"x": "212",
+			"y": "0",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_brown_13",
+			"x": "212",
+			"y": "50",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_brown_14",
+			"x": "291",
+			"y": "17",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_brown_15",
+			"x": "291",
+			"y": "34",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_brown_16",
+			"x": "339",
+			"y": "384",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_brown_2",
+			"x": "297",
+			"y": "108",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_brown_3",
+			"x": "323",
+			"y": "0",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_brown_4",
+			"x": "100",
+			"y": "472",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_brown_5",
+			"x": "320",
+			"y": "401",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_brown_6",
+			"x": "115",
+			"y": "90",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_brown_7",
+			"x": "58",
+			"y": "354",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_brown_8",
+			"x": "288",
+			"y": "331",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_brown_9",
+			"x": "0",
+			"y": "120",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_brownalt_1",
+			"x": "241",
+			"y": "494",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_brownalt_10",
+			"x": "150",
+			"y": "456",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_brownalt_11",
+			"x": "212",
+			"y": "82",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_brownalt_12",
+			"x": "209",
+			"y": "310",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_brownalt_13",
+			"x": "209",
+			"y": "360",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_brownalt_14",
+			"x": "288",
+			"y": "70",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_brownalt_15",
+			"x": "209",
+			"y": "442",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_brownalt_16",
+			"x": "297",
+			"y": "97",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_brownalt_2",
+			"x": "316",
+			"y": "489",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_brownalt_3",
+			"x": "323",
+			"y": "309",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_brownalt_4",
+			"x": "115",
+			"y": "122",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_brownalt_5",
+			"x": "320",
+			"y": "64",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_brownalt_6",
+			"x": "115",
+			"y": "348",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_brownalt_7",
+			"x": "58",
+			"y": "236",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_brownalt_8",
+			"x": "285",
+			"y": "401",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_brownalt_9",
+			"x": "0",
+			"y": "300",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_grey_1",
+			"x": "323",
+			"y": "196",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_grey_10",
+			"x": "253",
+			"y": "401",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_grey_11",
+			"x": "256",
+			"y": "87",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_grey_12",
+			"x": "305",
+			"y": "97",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_grey_13",
+			"x": "143",
+			"y": "498",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_grey_14",
+			"x": "322",
+			"y": "34",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_grey_15",
+			"x": "323",
+			"y": "284",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_grey_16",
+			"x": "115",
+			"y": "206",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_grey_2",
+			"x": "115",
+			"y": "258",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_grey_3",
+			"x": "58",
+			"y": "295",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_grey_4",
+			"x": "288",
+			"y": "261",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_grey_5",
+			"x": "0",
+			"y": "240",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_grey_6",
+			"x": "165",
+			"y": "0",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_grey_7",
+			"x": "197",
+			"y": "488",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_grey_8",
+			"x": "209",
+			"y": "114",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_grey_9",
+			"x": "197",
+			"y": "456",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_red_1",
+			"x": "253",
+			"y": "163",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_red_10",
+			"x": "165",
+			"y": "76",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_red_11",
+			"x": "165",
+			"y": "286",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_red_12",
+			"x": "209",
+			"y": "260",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_red_13",
+			"x": "209",
+			"y": "228",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_red_14",
+			"x": "253",
+			"y": "418",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_red_15",
+			"x": "287",
+			"y": "87",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_red_16",
+			"x": "186",
+			"y": "494",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_red_2",
+			"x": "296",
+			"y": "175",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_red_3",
+			"x": "341",
+			"y": "334",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_red_4",
+			"x": "115",
+			"y": "290",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_red_5",
+			"x": "320",
+			"y": "445",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_red_6",
+			"x": "115",
+			"y": "316",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_red_7",
+			"x": "58",
+			"y": "177",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_red_8",
+			"x": "256",
+			"y": "0",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_red_9",
+			"x": "0",
+			"y": "180",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_tan_1",
+			"x": "253",
+			"y": "122",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_tan_10",
+			"x": "115",
+			"y": "418",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_tan_11",
+			"x": "165",
+			"y": "306",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_tan_12",
+			"x": "165",
+			"y": "326",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_tan_13",
+			"x": "209",
+			"y": "164",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_tan_14",
+			"x": "284",
+			"y": "494",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_tan_15",
+			"x": "115",
+			"y": "456",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_tan_16",
+			"x": "243",
+			"y": "102",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_tan_2",
+			"x": "316",
+			"y": "498",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_tan_3",
+			"x": "341",
+			"y": "284",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_tan_4",
+			"x": "115",
+			"y": "64",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_tan_5",
+			"x": "296",
+			"y": "122",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_tan_6",
+			"x": "115",
+			"y": "0",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_tan_7",
+			"x": "58",
+			"y": "413",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_tan_8",
+			"x": "253",
+			"y": "261",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_tan_9",
+			"x": "0",
+			"y": "60",
+			"width": "56",
+			"height": "58"
+		},
+		{
+			"name": "facialhair_white_1",
+			"x": "253",
+			"y": "177",
+			"width": "41",
+			"height": "12"
+		},
+		{
+			"name": "facialhair_white_10",
+			"x": "115",
+			"y": "380",
+			"width": "45",
+			"height": "36"
+		},
+		{
+			"name": "facialhair_white_11",
+			"x": "165",
+			"y": "266",
+			"width": "42",
+			"height": "18"
+		},
+		{
+			"name": "facialhair_white_12",
+			"x": "165",
+			"y": "216",
+			"width": "42",
+			"height": "48"
+		},
+		{
+			"name": "facialhair_white_13",
+			"x": "209",
+			"y": "196",
+			"width": "42",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_white_14",
+			"x": "285",
+			"y": "471",
+			"width": "30",
+			"height": "15"
+		},
+		{
+			"name": "facialhair_white_15",
+			"x": "291",
+			"y": "54",
+			"width": "29",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_white_16",
+			"x": "323",
+			"y": "384",
+			"width": "6",
+			"height": "8"
+		},
+		{
+			"name": "facialhair_white_2",
+			"x": "322",
+			"y": "43",
+			"width": "22",
+			"height": "7"
+		},
+		{
+			"name": "facialhair_white_3",
+			"x": "323",
+			"y": "359",
+			"width": "16",
+			"height": "23"
+		},
+		{
+			"name": "facialhair_white_4",
+			"x": "50",
+			"y": "480",
+			"width": "48",
+			"height": "24"
+		},
+		{
+			"name": "facialhair_white_5",
+			"x": "323",
+			"y": "152",
+			"width": "24",
+			"height": "42"
+		},
+		{
+			"name": "facialhair_white_6",
+			"x": "0",
+			"y": "480",
+			"width": "48",
+			"height": "30"
+		},
+		{
+			"name": "facialhair_white_7",
+			"x": "58",
+			"y": "59",
+			"width": "55",
+			"height": "57"
+		},
+		{
+			"name": "facialhair_white_8",
+			"x": "253",
+			"y": "191",
+			"width": "33",
+			"height": "68"
+		},
+		{
+			"name": "facialhair_white_9",
+			"x": "0",
+			"y": "0",
+			"width": "56",
+			"height": "58"
+		}
+	],
+	"hair.png": [
+		{
+			"name": "hair_black_7",
+			"x": "979",
+			"y": "524",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_black_8",
+			"x": "1454",
+			"y": "119",
+			"width": "158",
+			"height": "138"
+		},
+		{
+			"name": "hair_black_9",
+			"x": "1454",
+			"y": "1381",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_black_10",
+			"x": "1454",
+			"y": "1262",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_black_11",
+			"x": "0",
+			"y": "910",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_black_12",
+			"x": "1454",
+			"y": "0",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_black_13",
+			"x": "1453",
+			"y": "1922",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_black_14",
+			"x": "821",
+			"y": "405",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_black_1",
+			"x": "171",
+			"y": "454",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_black_2",
+			"x": "1453",
+			"y": "1637",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_black_3",
+			"x": "501",
+			"y": "227",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_black_4",
+			"x": "1298",
+			"y": "690",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_black_5",
+			"x": "168",
+			"y": "1466",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_black_6",
+			"x": "336",
+			"y": "908",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_blonde_7",
+			"x": "823",
+			"y": "1087",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_blonde_8",
+			"x": "979",
+			"y": "1206",
+			"width": "159",
+			"height": "138"
+		},
+		{
+			"name": "hair_blonde_9",
+			"x": "979",
+			"y": "1344",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_blonde_10",
+			"x": "979",
+			"y": "1463",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_blonde_11",
+			"x": "0",
+			"y": "260",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_blonde_12",
+			"x": "979",
+			"y": "1582",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_blonde_13",
+			"x": "979",
+			"y": "1701",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_blonde_14",
+			"x": "634",
+			"y": "2001",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_blonde_1",
+			"x": "1296",
+			"y": "1114",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_blonde_2",
+			"x": "501",
+			"y": "0",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_blonde_3",
+			"x": "1295",
+			"y": "404",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_blonde_4",
+			"x": "336",
+			"y": "227",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_blonde_5",
+			"x": "336",
+			"y": "1334",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_blonde_6",
+			"x": "168",
+			"y": "1040",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_brown1_7",
+			"x": "1138",
+			"y": "1590",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown1_8",
+			"x": "1138",
+			"y": "1452",
+			"width": "158",
+			"height": "138"
+		},
+		{
+			"name": "hair_brown1_9",
+			"x": "1137",
+			"y": "1820",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown1_10",
+			"x": "1296",
+			"y": "119",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown1_11",
+			"x": "0",
+			"y": "650",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_brown1_12",
+			"x": "1295",
+			"y": "1828",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown1_13",
+			"x": "982",
+			"y": "1047",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown1_14",
+			"x": "476",
+			"y": "2001",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_brown1_1",
+			"x": "982",
+			"y": "762",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_brown1_2",
+			"x": "661",
+			"y": "0",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_brown1_3",
+			"x": "1137",
+			"y": "405",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_brown1_4",
+			"x": "336",
+			"y": "0",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_brown1_5",
+			"x": "500",
+			"y": "1121",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_brown1_6",
+			"x": "0",
+			"y": "1040",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_brown2_7",
+			"x": "979",
+			"y": "405",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown2_8",
+			"x": "979",
+			"y": "1820",
+			"width": "158",
+			"height": "138"
+		},
+		{
+			"name": "hair_brown2_9",
+			"x": "980",
+			"y": "0",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown2_10",
+			"x": "979",
+			"y": "643",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown2_11",
+			"x": "0",
+			"y": "130",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_brown2_12",
+			"x": "1296",
+			"y": "1399",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown2_13",
+			"x": "1296",
+			"y": "0",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_brown2_14",
+			"x": "661",
+			"y": "1952",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_brown2_1",
+			"x": "1140",
+			"y": "829",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_brown2_2",
+			"x": "661",
+			"y": "227",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_brown2_3",
+			"x": "1138",
+			"y": "1166",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_brown2_4",
+			"x": "336",
+			"y": "454",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_brown2_5",
+			"x": "500",
+			"y": "1334",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_brown2_6",
+			"x": "0",
+			"y": "1466",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_grey_7",
+			"x": "823",
+			"y": "968",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_grey_8",
+			"x": "820",
+			"y": "1857",
+			"width": "159",
+			"height": "138"
+		},
+		{
+			"name": "hair_grey_9",
+			"x": "820",
+			"y": "1738",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_grey_10",
+			"x": "820",
+			"y": "1619",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_grey_11",
+			"x": "0",
+			"y": "390",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_grey_12",
+			"x": "664",
+			"y": "1215",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_grey_13",
+			"x": "664",
+			"y": "1096",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_grey_14",
+			"x": "318",
+			"y": "2001",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_grey_1",
+			"x": "1138",
+			"y": "0",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_grey_2",
+			"x": "501",
+			"y": "454",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_grey_3",
+			"x": "980",
+			"y": "119",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_grey_4",
+			"x": "336",
+			"y": "681",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_grey_5",
+			"x": "336",
+			"y": "1760",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_grey_6",
+			"x": "168",
+			"y": "1253",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_red_7",
+			"x": "664",
+			"y": "858",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_red_8",
+			"x": "823",
+			"y": "830",
+			"width": "159",
+			"height": "138"
+		},
+		{
+			"name": "hair_red_9",
+			"x": "821",
+			"y": "286",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_red_10",
+			"x": "664",
+			"y": "977",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_red_11",
+			"x": "0",
+			"y": "780",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_red_12",
+			"x": "159",
+			"y": "1892",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_red_13",
+			"x": "661",
+			"y": "1833",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_red_14",
+			"x": "792",
+			"y": "1999",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_red_1",
+			"x": "661",
+			"y": "454",
+			"width": "159",
+			"height": "285"
+		},
+		{
+			"name": "hair_red_2",
+			"x": "500",
+			"y": "1547",
+			"width": "161",
+			"height": "227"
+		},
+		{
+			"name": "hair_red_3",
+			"x": "661",
+			"y": "1547",
+			"width": "159",
+			"height": "286"
+		},
+		{
+			"name": "hair_red_4",
+			"x": "171",
+			"y": "681",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_red_5",
+			"x": "500",
+			"y": "908",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_red_6",
+			"x": "0",
+			"y": "1679",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_tan_7",
+			"x": "1138",
+			"y": "285",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_tan_8",
+			"x": "1140",
+			"y": "691",
+			"width": "158",
+			"height": "138"
+		},
+		{
+			"name": "hair_tan_9",
+			"x": "1454",
+			"y": "257",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_tan_10",
+			"x": "1295",
+			"y": "1709",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_tan_11",
+			"x": "0",
+			"y": "520",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_tan_12",
+			"x": "1296",
+			"y": "1518",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_tan_13",
+			"x": "1296",
+			"y": "238",
+			"width": "158",
+			"height": "119"
+		},
+		{
+			"name": "hair_tan_14",
+			"x": "1296",
+			"y": "357",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_tan_1",
+			"x": "1453",
+			"y": "404",
+			"width": "158",
+			"height": "285"
+		},
+		{
+			"name": "hair_tan_2",
+			"x": "501",
+			"y": "681",
+			"width": "160",
+			"height": "227"
+		},
+		{
+			"name": "hair_tan_3",
+			"x": "168",
+			"y": "1679",
+			"width": "168",
+			"height": "213"
+		},
+		{
+			"name": "hair_tan_4",
+			"x": "1454",
+			"y": "976",
+			"width": "158",
+			"height": "286"
+		},
+		{
+			"name": "hair_tan_5",
+			"x": "171",
+			"y": "0",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_tan_6",
+			"x": "336",
+			"y": "1121",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_white_7",
+			"x": "171",
+			"y": "908",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_white_8",
+			"x": "820",
+			"y": "692",
+			"width": "159",
+			"height": "138"
+		},
+		{
+			"name": "hair_white_9",
+			"x": "820",
+			"y": "573",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_white_10",
+			"x": "661",
+			"y": "739",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_white_11",
+			"x": "0",
+			"y": "0",
+			"width": "171",
+			"height": "130"
+		},
+		{
+			"name": "hair_white_12",
+			"x": "0",
+			"y": "1892",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_white_13",
+			"x": "820",
+			"y": "454",
+			"width": "159",
+			"height": "119"
+		},
+		{
+			"name": "hair_white_14",
+			"x": "950",
+			"y": "1995",
+			"width": "158",
+			"height": "47"
+		},
+		{
+			"name": "hair_white_1",
+			"x": "820",
+			"y": "1334",
+			"width": "159",
+			"height": "285"
+		},
+		{
+			"name": "hair_white_2",
+			"x": "500",
+			"y": "1774",
+			"width": "161",
+			"height": "227"
+		},
+		{
+			"name": "hair_white_3",
+			"x": "821",
+			"y": "0",
+			"width": "159",
+			"height": "286"
+		},
+		{
+			"name": "hair_white_4",
+			"x": "171",
+			"y": "227",
+			"width": "165",
+			"height": "227"
+		},
+		{
+			"name": "hair_white_5",
+			"x": "336",
+			"y": "1547",
+			"width": "164",
+			"height": "213"
+		},
+		{
+			"name": "hair_white_6",
+			"x": "0",
+			"y": "1253",
+			"width": "168",
+			"height": "213"
+		}
+	],
+	"pants.png": [
+		{
+			"name": "pants_yellow_long",
+			"x": "417",
+			"y": "614",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_yellow_short",
+			"x": "639",
+			"y": "118",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_yellow_shorter",
+			"x": "746",
+			"y": "118",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_blue_11",
+			"x": "0",
+			"y": "940",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_12",
+			"x": "0",
+			"y": "893",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_13",
+			"x": "0",
+			"y": "846",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_14",
+			"x": "0",
+			"y": "799",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_1_long",
+			"x": "417",
+			"y": "448",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "belt_blue_1_short",
+			"x": "635",
+			"y": "782",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "belt_blue_1_shorter",
+			"x": "746",
+			"y": "433",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_blue_21",
+			"x": "0",
+			"y": "611",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_22",
+			"x": "0",
+			"y": "564",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_23",
+			"x": "0",
+			"y": "517",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_24",
+			"x": "0",
+			"y": "470",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_blue_2_long",
+			"x": "306",
+			"y": "282",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "belt_blue_2_short",
+			"x": "528",
+			"y": "900",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "belt_blue_2_shorter",
+			"x": "784",
+			"y": "0",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_brown_1",
+			"x": "0",
+			"y": "282",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_brown_2",
+			"x": "0",
+			"y": "235",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_brown_3",
+			"x": "0",
+			"y": "188",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_brown_4",
+			"x": "0",
+			"y": "141",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_brown_long",
+			"x": "528",
+			"y": "166",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_brown_short",
+			"x": "639",
+			"y": "236",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_brown_shorter",
+			"x": "846",
+			"y": "643",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_green_1",
+			"x": "0",
+			"y": "47",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_green_2",
+			"x": "0",
+			"y": "94",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_green_3",
+			"x": "0",
+			"y": "705",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_green_4",
+			"x": "0",
+			"y": "329",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_green_long",
+			"x": "417",
+			"y": "780",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_green_short",
+			"x": "639",
+			"y": "472",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_green_shorter",
+			"x": "746",
+			"y": "223",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_grey_1",
+			"x": "153",
+			"y": "188",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_grey_2",
+			"x": "153",
+			"y": "329",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_grey_3",
+			"x": "0",
+			"y": "376",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_grey_4",
+			"x": "306",
+			"y": "47",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_grey_long",
+			"x": "459",
+			"y": "0",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_grey_short",
+			"x": "639",
+			"y": "354",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_grey_shorter",
+			"x": "742",
+			"y": "590",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_lightblue_1",
+			"x": "153",
+			"y": "282",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_lightblue_2",
+			"x": "0",
+			"y": "752",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_lightblue_3",
+			"x": "153",
+			"y": "235",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_lightblue_4",
+			"x": "153",
+			"y": "376",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_lightblue_long",
+			"x": "528",
+			"y": "498",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_lightblue_short",
+			"x": "635",
+			"y": "664",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_lightblue_shorter",
+			"x": "742",
+			"y": "905",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_navy_1",
+			"x": "153",
+			"y": "799",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_navy_2",
+			"x": "153",
+			"y": "705",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_navy_3",
+			"x": "153",
+			"y": "846",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_navy_4",
+			"x": "306",
+			"y": "0",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_navy_long",
+			"x": "528",
+			"y": "332",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_navy_short",
+			"x": "570",
+			"y": "0",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_navy_shorter",
+			"x": "742",
+			"y": "800",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_pine_1",
+			"x": "153",
+			"y": "658",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_pine_2",
+			"x": "153",
+			"y": "940",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_pine_3",
+			"x": "153",
+			"y": "893",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_pine_4",
+			"x": "306",
+			"y": "141",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_pine_long",
+			"x": "306",
+			"y": "780",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_pine_short",
+			"x": "528",
+			"y": "782",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_pine_shorter",
+			"x": "742",
+			"y": "695",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_red_1",
+			"x": "306",
+			"y": "235",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_red_2",
+			"x": "306",
+			"y": "188",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_red_3",
+			"x": "306",
+			"y": "94",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_red_4",
+			"x": "153",
+			"y": "752",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_red_long",
+			"x": "306",
+			"y": "614",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_red_short",
+			"x": "528",
+			"y": "664",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_red_shorter",
+			"x": "846",
+			"y": "748",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_tan_1",
+			"x": "0",
+			"y": "0",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_tan_2",
+			"x": "153",
+			"y": "423",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_tan_3",
+			"x": "0",
+			"y": "658",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_tan_4",
+			"x": "0",
+			"y": "423",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_tan_long",
+			"x": "417",
+			"y": "282",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_tan_short",
+			"x": "677",
+			"y": "0",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_tan_shorter",
+			"x": "746",
+			"y": "328",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_white_1",
+			"x": "153",
+			"y": "611",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_white_2",
+			"x": "153",
+			"y": "564",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_white_3",
+			"x": "153",
+			"y": "517",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_white_4",
+			"x": "153",
+			"y": "470",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "pants_white_long",
+			"x": "306",
+			"y": "448",
+			"width": "111",
+			"height": "166"
+		},
+		{
+			"name": "pants_white_short",
+			"x": "635",
+			"y": "900",
+			"width": "107",
+			"height": "118"
+		},
+		{
+			"name": "pants_white_shorter",
+			"x": "846",
+			"y": "538",
+			"width": "104",
+			"height": "105"
+		},
+		{
+			"name": "belt_yellow_1",
+			"x": "153",
+			"y": "141",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_yellow_2",
+			"x": "153",
+			"y": "94",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_yellow_3",
+			"x": "153",
+			"y": "47",
+			"width": "153",
+			"height": "47"
+		},
+		{
+			"name": "belt_yellow_4",
+			"x": "153",
+			"y": "0",
+			"width": "153",
+			"height": "47"
+		}
+	],
+	"shirts.png": [
+		{
+			"name": "sleeve_white_long",
+			"x": "0",
+			"y": "426",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_white_short",
+			"x": "703",
+			"y": "1914",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_white_shorter",
+			"x": "171",
+			"y": "1044",
+			"width": "67",
+			"height": "86"
+		},
+		{
+			"name": "sleeve_yellow_long",
+			"x": "0",
+			"y": "568",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_yellow_short",
+			"x": "467",
+			"y": "1914",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_yellow_shorter",
+			"x": "936",
+			"y": "546",
+			"width": "66",
+			"height": "86"
+		},
+		{
+			"name": "sleeve_blue_long",
+			"x": "0",
+			"y": "0",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_blue_short",
+			"x": "936",
+			"y": "0",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_blue_shorter",
+			"x": "936",
+			"y": "460",
+			"width": "66",
+			"height": "86"
+		},
+		{
+			"name": "shirt_blue_1",
+			"x": "477",
+			"y": "0",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_2",
+			"x": "475",
+			"y": "1392",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_3",
+			"x": "475",
+			"y": "1218",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_4",
+			"x": "0",
+			"y": "1484",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_5",
+			"x": "467",
+			"y": "1740",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_6",
+			"x": "467",
+			"y": "1566",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_7",
+			"x": "324",
+			"y": "870",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_blue_8",
+			"x": "324",
+			"y": "696",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "sleeve_green_long",
+			"x": "0",
+			"y": "710",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_green_short",
+			"x": "585",
+			"y": "1914",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_green_shorter",
+			"x": "322",
+			"y": "1566",
+			"width": "67",
+			"height": "86"
+		},
+		{
+			"name": "shirt_green_1",
+			"x": "324",
+			"y": "0",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_2",
+			"x": "322",
+			"y": "1392",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_3",
+			"x": "322",
+			"y": "1218",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_4",
+			"x": "161",
+			"y": "1484",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_5",
+			"x": "314",
+			"y": "1832",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_6",
+			"x": "475",
+			"y": "1044",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_7",
+			"x": "171",
+			"y": "870",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_green_8",
+			"x": "477",
+			"y": "348",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "sleeve_grey_long",
+			"x": "0",
+			"y": "142",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_grey_short",
+			"x": "936",
+			"y": "96",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_grey_shorter",
+			"x": "936",
+			"y": "374",
+			"width": "66",
+			"height": "86"
+		},
+		{
+			"name": "shirt_grey_1",
+			"x": "322",
+			"y": "1044",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_2",
+			"x": "161",
+			"y": "1832",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_3",
+			"x": "171",
+			"y": "522",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_4",
+			"x": "0",
+			"y": "1658",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_5",
+			"x": "161",
+			"y": "1658",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_6",
+			"x": "171",
+			"y": "0",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_7",
+			"x": "171",
+			"y": "174",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_grey_8",
+			"x": "171",
+			"y": "348",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "sleeve_navy_long",
+			"x": "0",
+			"y": "994",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_navy_short",
+			"x": "934",
+			"y": "1392",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_navy_shorter",
+			"x": "238",
+			"y": "1044",
+			"width": "67",
+			"height": "86"
+		},
+		{
+			"name": "shirt_navy_1",
+			"x": "314",
+			"y": "1658",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_2",
+			"x": "324",
+			"y": "348",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_3",
+			"x": "324",
+			"y": "522",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_4",
+			"x": "0",
+			"y": "1310",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_5",
+			"x": "324",
+			"y": "174",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_6",
+			"x": "171",
+			"y": "696",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_7",
+			"x": "477",
+			"y": "174",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_navy_8",
+			"x": "477",
+			"y": "696",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "sleeve_pine_long",
+			"x": "0",
+			"y": "284",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_pine_short",
+			"x": "936",
+			"y": "192",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_pine_shorter",
+			"x": "389",
+			"y": "1566",
+			"width": "67",
+			"height": "86"
+		},
+		{
+			"name": "shirt_pine_1",
+			"x": "628",
+			"y": "1044",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_2",
+			"x": "630",
+			"y": "174",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_3",
+			"x": "781",
+			"y": "1044",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_4",
+			"x": "0",
+			"y": "1136",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_5",
+			"x": "630",
+			"y": "522",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_6",
+			"x": "934",
+			"y": "1044",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_7",
+			"x": "783",
+			"y": "348",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_pine_8",
+			"x": "781",
+			"y": "1218",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "sleeve_red_long",
+			"x": "0",
+			"y": "852",
+			"width": "171",
+			"height": "142"
+		},
+		{
+			"name": "sleeve_red_short",
+			"x": "821",
+			"y": "1914",
+			"width": "118",
+			"height": "96"
+		},
+		{
+			"name": "sleeve_red_shorter",
+			"x": "936",
+			"y": "288",
+			"width": "66",
+			"height": "86"
+		},
+		{
+			"name": "shirt_red_1",
+			"x": "783",
+			"y": "174",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_2",
+			"x": "926",
+			"y": "1740",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_3",
+			"x": "926",
+			"y": "1566",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_4",
+			"x": "161",
+			"y": "1310",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_5",
+			"x": "783",
+			"y": "522",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_6",
+			"x": "934",
+			"y": "1218",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_7",
+			"x": "783",
+			"y": "870",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_red_8",
+			"x": "783",
+			"y": "696",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_1",
+			"x": "630",
+			"y": "0",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_2",
+			"x": "628",
+			"y": "1392",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_3",
+			"x": "628",
+			"y": "1218",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_4",
+			"x": "0",
+			"y": "1832",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_5",
+			"x": "620",
+			"y": "1740",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_6",
+			"x": "620",
+			"y": "1566",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_7",
+			"x": "477",
+			"y": "870",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_yellow_8",
+			"x": "477",
+			"y": "522",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_1",
+			"x": "783",
+			"y": "0",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_2",
+			"x": "781",
+			"y": "1392",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_3",
+			"x": "630",
+			"y": "348",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_4",
+			"x": "161",
+			"y": "1136",
+			"width": "161",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_5",
+			"x": "773",
+			"y": "1740",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_6",
+			"x": "773",
+			"y": "1566",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_7",
+			"x": "630",
+			"y": "870",
+			"width": "153",
+			"height": "174"
+		},
+		{
+			"name": "shirt_white_8",
+			"x": "630",
+			"y": "696",
+			"width": "153",
+			"height": "174"
+		}
+	],
+	"shoes.png": [
+		{
+			"name": "shoe_black_1",
+			"x": "0",
+			"y": "378",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_black_2",
+			"x": "0",
+			"y": "336",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_black_3",
+			"x": "0",
+			"y": "294",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_black_4",
+			"x": "0",
+			"y": "252",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_black_5",
+			"x": "0",
+			"y": "210",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_blue_1",
+			"x": "0",
+			"y": "168",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_blue_2",
+			"x": "0",
+			"y": "126",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_blue_3",
+			"x": "0",
+			"y": "84",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_blue_4",
+			"x": "0",
+			"y": "42",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_blue_5",
+			"x": "0",
+			"y": "0",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "brown2shoe1",
+			"x": "188",
+			"y": "210",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "brown2shoe2",
+			"x": "188",
+			"y": "168",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "brown2shoe3",
+			"x": "188",
+			"y": "126",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "brown2shoe4",
+			"x": "188",
+			"y": "84",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "brown2shoe5",
+			"x": "188",
+			"y": "42",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_brown_1",
+			"x": "94",
+			"y": "210",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_brown_2",
+			"x": "188",
+			"y": "378",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_brown_3",
+			"x": "188",
+			"y": "336",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_brown_4",
+			"x": "188",
+			"y": "294",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_brown_5",
+			"x": "188",
+			"y": "252",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_grey_1",
+			"x": "188",
+			"y": "0",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_grey_2",
+			"x": "94",
+			"y": "462",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_grey_3",
+			"x": "94",
+			"y": "420",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_grey_4",
+			"x": "94",
+			"y": "378",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_grey_5",
+			"x": "94",
+			"y": "336",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_red_1",
+			"x": "94",
+			"y": "294",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_red_2",
+			"x": "94",
+			"y": "252",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_red_3",
+			"x": "188",
+			"y": "420",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_red_4",
+			"x": "94",
+			"y": "168",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_red_5",
+			"x": "94",
+			"y": "126",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_tan_1",
+			"x": "94",
+			"y": "84",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_tan_2",
+			"x": "94",
+			"y": "42",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_tan_3",
+			"x": "94",
+			"y": "0",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_tan_4",
+			"x": "0",
+			"y": "462",
+			"width": "94",
+			"height": "42"
+		},
+		{
+			"name": "shoe_tan_5",
+			"x": "0",
+			"y": "420",
+			"width": "94",
+			"height": "42"
+		}
+	],
+	"skin.png": [
+		{
+			"name": "arm_tone1",
+			"x": "173",
+			"y": "608",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone1",
+			"x": "439",
+			"y": "908",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone1",
+			"x": "173",
+			"y": "0",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone1",
+			"x": "439",
+			"y": "37",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone1",
+			"x": "343",
+			"y": "744",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone2",
+			"x": "343",
+			"y": "472",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone2",
+			"x": "346",
+			"y": "201",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone2",
+			"x": "0",
+			"y": "672",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone2",
+			"x": "532",
+			"y": "857",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone2",
+			"x": "343",
+			"y": "929",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone3",
+			"x": "173",
+			"y": "472",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone3",
+			"x": "407",
+			"y": "201",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone3",
+			"x": "0",
+			"y": "504",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone3",
+			"x": "513",
+			"y": "365",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone3",
+			"x": "343",
+			"y": "855",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone4",
+			"x": "173",
+			"y": "336",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone4",
+			"x": "593",
+			"y": "0",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone4",
+			"x": "0",
+			"y": "336",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone4",
+			"x": "513",
+			"y": "529",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone4",
+			"x": "343",
+			"y": "818",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone5",
+			"x": "343",
+			"y": "336",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone5",
+			"x": "593",
+			"y": "71",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone5",
+			"x": "0",
+			"y": "0",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone5",
+			"x": "513",
+			"y": "201",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone5",
+			"x": "343",
+			"y": "966",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone6",
+			"x": "173",
+			"y": "744",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone6",
+			"x": "532",
+			"y": "71",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone6",
+			"x": "0",
+			"y": "168",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone6",
+			"x": "532",
+			"y": "693",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone6",
+			"x": "346",
+			"y": "0",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone7",
+			"x": "173",
+			"y": "880",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone7",
+			"x": "606",
+			"y": "142",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone7",
+			"x": "173",
+			"y": "168",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone7",
+			"x": "439",
+			"y": "744",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone7",
+			"x": "343",
+			"y": "781",
+			"width": "96",
+			"height": "37"
+		},
+		{
+			"name": "arm_tone8",
+			"x": "343",
+			"y": "608",
+			"width": "170",
+			"height": "136"
+		},
+		{
+			"name": "hand_tone8",
+			"x": "532",
+			"y": "0",
+			"width": "61",
+			"height": "71"
+		},
+		{
+			"name": "head_tone8",
+			"x": "0",
+			"y": "840",
+			"width": "173",
+			"height": "168"
+		},
+		{
+			"name": "leg_tone8",
+			"x": "346",
+			"y": "37",
+			"width": "93",
+			"height": "164"
+		},
+		{
+			"name": "neck_tone8",
+			"x": "343",
+			"y": "892",
+			"width": "96",
+			"height": "37"
+		}
+	]
 }
