@@ -1,0 +1,3908 @@
+{
+   "skin.png": [
+      {
+         "name": "tint1_arm.png",
+         "x": "173",
+         "y": "608",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint1_hand.png",
+         "x": "439",
+         "y": "908",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint1_head.png",
+         "x": "173",
+         "y": "0",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint1_leg.png",
+         "x": "439",
+         "y": "37",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint1_neck.png",
+         "x": "343",
+         "y": "744",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint2_arm.png",
+         "x": "343",
+         "y": "472",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint2_hand.png",
+         "x": "346",
+         "y": "201",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint2_head.png",
+         "x": "0",
+         "y": "672",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint2_leg.png",
+         "x": "532",
+         "y": "857",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint2_neck.png",
+         "x": "343",
+         "y": "929",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint3_arm.png",
+         "x": "173",
+         "y": "472",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint3_hand.png",
+         "x": "407",
+         "y": "201",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint3_head.png",
+         "x": "0",
+         "y": "504",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint3_leg.png",
+         "x": "513",
+         "y": "365",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint3_neck.png",
+         "x": "343",
+         "y": "855",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint4_arm.png",
+         "x": "173",
+         "y": "336",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint4_hand.png",
+         "x": "593",
+         "y": "0",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint4_head.png",
+         "x": "0",
+         "y": "336",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint4_leg.png",
+         "x": "513",
+         "y": "529",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint4_neck.png",
+         "x": "343",
+         "y": "818",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint5_arm.png",
+         "x": "343",
+         "y": "336",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint5_hand.png",
+         "x": "593",
+         "y": "71",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint5_head.png",
+         "x": "0",
+         "y": "0",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint5_leg.png",
+         "x": "513",
+         "y": "201",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint5_neck.png",
+         "x": "343",
+         "y": "966",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint6_arm.png",
+         "x": "173",
+         "y": "744",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint6_hand.png",
+         "x": "532",
+         "y": "71",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint6_head.png",
+         "x": "0",
+         "y": "168",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint6_leg.png",
+         "x": "532",
+         "y": "693",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint6_neck.png",
+         "x": "346",
+         "y": "0",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint7_arm.png",
+         "x": "173",
+         "y": "880",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint7_hand.png",
+         "x": "606",
+         "y": "142",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint7_head.png",
+         "x": "173",
+         "y": "168",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint7_leg.png",
+         "x": "439",
+         "y": "744",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint7_neck.png",
+         "x": "343",
+         "y": "781",
+         "width": "96",
+         "height": "37"
+      },
+      {
+         "name": "tint8_arm.png",
+         "x": "343",
+         "y": "608",
+         "width": "170",
+         "height": "136"
+      },
+      {
+         "name": "tint8_hand.png",
+         "x": "532",
+         "y": "0",
+         "width": "61",
+         "height": "71"
+      },
+      {
+         "name": "tint8_head.png",
+         "x": "0",
+         "y": "840",
+         "width": "173",
+         "height": "168"
+      },
+      {
+         "name": "tint8_leg.png",
+         "x": "346",
+         "y": "37",
+         "width": "93",
+         "height": "164"
+      },
+      {
+         "name": "tint8_neck.png",
+         "x": "343",
+         "y": "892",
+         "width": "96",
+         "height": "37"
+      }
+   ],
+   "shoes.png": [
+      {
+         "name": "blackShoe1.png",
+         "x": "0",
+         "y": "378",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blackShoe2.png",
+         "x": "0",
+         "y": "336",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blackShoe3.png",
+         "x": "0",
+         "y": "294",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blackShoe4.png",
+         "x": "0",
+         "y": "252",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blackShoe5.png",
+         "x": "0",
+         "y": "210",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blueShoe1.png",
+         "x": "0",
+         "y": "168",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blueShoe2.png",
+         "x": "0",
+         "y": "126",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blueShoe3.png",
+         "x": "0",
+         "y": "84",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blueShoe4.png",
+         "x": "0",
+         "y": "42",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "blueShoe5.png",
+         "x": "0",
+         "y": "0",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brown2Shoe1.png",
+         "x": "188",
+         "y": "210",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brown2Shoe2.png",
+         "x": "188",
+         "y": "168",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brown2Shoe3.png",
+         "x": "188",
+         "y": "126",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brown2Shoe4.png",
+         "x": "188",
+         "y": "84",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brown2Shoe5.png",
+         "x": "188",
+         "y": "42",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brownShoe1.png",
+         "x": "94",
+         "y": "210",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brownShoe2.png",
+         "x": "188",
+         "y": "378",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brownShoe3.png",
+         "x": "188",
+         "y": "336",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brownShoe4.png",
+         "x": "188",
+         "y": "294",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "brownShoe5.png",
+         "x": "188",
+         "y": "252",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "greyShoe1.png",
+         "x": "188",
+         "y": "0",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "greyShoe2.png",
+         "x": "94",
+         "y": "462",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "greyShoe3.png",
+         "x": "94",
+         "y": "420",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "greyShoe4.png",
+         "x": "94",
+         "y": "378",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "greyShoe5.png",
+         "x": "94",
+         "y": "336",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "redShoe1.png",
+         "x": "94",
+         "y": "294",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "redShoe2.png",
+         "x": "94",
+         "y": "252",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "redShoe3.png",
+         "x": "188",
+         "y": "420",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "redShoe4.png",
+         "x": "94",
+         "y": "168",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "redShoe5.png",
+         "x": "94",
+         "y": "126",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "tanShoe1.png",
+         "x": "94",
+         "y": "84",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "tanShoe2.png",
+         "x": "94",
+         "y": "42",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "tanShoe3.png",
+         "x": "94",
+         "y": "0",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "tanShoe4.png",
+         "x": "0",
+         "y": "462",
+         "width": "94",
+         "height": "42"
+      },
+      {
+         "name": "tanShoe5.png",
+         "x": "0",
+         "y": "420",
+         "width": "94",
+         "height": "42"
+      }
+   ],
+   "shirts.png": [
+      {
+         "name": "armWhite_long.png",
+         "x": "0",
+         "y": "426",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "armWhite_short.png",
+         "x": "703",
+         "y": "1914",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "armWhite_shorter.png",
+         "x": "171",
+         "y": "1044",
+         "width": "67",
+         "height": "86"
+      },
+      {
+         "name": "armYellow_long.png",
+         "x": "0",
+         "y": "568",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "armYellow_short.png",
+         "x": "467",
+         "y": "1914",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "armYellow_shorter.png",
+         "x": "936",
+         "y": "546",
+         "width": "66",
+         "height": "86"
+      },
+      {
+         "name": "blueArm_long.png",
+         "x": "0",
+         "y": "0",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "blueArm_short.png",
+         "x": "936",
+         "y": "0",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "blueArm_shorter.png",
+         "x": "936",
+         "y": "460",
+         "width": "66",
+         "height": "86"
+      },
+      {
+         "name": "blueShirt1.png",
+         "x": "477",
+         "y": "0",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt2.png",
+         "x": "475",
+         "y": "1392",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt3.png",
+         "x": "475",
+         "y": "1218",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt4.png",
+         "x": "0",
+         "y": "1484",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt5.png",
+         "x": "467",
+         "y": "1740",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt6.png",
+         "x": "467",
+         "y": "1566",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt7.png",
+         "x": "324",
+         "y": "870",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "blueShirt8.png",
+         "x": "324",
+         "y": "696",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenArm_long.png",
+         "x": "0",
+         "y": "710",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "greenArm_short.png",
+         "x": "585",
+         "y": "1914",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "greenArm_shorter.png",
+         "x": "322",
+         "y": "1566",
+         "width": "67",
+         "height": "86"
+      },
+      {
+         "name": "greenShirt1.png",
+         "x": "324",
+         "y": "0",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt2.png",
+         "x": "322",
+         "y": "1392",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt3.png",
+         "x": "322",
+         "y": "1218",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt4.png",
+         "x": "161",
+         "y": "1484",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt5.png",
+         "x": "314",
+         "y": "1832",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt6.png",
+         "x": "475",
+         "y": "1044",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt7.png",
+         "x": "171",
+         "y": "870",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greenShirt8.png",
+         "x": "477",
+         "y": "348",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyArm_long.png",
+         "x": "0",
+         "y": "142",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "greyArm_short.png",
+         "x": "936",
+         "y": "96",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "greyArm_shorter.png",
+         "x": "936",
+         "y": "374",
+         "width": "66",
+         "height": "86"
+      },
+      {
+         "name": "greyShirt1.png",
+         "x": "322",
+         "y": "1044",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt2.png",
+         "x": "161",
+         "y": "1832",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt3.png",
+         "x": "171",
+         "y": "522",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt4.png",
+         "x": "0",
+         "y": "1658",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt5.png",
+         "x": "161",
+         "y": "1658",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt6.png",
+         "x": "171",
+         "y": "0",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt7.png",
+         "x": "171",
+         "y": "174",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "greyShirt8.png",
+         "x": "171",
+         "y": "348",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyArm_long.png",
+         "x": "0",
+         "y": "994",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "navyArm_short.png",
+         "x": "934",
+         "y": "1392",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "navyArm_shorter.png",
+         "x": "238",
+         "y": "1044",
+         "width": "67",
+         "height": "86"
+      },
+      {
+         "name": "navyShirt1.png",
+         "x": "314",
+         "y": "1658",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt2.png",
+         "x": "324",
+         "y": "348",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt3.png",
+         "x": "324",
+         "y": "522",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt4.png",
+         "x": "0",
+         "y": "1310",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt5.png",
+         "x": "324",
+         "y": "174",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt6.png",
+         "x": "171",
+         "y": "696",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt7.png",
+         "x": "477",
+         "y": "174",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "navyShirt8.png",
+         "x": "477",
+         "y": "696",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineArm_long.png",
+         "x": "0",
+         "y": "284",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "pineArm_short.png",
+         "x": "936",
+         "y": "192",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "pineArm_shorter.png",
+         "x": "389",
+         "y": "1566",
+         "width": "67",
+         "height": "86"
+      },
+      {
+         "name": "pineShirt1.png",
+         "x": "628",
+         "y": "1044",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt2.png",
+         "x": "630",
+         "y": "174",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt3.png",
+         "x": "781",
+         "y": "1044",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt4.png",
+         "x": "0",
+         "y": "1136",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt5.png",
+         "x": "630",
+         "y": "522",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt6.png",
+         "x": "934",
+         "y": "1044",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt7.png",
+         "x": "783",
+         "y": "348",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "pineShirt8.png",
+         "x": "781",
+         "y": "1218",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redArm_long.png",
+         "x": "0",
+         "y": "852",
+         "width": "171",
+         "height": "142"
+      },
+      {
+         "name": "redArm_short.png",
+         "x": "821",
+         "y": "1914",
+         "width": "118",
+         "height": "96"
+      },
+      {
+         "name": "redArm_shorter.png",
+         "x": "936",
+         "y": "288",
+         "width": "66",
+         "height": "86"
+      },
+      {
+         "name": "redShirt1.png",
+         "x": "783",
+         "y": "174",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt2.png",
+         "x": "926",
+         "y": "1740",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt3.png",
+         "x": "926",
+         "y": "1566",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt4.png",
+         "x": "161",
+         "y": "1310",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "redShirt5.png",
+         "x": "783",
+         "y": "522",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt6.png",
+         "x": "934",
+         "y": "1218",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt7.png",
+         "x": "783",
+         "y": "870",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "redShirt8.png",
+         "x": "783",
+         "y": "696",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow1.png",
+         "x": "630",
+         "y": "0",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow2.png",
+         "x": "628",
+         "y": "1392",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow3.png",
+         "x": "628",
+         "y": "1218",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow4.png",
+         "x": "0",
+         "y": "1832",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow5.png",
+         "x": "620",
+         "y": "1740",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow6.png",
+         "x": "620",
+         "y": "1566",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow7.png",
+         "x": "477",
+         "y": "870",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "shirtYellow8.png",
+         "x": "477",
+         "y": "522",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt1.png",
+         "x": "783",
+         "y": "0",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt2.png",
+         "x": "781",
+         "y": "1392",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt3.png",
+         "x": "630",
+         "y": "348",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt4.png",
+         "x": "161",
+         "y": "1136",
+         "width": "161",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt5.png",
+         "x": "773",
+         "y": "1740",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt6.png",
+         "x": "773",
+         "y": "1566",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt7.png",
+         "x": "630",
+         "y": "870",
+         "width": "153",
+         "height": "174"
+      },
+      {
+         "name": "whiteShirt8.png",
+         "x": "630",
+         "y": "696",
+         "width": "153",
+         "height": "174"
+      }
+   ],
+   "pants.png": [
+      {
+         "name": "legYellow_long.png",
+         "x": "417",
+         "y": "614",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "legYellow_short.png",
+         "x": "639",
+         "y": "118",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "legYellow_shorter.png",
+         "x": "746",
+         "y": "118",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsBlue11.png",
+         "x": "0",
+         "y": "940",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue12.png",
+         "x": "0",
+         "y": "893",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue13.png",
+         "x": "0",
+         "y": "846",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue14.png",
+         "x": "0",
+         "y": "799",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue1_long.png",
+         "x": "417",
+         "y": "448",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsBlue1_short.png",
+         "x": "635",
+         "y": "782",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsBlue1_shorter.png",
+         "x": "746",
+         "y": "433",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsBlue21.png",
+         "x": "0",
+         "y": "611",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue22.png",
+         "x": "0",
+         "y": "564",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue23.png",
+         "x": "0",
+         "y": "517",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue24.png",
+         "x": "0",
+         "y": "470",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBlue2_long.png",
+         "x": "306",
+         "y": "282",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsBlue2_short.png",
+         "x": "528",
+         "y": "900",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsBlue2_shorter.png",
+         "x": "784",
+         "y": "0",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsBrown1.png",
+         "x": "0",
+         "y": "282",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBrown2.png",
+         "x": "0",
+         "y": "235",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBrown3.png",
+         "x": "0",
+         "y": "188",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBrown4.png",
+         "x": "0",
+         "y": "141",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsBrown_long.png",
+         "x": "528",
+         "y": "166",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsBrown_short.png",
+         "x": "639",
+         "y": "236",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsBrown_shorter.png",
+         "x": "846",
+         "y": "643",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsGreen1.png",
+         "x": "0",
+         "y": "47",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGreen2.png",
+         "x": "0",
+         "y": "94",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGreen3.png",
+         "x": "0",
+         "y": "705",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGreen4.png",
+         "x": "0",
+         "y": "329",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGreen_long.png",
+         "x": "417",
+         "y": "780",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsGreen_short.png",
+         "x": "639",
+         "y": "472",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsGreen_shorter.png",
+         "x": "746",
+         "y": "223",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsGrey1.png",
+         "x": "153",
+         "y": "188",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGrey2.png",
+         "x": "153",
+         "y": "329",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGrey3.png",
+         "x": "0",
+         "y": "376",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGrey4.png",
+         "x": "306",
+         "y": "47",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsGrey_long.png",
+         "x": "459",
+         "y": "0",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsGrey_short.png",
+         "x": "639",
+         "y": "354",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsGrey_shorter.png",
+         "x": "742",
+         "y": "590",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsLightBlue1.png",
+         "x": "153",
+         "y": "282",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsLightBlue2.png",
+         "x": "0",
+         "y": "752",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsLightBlue3.png",
+         "x": "153",
+         "y": "235",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsLightBlue4.png",
+         "x": "153",
+         "y": "376",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsLightBlue_long.png",
+         "x": "528",
+         "y": "498",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsLightBlue_short.png",
+         "x": "635",
+         "y": "664",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsLightBlue_shorter.png",
+         "x": "742",
+         "y": "905",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsNavy1.png",
+         "x": "153",
+         "y": "799",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsNavy2.png",
+         "x": "153",
+         "y": "705",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsNavy3.png",
+         "x": "153",
+         "y": "846",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsNavy4.png",
+         "x": "306",
+         "y": "0",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsNavy_long.png",
+         "x": "528",
+         "y": "332",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsNavy_short.png",
+         "x": "570",
+         "y": "0",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsNavy_shorter.png",
+         "x": "742",
+         "y": "800",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsPine1.png",
+         "x": "153",
+         "y": "658",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsPine2.png",
+         "x": "153",
+         "y": "940",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsPine3.png",
+         "x": "153",
+         "y": "893",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsPine4.png",
+         "x": "306",
+         "y": "141",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsPine_long.png",
+         "x": "306",
+         "y": "780",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsPine_short.png",
+         "x": "528",
+         "y": "782",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsPine_shorter.png",
+         "x": "742",
+         "y": "695",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsRed1.png",
+         "x": "306",
+         "y": "235",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsRed2.png",
+         "x": "306",
+         "y": "188",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsRed3.png",
+         "x": "306",
+         "y": "94",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsRed4.png",
+         "x": "153",
+         "y": "752",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsRed_long.png",
+         "x": "306",
+         "y": "614",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsRed_short.png",
+         "x": "528",
+         "y": "664",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsRed_shorter.png",
+         "x": "846",
+         "y": "748",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsTan1.png",
+         "x": "0",
+         "y": "0",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsTan2.png",
+         "x": "153",
+         "y": "423",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsTan3.png",
+         "x": "0",
+         "y": "658",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsTan4.png",
+         "x": "0",
+         "y": "423",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsTan_long.png",
+         "x": "417",
+         "y": "282",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsTan_short.png",
+         "x": "677",
+         "y": "0",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsTan_shorter.png",
+         "x": "746",
+         "y": "328",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsWhite1.png",
+         "x": "153",
+         "y": "611",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsWhite2.png",
+         "x": "153",
+         "y": "564",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsWhite3.png",
+         "x": "153",
+         "y": "517",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsWhite4.png",
+         "x": "153",
+         "y": "470",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsWhite_long.png",
+         "x": "306",
+         "y": "448",
+         "width": "111",
+         "height": "166"
+      },
+      {
+         "name": "pantsWhite_short.png",
+         "x": "635",
+         "y": "900",
+         "width": "107",
+         "height": "118"
+      },
+      {
+         "name": "pantsWhite_shorter.png",
+         "x": "846",
+         "y": "538",
+         "width": "104",
+         "height": "105"
+      },
+      {
+         "name": "pantsYellow1.png",
+         "x": "153",
+         "y": "141",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsYellow2.png",
+         "x": "153",
+         "y": "94",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsYellow3.png",
+         "x": "153",
+         "y": "47",
+         "width": "153",
+         "height": "47"
+      },
+      {
+         "name": "pantsYellow4.png",
+         "x": "153",
+         "y": "0",
+         "width": "153",
+         "height": "47"
+      }
+   ],
+   "hair.png": [
+      {
+         "name": "blackMan1.png",
+         "x": "979",
+         "y": "524",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "blackMan2.png",
+         "x": "1454",
+         "y": "119",
+         "width": "158",
+         "height": "138"
+      },
+      {
+         "name": "blackMan3.png",
+         "x": "1454",
+         "y": "1381",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "blackMan4.png",
+         "x": "1454",
+         "y": "1262",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "blackMan5.png",
+         "x": "0",
+         "y": "910",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "blackMan6.png",
+         "x": "1454",
+         "y": "0",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "blackMan7.png",
+         "x": "1453",
+         "y": "1922",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "blackMan8.png",
+         "x": "821",
+         "y": "405",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "blackWoman1.png",
+         "x": "171",
+         "y": "454",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "blackWoman2.png",
+         "x": "1453",
+         "y": "1637",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "blackWoman3.png",
+         "x": "501",
+         "y": "227",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "blackWoman4.png",
+         "x": "1298",
+         "y": "690",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "blackWoman5.png",
+         "x": "168",
+         "y": "1466",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "blackWoman6.png",
+         "x": "336",
+         "y": "908",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "blondeMan1.png",
+         "x": "823",
+         "y": "1087",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "blondeMan2.png",
+         "x": "979",
+         "y": "1206",
+         "width": "159",
+         "height": "138"
+      },
+      {
+         "name": "blondeMan3.png",
+         "x": "979",
+         "y": "1344",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "blondeMan4.png",
+         "x": "979",
+         "y": "1463",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "blondeMan5.png",
+         "x": "0",
+         "y": "260",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "blondeMan6.png",
+         "x": "979",
+         "y": "1582",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "blondeMan7.png",
+         "x": "979",
+         "y": "1701",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "blondeMan8.png",
+         "x": "634",
+         "y": "2001",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "blondeWoman1.png",
+         "x": "1296",
+         "y": "1114",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "blondeWoman2.png",
+         "x": "501",
+         "y": "0",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "blondeWoman3.png",
+         "x": "1295",
+         "y": "404",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "blondeWoman4.png",
+         "x": "336",
+         "y": "227",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "blondeWoman5.png",
+         "x": "336",
+         "y": "1334",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "blondeWoman6.png",
+         "x": "168",
+         "y": "1040",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "brown1Man1.png",
+         "x": "1138",
+         "y": "1590",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown1Man2.png",
+         "x": "1138",
+         "y": "1452",
+         "width": "158",
+         "height": "138"
+      },
+      {
+         "name": "brown1Man3.png",
+         "x": "1137",
+         "y": "1820",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown1Man4.png",
+         "x": "1296",
+         "y": "119",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown1Man5.png",
+         "x": "0",
+         "y": "650",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "brown1Man6.png",
+         "x": "1295",
+         "y": "1828",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown1Man7.png",
+         "x": "982",
+         "y": "1047",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown1Man8.png",
+         "x": "476",
+         "y": "2001",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "brown1Woman1.png",
+         "x": "982",
+         "y": "762",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "brown1Woman2.png",
+         "x": "661",
+         "y": "0",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "brown1Woman3.png",
+         "x": "1137",
+         "y": "405",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "brown1Woman4.png",
+         "x": "336",
+         "y": "0",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "brown1Woman5.png",
+         "x": "500",
+         "y": "1121",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "brown1Woman6.png",
+         "x": "0",
+         "y": "1040",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "brown2Man1.png",
+         "x": "979",
+         "y": "405",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown2Man2.png",
+         "x": "979",
+         "y": "1820",
+         "width": "158",
+         "height": "138"
+      },
+      {
+         "name": "brown2Man3.png",
+         "x": "980",
+         "y": "0",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown2Man4.png",
+         "x": "979",
+         "y": "643",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown2Man5.png",
+         "x": "0",
+         "y": "130",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "brown2Man6.png",
+         "x": "1296",
+         "y": "1399",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown2Man7.png",
+         "x": "1296",
+         "y": "0",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "brown2Man8.png",
+         "x": "661",
+         "y": "1952",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "brown2Woman1.png",
+         "x": "1140",
+         "y": "829",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "brown2Woman2.png",
+         "x": "661",
+         "y": "227",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "brown2Woman3.png",
+         "x": "1138",
+         "y": "1166",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "brown2Woman4.png",
+         "x": "336",
+         "y": "454",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "brown2Woman5.png",
+         "x": "500",
+         "y": "1334",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "brown2Woman6.png",
+         "x": "0",
+         "y": "1466",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "greyMan1.png",
+         "x": "823",
+         "y": "968",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "greyMan2.png",
+         "x": "820",
+         "y": "1857",
+         "width": "159",
+         "height": "138"
+      },
+      {
+         "name": "greyMan3.png",
+         "x": "820",
+         "y": "1738",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "greyMan4.png",
+         "x": "820",
+         "y": "1619",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "greyMan5.png",
+         "x": "0",
+         "y": "390",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "greyMan6.png",
+         "x": "664",
+         "y": "1215",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "greyMan7.png",
+         "x": "664",
+         "y": "1096",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "greyMan8.png",
+         "x": "318",
+         "y": "2001",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "greyWoman1.png",
+         "x": "1138",
+         "y": "0",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "greyWoman2.png",
+         "x": "501",
+         "y": "454",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "greyWoman3.png",
+         "x": "980",
+         "y": "119",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "greyWoman4.png",
+         "x": "336",
+         "y": "681",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "greyWoman5.png",
+         "x": "336",
+         "y": "1760",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "greyWoman6.png",
+         "x": "168",
+         "y": "1253",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "redMan1.png",
+         "x": "664",
+         "y": "858",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "redMan2.png",
+         "x": "823",
+         "y": "830",
+         "width": "159",
+         "height": "138"
+      },
+      {
+         "name": "redMan3.png",
+         "x": "821",
+         "y": "286",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "redMan4.png",
+         "x": "664",
+         "y": "977",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "redMan5.png",
+         "x": "0",
+         "y": "780",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "redMan6.png",
+         "x": "159",
+         "y": "1892",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "redMan7.png",
+         "x": "661",
+         "y": "1833",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "redMan8.png",
+         "x": "792",
+         "y": "1999",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "redWoman1.png",
+         "x": "661",
+         "y": "454",
+         "width": "159",
+         "height": "285"
+      },
+      {
+         "name": "redWoman2.png",
+         "x": "500",
+         "y": "1547",
+         "width": "161",
+         "height": "227"
+      },
+      {
+         "name": "redWoman3.png",
+         "x": "661",
+         "y": "1547",
+         "width": "159",
+         "height": "286"
+      },
+      {
+         "name": "redWoman4.png",
+         "x": "171",
+         "y": "681",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "redWoman5.png",
+         "x": "500",
+         "y": "908",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "redWoman6.png",
+         "x": "0",
+         "y": "1679",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "tanMan1.png",
+         "x": "1138",
+         "y": "285",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "tanMan2.png",
+         "x": "1140",
+         "y": "691",
+         "width": "158",
+         "height": "138"
+      },
+      {
+         "name": "tanMan3.png",
+         "x": "1454",
+         "y": "257",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "tanMan4.png",
+         "x": "1295",
+         "y": "1709",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "tanMan5.png",
+         "x": "0",
+         "y": "520",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "tanMan6.png",
+         "x": "1296",
+         "y": "1518",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "tanMan7.png",
+         "x": "1296",
+         "y": "238",
+         "width": "158",
+         "height": "119"
+      },
+      {
+         "name": "tanMan8.png",
+         "x": "1296",
+         "y": "357",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "tanWoman1.png",
+         "x": "1453",
+         "y": "404",
+         "width": "158",
+         "height": "285"
+      },
+      {
+         "name": "tanWoman2.png",
+         "x": "501",
+         "y": "681",
+         "width": "160",
+         "height": "227"
+      },
+      {
+         "name": "tanWoman3.png",
+         "x": "168",
+         "y": "1679",
+         "width": "168",
+         "height": "213"
+      },
+      {
+         "name": "tanWoman4.png",
+         "x": "1454",
+         "y": "976",
+         "width": "158",
+         "height": "286"
+      },
+      {
+         "name": "tanWoman5.png",
+         "x": "171",
+         "y": "0",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "tanWoman6.png",
+         "x": "336",
+         "y": "1121",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "whiteMan1.png",
+         "x": "171",
+         "y": "908",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "whiteMan2.png",
+         "x": "820",
+         "y": "692",
+         "width": "159",
+         "height": "138"
+      },
+      {
+         "name": "whiteMan3.png",
+         "x": "820",
+         "y": "573",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "whiteMan4.png",
+         "x": "661",
+         "y": "739",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "whiteMan5.png",
+         "x": "0",
+         "y": "0",
+         "width": "171",
+         "height": "130"
+      },
+      {
+         "name": "whiteMan6.png",
+         "x": "0",
+         "y": "1892",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "whiteMan7.png",
+         "x": "820",
+         "y": "454",
+         "width": "159",
+         "height": "119"
+      },
+      {
+         "name": "whiteMan8.png",
+         "x": "950",
+         "y": "1995",
+         "width": "158",
+         "height": "47"
+      },
+      {
+         "name": "whiteWoman1.png",
+         "x": "820",
+         "y": "1334",
+         "width": "159",
+         "height": "285"
+      },
+      {
+         "name": "whiteWoman2.png",
+         "x": "500",
+         "y": "1774",
+         "width": "161",
+         "height": "227"
+      },
+      {
+         "name": "whiteWoman3.png",
+         "x": "821",
+         "y": "0",
+         "width": "159",
+         "height": "286"
+      },
+      {
+         "name": "whiteWoman4.png",
+         "x": "171",
+         "y": "227",
+         "width": "165",
+         "height": "227"
+      },
+      {
+         "name": "whiteWoman5.png",
+         "x": "336",
+         "y": "1547",
+         "width": "164",
+         "height": "213"
+      },
+      {
+         "name": "whiteWoman6.png",
+         "x": "0",
+         "y": "1253",
+         "width": "168",
+         "height": "213"
+      }
+   ],
+   "facialHair.png": [
+      {
+         "name": "facialHair_black.png",
+         "x": "253",
+         "y": "150",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "162",
+         "y": "380",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "165",
+         "y": "146",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "165",
+         "y": "166",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "165",
+         "y": "114",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "256",
+         "y": "70",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "291",
+         "y": "44",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "331",
+         "y": "384",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "322",
+         "y": "52",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "341",
+         "y": "309",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "115",
+         "y": "148",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "323",
+         "y": "240",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "115",
+         "y": "174",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "58",
+         "y": "118",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "253",
+         "y": "331",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_black.png",
+         "x": "0",
+         "y": "360",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "100",
+         "y": "498",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "165",
+         "y": "38",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "253",
+         "y": "102",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "209",
+         "y": "392",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "241",
+         "y": "462",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "291",
+         "y": "0",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "212",
+         "y": "102",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "340",
+         "y": "489",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "296",
+         "y": "166",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "323",
+         "y": "334",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "115",
+         "y": "232",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "322",
+         "y": "108",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "115",
+         "y": "32",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "58",
+         "y": "0",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "288",
+         "y": "191",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_blonde.png",
+         "x": "0",
+         "y": "420",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "253",
+         "y": "136",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "162",
+         "y": "418",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "241",
+         "y": "442",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "212",
+         "y": "0",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "212",
+         "y": "50",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "291",
+         "y": "17",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "291",
+         "y": "34",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "339",
+         "y": "384",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "297",
+         "y": "108",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "323",
+         "y": "0",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "100",
+         "y": "472",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "320",
+         "y": "401",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "115",
+         "y": "90",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "58",
+         "y": "354",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "288",
+         "y": "331",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_brown.png",
+         "x": "0",
+         "y": "120",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "241",
+         "y": "494",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "150",
+         "y": "456",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "212",
+         "y": "82",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "209",
+         "y": "310",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "209",
+         "y": "360",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "288",
+         "y": "70",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "209",
+         "y": "442",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "297",
+         "y": "97",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "316",
+         "y": "489",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "323",
+         "y": "309",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "115",
+         "y": "122",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "320",
+         "y": "64",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "115",
+         "y": "348",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "58",
+         "y": "236",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "285",
+         "y": "401",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_brownAlt.png",
+         "x": "0",
+         "y": "300",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "323",
+         "y": "196",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "253",
+         "y": "401",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "256",
+         "y": "87",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "305",
+         "y": "97",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "143",
+         "y": "498",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "322",
+         "y": "34",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "323",
+         "y": "284",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "115",
+         "y": "206",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "115",
+         "y": "258",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "58",
+         "y": "295",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "288",
+         "y": "261",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "0",
+         "y": "240",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "165",
+         "y": "0",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "197",
+         "y": "488",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "209",
+         "y": "114",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_grey.png",
+         "x": "197",
+         "y": "456",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "253",
+         "y": "163",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "165",
+         "y": "76",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "165",
+         "y": "286",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "209",
+         "y": "260",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "209",
+         "y": "228",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "253",
+         "y": "418",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "287",
+         "y": "87",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "186",
+         "y": "494",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "296",
+         "y": "175",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "341",
+         "y": "334",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "115",
+         "y": "290",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "320",
+         "y": "445",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "115",
+         "y": "316",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "58",
+         "y": "177",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "256",
+         "y": "0",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_red.png",
+         "x": "0",
+         "y": "180",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "253",
+         "y": "122",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "115",
+         "y": "418",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "165",
+         "y": "306",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "165",
+         "y": "326",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "209",
+         "y": "164",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "284",
+         "y": "494",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "115",
+         "y": "456",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "243",
+         "y": "102",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "316",
+         "y": "498",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "341",
+         "y": "284",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "115",
+         "y": "64",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "296",
+         "y": "122",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "115",
+         "y": "0",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "58",
+         "y": "413",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "253",
+         "y": "261",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_tan.png",
+         "x": "0",
+         "y": "60",
+         "width": "56",
+         "height": "58"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "253",
+         "y": "177",
+         "width": "41",
+         "height": "12"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "115",
+         "y": "380",
+         "width": "45",
+         "height": "36"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "165",
+         "y": "266",
+         "width": "42",
+         "height": "18"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "165",
+         "y": "216",
+         "width": "42",
+         "height": "48"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "209",
+         "y": "196",
+         "width": "42",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "285",
+         "y": "471",
+         "width": "30",
+         "height": "15"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "291",
+         "y": "54",
+         "width": "29",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "323",
+         "y": "384",
+         "width": "6",
+         "height": "8"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "322",
+         "y": "43",
+         "width": "22",
+         "height": "7"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "323",
+         "y": "359",
+         "width": "16",
+         "height": "23"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "50",
+         "y": "480",
+         "width": "48",
+         "height": "24"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "323",
+         "y": "152",
+         "width": "24",
+         "height": "42"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "0",
+         "y": "480",
+         "width": "48",
+         "height": "30"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "58",
+         "y": "59",
+         "width": "55",
+         "height": "57"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "253",
+         "y": "191",
+         "width": "33",
+         "height": "68"
+      },
+      {
+         "name": "facialHair_white.png",
+         "x": "0",
+         "y": "0",
+         "width": "56",
+         "height": "58"
+      }
+   ],
+   "face.png": [
+      {
+         "name": "blackBrow1.png",
+         "x": "41",
+         "y": "429",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "blackBrow2.png",
+         "x": "0",
+         "y": "427",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "blackBrow3.png",
+         "x": "41",
+         "y": "395",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "blondeBrow1.png",
+         "x": "81",
+         "y": "378",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "blondeBrow2.png",
+         "x": "0",
+         "y": "372",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "blondeBrow3.png",
+         "x": "80",
+         "y": "463",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "brown1Brow1.png",
+         "x": "80",
+         "y": "446",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "brown1Brow2.png",
+         "x": "0",
+         "y": "361",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "brown1Brow3.png",
+         "x": "80",
+         "y": "480",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "brown2Brow1.png",
+         "x": "0",
+         "y": "483",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "brown2Brow2.png",
+         "x": "0",
+         "y": "383",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "brown2Brow3.png",
+         "x": "40",
+         "y": "466",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "eyeBlack_large.png",
+         "x": "129",
+         "y": "266",
+         "width": "21",
+         "height": "21"
+      },
+      {
+         "name": "eyeBlack_small.png",
+         "x": "131",
+         "y": "168",
+         "width": "15",
+         "height": "16"
+      },
+      {
+         "name": "eyeBlue_large.png",
+         "x": "121",
+         "y": "365",
+         "width": "21",
+         "height": "21"
+      },
+      {
+         "name": "eyeBlue_small.png",
+         "x": "122",
+         "y": "236",
+         "width": "15",
+         "height": "16"
+      },
+      {
+         "name": "eyeBrown_large.png",
+         "x": "129",
+         "y": "287",
+         "width": "21",
+         "height": "21"
+      },
+      {
+         "name": "eyeBrown_small.png",
+         "x": "131",
+         "y": "152",
+         "width": "15",
+         "height": "16"
+      },
+      {
+         "name": "eyeGreen_large.png",
+         "x": "129",
+         "y": "329",
+         "width": "21",
+         "height": "21"
+      },
+      {
+         "name": "eyeGreen_small.png",
+         "x": "131",
+         "y": "215",
+         "width": "15",
+         "height": "16"
+      },
+      {
+         "name": "eyePine_large.png",
+         "x": "129",
+         "y": "308",
+         "width": "21",
+         "height": "21"
+      },
+      {
+         "name": "eyePine_small.png",
+         "x": "131",
+         "y": "184",
+         "width": "15",
+         "height": "16"
+      },
+      {
+         "name": "face1.png",
+         "x": "0",
+         "y": "152",
+         "width": "100",
+         "height": "101"
+      },
+      {
+         "name": "face2.png",
+         "x": "0",
+         "y": "253",
+         "width": "98",
+         "height": "108"
+      },
+      {
+         "name": "face3.png",
+         "x": "0",
+         "y": "0",
+         "width": "112",
+         "height": "65"
+      },
+      {
+         "name": "face4.png",
+         "x": "0",
+         "y": "65",
+         "width": "111",
+         "height": "87"
+      },
+      {
+         "name": "greyBrow1.png",
+         "x": "0",
+         "y": "449",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "greyBrow2.png",
+         "x": "0",
+         "y": "416",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "greyBrow3.png",
+         "x": "0",
+         "y": "466",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "mouth_glad.png",
+         "x": "98",
+         "y": "253",
+         "width": "34",
+         "height": "13"
+      },
+      {
+         "name": "mouth_happy.png",
+         "x": "81",
+         "y": "421",
+         "width": "34",
+         "height": "13"
+      },
+      {
+         "name": "mouth_oh.png",
+         "x": "131",
+         "y": "200",
+         "width": "15",
+         "height": "15"
+      },
+      {
+         "name": "mouth_sad.png",
+         "x": "80",
+         "y": "497",
+         "width": "34",
+         "height": "13"
+      },
+      {
+         "name": "mouth_straight.png",
+         "x": "0",
+         "y": "500",
+         "width": "36",
+         "height": "6"
+      },
+      {
+         "name": "mouth_teethLower.png",
+         "x": "81",
+         "y": "395",
+         "width": "34",
+         "height": "13"
+      },
+      {
+         "name": "mouth_teethUpper.png",
+         "x": "81",
+         "y": "408",
+         "width": "34",
+         "height": "13"
+      },
+      {
+         "name": "redBrow1.png",
+         "x": "40",
+         "y": "449",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "redBrow2.png",
+         "x": "0",
+         "y": "394",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "redBrow3.png",
+         "x": "41",
+         "y": "361",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "tanBrow1.png",
+         "x": "41",
+         "y": "412",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "tanBrow2.png",
+         "x": "0",
+         "y": "405",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "tanBrow3.png",
+         "x": "81",
+         "y": "361",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "tint1Nose1.png",
+         "x": "98",
+         "y": "266",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint1Nose2.png",
+         "x": "111",
+         "y": "65",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint1Nose3.png",
+         "x": "120",
+         "y": "482",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint2Nose1.png",
+         "x": "100",
+         "y": "173",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint2Nose2.png",
+         "x": "111",
+         "y": "89",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint2Nose3.png",
+         "x": "120",
+         "y": "467",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint3Nose1.png",
+         "x": "100",
+         "y": "152",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint3Nose2.png",
+         "x": "111",
+         "y": "113",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint3Nose3.png",
+         "x": "114",
+         "y": "497",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint4Nose1.png",
+         "x": "100",
+         "y": "215",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint4Nose2.png",
+         "x": "112",
+         "y": "0",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint4Nose3.png",
+         "x": "100",
+         "y": "236",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint5Nose1.png",
+         "x": "100",
+         "y": "194",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint5Nose2.png",
+         "x": "115",
+         "y": "419",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint5Nose3.png",
+         "x": "111",
+         "y": "137",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint6Nose1.png",
+         "x": "98",
+         "y": "287",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint6Nose2.png",
+         "x": "112",
+         "y": "24",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint6Nose3.png",
+         "x": "112",
+         "y": "48",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint7Nose1.png",
+         "x": "98",
+         "y": "329",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint7Nose2.png",
+         "x": "120",
+         "y": "443",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint7Nose3.png",
+         "x": "136",
+         "y": "497",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "tint8Nose1.png",
+         "x": "98",
+         "y": "308",
+         "width": "31",
+         "height": "21"
+      },
+      {
+         "name": "tint8Nose2.png",
+         "x": "115",
+         "y": "395",
+         "width": "24",
+         "height": "24"
+      },
+      {
+         "name": "tint8Nose3.png",
+         "x": "121",
+         "y": "350",
+         "width": "22",
+         "height": "15"
+      },
+      {
+         "name": "whiteBrow1.png",
+         "x": "40",
+         "y": "483",
+         "width": "40",
+         "height": "17"
+      },
+      {
+         "name": "whiteBrow2.png",
+         "x": "0",
+         "y": "438",
+         "width": "41",
+         "height": "11"
+      },
+      {
+         "name": "whiteBrow3.png",
+         "x": "41",
+         "y": "378",
+         "width": "40",
+         "height": "17"
+      }
+   ]
+}
