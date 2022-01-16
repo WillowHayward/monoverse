@@ -12,11 +12,7 @@ export class Canvas {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         Loader.getImage('tint1_head.png').then(head => {
-            head.draw(ctx, 0, 0);
-            /*console.log(head);
-            const width = head.width * SPRITE_SCALE;
-            const height = head.height * SPRITE_SCALE;
-            ctx.drawImage(head, 0, 0, width, height);*/
+            head.draw(ctx, 0, 0, SPRITE_SCALE);
         });
 
         Loader.getJSON('spritesheets.json').then((spritesheets: any) => {
@@ -28,7 +24,6 @@ export class Canvas {
                         console.log(sprite);
                         sprite.draw(ctx, 0, 0, SPRITE_SCALE);
                     }
-
                 });
             }
         });

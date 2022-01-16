@@ -8,10 +8,14 @@ export type SpriteData = {
     height: number
 }
 
+type JSONMap = {[path: string]: any};
 type SpriteMap = {[path: string]: Sprite};
+type SheetMap = {[path: string]: CanvasImageSource};
 export class Loader {
     private static instance: Loader | null;
+    private jsons: JSONMap = {};
     private sprites: SpriteMap = {};
+    private sheets: SheetMap = {};
     private constructor() {
         Loader.instance = this;
     }
@@ -32,6 +36,9 @@ export class Loader {
     private async loadJSON(path: string): Promise<any> {
         return fetch(`assets/${path}`).then(response => {
             return response.json();
+        }).then(json => {
+            this.jsons[path] = json;
+            return json;
         });
     }
 
@@ -42,9 +49,15 @@ export class Loader {
 
     private async loadImage(path: string): Promise<Sprite> {
         return new Promise(resolve => {
+            const existing = this.sprites[path];
+            if (existing) {
+                resolve(existing);
+            }
+
             const img = new Image();
             img.onload = () => {
                 const sprite = new Sprite(img);
+                this.sprites[path] = sprite;
                 resolve(sprite);
             }
             img.src = `assets/${path}`;
@@ -57,17 +70,24 @@ export class Loader {
     }
 
     private async loadSheet(path: string, positions: SpriteData[]): Promise<Sprite[]> {
-        return new Promise(resolve => {
+        return new Promise<CanvasImageSource>(resolve => {
+            const existing = this.sheets[path];
+            if (existing) {
+                resolve(existing);
+            }
             const img = new Image();
             img.onload = () => {
-                const sprites = [];
-                for (const position of positions) {
-                    const sprite = new Sprite(img, position.x, position.y, position.width, position.height);
-                    sprites.push(sprite);
-                }
-                resolve(sprites);
+                this.sheets[path] = img;
+                resolve(img);
             }
             img.src = `assets/${path}`;
+        }).then((img: CanvasImageSource) => {
+            const sprites = [];
+            for (const position of positions) {
+                const sprite = new Sprite(img, position.x, position.y, position.width, position.height);
+                sprites.push(sprite);
+            }
+            return sprites;
         });
     }
 }
