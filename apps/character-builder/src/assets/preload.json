@@ -1,0 +1,4 @@
+{
+    "json": ["parts.json", "default.json"],
+    "sheets": ["spritesheets.json"]
+}

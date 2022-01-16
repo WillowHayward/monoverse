@@ -1,0 +1,71 @@
+[
+    {
+        "type": "arm",
+        "path": "[SKIN_TONE]_arm.png"
+    },
+    {
+        "type": "hand",
+        "path": "[SKIN_TONE]_hand.png"
+    },
+    {
+        "type": "head",
+        "path": "[SKIN_TONE]_head.png",
+        "x": 50
+    },
+    {
+        "type": "leg",
+        "path": "[SKIN_TONE]_leg.png"
+    },
+    {
+        "type": "neck",
+        "path": "[SKIN_TONE]_neck.png"
+    },
+    {
+        "type": "shoe",
+        "path": "[SHOE_COLOR]Shoe[SHOE_STYLE].png"
+    },
+    {
+        "type": "shirt",
+        "path": "[SHIRT_COLOR]Shirt[SHIRT_STYLE].png"
+    },
+    {
+        "type": "shirtArm",
+        "path": "arm[SLEEVE_COLOR]_[SLEEVE_LENGTH].png"
+    },
+    {
+        "type": "pants",
+        "path": "pants[PANTS_COLOR][BELT_STYLE].png"
+    },
+    {
+        "type": "pantLegs",
+        "path": "leg[PANTS_COLOR]_[PANTS_LENGTH].png"
+    },
+    {
+        "type": "hair",
+        "path": "[HAIR_COLOR][GENDER][HAIR_STYLE].png"
+    },
+    {
+        "type": "facialHair",
+        "path": "facialHair_[FACIAL_HAIR_COLOR].png"
+    },
+    {
+        "type": "brow",
+        "path": "[HAIR_COLOR]Brow[BROW_STYLE].png"
+    },
+    {
+        "type": "eye",
+        "path": "eye[EYE_COLOR]_[EYE_SIZE].png"
+    },
+    {
+        "type": "face",
+        "path": "face[FACE_STYLE].png"
+    },
+    {
+        "type": "mouth",
+        "path": "mouth_[MOOD].png"
+    },
+    {
+        "type": "nose",
+        "path": "[SKIN_TONE]Nose[NOSE_STYLE].png"
+    }
+]

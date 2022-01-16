@@ -1,0 +1,22 @@
+{
+    "SKIN_TONE": "tint1",
+    "SHOE_COLOR": "black",
+    "SHOE_STYLE": "1",
+    "SHIRT_COLOR": "red",
+    "SHIRT_STYLE": "1",
+    "SLEEVE_COLOR": "White",
+    "SLEEVE_LENGTH": "short",
+    "PANTS_COLOR": "Yellow",
+    "BELT_STYLE": "1",
+    "PANTS_LENGTH": "long",
+    "HAIR_COLOR": "tan",
+    "GENDER": "Woman",
+    "HAIR_STYLE": "3",
+    "FACIAL_HAIR_COLOR": "black",
+    "BROW_STYLE": "1",
+    "EYE_COLOR": "Green",
+    "EYE_SIZE": "large",
+    "FACE_STYLE": "1",
+    "MOOD": "happy",
+    "NOSE_STYLE": "1"
+}
