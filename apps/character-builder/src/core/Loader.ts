@@ -84,7 +84,13 @@ export class Loader {
         }).then((img: CanvasImageSource) => {
             const sprites = [];
             for (const position of positions) {
+                const existing = this.sprites[position.name];
+                if (existing) {
+                    sprites.push(existing);
+                    continue;
+                }
                 const sprite = new Sprite(img, position.x, position.y, position.width, position.height);
+                this.sprites[position.name] = sprite;
                 sprites.push(sprite);
             }
             return sprites;
