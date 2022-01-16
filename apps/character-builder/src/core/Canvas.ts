@@ -1,5 +1,5 @@
 import { Loader, PreloadData } from './Loader';
-export const SPRITE_SCALE = 0.3;
+export const SPRITE_SCALE = 1;
 export class Canvas {
 
     constructor(canvas: HTMLCanvasElement) {
@@ -7,6 +7,9 @@ export class Canvas {
         if (!ctx) {
             throw new Error('Could not find canvas');
         }
+
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
 
         ctx.fillStyle = '#89CFF0';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -16,7 +19,7 @@ export class Canvas {
             console.log("beginning preload", preload);
             return Loader.preload(preload);
         }).then(() => {
-            console.log("preloaded!", Loader.getCache());
+            console.log("finished preload", Loader.getCache());
             return Loader.getJSON('default.json');
         }).then(defaults => {
             for (const label in defaults) {
@@ -30,6 +33,7 @@ export class Canvas {
                 let path = part.path;
                 const x = part.x ?? 0;
                 const y = part.y ?? 0;
+                const scale = (part.scale ?? 1) * SPRITE_SCALE;
                 for (const templateVar in templateVars) {
                     const matchString = `[${templateVar}]`;
                     if (path.includes(matchString)) {
@@ -38,7 +42,7 @@ export class Canvas {
                     }
                 }
                 Loader.getSprite(path).then(sprite => {
-                    sprite.draw(ctx, x, y, SPRITE_SCALE);
+                    sprite.draw(ctx, x, y, scale);
                 });
             }
         });

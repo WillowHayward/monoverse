@@ -36,6 +36,9 @@ export class Sprite {
             height = this.sHeight * scale;
         }
 
+        // Centre Sprite
+        x -= width / 2;
+        y -= height / 2;
 
         const sData: [number, number, number, number] = [this.sx, this.sy, this.sWidth, this.sHeight];
 

@@ -1,48 +1,107 @@
 [
     {
-        "type": "arm",
-        "path": "[SKIN_TONE]_arm.png"
+        "type": "leftArm",
+        "path": "[SKIN_TONE]_arm.png",
+        "x": 250,
+        "y": 300
     },
     {
-        "type": "hand",
-        "path": "[SKIN_TONE]_hand.png"
+        "type": "rightArm",
+        "path": "[SKIN_TONE]_arm.png",
+        "x": 550,
+        "y": 300
+    },
+    {
+        "type": "leftHand",
+        "path": "[SKIN_TONE]_hand.png",
+        "x": 200,
+        "y": 350
+    },
+    {
+        "type": "rightHand",
+        "path": "[SKIN_TONE]_hand.png",
+        "x": 600,
+        "y": 350
     },
     {
         "type": "head",
         "path": "[SKIN_TONE]_head.png",
-        "x": 50
+        "x": 400,
+        "y": 100
     },
     {
-        "type": "leg",
-        "path": "[SKIN_TONE]_leg.png"
+        "type": "leftLeg",
+        "path": "[SKIN_TONE]_leg.png",
+        "x": 450,
+        "y": 500
+    },
+    {
+        "type": "rightLeg",
+        "path": "[SKIN_TONE]_leg.png",
+        "x": 350,
+        "y": 500
     },
     {
         "type": "neck",
-        "path": "[SKIN_TONE]_neck.png"
+        "path": "[SKIN_TONE]_neck.png",
+        "x": 400,
+        "y": 210
     },
     {
-        "type": "shoe",
-        "path": "[SHOE_COLOR]Shoe[SHOE_STYLE].png"
+        "type": "leftShoe",
+        "path": "[SHOE_COLOR]Shoe[SHOE_STYLE].png",
+        "x": 350,
+        "y": 600
+    },
+    {
+        "type": "rightShoe",
+        "path": "[SHOE_COLOR]Shoe[SHOE_STYLE].png",
+        "x": 450,
+        "y": 600
     },
     {
         "type": "shirt",
-        "path": "[SHIRT_COLOR]Shirt[SHIRT_STYLE].png"
+        "path": "[SHIRT_COLOR]Shirt[SHIRT_STYLE].png",
+        "x": 400,
+        "y": 300
+
     },
     {
-        "type": "shirtArm",
-        "path": "arm[SLEEVE_COLOR]_[SLEEVE_LENGTH].png"
+        "type": "leftSleeve",
+        "path": "arm[SLEEVE_COLOR]_[SLEEVE_LENGTH].png",
+        "x": 250,
+        "y": 300
+    },
+    {
+        "type": "rightSleeve",
+        "path": "arm[SLEEVE_COLOR]_[SLEEVE_LENGTH].png",
+        "x": 550,
+        "y": 300
     },
     {
         "type": "pants",
-        "path": "pants[PANTS_COLOR][BELT_STYLE].png"
+        "path": "pants[PANTS_COLOR][BELT_STYLE].png",
+        "x": 400,
+        "y": 410
     },
     {
-        "type": "pantLegs",
-        "path": "leg[PANTS_COLOR]_[PANTS_LENGTH].png"
+        "type": "leftPantLeg",
+        "path": "leg[PANTS_COLOR]_[PANTS_LENGTH].png",
+        "x": 350,
+        "y": 500
+    },
+    {
+        "type": "rightPantLeg",
+        "path": "leg[PANTS_COLOR]_[PANTS_LENGTH].png",
+        "x": 450,
+        "y": 500
     },
     {
         "type": "hair",
-        "path": "[HAIR_COLOR][GENDER][HAIR_STYLE].png"
+        "path": "[HAIR_COLOR][GENDER][HAIR_STYLE].png",
+        "x": 400,
+        "y": 109
+
     },
     {
         "type": "facialHair",
@@ -58,7 +117,10 @@
     },
     {
         "type": "face",
-        "path": "face[FACE_STYLE].png"
+        "path": "face[FACE_STYLE].png",
+        "x": 400,
+        "y": 110
+
     },
     {
         "type": "mouth",
