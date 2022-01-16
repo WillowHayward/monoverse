@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Canvas } from '../../core/Canvas';
 
 @Component({
   selector: 'willhaycode-builder',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./builder.component.scss']
 })
 export class BuilderComponent implements OnInit {
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {
+        const canvas: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById('builder');
+        new Canvas(canvas);
+    }
 }
