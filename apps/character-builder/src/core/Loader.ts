@@ -1,12 +1,4 @@
-import { Sprite } from './Sprite';
-
-export type SpriteData = {
-    name: string,
-    x: number,
-    y: number,
-    width: number,
-    height: number
-}
+import { Sprite, SpriteData } from './Sprite';
 
 export type PreloadData = {
     json?: string[],
@@ -69,15 +61,7 @@ export class Loader {
             }
             if (data.sheets) {
                 for (const sheet of data.sheets) {
-                    const promise = Loader.getJSON(sheet).then((sheetData) => {
-                        const promises: Promise<Sprite[]>[] = [];
-                        for (const path in sheetData) {
-                            const positions = sheetData[path];
-                            const promise = Loader.getSheet(path, positions);
-                            promises.push(promise);
-                        }
-                        return Promise.all(promises);
-                    });
+                    const promise = Loader.getSheet(sheet);
                     promises.push(promise);
                 }
             }
@@ -91,12 +75,12 @@ export class Loader {
         return loader.loadJSON(path);
     }
 
-    private async loadJSON(path: string): Promise<any> {
+    private async loadJSON(path: string, prefix: string = 'json'): Promise<any> {
         const existing = this.json[path];
         if (existing) {
             return Promise.resolve(existing);
         }
-        return fetch(`assets/${path}`).then(response => {
+        return fetch(`assets/${prefix}/${path}`).then(response => {
             return response.json();
         }).then(json => {
             this.json[path] = json;
@@ -127,9 +111,29 @@ export class Loader {
         });
     }
 
-    public static async getSheet(path: string, positions: SpriteData[]): Promise<Sprite[]> {
+    public static async getSheet(json: string): Promise<Sprite[]>;
+    public static async getSheet(path: string, positions: SpriteData[]): Promise<Sprite[]>;
+    public static async getSheet(path: string, positions?: SpriteData[]): Promise<Sprite[]> {
         const loader = Loader.getInstance();
-        return loader.loadSheet(path, positions);
+        if (positions) {
+            return loader.loadSheet(path, positions);
+        }
+
+        return loader.loadJSON(path, 'sheets').then(json => {
+            const promises: Promise<Sprite[]>[] = [];
+            for (const path in json) {
+                const positions = json[path];
+                const promise = loader.loadSheet(path, positions);
+                promises.push(promise);
+            }
+            return Promise.all(promises);
+        }).then(sheets => {
+            let sprites: Sprite[] = [];
+            for (const sheet of sheets) {
+                sprites = sprites.concat(sheet);
+            }
+            return sprites;
+        });
     }
 
     private async loadSheet(path: string, positions: SpriteData[]): Promise<Sprite[]> {
@@ -143,7 +147,7 @@ export class Loader {
                 this.sheets[path] = img;
                 resolve(img);
             }
-            img.src = `assets/${path}`;
+            img.src = `assets/sheets/${path}`;
         }).then((img: CanvasImageSource) => {
             const sprites = [];
             for (const position of positions) {

@@ -45,6 +45,9 @@ export class Canvas {
                     sprite.draw(ctx, x, y, scale);
                 });
             }
+            return Loader.getSheet('face.json');
+        }).then(sprites => {
+            console.log(sprites);
         });
     }
 }
