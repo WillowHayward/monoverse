@@ -98,34 +98,6 @@
       },
       "tags": []
     },
-    "boarding-party-e2e": {
-      "root": "apps/boarding-party-e2e",
-      "sourceRoot": "apps/boarding-party-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/boarding-party-e2e/cypress.json",
-            "devServerTarget": "boarding-party:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "boarding-party:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/boarding-party-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["boarding-party"]
-    },
     "character": {
       "root": "libs/character",
       "sourceRoot": "libs/character/src",
@@ -245,34 +217,6 @@
         }
       },
       "tags": []
-    },
-    "character-builder-e2e": {
-      "root": "apps/character-builder-e2e",
-      "sourceRoot": "apps/character-builder-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/character-builder-e2e/cypress.json",
-            "devServerTarget": "character-builder:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "character-builder:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/character-builder-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["character-builder"]
     },
     "deck": {
       "root": "libs/deck",
@@ -437,34 +381,6 @@
       },
       "tags": []
     },
-    "french-toast-e2e": {
-      "root": "apps/french-toast-e2e",
-      "sourceRoot": "apps/french-toast-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/french-toast-e2e/cypress.json",
-            "devServerTarget": "french-toast:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "french-toast:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/french-toast-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["french-toast"]
-    },
     "jabberwocky": {
       "projectType": "application",
       "root": "apps/jabberwocky",
@@ -561,34 +477,6 @@
         }
       },
       "tags": []
-    },
-    "jabberwocky-e2e": {
-      "root": "apps/jabberwocky-e2e",
-      "sourceRoot": "apps/jabberwocky-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/jabberwocky-e2e/cypress.json",
-            "devServerTarget": "jabberwocky:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "jabberwocky:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/jabberwocky-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["jabberwocky"]
     },
     "lipwig": {
       "root": "apps/lipwig",
@@ -739,34 +627,6 @@
       },
       "tags": []
     },
-    "lipwig-admin-e2e": {
-      "root": "apps/lipwig-admin-e2e",
-      "sourceRoot": "apps/lipwig-admin-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/lipwig-admin-e2e/cypress.json",
-            "devServerTarget": "lipwig-admin:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "lipwig-admin:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/lipwig-admin-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["lipwig-admin"]
-    },
     "lipwig-js": {
       "root": "libs/lipwig-js",
       "sourceRoot": "libs/lipwig-js/src",
@@ -913,34 +773,6 @@
       },
       "tags": []
     },
-    "magazine-e2e": {
-      "root": "apps/magazine-e2e",
-      "sourceRoot": "apps/magazine-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/magazine-e2e/cypress.json",
-            "devServerTarget": "magazine:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "magazine:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/magazine-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["magazine"]
-    },
     "ridcully": {
       "projectType": "application",
       "root": "apps/ridcully",
@@ -1038,34 +870,6 @@
       },
       "tags": []
     },
-    "ridcully-e2e": {
-      "root": "apps/ridcully-e2e",
-      "sourceRoot": "apps/ridcully-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/ridcully-e2e/cypress.json",
-            "devServerTarget": "ridcully:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ridcully:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/ridcully-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["ridcully"]
-    },
     "ships": {
       "projectType": "application",
       "root": "apps/ships",
@@ -1159,34 +963,6 @@
         }
       },
       "tags": []
-    },
-    "ships-e2e": {
-      "root": "apps/ships-e2e",
-      "sourceRoot": "apps/ships-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/ships-e2e/cypress.json",
-            "devServerTarget": "ships:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ships:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/ships-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["ships"]
     },
     "skeleton": {
       "root": "libs/skeleton",
@@ -1304,34 +1080,6 @@
         }
       },
       "tags": []
-    },
-    "skeleton-animate-e2e": {
-      "root": "apps/skeleton-animate-e2e",
-      "sourceRoot": "apps/skeleton-animate-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/skeleton-animate-e2e/cypress.json",
-            "devServerTarget": "skeleton-animate:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "skeleton-animate:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/skeleton-animate-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["skeleton-animate"]
     },
     "ui": {
       "projectType": "library",
@@ -1505,34 +1253,6 @@
         }
       },
       "tags": []
-    },
-    "will-hay-code-e2e": {
-      "root": "apps/will-hay-code-e2e",
-      "sourceRoot": "apps/will-hay-code-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/will-hay-code-e2e/cypress.json",
-            "devServerTarget": "will-hay-code:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "will-hay-code:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/will-hay-code-e2e/**/*.{js,ts}"]
-          }
-        }
-      },
-      "tags": [],
-      "implicitDependencies": ["will-hay-code"]
     }
   }
 }
