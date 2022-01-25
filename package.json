@@ -29,6 +29,7 @@
     "cannon": "^0.6.2",
     "command-line-args": "^5.2.0",
     "command-line-usage": "^6.1.1",
+    "phaser": "^3.55.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
     "websocket": "^1.0.34",

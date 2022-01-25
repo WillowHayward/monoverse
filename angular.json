@@ -1,6 +1,29 @@
 {
   "version": 1,
   "projects": {
+    "asset-loader": {
+      "root": "libs/asset-loader",
+      "sourceRoot": "libs/asset-loader/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/asset-loader/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/asset-loader"],
+          "options": {
+            "jestConfig": "libs/asset-loader/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "boarding-party": {
       "projectType": "application",
       "root": "apps/boarding-party",

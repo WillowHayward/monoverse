@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@willhaycode/asset-loader": ["libs/asset-loader/src/index.ts"],
       "@willhaycode/character": ["libs/character/src/index.ts"],
       "@willhaycode/deck": ["libs/deck/src/index.ts"],
       "@willhaycode/event-manager": ["libs/event-manager/src/index.ts"],
