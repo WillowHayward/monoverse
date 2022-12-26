@@ -8,14 +8,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/asset-loader/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/asset-loader/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/asset-loader"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/asset-loader"
+          ],
           "options": {
             "jestConfig": "libs/asset-loader/jest.config.ts",
             "passWithNoTests": true
@@ -32,7 +38,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/boarding-party",
             "index": "apps/boarding-party/src/index.html",
@@ -45,9 +53,13 @@
               "apps/boarding-party/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/pirate"]
+              "includePaths": [
+                "scss/themes/pirate"
+              ]
             },
-            "styles": ["apps/boarding-party/src/styles.scss"],
+            "styles": [
+              "apps/boarding-party/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -112,7 +124,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/boarding-party"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/boarding-party"
+          ],
           "options": {
             "jestConfig": "apps/boarding-party/jest.config.ts",
             "passWithNoTests": true
@@ -128,14 +142,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/character/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/character/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/character"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/character"
+          ],
           "options": {
             "jestConfig": "libs/character/jest.config.ts",
             "passWithNoTests": true
@@ -152,7 +172,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/character-builder",
             "index": "apps/character-builder/src/index.html",
@@ -165,9 +187,13 @@
               "apps/character-builder/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/default"]
+              "includePaths": [
+                "scss/themes/default"
+              ]
             },
-            "styles": ["apps/character-builder/src/styles.scss"],
+            "styles": [
+              "apps/character-builder/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -232,7 +258,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/character-builder"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/character-builder"
+          ],
           "options": {
             "jestConfig": "apps/character-builder/jest.config.ts",
             "passWithNoTests": true
@@ -248,14 +276,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/deck/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/deck/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/deck"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/deck"
+          ],
           "options": {
             "jestConfig": "libs/deck/jest.config.ts",
             "passWithNoTests": true
@@ -271,14 +305,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/event-manager/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/event-manager/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/event-manager"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/event-manager"
+          ],
           "options": {
             "jestConfig": "libs/event-manager/jest.config.ts",
             "passWithNoTests": true
@@ -294,14 +334,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/fps/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/fps/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/fps"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/fps"
+          ],
           "options": {
             "jestConfig": "libs/fps/jest.config.ts",
             "passWithNoTests": true
@@ -318,7 +364,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/french-toast",
             "index": "apps/french-toast/src/index.html",
@@ -330,7 +378,9 @@
               "apps/french-toast/src/favicon.ico",
               "apps/french-toast/src/assets"
             ],
-            "styles": ["apps/french-toast/src/styles.scss"],
+            "styles": [
+              "apps/french-toast/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -395,7 +445,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/french-toast"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/french-toast"
+          ],
           "options": {
             "jestConfig": "apps/french-toast/jest.config.ts",
             "passWithNoTests": true
@@ -412,7 +464,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/jabberwocky",
             "index": "apps/jabberwocky/src/index.html",
@@ -425,9 +479,13 @@
               "apps/jabberwocky/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/jabberwocky"]
+              "includePaths": [
+                "scss/themes/jabberwocky"
+              ]
             },
-            "styles": ["apps/jabberwocky/src/styles.scss"],
+            "styles": [
+              "apps/jabberwocky/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -492,7 +550,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/jabberwocky"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/jabberwocky"
+          ],
           "options": {
             "jestConfig": "apps/jabberwocky/jest.config.ts",
             "passWithNoTests": true
@@ -508,12 +568,16 @@
       "architect": {
         "build": {
           "builder": "@nrwl/webpack:webpack",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lipwig",
             "main": "apps/lipwig/src/main.ts",
             "tsConfig": "apps/lipwig/tsconfig.app.json",
-            "assets": ["apps/lipwig/src/assets"],
+            "assets": [
+              "apps/lipwig/src/assets"
+            ],
             "target": "node",
             "compiler": "tsc"
           },
@@ -539,14 +603,20 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/lipwig/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/lipwig/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/lipwig"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/lipwig"
+          ],
           "options": {
             "jestConfig": "apps/lipwig/jest.config.ts",
             "passWithNoTests": true
@@ -563,7 +633,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/lipwig-admin",
             "index": "apps/lipwig-admin/src/index.html",
@@ -576,9 +648,13 @@
               "apps/lipwig-admin/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/default"]
+              "includePaths": [
+                "scss/themes/default"
+              ]
             },
-            "styles": ["apps/lipwig-admin/src/styles.scss"],
+            "styles": [
+              "apps/lipwig-admin/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -643,7 +719,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/lipwig-admin"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/lipwig-admin"
+          ],
           "options": {
             "jestConfig": "apps/lipwig-admin/jest.config.ts",
             "passWithNoTests": true
@@ -659,14 +737,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/lipwig-js/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/lipwig-js/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/lipwig-js"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/lipwig-js"
+          ],
           "options": {
             "jestConfig": "libs/lipwig-js/jest.config.ts",
             "passWithNoTests": true
@@ -683,7 +767,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/lipwig-ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/lipwig-ui"
+          ],
           "options": {
             "jestConfig": "libs/lipwig-ui/jest.config.ts",
             "passWithNoTests": true
@@ -709,7 +795,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/ridcully",
             "index": "apps/ridcully/src/index.html",
@@ -722,9 +810,13 @@
               "apps/ridcully/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/default"]
+              "includePaths": [
+                "scss/themes/default"
+              ]
             },
-            "styles": ["apps/ridcully/src/styles.scss"],
+            "styles": [
+              "apps/ridcully/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -789,7 +881,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/ridcully"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/ridcully"
+          ],
           "options": {
             "jestConfig": "apps/ridcully/jest.config.ts",
             "passWithNoTests": true
@@ -806,7 +900,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/ships",
             "index": "apps/ships/src/index.html",
@@ -814,11 +910,18 @@
             "polyfills": "apps/ships/src/polyfills.ts",
             "tsConfig": "apps/ships/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/ships/src/favicon.ico", "apps/ships/src/assets"],
+            "assets": [
+              "apps/ships/src/favicon.ico",
+              "apps/ships/src/assets"
+            ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/pirate"]
+              "includePaths": [
+                "scss/themes/pirate"
+              ]
             },
-            "styles": ["apps/ships/src/styles.scss"],
+            "styles": [
+              "apps/ships/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -883,7 +986,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/ships"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/ships"
+          ],
           "options": {
             "jestConfig": "apps/ships/jest.config.ts",
             "passWithNoTests": true
@@ -899,14 +1004,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/skeleton/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/skeleton/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/skeleton"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/skeleton"
+          ],
           "options": {
             "jestConfig": "libs/skeleton/jest.config.ts",
             "passWithNoTests": true
@@ -923,7 +1034,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/skeleton-animate",
             "index": "apps/skeleton-animate/src/index.html",
@@ -935,7 +1048,9 @@
               "apps/skeleton-animate/src/favicon.ico",
               "apps/skeleton-animate/src/assets"
             ],
-            "styles": ["apps/skeleton-animate/src/styles.scss"],
+            "styles": [
+              "apps/skeleton-animate/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1000,7 +1115,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/skeleton-animate"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/skeleton-animate"
+          ],
           "options": {
             "jestConfig": "apps/skeleton-animate/jest.config.ts",
             "passWithNoTests": true
@@ -1017,7 +1134,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/ui"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/ui"
+          ],
           "options": {
             "jestConfig": "libs/ui/jest.config.ts",
             "passWithNoTests": true
@@ -1026,7 +1145,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ui/src/**/*.ts",
+              "libs/ui/src/**/*.html"
+            ]
           }
         },
         "storybook": {
@@ -1045,7 +1167,9 @@
         },
         "build-storybook": {
           "builder": "@storybook/angular:build-storybook",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputDir": "dist/storybook/ui",
             "configDir": "libs/ui/.storybook",
@@ -1068,14 +1192,20 @@
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/libs/utils"],
+          "outputs": [
+            "{workspaceRoot}/coverage/libs/utils"
+          ],
           "options": {
             "jestConfig": "libs/utils/jest.config.ts",
             "passWithNoTests": true
@@ -1092,7 +1222,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/will-hay-code",
             "index": "apps/will-hay-code/src/index.html",
@@ -1104,9 +1236,13 @@
               "apps/will-hay-code/src/assets"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["scss/themes/default"]
+              "includePaths": [
+                "scss/themes/default"
+              ]
             },
-            "styles": ["apps/will-hay-code/src/styles.scss"],
+            "styles": [
+              "apps/will-hay-code/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -1171,7 +1307,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["{workspaceRoot}/coverage/apps/will-hay-code"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/will-hay-code"
+          ],
           "options": {
             "jestConfig": "apps/will-hay-code/jest.config.ts",
             "passWithNoTests": true
