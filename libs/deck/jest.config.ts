@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'character',
-  preset: '../../jest.preset.js',
+  displayName: 'deck',
+
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -10,5 +10,6 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/character',
+  coverageDirectory: '../../coverage/libs/deck',
+  preset: '../../jest.preset.ts',
 };

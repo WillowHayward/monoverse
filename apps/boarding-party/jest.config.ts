@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'french-toast',
-  preset: '../../jest.preset.js',
+  displayName: 'boarding-party',
+
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/french-toast',
+  coverageDirectory: '../../coverage/apps/boarding-party',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
@@ -18,4 +18,5 @@ module.exports = {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
+  preset: '../../jest.preset.ts',
 };

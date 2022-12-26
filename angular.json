@@ -17,7 +17,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/asset-loader"],
           "options": {
-            "jestConfig": "libs/asset-loader/jest.config.js",
+            "jestConfig": "libs/asset-loader/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -114,7 +114,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/boarding-party"],
           "options": {
-            "jestConfig": "apps/boarding-party/jest.config.js",
+            "jestConfig": "apps/boarding-party/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -137,7 +137,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/character"],
           "options": {
-            "jestConfig": "libs/character/jest.config.js",
+            "jestConfig": "libs/character/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -234,7 +234,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/character-builder"],
           "options": {
-            "jestConfig": "apps/character-builder/jest.config.js",
+            "jestConfig": "apps/character-builder/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -257,7 +257,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/deck"],
           "options": {
-            "jestConfig": "libs/deck/jest.config.js",
+            "jestConfig": "libs/deck/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -280,7 +280,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/event-manager"],
           "options": {
-            "jestConfig": "libs/event-manager/jest.config.js",
+            "jestConfig": "libs/event-manager/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -303,7 +303,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/fps"],
           "options": {
-            "jestConfig": "libs/fps/jest.config.js",
+            "jestConfig": "libs/fps/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -397,7 +397,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/french-toast"],
           "options": {
-            "jestConfig": "apps/french-toast/jest.config.js",
+            "jestConfig": "apps/french-toast/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -494,7 +494,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/jabberwocky"],
           "options": {
-            "jestConfig": "apps/jabberwocky/jest.config.js",
+            "jestConfig": "apps/jabberwocky/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -507,7 +507,7 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "builder": "@nrwl/node:webpack",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/lipwig",
@@ -530,7 +530,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "lipwig:build"
           }
@@ -546,7 +546,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/lipwig"],
           "options": {
-            "jestConfig": "apps/lipwig/jest.config.js",
+            "jestConfig": "apps/lipwig/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -643,7 +643,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/lipwig-admin"],
           "options": {
-            "jestConfig": "apps/lipwig-admin/jest.config.js",
+            "jestConfig": "apps/lipwig-admin/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -666,7 +666,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/lipwig-js"],
           "options": {
-            "jestConfig": "libs/lipwig-js/jest.config.js",
+            "jestConfig": "libs/lipwig-js/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -683,7 +683,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/lipwig-ui"],
           "options": {
-            "jestConfig": "libs/lipwig-ui/jest.config.js",
+            "jestConfig": "libs/lipwig-ui/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -789,7 +789,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/ridcully"],
           "options": {
-            "jestConfig": "apps/ridcully/jest.config.js",
+            "jestConfig": "apps/ridcully/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -883,7 +883,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/ships"],
           "options": {
-            "jestConfig": "apps/ships/jest.config.js",
+            "jestConfig": "apps/ships/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -906,7 +906,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/skeleton"],
           "options": {
-            "jestConfig": "libs/skeleton/jest.config.js",
+            "jestConfig": "libs/skeleton/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -1000,7 +1000,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/skeleton-animate"],
           "options": {
-            "jestConfig": "apps/skeleton-animate/jest.config.js",
+            "jestConfig": "apps/skeleton-animate/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -1017,7 +1017,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/ui"],
           "options": {
-            "jestConfig": "libs/ui/jest.config.js",
+            "jestConfig": "libs/ui/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -1034,7 +1034,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/ui/.storybook"
-            }
+            },
+            "projectBuildConfig": "ui:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1050,7 +1051,8 @@
             "outputPath": "dist/storybook/ui",
             "config": {
               "configFolder": "libs/ui/.storybook"
-            }
+            },
+            "projectBuildConfig": "ui:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1077,7 +1079,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/utils"],
           "options": {
-            "jestConfig": "libs/utils/jest.config.js",
+            "jestConfig": "libs/utils/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -1173,7 +1175,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/will-hay-code"],
           "options": {
-            "jestConfig": "apps/will-hay-code/jest.config.js",
+            "jestConfig": "apps/will-hay-code/jest.config.ts",
             "passWithNoTests": true
           }
         }
