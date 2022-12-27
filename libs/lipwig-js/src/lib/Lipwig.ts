@@ -8,7 +8,7 @@ import { Admin } from './Admin';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 import { SocketUser } from './SocketUser';
-import { Message } from './Types';
+import { Message, MessageData } from './Types';
 
 
 export {
@@ -18,5 +18,6 @@ export {
   User,
   LocalClient,
   SocketUser,
-  Message
+  Message,
+  MessageData
 }

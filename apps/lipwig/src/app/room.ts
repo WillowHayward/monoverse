@@ -11,18 +11,31 @@ export class Room {
     this.initialiseUser(host, true);
     const confirmation: Message = {
         event: 'created',
-        data: [code],
-        sender: '',
-        recipient: []
+        data: {
+            args: [code],
+            sender: '',
+            recipient: []
+        }
     }
 
     this.sendMessage(host, confirmation);
   }
 
-  join(client: LipwigSocket) {
+  join(client: LipwigSocket) { // TODO: Join data
     this.initialiseUser(client, false);
     const id = client.id;
     this.connected[id] = client;
+
+    const confirmation: Message = {
+        event: 'joined',
+        data: {
+            args: [id, ''],
+            sender: '',
+            recipient: []
+        }
+    }
+
+    this.sendMessage(client, confirmation);
   }
 
   disconnect(user: LipwigSocket, permanent: boolean) {

@@ -28,7 +28,7 @@ export class LocalClient extends EventManager {
 
   public handle(message: Message): void {
     // In theory this should never be from a socket
-    const args: unknown[] = message.data.concat(message);
+    const args: unknown[] = message.data.args.concat(message);
 
     this.reserved.emit(message.event, ...args);
     this.emit(message.event, ...args);

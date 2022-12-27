@@ -49,9 +49,11 @@ export class Host extends SocketUser {
     public close(reason = ''): void {
       const message: Message = {
         event: 'close',
-        data: [reason],
-        recipient: [],
-        sender: this.id
+        data: {
+            args: [reason],
+            recipient: [],
+            sender: this.id
+        }
       };
 
       this.sendMessage(message);
@@ -157,12 +159,12 @@ export class Host extends SocketUser {
 
     protected handle(event: MessageEvent): void {
       const message: Message = JSON.parse(event.data);
-      const args: unknown[] = message.data.concat(message);
+      const args: unknown[] = message.data.args.concat(message);
 
       this.reserved.emit(message.event, ...args);
 
-      if (message.sender in this.users) {
-        const user: User = this.users[message.sender];
+      if (message.data.sender in this.users) {
+        const user: User = this.users[message.data.sender];
         args.push(message);
         user.emit(message.event, ...args);
         args.splice(0, 0, user);
@@ -179,9 +181,11 @@ export class Host extends SocketUser {
     protected connected(): void {
       const message: Message = {
         event: 'create',
-        data: [this.options],
-        sender: '',
-        recipient: []
+        data: {
+            args: [this.options],
+            sender: '',
+            recipient: []
+        }
       };
       this.sendMessage(message);
     }

@@ -29,9 +29,11 @@ export class Client extends SocketUser {
     public send(event: string, ...args: unknown[]): void { 
       const message: Message = {
         event: event,
-        data: args,
-        sender: this.id,
-        recipient: []
+        data: {
+            args,
+            sender: this.id,
+            recipient: []
+        }
       };
       this.sendMessage(message);
     }
@@ -42,9 +44,11 @@ export class Client extends SocketUser {
     protected connected(): void {
       const message: Message = {
         event: 'join',
-        data: [this.code, this.data],
-        sender: '',
-        recipient: []
+        data: {
+            args: [this.code, this.data],
+            sender: '',
+            recipient: []
+        }
       };
       this.sendMessage(message);
     }
@@ -55,7 +59,7 @@ export class Client extends SocketUser {
      */
     public handle(event: MessageEvent): void {
       const message: Message = JSON.parse(event.data);
-      const args: unknown[] = message.data.concat(message);
+      const args: unknown[] = message.data.args.concat(message);
 
       this.reserved.emit(message.event, ...args);
       this.emit(message.event, ...args);

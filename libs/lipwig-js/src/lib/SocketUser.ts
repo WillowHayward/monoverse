@@ -28,9 +28,11 @@ export abstract class SocketUser extends EventManager {
       this.addListeners();
       const message: Message = {
         event: 'reconnect',
-        data: [this.id],
-        sender: this.id,
-        recipient: []
+        data: {
+            args: [this.id],
+            sender: this.id,
+            recipient: []
+        }
       };
       this.sendMessage(message);
     }
@@ -38,9 +40,10 @@ export abstract class SocketUser extends EventManager {
     public sendMessage(message: Message): void {
       //TODO: Add in contingency system for messages sent during a disconnection
       //CONT: A queue of messages to be sent in bulk on resumption of connection
-      if (message.sender.length === 0) {
-        message.sender = this.id;
+      if (message.data.sender.length === 0) {
+        message.data.sender = this.id;
       }
+      console.log(message);
       this.socket.send(JSON.stringify(message));
     }
 
@@ -48,9 +51,11 @@ export abstract class SocketUser extends EventManager {
       const now: number = new Date().getTime();
       const message: Message = {
         event: 'lw-ping',
-        data: [now],
-        recipient: [],
-        sender: ''
+        data: {
+            args: [now],
+            recipient: [],
+            sender: ''
+        }
       };
       this.sendMessage(message);
     }

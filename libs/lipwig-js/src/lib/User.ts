@@ -21,9 +21,11 @@ export class User extends EventManager {
     public send(event: string, ...args: unknown[]): void {
       const message: Message = {
         event: event,
-        data: args,
-        sender: this.parent.id,
-        recipient: [this.id]
+        data: {
+            args,
+            sender: this.parent.id,
+            recipient: [this.id]
+        }
       };
 
       if (this.local) {

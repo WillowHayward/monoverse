@@ -28,9 +28,11 @@ export class Room {
 
         const message: Message = {
             event: 'created',
-            data: [id],
-            sender: '',
-            recipient: []
+            data: {
+                args: [id],
+                sender: '',
+                recipient: []
+            }
         };
 
         this.host = new User('', host);
@@ -51,9 +53,11 @@ export class Room {
         if (error === ErrorCode.SUCCESS) {
             const message: Message = {
                 event: 'joined',
-                data: [this.id + user.getID(), data.name], //TODO: Generalise
-                sender: '',
-                recipient: ['']
+                data: {
+                    args: [this.id + user.getID(), data.name], //TODO: Generalise
+                    sender: '',
+                    recipient: ['']
+                }
             };
             user.send(message);
 
@@ -115,8 +119,8 @@ export class Room {
     public route(message: Message): ErrorCode {
         const users: User[] = [];
         let missingUser = false;
-        if (message.sender !== this.id) {
-            const origin: User | undefined = this.find(message.sender.slice(4, 8));
+        if (message.data.sender !== this.id) {
+            const origin: User | undefined = this.find(message.data.sender.slice(4, 8));
 
             if (origin === undefined) {
                 return ErrorCode.USERNOTFOUND;
@@ -127,7 +131,7 @@ export class Room {
             return ErrorCode.SUCCESS;
         }
 
-        message.recipient.forEach((id: string) => {
+        message.data.recipient.forEach((id: string) => {
 
             const userID: string = id.slice(4, 8);
             const user: User = this.users[userID];
@@ -163,12 +167,12 @@ export class Room {
         const userIDs: string[] = Object.keys(this.users);
         userIDs.forEach((id: string): void => {
             user = this.users[id];
-            message.recipient = [user.getID()];
+            message.data.recipient = [user.getID()];
             user.send(message);
             user.close();
         });
 
-        message.recipient = [this.id];
+        message.data.recipient = [this.id];
         this.host.send(message);
         this.host.close();
     }
@@ -183,9 +187,11 @@ export class Room {
 
         const message: Message = {
             event: 'kicked',
-            data: [reason],
-            sender: this.id,
-            recipient: [id]
+            data: {
+                args: [reason],
+                sender: this.id,
+                recipient: [id]
+            }
         };
 
         user.send(message);

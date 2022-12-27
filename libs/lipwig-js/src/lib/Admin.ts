@@ -18,7 +18,7 @@ export class Admin extends SocketUser {
     }
     protected handle(event: MessageEvent): void {
       const message: Message = JSON.parse(event.data);
-      const args: unknown[] = message.data.concat(message);
+      const args: unknown[] = message.data.args.concat(message);
 
       this.reserved.emit(message.event, ...args);
       this.emit(message.event, ...args);
@@ -27,9 +27,11 @@ export class Admin extends SocketUser {
     protected connected(): void {
       const message: Message = {
         event: 'administrate',
-        data: [this.options],
-        sender: '',
-        recipient: []
+        data: {
+            args: [this.options],
+            sender: '',
+            recipient: []
+        }
       };
       this.sendMessage(message);
     }

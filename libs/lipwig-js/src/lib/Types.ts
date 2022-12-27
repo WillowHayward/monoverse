@@ -1,11 +1,16 @@
 /**
  * @author: WillHayCode
  */
-export type Message = {
-    event: string;
-    data: unknown[];
+
+export type MessageData = {
+    args: unknown[];
     recipient: string[];
     sender: string;
+}
+
+export type Message = {
+    event: string;
+    data: MessageData;
 };
 
 export type DataMap = {
