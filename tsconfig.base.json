@@ -22,6 +22,7 @@
       "@willhaycode/fps": ["libs/fps/src/index.ts"],
       "@willhaycode/lipwig-js": ["libs/lipwig-js/src/index.ts"],
       "@willhaycode/lipwig-ui": ["libs/lipwig-ui/src/index.ts"],
+      "@willhaycode/lipwig/types": ["libs/lipwig/types/src/index.ts"],
       "@willhaycode/skeleton": ["libs/skeleton/src/index.ts"],
       "@willhaycode/ui": ["libs/ui/src/index.ts"],
       "@willhaycode/utils": ["libs/utils/src/index.ts"]

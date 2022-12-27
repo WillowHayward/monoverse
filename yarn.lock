@@ -4793,7 +4793,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/js@npm:15.4.1":
+"@nrwl/js@npm:15.4.1, @nrwl/js@npm:^15.4.1":
   version: 15.4.1
   resolution: "@nrwl/js@npm:15.4.1"
   dependencies:
@@ -20061,6 +20061,7 @@ __metadata:
     "@nrwl/cypress": 15.4.1
     "@nrwl/eslint-plugin-nx": 15.4.1
     "@nrwl/jest": 15.4.1
+    "@nrwl/js": ^15.4.1
     "@nrwl/linter": 15.4.1
     "@nrwl/nest": 15.4.1
     "@nrwl/node": 15.4.1
