@@ -11,7 +11,7 @@ import { Room } from './room';
 
 @WebSocketGateway()
 export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  private rooms: { [code: string]: Room };
+  private rooms: { [code: string]: Room } = {};
 
   @SubscribeMessage('create')
   handleCreate(user: LipwigSocket, payload: Message) {
@@ -52,11 +52,13 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('message')
   handleMessage(user: LipwigSocket, payload: Message) {
+      console.log(payload);
+      process.exit();
     // stub
   }
 
   handleConnection(user: LipwigSocket) {
-    console.log(user);
+    //console.log(user);
   }
 
   handleDisconnect(user: LipwigSocket) {

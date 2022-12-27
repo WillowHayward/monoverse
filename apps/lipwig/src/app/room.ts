@@ -3,13 +3,20 @@ import type { Message } from '@willhaycode/lipwig-js';
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {
-  public code: string;
   private users: string[]; // Array of user ids
   private connected: { [id: string]: LipwigSocket } = {};
   private disconnected: string[];
 
   constructor(private host: LipwigSocket, public code: string) {
     this.initialiseUser(host, true);
+    const confirmation: Message = {
+        event: 'created',
+        data: [code],
+        sender: '',
+        recipient: []
+    }
+
+    this.sendMessage(host, confirmation);
   }
 
   join(client: LipwigSocket) {
@@ -31,13 +38,13 @@ export class Room {
   reconnect(user: LipwigSocket, id: string) {
     const disconnectedIndex = this.disconnected.indexOf(id);
     if (disconnectedIndex === -1) {
-      return;
+        return;
     }
 
     if (this.users[0] === id) {
-      this.host = user;
+        this.host = user;
     } else {
-      this.connected[id] = user;
+        this.connected[id] = user;
     }
 
     this.disconnected.splice(disconnectedIndex, 1);
@@ -45,6 +52,11 @@ export class Room {
 
   handleMessage(user: LipwigSocket, message: Message) {
     // stub
+  }
+
+  private sendMessage(user: LipwigSocket, message: Message) {
+      const messageString = JSON.stringify(message);
+      user.send(messageString);
   }
 
   private initialiseUser(client: LipwigSocket, host: boolean, id?: string) {
