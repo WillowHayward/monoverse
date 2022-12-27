@@ -7273,6 +7273,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "@types/uuid@npm:9.0.0"
+  checksum: 59ae56d9547c8758588659da2a2b4c97cce79c2aae1798c892bb29452ef08e87859dea2ec3a66bfa88d0d2153147520be2b1893be920f9f0bc9c53a3207ea6aa
+  languageName: node
+  linkType: hard
+
 "@types/verror@npm:^1.10.3":
   version: 1.10.5
   resolution: "@types/verror@npm:1.10.5"
@@ -20071,6 +20078,7 @@ __metadata:
     "@types/cannon": ^0.1.8
     "@types/jest": 28.1.1
     "@types/node": 18.7.1
+    "@types/uuid": ^9.0.0
     "@typescript-eslint/eslint-plugin": 5.47.0
     "@typescript-eslint/parser": 5.47.0
     babylonjs: ^4.2.0
@@ -20098,6 +20106,7 @@ __metadata:
     ts-node: 10.9.1
     tslib: ^2.3.0
     typescript: 4.8.4
+    uuid: ^9.0.0
     webpack: 5
     websocket: ^1.0.34
     winston: ^3.3.3
@@ -27353,7 +27362,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.0":
+"uuid@npm:9.0.0, uuid@npm:^9.0.0":
   version: 9.0.0
   resolution: "uuid@npm:9.0.0"
   bin:

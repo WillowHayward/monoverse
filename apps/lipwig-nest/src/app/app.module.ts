@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LipwigGateway } from '../lipwig.gateway';
+import { LipwigGateway } from './lipwig.gateway';
 
 @Module({
   imports: [],
