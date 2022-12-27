@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { Message, DataMap } from './Types';
+import { Message, DataMap } from '@willhaycode/lipwig/types';
 
 export class Client extends SocketUser {
     private code: string;
@@ -28,8 +28,9 @@ export class Client extends SocketUser {
      */
     public send(event: string, ...args: unknown[]): void { 
       const message: Message = {
-        event: event,
+        event: 'message',
         data: {
+            event,
             args,
             sender: this.id,
             recipient: []
@@ -59,9 +60,14 @@ export class Client extends SocketUser {
      */
     public handle(event: MessageEvent): void {
       const message: Message = JSON.parse(event.data);
+        console.log('client message received', message);
       const args: unknown[] = message.data.args.concat(message);
 
       this.reserved.emit(message.event, ...args);
-      this.emit(message.event, ...args);
+      
+      if (!message.data.event) {
+          message.data.event = message.event;
+      }
+        this.emit(message.data.event, ...args);
     }
 }

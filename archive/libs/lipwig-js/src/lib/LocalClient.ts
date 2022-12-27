@@ -4,7 +4,7 @@
 import { EventManager } from '@willhaycode/event-manager';
 import { User } from './User';
 import { Host } from './Host';
-import { Message, DataMap } from './Types';
+import { Message, DataMap } from '@willhaycode/lipwig/types';
 
 export class LocalClient extends EventManager {
   public id: string;

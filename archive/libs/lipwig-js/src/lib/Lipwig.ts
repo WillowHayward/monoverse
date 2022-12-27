@@ -8,7 +8,7 @@ import { Admin } from './Admin';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 import { SocketUser } from './SocketUser';
-import { Message, MessageData } from './Types';
+import { Message, MessageData } from '@willhaycode/lipwig/types';
 
 
 export {

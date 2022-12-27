@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { connection as WebSocketConnection } from 'websocket'; // TODO: This is just for the types, not used at any point
-import { ErrorCode, Message, RoomOptions, RoomConfig, UserOptions } from './Types';
+import { ErrorCode, Message, RoomOptions, RoomConfig, UserOptions } from '@willhaycode/lipwig/types';
 import { User } from './User';
 import { Utility } from './Utility';
 

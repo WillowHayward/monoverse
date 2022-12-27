@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { EventManager } from '@willhaycode/event-manager';
-import { Message } from './Types';
+import { Message } from '@willhaycode/lipwig/types';
 
 export abstract class SocketUser extends EventManager {
     public id: string;

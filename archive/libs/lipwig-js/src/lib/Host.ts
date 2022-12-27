@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { Message, DataMap } from './Types';
+import { Message, DataMap } from '@willhaycode/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 
@@ -159,20 +159,23 @@ export class Host extends SocketUser {
 
     protected handle(event: MessageEvent): void {
       const message: Message = JSON.parse(event.data);
+        console.log('host message received', message);
       const args: unknown[] = message.data.args.concat(message);
+      if (!message.data.event) {
+          message.data.event = message.event;
+      }
 
       this.reserved.emit(message.event, ...args);
 
       if (message.data.sender in this.users) {
         const user: User = this.users[message.data.sender];
         args.push(message);
-        user.emit(message.event, ...args);
+        user.emit(message.data.event, ...args);
         args.splice(0, 0, user);
       }
+      //console.log(message.data.e
 
-      if (message.event !== 'joined') {
-        this.emit(message.event, ...args);
-      }
+    this.emit(message.data.event, ...args, this);
     }
 
     /**
