@@ -12,6 +12,7 @@
     "jabberwocky": "apps/jabberwocky",
     "lipwig": "apps/lipwig",
     "lipwig-admin": "apps/lipwig-admin",
+    "lipwig-js": "libs/lipwig/js",
     "lipwig-types": "libs/lipwig/types",
     "lipwig-ui": "libs/lipwig-ui",
     "ridcully": "apps/ridcully",
