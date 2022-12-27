@@ -5,7 +5,7 @@ import {
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { LipwigSocket } from './lipwig.model';
-import { MessageData } from '@willhaycode/lipwig/types';
+import { CreateEventData, JoinEventData, ReconnectEventData, AdministrateEventData, LipwigMessageEventData } from '@willhaycode/lipwig/types';
 import { generateString } from '@willhaycode/utils';
 import { Room } from './room';
 
@@ -14,20 +14,22 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private rooms: { [code: string]: Room } = {};
 
   @SubscribeMessage('create')
-  handleCreate(user: LipwigSocket, payload: MessageData) {
+  handleCreate(user: LipwigSocket, payload: CreateEventData) {
     const existingCodes = Object.keys(this.rooms);
     let code: string;
     do {
       code = generateString(4);
     } while (existingCodes.includes(code));
+    // TODO: Room Config
     const room = new Room(user, code);
     this.rooms[code] = room;
   }
 
   @SubscribeMessage('join')
-  handleJoin(user: LipwigSocket, payload: MessageData) {
+  handleJoin(user: LipwigSocket, payload: JoinEventData) {
       console.log(payload);
-    const code = payload.args[0] as string; // TODO: Type Checking
+    const code = payload.code;
+    // TODO: Join Options
     const room = this.rooms[code];
 
     if (!room) {
@@ -38,21 +40,21 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('reconnect')
-  handleReconnect(user: LipwigSocket, payload: MessageData) {
-    const code = payload.args[0] as string; // TODO: Type Checking
-    const id = payload.args[1] as string; // TODO: Type Checking
+  handleReconnect(user: LipwigSocket, payload: ReconnectEventData) {
+      const code = payload.code;
+      const id = payload.id;
 
     const room = this.rooms[code];
     room.reconnect(user, id);
   }
 
-  @SubscribeMessage('admin')
-  handleAdmin(user: LipwigSocket, payload: MessageData) {
+  @SubscribeMessage('administrate')
+  handleAdmin(user: LipwigSocket, payload: AdministrateEventData) {
     // stub
   }
 
   @SubscribeMessage('message')
-  handleMessage(user: LipwigSocket, payload: MessageData) {
+  handleMessage(user: LipwigSocket, payload: LipwigMessageEventData) {
       const code = user.room;
       const room = this.rooms[code];
 

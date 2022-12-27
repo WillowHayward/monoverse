@@ -59,7 +59,8 @@ export interface ReconnectEvent extends ClientEvent {
 }
 
 export interface ReconnectEventData {
-
+    code: string;
+    id: string;
 }
 
 export interface CloseEvent extends ClientEvent {
@@ -97,6 +98,7 @@ export interface CreatedEvent extends ServerEvent {
 }
 
 export interface CreatedEventData {
+    code: string;
     id: string;
 }
 

@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import type { Message, MessageData } from '@willhaycode/lipwig/types';
+import { SERVER_EVENT, GenericEvent, CreatedEvent, JoinedEvent, LipwigMessageEventData } from '@willhaycode/lipwig/types';
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {
@@ -9,12 +9,11 @@ export class Room {
 
   constructor(private host: LipwigSocket, public code: string) {
     this.initialiseUser(host, true);
-    const confirmation: Message = {
-        event: 'created',
+    const confirmation: CreatedEvent = {
+        event: SERVER_EVENT.CREATED,
         data: {
-            args: [code],
-            sender: '',
-            recipient: []
+            code,
+            id: host.id
         }
     }
 
@@ -26,12 +25,10 @@ export class Room {
     const id = client.id;
     this.connected[id] = client;
 
-    const confirmation: Message = {
-        event: 'joined',
+    const confirmation: JoinedEvent = {
+        event: SERVER_EVENT.JOINED,
         data: {
-            args: [id, ''],
-            sender: '',
-            recipient: []
+            id
         }
     }
 
@@ -63,7 +60,7 @@ export class Room {
     this.disconnected.splice(disconnectedIndex, 1);
   }
 
-  handleMessage(user: LipwigSocket, data: MessageData) {
+  handleMessage(user: LipwigSocket, data: LipwigMessageEventData) {
       if (user.id !== this.users[0]) { // If not host
           this.sendMessage(this.host, {
               event: 'message',
@@ -89,7 +86,7 @@ export class Room {
 
   }
 
-  private sendMessage(user: LipwigSocket, message: Message) {
+  private sendMessage(user: LipwigSocket, message: GenericEvent) {
       const messageString = JSON.stringify(message);
       user.send(messageString);
   }
