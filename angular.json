@@ -14,7 +14,7 @@
     "lipwig-admin": "apps/lipwig-admin",
     "lipwig-js": "libs/lipwig/js",
     "lipwig-types": "libs/lipwig/types",
-    "lipwig-ui": "libs/lipwig-ui",
+    "lipwig-ui": "libs/lipwig/ui",
     "ridcully": "apps/ridcully",
     "ships": "apps/ships",
     "skeleton": "libs/skeleton",

@@ -1,11 +1,11 @@
 import { v4 } from 'uuid';
-import type { Message } from '@willhaycode/lipwig-js';
+import type { Message, MessageData } from '@willhaycode/lipwig/types';
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {
-  private users: string[]; // Array of user ids
+  private users: string[] = []; // Array of user ids, index 0 for host
   private connected: { [id: string]: LipwigSocket } = {};
-  private disconnected: string[];
+  private disconnected: string[] = [];
 
   constructor(private host: LipwigSocket, public code: string) {
     this.initialiseUser(host, true);
@@ -63,8 +63,30 @@ export class Room {
     this.disconnected.splice(disconnectedIndex, 1);
   }
 
-  handleMessage(user: LipwigSocket, message: Message) {
-    // stub
+  handleMessage(user: LipwigSocket, data: MessageData) {
+      if (user.id !== this.users[0]) { // If not host
+          this.sendMessage(this.host, {
+              event: 'message',
+                data
+          });
+          return;
+      }
+
+      for (const id of data.recipient) {
+          //TODO: Disconnected message queuing
+          const user = this.connected[id];
+          if (!user) {
+              // stub
+          }
+
+          this.sendMessage(user, {
+            event: 'message',
+            data
+          });
+          return;
+      }
+
+
   }
 
   private sendMessage(user: LipwigSocket, message: Message) {
@@ -72,9 +94,10 @@ export class Room {
       user.send(messageString);
   }
 
-  private initialiseUser(client: LipwigSocket, host: boolean, id?: string) {
-    client.host = host;
-    client.room = this.code;
-    client.id = id || v4();
+  private initialiseUser(user: LipwigSocket, host: boolean, id?: string) {
+    user.host = host;
+    user.room = this.code;
+    user.id = id || v4();
+    this.users.push(user.id);
   }
 }

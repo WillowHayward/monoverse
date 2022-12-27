@@ -11,7 +11,7 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    new FrenchToast('wss://lipwig.willhaycode.com');
+    new FrenchToast('ws://localhost:3333');
   }
 
 }

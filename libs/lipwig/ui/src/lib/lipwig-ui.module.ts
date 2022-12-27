@@ -12,13 +12,13 @@ import { DetailsCardComponent } from './details-card/details-card.component';
     CreateCardComponent,
     LandingPageComponent,
     JoinCardComponent,
-    DetailsCardComponent
+    DetailsCardComponent,
   ],
   exports: [
     CreateCardComponent,
     LandingPageComponent,
     JoinCardComponent,
-    DetailsCardComponent
+    DetailsCardComponent,
   ],
 })
 export class LipwigUiModule {}

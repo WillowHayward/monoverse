@@ -8,9 +8,8 @@ describe('JoinCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JoinCardComponent ]
-    })
-    .compileComponents();
+      declarations: [JoinCardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

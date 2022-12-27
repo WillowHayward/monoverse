@@ -5,7 +5,7 @@ import {
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { LipwigSocket } from './lipwig.model';
-import { MessageData } from '@willhaycode/lipwig-js';
+import { MessageData } from '@willhaycode/lipwig/types';
 import { generateString } from '@willhaycode/utils';
 import { Room } from './room';
 
@@ -53,9 +53,15 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('message')
   handleMessage(user: LipwigSocket, payload: MessageData) {
-      console.log(payload);
-      process.exit();
-    // stub
+      const code = user.room;
+      const room = this.rooms[code];
+
+      if (!room) {
+          // Room not found
+      }
+
+      room.handleMessage(user, payload);
+      
   }
 
   handleConnection(user: LipwigSocket) {
