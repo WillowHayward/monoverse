@@ -3,7 +3,7 @@
  */
 
 // Events that can be sent from the server
-export enum ServerEvent {
+export enum SERVER_EVENT {
     CREATED = 'created',
     JOINED = 'joined',
     RECONNECTED = 'reconnected',
@@ -12,7 +12,7 @@ export enum ServerEvent {
 }
 
 // Events that can be sent from a client
-export enum ClientEvent {
+export enum CLIENT_EVENT {
     CREATE = 'create',
     JOIN = 'join',
     RECONNECT = 'reconnect',
@@ -22,7 +22,7 @@ export enum ClientEvent {
     PING = 'lw-ping'
 }
 
-export enum ErrorCode {
+export enum ERROR_CODE {
     SUCCESS,
     MALFORMED,
     ROOMNOTFOUND,

@@ -9,5 +9,5 @@ export type RoomConfig = Partial<RoomOptions>;
 
 export type UserOptions = {
     [index: string]: unknown;
-    name: string;
+    name?: string;
 };

@@ -2,25 +2,40 @@
  * @author: WillHayCode
  */
 
-import { ServerEvent, ClientEvent, ErrorCode } from './enums';
+import { SERVER_EVENT, CLIENT_EVENT, ERROR_CODE } from './enums';
 import { RoomConfig, UserOptions } from './common.model';
 
-interface Message {
+export interface GenericEvent {
     event: string;
     data: unknown;
 }
 
-interface ClientMessage extends Message {
-    event: ClientEvent;
+export interface ClientEvent extends GenericEvent {
+    event: CLIENT_EVENT;
 }
 
-interface ServerMessage extends Message {
-    event: ServerEvent;
+export interface ServerEvent extends GenericEvent {
+    event: SERVER_EVENT;
 }
 
-// Client Events
-export interface CreateEvent extends ClientMessage {
-    event: ClientEvent.CREATE;
+// Common GenericEvents
+
+export interface LipwigMessageEvent extends GenericEvent { 
+    event: CLIENT_EVENT.MESSAGE | SERVER_EVENT.MESSAGE;
+    data: LipwigMessageEventData;
+}
+
+export interface LipwigMessageEventData {
+    event: string;
+    sender: string;
+    recipient: string[];
+    args: unknown[];
+}
+
+
+// Client GenericEvents
+export interface CreateEvent extends ClientEvent {
+    event: CLIENT_EVENT.CREATE;
     data: CreateEventData;
 }
 
@@ -28,18 +43,18 @@ export interface CreateEventData {
     config: RoomConfig;
 }
 
-export interface JoinEvent extends ClientMessage {
-    event: ClientEvent.JOIN;
+export interface JoinEvent extends ClientEvent {
+    event: CLIENT_EVENT.JOIN;
     data: JoinEventData;
 }
 
 export interface JoinEventData {
     code: string;
-    user: UserOptions;
+    options: UserOptions;
 }
 
-export interface ReconnectEvent extends ClientMessage {
-    event: ClientEvent.RECONNECT;
+export interface ReconnectEvent extends ClientEvent {
+    event: CLIENT_EVENT.RECONNECT;
     data: ReconnectEventData;
 }
 
@@ -47,8 +62,8 @@ export interface ReconnectEventData {
 
 }
 
-export interface CloseEvent extends ClientMessage {
-    event: ClientEvent.CLOSE;
+export interface CloseEvent extends ClientEvent {
+    event: CLIENT_EVENT.CLOSE;
     data: CloseEventData;
 }
 
@@ -56,8 +71,8 @@ export interface CloseEventData {
     reason?: string;
 }
 
-export interface AdministrateEvent extends ClientMessage {
-    event: ClientEvent.ADMINISTRATE;
+export interface AdministrateEvent extends ClientEvent {
+    event: CLIENT_EVENT.ADMINISTRATE;
     data: AdministrateEventData;
 }
 
@@ -65,19 +80,8 @@ export interface AdministrateEventData {
 
 }
 
-export interface ClientMessageEvent extends ClientMessage { // TODO: This may have to be divided into lipwig host and lipwig client events
-    event: ClientEvent.MESSAGE;
-    data: ClientMessageEventData;
-}
-
-export interface ClientMessageEventData {
-    sender: string;
-    recipient: string[];
-    args: unknown[];
-}
-
-export interface PingEvent extends ClientMessage {
-    event: ClientEvent.PING;
+export interface PingEvent extends ClientEvent {
+    event: CLIENT_EVENT.PING;
     data: PingEventData;
 }
 
@@ -85,10 +89,10 @@ export interface PingEventData {
     time: number;
 }
 
-// Server Events
+// Server GenericEvents
 
-export interface CreatedEvent extends ServerMessage {
-    event: ServerEvent.CREATED;
+export interface CreatedEvent extends ServerEvent {
+    event: SERVER_EVENT.CREATED;
     data: CreatedEventData;
 }
 
@@ -97,8 +101,8 @@ export interface CreatedEventData {
 }
 
 
-export interface JoinedEvent extends ServerMessage {
-    event: ServerEvent.JOINED;
+export interface JoinedEvent extends ServerEvent {
+    event: SERVER_EVENT.JOINED;
     data: JoinedEventData;
 }
 
@@ -106,8 +110,8 @@ export interface JoinedEventData {
     id: string;
 }
 
-export interface ReconnectedEvent extends ServerMessage {
-    event: ServerEvent.RECONNECTED;
+export interface ReconnectedEvent extends ServerEvent {
+    event: SERVER_EVENT.RECONNECTED;
     data: ReconnectedEventData;
 }
 
@@ -115,21 +119,11 @@ export interface ReconnectedEventData {
 
 }
 
-export interface ErrorEvent extends ServerMessage {
-    event: ServerEvent.ERROR;
+export interface ErrorEvent extends ServerEvent {
+    event: SERVER_EVENT.ERROR;
     data: ErrorEventData;
 }
 
 export interface ErrorEventData {
-    code: ErrorCode;
-}
-
-export interface ServerMessageEvent extends ServerMessage {
-    event: ServerEvent.MESSAGE;
-    data: ServerEventData;
-}
-
-export interface ServerEventData {
-    recipient: string[];
-    args: unknown[];
+    code: ERROR_CODE;
 }
