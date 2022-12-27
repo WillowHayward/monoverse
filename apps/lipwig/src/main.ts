@@ -20,7 +20,7 @@ async function bootstrap() {
     //`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
     `🚀 Application is running on: http://localhost:${port}`
   );
-    //new LipwigGateway();
+  //new LipwigGateway();
 }
 
 bootstrap();
