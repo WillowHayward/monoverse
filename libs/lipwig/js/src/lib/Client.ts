@@ -2,23 +2,18 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { Message, DataMap } from '@willhaycode/lipwig/types';
+import { JoinEvent, CLIENT_EVENT, LipwigMessageEvent, UserOptions } from '@willhaycode/lipwig/types';
 
 export class Client extends SocketUser {
-    private code: string;
-    private data: DataMap;
-    
     /**
      * Attempt to join an existing Lipwig room
      * @param url   Websocket url of LipwigCore server
      * @param code  Room code to attempt to join
      * @param data  Data to pass to room host on connection
      */
-    constructor(url: string, code: string, data: DataMap = {}) {
+    constructor(url: string, private code: string, private options: UserOptions = {}) {
       super(url);
       this.reserved.on('joined', this.setID, {object: this});
-      this.code = code;
-      this.data = data;
     }
 
     /**
@@ -27,8 +22,8 @@ export class Client extends SocketUser {
      * @param args  Arguments to send
      */
     public send(event: string, ...args: unknown[]): void { 
-      const message: Message = {
-        event: 'message',
+      const message: LipwigMessageEvent = {
+        event: CLIENT_EVENT.MESSAGE,
         data: {
             event,
             args,
@@ -43,12 +38,11 @@ export class Client extends SocketUser {
      * Final stage of connection handshake - sends join message to LipwigCore server
      */
     protected connected(): void {
-      const message: Message = {
-        event: 'join',
+      const message: JoinEvent = {
+        event: CLIENT_EVENT.JOIN,
         data: {
-            args: [this.code, this.data],
-            sender: '',
-            recipient: []
+            code: this.code,
+            options: this.options,
         }
       };
       this.sendMessage(message);
@@ -59,7 +53,7 @@ export class Client extends SocketUser {
      * @param event 
      */
     public handle(event: MessageEvent): void {
-      const message: Message = JSON.parse(event.data);
+      const message: LipwigMessageEvent = JSON.parse(event.data);
         console.log('client message received', message);
       const args: unknown[] = message.data.args.concat(message);
 

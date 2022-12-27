@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import { SocketUser } from './SocketUser';
+/*import { SocketUser } from './SocketUser';
 import { Message, DataMap } from '@willhaycode/lipwig/types';
 import { User } from './User';
 
@@ -36,4 +36,4 @@ export class Admin extends SocketUser {
       this.sendMessage(message);
     }
     
-}
+}*/

@@ -4,7 +4,7 @@
 import { EventManager } from '@willhaycode/event-manager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
-import { Message } from '@willhaycode/lipwig/types';
+import { LipwigMessageEvent, CLIENT_EVENT } from '@willhaycode/lipwig/types';
 
 export class User extends EventManager {
     public id: string;
@@ -19,8 +19,8 @@ export class User extends EventManager {
     }
 
     public send(event: string, ...args: unknown[]): void {
-      const message: Message = {
-        event: 'message',
+      const message: LipwigMessageEvent = {
+        event: CLIENT_EVENT.MESSAGE,
         data: {
             event,
             args,

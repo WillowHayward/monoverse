@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { Message, DataMap } from '@willhaycode/lipwig/types';
+import { RoomConfig, UserOptions, CloseEvent, CLIENT_EVENT, LipwigMessageEvent, CreateEvent, JoinedEvent } from '@willhaycode/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 
@@ -22,21 +22,19 @@ type Filter = {
 export class Host extends SocketUser {
     private users: UserMap;
     private groups: GroupMap;
-    private options: DataMap;
 
     /**
      * Create a new Lipwig room
      * @param url       Websocket url of LipwigCore server
      * @param options   Options with which to create room
      */
-    constructor(url: string, options: DataMap = {}) {
+    constructor(url: string, private config: RoomConfig = {}) {
       super(url);
       this.reserved.once('created', this.created, { object: this });
       this.reserved.on('joined', this.joined, { object: this });
 
       this.users = {};
       this.groups = {};
-      this.options = options;
     }
 
     /**
@@ -47,12 +45,10 @@ export class Host extends SocketUser {
     }
 
     public close(reason = ''): void {
-      const message: Message = {
-        event: 'close',
+      const message: CloseEvent = {
+        event: CLIENT_EVENT.CLOSE,
         data: {
-            args: [reason],
-            recipient: [],
-            sender: this.id
+            reason
         }
       };
 
@@ -123,7 +119,7 @@ export class Host extends SocketUser {
       });
     }
 
-    public createLocalClient(data: DataMap = {}, callback: (id: string) => void = 
+    public createLocalClient(options: UserOptions = {}, callback: (id: string) => void = 
     ()=> null): LocalClient {
       let localCount = 1;
       let localID: string;
@@ -133,7 +129,7 @@ export class Host extends SocketUser {
       } while (this.users[localID] !== undefined);
 
       const localUser = new User(localID, this, true);
-      const localClient = new LocalClient(this, localUser, data);
+      const localClient = new LocalClient(this, localUser, options);
 
       localUser.client = localClient;
       localClient.id = localID;
@@ -150,7 +146,7 @@ export class Host extends SocketUser {
       //       Not a massive surprise I guess.
       // TODO: Add callback as parameter
       setTimeout(() => {
-        this.emit('joined', localUser, data);
+        this.emit('joined', localUser, options);
         localClient.emit('joined', localID);
       }, 10);
 
@@ -158,7 +154,7 @@ export class Host extends SocketUser {
     }
 
     protected handle(event: MessageEvent): void {
-      const message: Message = JSON.parse(event.data);
+      const message: LipwigMessageEvent = JSON.parse(event.data);
         console.log('host message received', message);
       const args: unknown[] = message.data.args.concat(message);
       if (!message.data.event) {
@@ -182,12 +178,10 @@ export class Host extends SocketUser {
      * Final stage of connection handshake - sends create message to LipwigCore server
      */
     protected connected(): void {
-      const message: Message = {
-        event: 'create',
+      const message: CreateEvent = {
+        event: CLIENT_EVENT.CREATE,
         data: {
-            args: [this.options],
-            sender: '',
-            recipient: []
+            config: this.config
         }
       };
       this.sendMessage(message);
@@ -197,10 +191,10 @@ export class Host extends SocketUser {
       this.setID(id); // Also deleted reserved event
     }
 
-    private joined(userID: string, data: DataMap, message: Message): void {
+    private joined(userID: string, options: UserOptions, message: JoinedEvent): void {
       const user: User = new User(userID, this);
       this.users[userID] = user;
-      this.emit('joined', user, data, message);
+      this.emit('joined', user, options, message);
     }
 
     private filter(groups: string[], whitelist: boolean): User[] {

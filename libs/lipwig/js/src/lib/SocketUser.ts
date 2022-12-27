@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { EventManager } from '@willhaycode/event-manager';
-import { Message } from '@willhaycode/lipwig/types';
+import { CLIENT_EVENT, GenericEvent, LipwigMessageEvent, ReconnectEvent, PingEvent } from '@willhaycode/lipwig/types';
 
 export abstract class SocketUser extends EventManager {
     public id: string;
@@ -26,8 +26,8 @@ export abstract class SocketUser extends EventManager {
     public reconnect(socket: WebSocket): void {
       this.socket = socket;
       this.addListeners();
-      const message: Message = {
-        event: 'reconnect',
+      const message: ReconnectEvent = {
+        event: CLIENT_EVENT.RECONNECT,
         data: {
             args: [this.id],
             sender: this.id,
@@ -37,11 +37,15 @@ export abstract class SocketUser extends EventManager {
       this.sendMessage(message);
     }
 
-    public sendMessage(message: Message): void {
+    public sendMessage(message: GenericEvent): void {
       //TODO: Add in contingency system for messages sent during a disconnection
       //CONT: A queue of messages to be sent in bulk on resumption of connection
-      if (message.data.sender.length === 0) {
-        message.data.sender = this.id;
+      if (message.event === CLIENT_EVENT.MESSAGE) {
+          const messageEvent = message as LipwigMessageEvent; //TODO - There's gotta be a cleaner way to do this
+        if (messageEvent.data.sender.length === 0) {
+          messageEvent.data.sender = this.id;
+        }
+        message = messageEvent;
       }
       console.log(message);
       this.socket.send(JSON.stringify(message));
@@ -49,12 +53,10 @@ export abstract class SocketUser extends EventManager {
 
     public ping(): void {
       const now: number = new Date().getTime();
-      const message: Message = {
-        event: 'lw-ping',
+      const message: PingEvent = {
+        event: CLIENT_EVENT.PING,
         data: {
-            args: [now],
-            recipient: [],
-            sender: ''
+            time: now
         }
       };
       this.sendMessage(message);

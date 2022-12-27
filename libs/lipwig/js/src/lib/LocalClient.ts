@@ -4,7 +4,7 @@
 import { EventManager } from '@willhaycode/event-manager';
 import { User } from './User';
 import { Host } from './Host';
-import { Message, DataMap } from '@willhaycode/lipwig/types';
+import { LipwigMessageEvent, DataMap } from '@willhaycode/lipwig/types';
 
 export class LocalClient extends EventManager {
   public id: string;
@@ -26,7 +26,7 @@ export class LocalClient extends EventManager {
     this.parent.emit(event, this.user, ...args);
   }
 
-  public handle(message: Message): void {
+  public handle(message: LipwigMessageEvent): void {
     // In theory this should never be from a socket
     const args: unknown[] = message.data.args.concat(message);
 
