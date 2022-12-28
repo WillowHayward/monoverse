@@ -1,3 +1,3 @@
 export function fps(): string {
-  return 'fps';
+    return 'fps';
 }

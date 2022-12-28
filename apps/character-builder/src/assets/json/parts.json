@@ -64,7 +64,6 @@
         "path": "shirt_[SHIRT_COLOR]_[SHIRT_STYLE]",
         "x": 400,
         "y": 300
-
     },
     {
         "type": "leftSleeve",
@@ -101,7 +100,6 @@
         "path": "hair_[HAIR_COLOR]_[HAIR_STYLE]",
         "x": 400,
         "y": 109
-
     },
     {
         "type": "facialHair",
@@ -120,7 +118,6 @@
         "path": "face_[FACE_STYLE]",
         "x": 400,
         "y": 110
-
     },
     {
         "type": "mouth",

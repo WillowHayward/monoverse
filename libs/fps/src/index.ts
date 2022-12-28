@@ -6,13 +6,15 @@ import { KeyState, MouseState } from './lib/InputState';
 import { Stage } from './lib/Stage';
 import { Loader } from './lib/Loader';
 
-
 export {
     Actor,
-    Asset, Texture, Mesh,
+    Asset,
+    Texture,
+    Mesh,
     Camera,
     Input,
-    KeyState, MouseState,
+    KeyState,
+    MouseState,
     Stage,
-    Loader
+    Loader,
 };

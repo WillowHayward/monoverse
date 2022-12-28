@@ -1,97 +1,97 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/boarding-party/src",
-  "prefix": "bp",
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/boarding-party",
-        "index": "apps/boarding-party/src/index.html",
-        "main": "apps/boarding-party/src/main.ts",
-        "polyfills": "apps/boarding-party/src/polyfills.ts",
-        "tsConfig": "apps/boarding-party/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/boarding-party/src/favicon.ico",
-          "apps/boarding-party/src/assets"
-        ],
-        "stylePreprocessorOptions": {
-          "includePaths": ["scss/themes/pirate"]
-        },
-        "styles": ["apps/boarding-party/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/boarding-party/src",
+    "prefix": "bp",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/boarding-party",
+                "index": "apps/boarding-party/src/index.html",
+                "main": "apps/boarding-party/src/main.ts",
+                "polyfills": "apps/boarding-party/src/polyfills.ts",
+                "tsConfig": "apps/boarding-party/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/boarding-party/src/favicon.ico",
+                    "apps/boarding-party/src/assets"
+                ],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["scss/themes/pirate"]
+                },
+                "styles": ["apps/boarding-party/src/styles.scss"],
+                "scripts": []
             },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
-            }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "apps/boarding-party/src/environments/environment.ts",
-              "with": "apps/boarding-party/src/environments/environment.prod.ts"
-            }
-          ],
-          "outputHashing": "all"
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/boarding-party/src/environments/environment.ts",
+                            "with": "apps/boarding-party/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
         },
-        "development": {
-          "buildOptimizer": false,
-          "optimization": false,
-          "vendorChunk": true,
-          "extractLicenses": false,
-          "sourceMap": true,
-          "namedChunks": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "browserTarget": "boarding-party:build:production"
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "boarding-party:build:production"
+                },
+                "development": {
+                    "browserTarget": "boarding-party:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
         },
-        "development": {
-          "browserTarget": "boarding-party:build:development"
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "boarding-party:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "apps/boarding-party/src/**/*.ts",
+                    "apps/boarding-party/src/**/*.html"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/apps/boarding-party"],
+            "options": {
+                "jestConfig": "apps/boarding-party/jest.config.ts",
+                "passWithNoTests": true
+            }
         }
-      },
-      "defaultConfiguration": "development"
     },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "browserTarget": "boarding-party:build"
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "apps/boarding-party/src/**/*.ts",
-          "apps/boarding-party/src/**/*.html"
-        ]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/boarding-party"],
-      "options": {
-        "jestConfig": "apps/boarding-party/jest.config.ts",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

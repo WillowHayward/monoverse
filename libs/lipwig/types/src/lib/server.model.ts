@@ -11,4 +11,3 @@ export type LipwigOptions = {
 };
 
 export type LipwigConfig = Partial<LipwigOptions>;
-

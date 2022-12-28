@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FrenchToast } from '../../engine/FrenchToast';
 
 @Component({
-  selector: 'willhaycode-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+    selector: 'willhaycode-game',
+    templateUrl: './game.component.html',
+    styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-    new FrenchToast('ws://localhost:3333');
-  }
-
+    ngOnInit(): void {
+        new FrenchToast('ws://localhost:3333');
+    }
 }

@@ -7,18 +7,21 @@ import { RouterModule } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-        {
-            path: '',
-            component: LandingComponent,
-        }
-    ], { initialNavigation: 'enabledBlocking' }),
-    UiModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, LandingComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    component: LandingComponent,
+                },
+            ],
+            { initialNavigation: 'enabledBlocking' }
+        ),
+        UiModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

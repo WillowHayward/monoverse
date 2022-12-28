@@ -9,7 +9,7 @@ export enum SERVER_EVENT {
     RECONNECTED = 'reconnected',
     ERROR = 'error',
     MESSAGE = 'message',
-    KICKED = 'kicked'
+    KICKED = 'kicked',
 }
 
 // Events that can be sent from a client
@@ -21,7 +21,7 @@ export enum CLIENT_EVENT {
     ADMINISTRATE = 'administrate',
     MESSAGE = 'message',
     PING = 'lw-ping',
-    KICK = 'kick'
+    KICK = 'kick',
 }
 
 export enum ERROR_CODE {
@@ -31,6 +31,5 @@ export enum ERROR_CODE {
     ROOMFULL,
     USERNOTFOUND,
     INSUFFICIENTPERMISSIONS,
-    INCORRECTPASSWORD
+    INCORRECTPASSWORD,
 }
-

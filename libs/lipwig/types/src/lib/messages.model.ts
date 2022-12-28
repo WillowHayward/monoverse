@@ -20,7 +20,7 @@ export interface ServerEvent extends GenericEvent {
 
 // Common GenericEvents
 
-export interface LipwigMessageEvent extends GenericEvent { 
+export interface LipwigMessageEvent extends GenericEvent {
     event: CLIENT_EVENT.MESSAGE | SERVER_EVENT.MESSAGE;
     data: LipwigMessageEventData;
 }
@@ -31,7 +31,6 @@ export interface LipwigMessageEventData {
     recipient: string[];
     args: unknown[];
 }
-
 
 // Client GenericEvents
 export interface CreateEvent extends ClientEvent {
@@ -77,9 +76,7 @@ export interface AdministrateEvent extends ClientEvent {
     data: AdministrateEventData;
 }
 
-export interface AdministrateEventData {
-
-}
+export interface AdministrateEventData {}
 
 export interface PingEvent extends ClientEvent {
     event: CLIENT_EVENT.PING;
@@ -111,7 +108,6 @@ export interface CreatedEventData {
     id: string;
 }
 
-
 export interface JoinedEvent extends ServerEvent {
     event: SERVER_EVENT.JOINED;
     data: JoinedEventData;
@@ -127,9 +123,7 @@ export interface ReconnectedEvent extends ServerEvent {
     data: ReconnectedEventData;
 }
 
-export interface ReconnectedEventData {
-
-}
+export interface ReconnectedEventData {}
 
 export interface ErrorEvent extends ServerEvent {
     event: SERVER_EVENT.ERROR;

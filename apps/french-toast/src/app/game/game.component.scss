@@ -1,273 +1,273 @@
 .page {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  left: 0;
-  right: 0;
-  text-align: center; 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 #codeContainer {
-  position: fixed;
-  left: 10px;
-  top: 10px;
-  z-index: 10;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 10;
 }
 
 #rulesContainer {
-  position: fixed;
-  right: 20px;
-  top: 10px;
-  z-index: 10;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    z-index: 10;
 }
 
 #menuLogo {
-  position: absolute;
-  left: 33%;
-  width: 33%;
+    position: absolute;
+    left: 33%;
+    width: 33%;
 }
 
 #logo {
-  width: 100%;
+    width: 100%;
 }
 
 #alienQuote {
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  bottom: 50px;
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    bottom: 50px;
 }
 
 .lobbyUser {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .toastmasterLogo {
-  height: 25px;
-  padding-left: 2px;
+    height: 25px;
+    padding-left: 2px;
 }
 
 .scaleHintContainer {
-  display: inline-block;
-  height: 146px;
+    display: inline-block;
+    height: 146px;
 }
 
 .scaleHintImgContainer {
-  height: 96px;
+    height: 96px;
 }
 
 .scaleHintPointerImgContainer {
-  height: 25px;
+    height: 25px;
 }
 
 .scaleHintPointerBtnContainer {
-  height: 25px;
+    height: 25px;
 }
 
 /*Hint/scale cards - 57x89mm (landscape)*/
 .hint {
-  display: inline-block;
-  width: 150px;
-  height: 96px;
+    display: inline-block;
+    width: 150px;
+    height: 96px;
 }
 
 .range {
-  width: 150px;
-  height: 96px;
+    width: 150px;
+    height: 96px;
 }
 
 /*Word cards - 44x67mm (portrait)*/
-#word, #endScreenWord {
-  width: 100px;
-  height: 152px;
-  margin: auto;
-  display: block;
+#word,
+#endScreenWord {
+    width: 100px;
+    height: 152px;
+    margin: auto;
+    display: block;
 }
 
 #timerDisplay {
-  font-size: larger;
-  display: inline-block;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 50%;
-  background: black;
-  color: white;
+    font-size: larger;
+    display: inline-block;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 50%;
+    background: black;
+    color: white;
 }
 
 #menuContainer {
-  position: absolute;
-  left: 12.5%;
-  width:75%;
-  padding: 15px;
-  top: 50px;
-  text-align: center;
+    position: absolute;
+    left: 12.5%;
+    width: 75%;
+    padding: 15px;
+    top: 50px;
+    text-align: center;
 }
 
 #menuHost {
-  position: absolute;
-  padding-top:75px;
-  height: 300px;
-  left: 0;
-  width: 33%;
-  text-align: center;
+    position: absolute;
+    padding-top: 75px;
+    height: 300px;
+    left: 0;
+    width: 33%;
+    text-align: center;
 }
 
 #menuJoin {
-  position: absolute;
-  padding-top:75px;
-  right: 0;
-  width: 33%;
-  text-align: center;
+    position: absolute;
+    padding-top: 75px;
+    right: 0;
+    width: 33%;
+    text-align: center;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 .pointer {
-  width: 25px;
-  height: 25px;
-  margin: auto;
+    width: 25px;
+    height: 25px;
+    margin: auto;
 }
 
 .btnUnpoint {
-  display: block;
-  margin: auto;
+    display: block;
+    margin: auto;
 }
 
 .toastmaster {
-  display: none;
+    display: none;
 }
 
 #dashboardContainer {
-  position: absolute;
-  padding-bottom: 50px;
-  top: 10%;
-  left: 25%;
-  height: 40%;
-  width: 50%;
+    position: absolute;
+    padding-bottom: 50px;
+    top: 10%;
+    left: 25%;
+    height: 40%;
+    width: 50%;
 }
 
 #dashboardLeft {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 33%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 33%;
 }
 
 #dashboardCenter {
-  position: absolute;
-  left: 33%;
-  top: 0;
-  width: 33%;
+    position: absolute;
+    left: 33%;
+    top: 0;
+    width: 33%;
 }
 
 #dashboardRight {
-  z-index: 9;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 33%;
+    z-index: 9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 33%;
 }
 
 #scaleContainer {
-  position: absolute;
-  top: 33%;
-  left:0;
-  width: 100%;
-  height: 25%;
-  text-align: center;
+    position: absolute;
+    top: 33%;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    text-align: center;
 }
 
 #scaleInnerContainer {
-  display: inline-block;
+    display: inline-block;
 }
 
 #handContainer {
-  position: absolute;
-  bottom: 10%;
-  left:0;
-  width: 100%;
-  text-align: center;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    text-align: center;
 }
 
 #listsContainer {
-  position: absolute;
-  text-align: center;
-  top: 150px;
-  right: 25%;
-  left: 25%;
+    position: absolute;
+    text-align: center;
+    top: 150px;
+    right: 25%;
+    left: 25%;
 }
 
 #_teamOneListContainer {
-  float: left;
-  width: 33%;
+    float: left;
+    width: 33%;
 }
 
 #_teamTwoListContainer {
-  float: right;
-  width: 33%;
+    float: right;
+    width: 33%;
 }
 
 ._userListFloat {
-  float: left;
-  width: 33%;
+    float: left;
+    width: 33%;
 }
 
 #listColumnLeft {
-  position: absolute;
-  left: 0;
-  width: 33%;
-  height: 100%;
-  white-space: nowrap;
+    position: absolute;
+    left: 0;
+    width: 33%;
+    height: 100%;
+    white-space: nowrap;
 }
 
 #listColumnCenter {
-  position: absolute;
-  left: 33%;
-  width: 33%;
-  height: 100%;
-  white-space: nowrap;
+    position: absolute;
+    left: 33%;
+    width: 33%;
+    height: 100%;
+    white-space: nowrap;
 }
 
 #listColumnRight {
-  position: absolute;
-  left: 66%;
-  width: 33%;
-  height: 100%;
-  white-space: nowrap;
+    position: absolute;
+    left: 66%;
+    width: 33%;
+    height: 100%;
+    white-space: nowrap;
 }
-
 
 #_scaleLabels {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 12px;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
-.host, .client {
-  display: none;
+.host,
+.client {
+    display: none;
 }
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
 #settingsContainer {
-  position: absolute;
-  width: 80%;
-  left: 10%;
-  top: 50px;
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 50px;
 }
 
 .settingsColumn {
-  float: left;
-  width: 25%;
-  height: 100%;
+    float: left;
+    width: 25%;
+    height: 100%;
 }
 
-input[type="button"] {
-  font-size: 40px;
+input[type='button'] {
+    font-size: 40px;
 }
-

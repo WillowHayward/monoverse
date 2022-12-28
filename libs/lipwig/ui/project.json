@@ -1,27 +1,27 @@
 {
-  "name": "lipwig-ui",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
-  "sourceRoot": "libs/lipwig/ui/src",
-  "prefix": "lipwig",
-  "targets": {
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/libs/lipwig/ui"],
-      "options": {
-        "jestConfig": "libs/lipwig/ui/jest.config.ts",
-        "passWithNoTests": true
-      }
+    "name": "lipwig-ui",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/lipwig/ui/src",
+    "prefix": "lipwig",
+    "targets": {
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/libs/lipwig/ui"],
+            "options": {
+                "jestConfig": "libs/lipwig/ui/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "libs/lipwig/ui/src/**/*.ts",
+                    "libs/lipwig/ui/src/**/*.html"
+                ]
+            }
+        }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "libs/lipwig/ui/src/**/*.ts",
-          "libs/lipwig/ui/src/**/*.html"
-        ]
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

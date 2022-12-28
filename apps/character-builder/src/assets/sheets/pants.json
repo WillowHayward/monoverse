@@ -1,592 +1,592 @@
 {
-	"pants.png": [
-		{
-			"name": "pants_yellow_long",
-			"x": "417",
-			"y": "614",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_yellow_short",
-			"x": "639",
-			"y": "118",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_yellow_shorter",
-			"x": "746",
-			"y": "118",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_blue_11",
-			"x": "0",
-			"y": "940",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_12",
-			"x": "0",
-			"y": "893",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_13",
-			"x": "0",
-			"y": "846",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_14",
-			"x": "0",
-			"y": "799",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_1_long",
-			"x": "417",
-			"y": "448",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "belt_blue_1_short",
-			"x": "635",
-			"y": "782",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "belt_blue_1_shorter",
-			"x": "746",
-			"y": "433",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_blue_21",
-			"x": "0",
-			"y": "611",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_22",
-			"x": "0",
-			"y": "564",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_23",
-			"x": "0",
-			"y": "517",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_24",
-			"x": "0",
-			"y": "470",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_blue_2_long",
-			"x": "306",
-			"y": "282",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "belt_blue_2_short",
-			"x": "528",
-			"y": "900",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "belt_blue_2_shorter",
-			"x": "784",
-			"y": "0",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_brown_1",
-			"x": "0",
-			"y": "282",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_brown_2",
-			"x": "0",
-			"y": "235",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_brown_3",
-			"x": "0",
-			"y": "188",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_brown_4",
-			"x": "0",
-			"y": "141",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_brown_long",
-			"x": "528",
-			"y": "166",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_brown_short",
-			"x": "639",
-			"y": "236",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_brown_shorter",
-			"x": "846",
-			"y": "643",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_green_1",
-			"x": "0",
-			"y": "47",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_green_2",
-			"x": "0",
-			"y": "94",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_green_3",
-			"x": "0",
-			"y": "705",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_green_4",
-			"x": "0",
-			"y": "329",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_green_long",
-			"x": "417",
-			"y": "780",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_green_short",
-			"x": "639",
-			"y": "472",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_green_shorter",
-			"x": "746",
-			"y": "223",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_grey_1",
-			"x": "153",
-			"y": "188",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_grey_2",
-			"x": "153",
-			"y": "329",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_grey_3",
-			"x": "0",
-			"y": "376",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_grey_4",
-			"x": "306",
-			"y": "47",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_grey_long",
-			"x": "459",
-			"y": "0",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_grey_short",
-			"x": "639",
-			"y": "354",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_grey_shorter",
-			"x": "742",
-			"y": "590",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_lightblue_1",
-			"x": "153",
-			"y": "282",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_lightblue_2",
-			"x": "0",
-			"y": "752",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_lightblue_3",
-			"x": "153",
-			"y": "235",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_lightblue_4",
-			"x": "153",
-			"y": "376",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_lightblue_long",
-			"x": "528",
-			"y": "498",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_lightblue_short",
-			"x": "635",
-			"y": "664",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_lightblue_shorter",
-			"x": "742",
-			"y": "905",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_navy_1",
-			"x": "153",
-			"y": "799",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_navy_2",
-			"x": "153",
-			"y": "705",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_navy_3",
-			"x": "153",
-			"y": "846",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_navy_4",
-			"x": "306",
-			"y": "0",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_navy_long",
-			"x": "528",
-			"y": "332",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_navy_short",
-			"x": "570",
-			"y": "0",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_navy_shorter",
-			"x": "742",
-			"y": "800",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_pine_1",
-			"x": "153",
-			"y": "658",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_pine_2",
-			"x": "153",
-			"y": "940",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_pine_3",
-			"x": "153",
-			"y": "893",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_pine_4",
-			"x": "306",
-			"y": "141",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_pine_long",
-			"x": "306",
-			"y": "780",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_pine_short",
-			"x": "528",
-			"y": "782",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_pine_shorter",
-			"x": "742",
-			"y": "695",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_red_1",
-			"x": "306",
-			"y": "235",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_red_2",
-			"x": "306",
-			"y": "188",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_red_3",
-			"x": "306",
-			"y": "94",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_red_4",
-			"x": "153",
-			"y": "752",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_red_long",
-			"x": "306",
-			"y": "614",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_red_short",
-			"x": "528",
-			"y": "664",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_red_shorter",
-			"x": "846",
-			"y": "748",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_tan_1",
-			"x": "0",
-			"y": "0",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_tan_2",
-			"x": "153",
-			"y": "423",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_tan_3",
-			"x": "0",
-			"y": "658",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_tan_4",
-			"x": "0",
-			"y": "423",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_tan_long",
-			"x": "417",
-			"y": "282",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_tan_short",
-			"x": "677",
-			"y": "0",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_tan_shorter",
-			"x": "746",
-			"y": "328",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_white_1",
-			"x": "153",
-			"y": "611",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_white_2",
-			"x": "153",
-			"y": "564",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_white_3",
-			"x": "153",
-			"y": "517",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_white_4",
-			"x": "153",
-			"y": "470",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "pants_white_long",
-			"x": "306",
-			"y": "448",
-			"width": "111",
-			"height": "166"
-		},
-		{
-			"name": "pants_white_short",
-			"x": "635",
-			"y": "900",
-			"width": "107",
-			"height": "118"
-		},
-		{
-			"name": "pants_white_shorter",
-			"x": "846",
-			"y": "538",
-			"width": "104",
-			"height": "105"
-		},
-		{
-			"name": "belt_yellow_1",
-			"x": "153",
-			"y": "141",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_yellow_2",
-			"x": "153",
-			"y": "94",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_yellow_3",
-			"x": "153",
-			"y": "47",
-			"width": "153",
-			"height": "47"
-		},
-		{
-			"name": "belt_yellow_4",
-			"x": "153",
-			"y": "0",
-			"width": "153",
-			"height": "47"
-		}
-	]
+    "pants.png": [
+        {
+            "name": "pants_yellow_long",
+            "x": "417",
+            "y": "614",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_yellow_short",
+            "x": "639",
+            "y": "118",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_yellow_shorter",
+            "x": "746",
+            "y": "118",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_blue_11",
+            "x": "0",
+            "y": "940",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_12",
+            "x": "0",
+            "y": "893",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_13",
+            "x": "0",
+            "y": "846",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_14",
+            "x": "0",
+            "y": "799",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_1_long",
+            "x": "417",
+            "y": "448",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "belt_blue_1_short",
+            "x": "635",
+            "y": "782",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "belt_blue_1_shorter",
+            "x": "746",
+            "y": "433",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_blue_21",
+            "x": "0",
+            "y": "611",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_22",
+            "x": "0",
+            "y": "564",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_23",
+            "x": "0",
+            "y": "517",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_24",
+            "x": "0",
+            "y": "470",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_blue_2_long",
+            "x": "306",
+            "y": "282",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "belt_blue_2_short",
+            "x": "528",
+            "y": "900",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "belt_blue_2_shorter",
+            "x": "784",
+            "y": "0",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_brown_1",
+            "x": "0",
+            "y": "282",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_brown_2",
+            "x": "0",
+            "y": "235",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_brown_3",
+            "x": "0",
+            "y": "188",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_brown_4",
+            "x": "0",
+            "y": "141",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_brown_long",
+            "x": "528",
+            "y": "166",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_brown_short",
+            "x": "639",
+            "y": "236",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_brown_shorter",
+            "x": "846",
+            "y": "643",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_green_1",
+            "x": "0",
+            "y": "47",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_green_2",
+            "x": "0",
+            "y": "94",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_green_3",
+            "x": "0",
+            "y": "705",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_green_4",
+            "x": "0",
+            "y": "329",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_green_long",
+            "x": "417",
+            "y": "780",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_green_short",
+            "x": "639",
+            "y": "472",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_green_shorter",
+            "x": "746",
+            "y": "223",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_grey_1",
+            "x": "153",
+            "y": "188",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_grey_2",
+            "x": "153",
+            "y": "329",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_grey_3",
+            "x": "0",
+            "y": "376",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_grey_4",
+            "x": "306",
+            "y": "47",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_grey_long",
+            "x": "459",
+            "y": "0",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_grey_short",
+            "x": "639",
+            "y": "354",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_grey_shorter",
+            "x": "742",
+            "y": "590",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_lightblue_1",
+            "x": "153",
+            "y": "282",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_lightblue_2",
+            "x": "0",
+            "y": "752",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_lightblue_3",
+            "x": "153",
+            "y": "235",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_lightblue_4",
+            "x": "153",
+            "y": "376",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_lightblue_long",
+            "x": "528",
+            "y": "498",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_lightblue_short",
+            "x": "635",
+            "y": "664",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_lightblue_shorter",
+            "x": "742",
+            "y": "905",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_navy_1",
+            "x": "153",
+            "y": "799",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_navy_2",
+            "x": "153",
+            "y": "705",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_navy_3",
+            "x": "153",
+            "y": "846",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_navy_4",
+            "x": "306",
+            "y": "0",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_navy_long",
+            "x": "528",
+            "y": "332",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_navy_short",
+            "x": "570",
+            "y": "0",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_navy_shorter",
+            "x": "742",
+            "y": "800",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_pine_1",
+            "x": "153",
+            "y": "658",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_pine_2",
+            "x": "153",
+            "y": "940",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_pine_3",
+            "x": "153",
+            "y": "893",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_pine_4",
+            "x": "306",
+            "y": "141",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_pine_long",
+            "x": "306",
+            "y": "780",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_pine_short",
+            "x": "528",
+            "y": "782",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_pine_shorter",
+            "x": "742",
+            "y": "695",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_red_1",
+            "x": "306",
+            "y": "235",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_red_2",
+            "x": "306",
+            "y": "188",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_red_3",
+            "x": "306",
+            "y": "94",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_red_4",
+            "x": "153",
+            "y": "752",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_red_long",
+            "x": "306",
+            "y": "614",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_red_short",
+            "x": "528",
+            "y": "664",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_red_shorter",
+            "x": "846",
+            "y": "748",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_tan_1",
+            "x": "0",
+            "y": "0",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_tan_2",
+            "x": "153",
+            "y": "423",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_tan_3",
+            "x": "0",
+            "y": "658",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_tan_4",
+            "x": "0",
+            "y": "423",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_tan_long",
+            "x": "417",
+            "y": "282",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_tan_short",
+            "x": "677",
+            "y": "0",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_tan_shorter",
+            "x": "746",
+            "y": "328",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_white_1",
+            "x": "153",
+            "y": "611",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_white_2",
+            "x": "153",
+            "y": "564",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_white_3",
+            "x": "153",
+            "y": "517",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_white_4",
+            "x": "153",
+            "y": "470",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "pants_white_long",
+            "x": "306",
+            "y": "448",
+            "width": "111",
+            "height": "166"
+        },
+        {
+            "name": "pants_white_short",
+            "x": "635",
+            "y": "900",
+            "width": "107",
+            "height": "118"
+        },
+        {
+            "name": "pants_white_shorter",
+            "x": "846",
+            "y": "538",
+            "width": "104",
+            "height": "105"
+        },
+        {
+            "name": "belt_yellow_1",
+            "x": "153",
+            "y": "141",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_yellow_2",
+            "x": "153",
+            "y": "94",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_yellow_3",
+            "x": "153",
+            "y": "47",
+            "width": "153",
+            "height": "47"
+        },
+        {
+            "name": "belt_yellow_4",
+            "x": "153",
+            "y": "0",
+            "width": "153",
+            "height": "47"
+        }
+    ]
 }

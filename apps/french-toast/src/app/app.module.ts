@@ -6,17 +6,20 @@ import { RouterModule } from '@angular/router';
 import { GameComponent } from './game/game.component';
 
 @NgModule({
-  declarations: [AppComponent, GameComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-        {
-            path: '',
-            component: GameComponent,
-        },
-    ], { initialNavigation: 'enabledBlocking' }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, GameComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    component: GameComponent,
+                },
+            ],
+            { initialNavigation: 'enabledBlocking' }
+        ),
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

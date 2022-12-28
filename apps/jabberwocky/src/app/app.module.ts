@@ -9,22 +9,22 @@ import { LipwigUiModule } from '@willhaycode/lipwig/ui';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingPageComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(
-      [
-        {
-          path: '',
-          component: LandingPageComponent,
-        },
-      ],
-      { initialNavigation: 'enabledBlocking' }
-    ),
-    LipwigUiModule,
-    UiModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, LandingPageComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    component: LandingPageComponent,
+                },
+            ],
+            { initialNavigation: 'enabledBlocking' }
+        ),
+        LipwigUiModule,
+        UiModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

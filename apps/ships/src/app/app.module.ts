@@ -8,23 +8,26 @@ import { LandingComponent } from './landing/landing.component';
 import { GameComponent } from './game/game.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, GameComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-        {
-            path: '',
-            //component: LandingComponent
-            component: GameComponent
-        },
-        {
-            path: 'play',
-            component: GameComponent
-        },
-    ], { initialNavigation: 'enabledBlocking' }),
-    UiModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, LandingComponent, GameComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    //component: LandingComponent
+                    component: GameComponent,
+                },
+                {
+                    path: 'play',
+                    component: GameComponent,
+                },
+            ],
+            { initialNavigation: 'enabledBlocking' }
+        ),
+        UiModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

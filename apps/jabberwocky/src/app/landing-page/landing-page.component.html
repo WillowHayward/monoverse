@@ -29,18 +29,34 @@
                 <div class="row">
                     <span class="col">
                         <div class="row">
-                            <h3><whc-label for="txtRoomName">Name</whc-label></h3>
+                            <h3>
+                                <whc-label for="txtRoomName">Name</whc-label>
+                            </h3>
                             <whc-text-input id="txtRoomName"></whc-text-input>
                         </div>
                         <div class="row">
-                            <h3><whc-label for="txtRoomName">Password</whc-label></h3>
+                            <h3>
+                                <whc-label for="txtRoomName"
+                                    >Password</whc-label
+                                >
+                            </h3>
                             <whc-text-input id="txtRoomName"></whc-text-input>
                         </div>
                     </span>
                     <span class="col">
                         <div class="row">
-                            <h3><whc-label for="countPlayer">Max Players</whc-label></h3>
-                            <whc-counter #countPlayer id="countPlayer" [value]="4" [min]="2" [max]="8"></whc-counter>
+                            <h3>
+                                <whc-label for="countPlayer"
+                                    >Max Players</whc-label
+                                >
+                            </h3>
+                            <whc-counter
+                                #countPlayer
+                                id="countPlayer"
+                                [value]="4"
+                                [min]="2"
+                                [max]="8"
+                            ></whc-counter>
                         </div>
                         <div class="row">
                             <whc-button>Start</whc-button>

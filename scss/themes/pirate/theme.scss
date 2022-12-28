@@ -1,8 +1,8 @@
-$theme-name: "pirate";
-$gold:  #e8e550;
-$wood:  #c28244;
+$theme-name: 'pirate';
+$gold: #e8e550;
+$wood: #c28244;
 $parchment: #ebd5b3;
-$ocean:     #0b2bb4;
+$ocean: #0b2bb4;
 
 $primary: $wood;
 $border-color: $gold;
@@ -15,7 +15,8 @@ $title: white;
 
 $outer-border: thin solid black;
 
-.btn-primary, .form-text {
+.btn-primary,
+.form-text {
     border: $input-border;
 }
 
@@ -23,4 +24,3 @@ $outer-border: thin solid black;
     display: inline-block;
     border: $outer-border;
 }
-

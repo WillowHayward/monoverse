@@ -1,32 +1,32 @@
 export class JSDeck {
-    private cards : any[];
-    private position : number = 0;
-    private cardOrder : number[];
-    constructor(cards : any[] = []) {
+    private cards: any[];
+    private position: number = 0;
+    private cardOrder: number[];
+    constructor(cards: any[] = []) {
         this.cards = cards;
     }
 
-    public add(card : any, count : number = 1) {
-        let i : number;
+    public add(card: any, count: number = 1) {
+        let i: number;
         for (i = 0; i < count; i++) {
             this.cards.push(card);
         }
     }
 
-    public size() : number {
+    public size(): number {
         return this.cards.length;
-    };
+    }
 
-    public remaining() : number {
+    public remaining(): number {
         return this.size() - this.position;
     }
 
-    public shuffle() : void {
+    public shuffle(): void {
         this.cards = this.shuffleArray(this.cards);
         this.position = 0;
     }
 
-    public shuffleRemaining() : void {
+    public shuffleRemaining(): void {
         let remaining = this.cards.slice(this.position);
         remaining = this.shuffleArray(remaining);
 
@@ -36,7 +36,7 @@ export class JSDeck {
         }
     }
 
-    private shuffleArray(arr : any[]) : any[] {
+    private shuffleArray(arr: any[]): any[] {
         arr = arr.slice(); // Clone array
         let ret = [];
         let value;
@@ -50,7 +50,7 @@ export class JSDeck {
         return ret;
     }
 
-    public draw(count? : number) : any {
+    public draw(count?: number): any {
         let i;
 
         if (count === undefined) {

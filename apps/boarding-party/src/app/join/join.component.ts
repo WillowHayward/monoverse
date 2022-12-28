@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'bp-join',
-  templateUrl: './join.component.html',
-  styleUrls: ['./join.component.scss']
+    selector: 'bp-join',
+    templateUrl: './join.component.html',
+    styleUrls: ['./join.component.scss'],
 })
 export class JoinComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }
