@@ -178,6 +178,12 @@ export class Host extends SocketUser {
                 eventName = msg.data.event;
                 sender = msg.data.sender;
                 break;
+          case SERVER_EVENT.RECONNECTED:
+              break;
+          case SERVER_EVENT.ERROR:
+              break;
+          case SERVER_EVENT.KICKED:
+              break;
       }
 
       this.reserved.emit(message.event, ...args);
