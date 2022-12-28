@@ -1,6 +1,12 @@
 {
     "json": ["parts.json", "default.json"],
-    "sheets": ["face.json", "facialHair.json",
-        "hair.json", "pants.json", "shirts.json", "shoes.json", "skin.json"
+    "sheets": [
+        "face.json",
+        "facialHair.json",
+        "hair.json",
+        "pants.json",
+        "shirts.json",
+        "shoes.json",
+        "skin.json"
     ]
 }

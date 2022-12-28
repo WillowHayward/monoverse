@@ -7,18 +7,18 @@ import { JoinCardComponent } from './join-card/join-card.component';
 import { DetailsCardComponent } from './details-card/details-card.component';
 
 @NgModule({
-  imports: [CommonModule, UiModule],
-  declarations: [
-    CreateCardComponent,
-    LandingPageComponent,
-    JoinCardComponent,
-    DetailsCardComponent,
-  ],
-  exports: [
-    CreateCardComponent,
-    LandingPageComponent,
-    JoinCardComponent,
-    DetailsCardComponent,
-  ],
+    imports: [CommonModule, UiModule],
+    declarations: [
+        CreateCardComponent,
+        LandingPageComponent,
+        JoinCardComponent,
+        DetailsCardComponent,
+    ],
+    exports: [
+        CreateCardComponent,
+        LandingPageComponent,
+        JoinCardComponent,
+        DetailsCardComponent,
+    ],
 })
 export class LipwigUiModule {}

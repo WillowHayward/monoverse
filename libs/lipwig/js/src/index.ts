@@ -10,10 +10,10 @@ import { LocalClient } from './lib/LocalClient';
 import { SocketUser } from './lib/SocketUser';
 
 export {
-  Client,
-  Host,
-  //Admin,
-  User,
-  LocalClient,
-  SocketUser
-}
+    Client,
+    Host,
+    //Admin,
+    User,
+    LocalClient,
+    SocketUser,
+};

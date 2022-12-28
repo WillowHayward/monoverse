@@ -4,9 +4,9 @@
 
 // TODO: This shouldn't be neeed any more
 export type DataMap = {
-  [key:string]: unknown
+    [key: string]: unknown;
 };
 
 export const DEFAULTS = {
-  port: 8989
+    port: 8989,
 };

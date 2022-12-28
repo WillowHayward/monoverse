@@ -8,18 +8,21 @@ import { BuilderComponent } from './builder/builder.component';
 import { UiModule } from '@willhaycode/ui';
 
 @NgModule({
-  declarations: [AppComponent, BuilderComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-        {
-            path: '',
-            component: BuilderComponent,
-        },
-    ], { initialNavigation: 'enabledBlocking' }),
-    UiModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, BuilderComponent],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    component: BuilderComponent,
+                },
+            ],
+            { initialNavigation: 'enabledBlocking' }
+        ),
+        UiModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

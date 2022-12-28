@@ -2,12 +2,18 @@
  * @author: WillHayCode
  */
 import { connection as WebSocketConnection } from 'websocket'; // TODO: This is just for the types, not used at any point
-import { ErrorCode, Message, RoomOptions, RoomConfig, UserOptions } from '@willhaycode/lipwig/types';
+import {
+    ErrorCode,
+    Message,
+    RoomOptions,
+    RoomConfig,
+    UserOptions,
+} from '@willhaycode/lipwig/types';
 import { User } from './User';
 import { Utility } from './Utility';
 
 type UserMap = {
-    [index: string] : User;
+    [index: string]: User;
 };
 
 export class Room {
@@ -21,7 +27,7 @@ export class Room {
         options.size = options.size || 8;
         options.remote = options.remote || false;
 
-        this.options = <RoomOptions> options;
+        this.options = <RoomOptions>options;
 
         this.id = id;
         this.users = {};
@@ -31,8 +37,8 @@ export class Room {
             data: {
                 args: [id],
                 sender: '',
-                recipient: []
-            }
+                recipient: [],
+            },
         };
 
         this.host = new User('', host);
@@ -56,8 +62,8 @@ export class Room {
                 data: {
                     args: [this.id + user.getID(), data.name], //TODO: Generalise
                     sender: '',
-                    recipient: ['']
-                }
+                    recipient: [''],
+                },
             };
             user.send(message);
 
@@ -120,7 +126,9 @@ export class Room {
         const users: User[] = [];
         let missingUser = false;
         if (message.data.sender !== this.id) {
-            const origin: User | undefined = this.find(message.data.sender.slice(4, 8));
+            const origin: User | undefined = this.find(
+                message.data.sender.slice(4, 8)
+            );
 
             if (origin === undefined) {
                 return ErrorCode.USERNOTFOUND;
@@ -132,7 +140,6 @@ export class Room {
         }
 
         message.data.recipient.forEach((id: string) => {
-
             const userID: string = id.slice(4, 8);
             const user: User = this.users[userID];
 
@@ -161,7 +168,7 @@ export class Room {
             event: 'closed',
             data: [reason],
             sender: this.id,
-            recipient: []
+            recipient: [],
         };
         let user: User;
         const userIDs: string[] = Object.keys(this.users);
@@ -177,7 +184,7 @@ export class Room {
         this.host.close();
     }
 
-    public kick(id: string, reason: string) : ErrorCode {
+    public kick(id: string, reason: string): ErrorCode {
         const userID: string = id.slice(4, 8);
         const user: User = this.users[userID];
 
@@ -190,8 +197,8 @@ export class Room {
             data: {
                 args: [reason],
                 sender: this.id,
-                recipient: [id]
-            }
+                recipient: [id],
+            },
         };
 
         user.send(message);

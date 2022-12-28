@@ -1,9 +1,12 @@
 /**
  * @author: WillHayCode
  */
-const alphabet= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export function generateString(length = 4, characters: string = alphabet): string {
+export function generateString(
+    length = 4,
+    characters: string = alphabet
+): string {
     if (characters.length === 0) {
         return '';
     }

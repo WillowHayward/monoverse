@@ -15,5 +15,4 @@ export class BoardingParty {
         this.host = host;
         this.clients = [];
     }
-
 }

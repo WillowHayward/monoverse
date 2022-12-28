@@ -1,4 +1,4 @@
 {
-  "extends": ["@commitlint/config-angular"],
-  "rules": {}
+    "extends": ["@commitlint/config-angular"],
+    "rules": {}
 }

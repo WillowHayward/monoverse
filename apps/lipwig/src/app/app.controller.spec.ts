@@ -4,21 +4,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 describe('AppController', () => {
-  let app: TestingModule;
+    let app: TestingModule;
 
-  beforeAll(async () => {
-    app = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
-    }).compile();
-  });
-
-  describe('getData', () => {
-    it('should return "Welcome to lipwig-nest!"', () => {
-      const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({
-        message: 'Welcome to lipwig-nest!',
-      });
+    beforeAll(async () => {
+        app = await Test.createTestingModule({
+            controllers: [AppController],
+            providers: [AppService],
+        }).compile();
     });
-  });
+
+    describe('getData', () => {
+        it('should return "Welcome to lipwig-nest!"', () => {
+            const appController = app.get<AppController>(AppController);
+            expect(appController.getData()).toEqual({
+                message: 'Welcome to lipwig-nest!',
+            });
+        });
+    });
 });

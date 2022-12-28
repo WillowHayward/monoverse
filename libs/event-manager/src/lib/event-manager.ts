@@ -23,11 +23,19 @@ export class EventManager {
         this.events = {};
     }
 
-    public on(event: string, fn: Callback, context: Record<string, unknown> = {object: this}): void {
+    public on(
+        event: string,
+        fn: Callback,
+        context: Record<string, unknown> = { object: this }
+    ): void {
         this.addEvent(event, fn, context, false);
     }
 
-    public once(event: string, fn: Callback, context: Record<string, unknown> = {object: this}): void {
+    public once(
+        event: string,
+        fn: Callback,
+        context: Record<string, unknown> = { object: this }
+    ): void {
         this.addEvent(event, fn, context, true);
     }
 
@@ -37,7 +45,6 @@ export class EventManager {
                 resolve(args);
             });
         });
-
     }
 
     public emit(event: string, ...args: unknown[]): void {
@@ -46,14 +53,20 @@ export class EventManager {
             return;
         }
 
-        callbacks.forEach((callback: CallbackEntry, index: number, object: CallbackEntry[]): void => {
-            callback.fn(...args);
-            //NOTE: Context is bound in addEvent, so this should still work
-            //callback.fn.apply(callback.context, args);
-            if (callback.once) {
-                object.splice(index, 1);
+        callbacks.forEach(
+            (
+                callback: CallbackEntry,
+                index: number,
+                object: CallbackEntry[]
+            ): void => {
+                callback.fn(...args);
+                //NOTE: Context is bound in addEvent, so this should still work
+                //callback.fn.apply(callback.context, args);
+                if (callback.once) {
+                    object.splice(index, 1);
+                }
             }
-        });
+        );
     }
 
     public clear(event: string): void {
@@ -61,23 +74,27 @@ export class EventManager {
     }
 
     public contains(event: string): boolean {
-      return event in this.events;
+        return event in this.events;
     }
 
     public get(event: string): Callback {
-      return this.events[event][0].fn;
+        return this.events[event][0].fn;
     }
 
-    private addEvent(event: string, fn: Callback, context: Record<string, unknown>, once: boolean): void {
+    private addEvent(
+        event: string,
+        fn: Callback,
+        context: Record<string, unknown>,
+        once: boolean
+    ): void {
         if (this.events[event] === undefined) {
             this.events[event] = [];
         }
         const callback: CallbackEntry = {
             once: once,
             fn: fn.bind(context['object']),
-            context: context
+            context: context,
         };
         this.events[event].push(callback);
     }
 }
-

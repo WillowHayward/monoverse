@@ -7,20 +7,20 @@ import { CardComponent } from './card/card.component';
 import { CounterComponent } from './counter/counter.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    ButtonComponent,
-    TextInputComponent,
-    LabelComponent,
-    CardComponent,
-    CounterComponent
-  ],
-  exports: [
-    ButtonComponent,
-    TextInputComponent,
-    LabelComponent,
-    CardComponent,
-    CounterComponent
-  ],
+    imports: [CommonModule],
+    declarations: [
+        ButtonComponent,
+        TextInputComponent,
+        LabelComponent,
+        CardComponent,
+        CounterComponent,
+    ],
+    exports: [
+        ButtonComponent,
+        TextInputComponent,
+        LabelComponent,
+        CardComponent,
+        CounterComponent,
+    ],
 })
 export class UiModule {}

@@ -1,79 +1,84 @@
 import {
-  SubscribeMessage,
-  WebSocketGateway,
-  OnGatewayConnection,
-  OnGatewayDisconnect,
+    SubscribeMessage,
+    WebSocketGateway,
+    OnGatewayConnection,
+    OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { LipwigSocket } from './lipwig.model';
-import { CreateEventData, JoinEventData, ReconnectEventData, AdministrateEventData, LipwigMessageEventData } from '@willhaycode/lipwig/types';
+import {
+    CreateEventData,
+    JoinEventData,
+    ReconnectEventData,
+    AdministrateEventData,
+    LipwigMessageEventData,
+} from '@willhaycode/lipwig/types';
 import { generateString } from '@willhaycode/utils';
 import { Room } from './room';
 
 @WebSocketGateway()
 export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  private rooms: { [code: string]: Room } = {};
+    private rooms: { [code: string]: Room } = {};
 
-  @SubscribeMessage('create')
-  handleCreate(user: LipwigSocket, payload: CreateEventData) {
-    const existingCodes = Object.keys(this.rooms);
-    let code: string;
-    do {
-      code = generateString(4);
-    } while (existingCodes.includes(code));
-    const config = payload.config;
-    const room = new Room(user, code, config);
-    this.rooms[code] = room;
-  }
-
-  @SubscribeMessage('join')
-  handleJoin(user: LipwigSocket, payload: JoinEventData) {
-      console.log(payload);
-    const code = payload.code;
-    const options = payload.options;
-    // TODO: Join Options
-    const room = this.rooms[code];
-
-    if (!room) {
-      // Room not found
+    @SubscribeMessage('create')
+    handleCreate(user: LipwigSocket, payload: CreateEventData) {
+        const existingCodes = Object.keys(this.rooms);
+        let code: string;
+        do {
+            code = generateString(4);
+        } while (existingCodes.includes(code));
+        const config = payload.config;
+        const room = new Room(user, code, config);
+        this.rooms[code] = room;
     }
 
-    room.join(user, options);
-  }
+    @SubscribeMessage('join')
+    handleJoin(user: LipwigSocket, payload: JoinEventData) {
+        console.log(payload);
+        const code = payload.code;
+        const options = payload.options;
+        // TODO: Join Options
+        const room = this.rooms[code];
 
-  @SubscribeMessage('reconnect')
-  handleReconnect(user: LipwigSocket, payload: ReconnectEventData) {
-      const code = payload.code;
-      const id = payload.id;
+        if (!room) {
+            // Room not found
+        }
 
-    const room = this.rooms[code];
-    room.reconnect(user, id);
-  }
+        room.join(user, options);
+    }
 
-  @SubscribeMessage('administrate')
-  handleAdmin(user: LipwigSocket, payload: AdministrateEventData) {
-    // stub
-  }
+    @SubscribeMessage('reconnect')
+    handleReconnect(user: LipwigSocket, payload: ReconnectEventData) {
+        const code = payload.code;
+        const id = payload.id;
 
-  @SubscribeMessage('message')
-  handleMessage(user: LipwigSocket, payload: LipwigMessageEventData) {
-      const code = user.room;
-      const room = this.rooms[code];
+        const room = this.rooms[code];
+        room.reconnect(user, id);
+    }
 
-      if (!room) {
-          // Room not found
-      }
+    @SubscribeMessage('administrate')
+    handleAdmin(user: LipwigSocket, payload: AdministrateEventData) {
+        // stub
+    }
 
-      room.handleMessage(user, payload);
-      
-  }
+    @SubscribeMessage('message')
+    handleMessage(user: LipwigSocket, payload: LipwigMessageEventData) {
+        const code = user.room;
+        const room = this.rooms[code];
 
-  handleConnection(user: LipwigSocket) {
-    //console.log(user);
-  }
+        if (!room) {
+            // Room not found
+        }
 
-  handleDisconnect(user: LipwigSocket) {
-    const code = user.room;
-    const room = this.rooms[code];
-    room.disconnect(user, false);
-  }
+        room.handleMessage(user, payload);
+    }
+
+    handleConnection(user: LipwigSocket) {
+        //console.log(user);
+    }
+
+    handleDisconnect(user: LipwigSocket) {
+        const code = user.room;
+        const room = this.rooms[code];
+        room.disconnect(user, false);
+    }
 }
