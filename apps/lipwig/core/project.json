@@ -1,7 +1,7 @@
 {
-    "name": "lipwig",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "apps/lipwig/src",
+    "name": "lipwig-core",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/lipwig/core/src",
     "projectType": "application",
     "targets": {
         "build": {
@@ -10,10 +10,10 @@
             "options": {
                 "target": "node",
                 "compiler": "tsc",
-                "outputPath": "dist/apps/lipwig",
-                "main": "apps/lipwig/src/main.ts",
-                "tsConfig": "apps/lipwig/tsconfig.app.json",
-                "assets": ["apps/lipwig/src/assets"]
+                "outputPath": "dist/apps/lipwig/core",
+                "main": "apps/lipwig/core/src/main.ts",
+                "tsConfig": "apps/lipwig/core/tsconfig.app.json",
+                "assets": ["apps/lipwig/core/src/assets"]
             },
             "configurations": {
                 "production": {
@@ -22,8 +22,8 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/lipwig/src/environments/environment.ts",
-                            "with": "apps/lipwig/src/environments/environment.prod.ts"
+                            "replace": "apps/lipwig/core/src/environments/environment.ts",
+                            "with": "apps/lipwig/core/src/environments/environment.prod.ts"
                         }
                     ]
                 }
@@ -32,11 +32,11 @@
         "serve": {
             "executor": "@nrwl/js:node",
             "options": {
-                "buildTarget": "lipwig:build"
+                "buildTarget": "lipwig-core:build"
             },
             "configurations": {
                 "production": {
-                    "buildTarget": "lipwig:build:production"
+                    "buildTarget": "lipwig-core:build:production"
                 }
             }
         },
@@ -44,14 +44,14 @@
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["apps/lipwig/**/*.ts"]
+                "lintFilePatterns": ["apps/lipwig/core/**/*.ts"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "jestConfig": "apps/lipwig/jest.config.ts",
+                "jestConfig": "apps/lipwig/core/jest.config.ts",
                 "passWithNoTests": true
             }
         }

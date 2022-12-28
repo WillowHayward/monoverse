@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
-    displayName: 'lipwig',
-    preset: '../../jest.preset.js',
+    displayName: 'lipwig-core',
+    preset: '../../../jest.preset.js',
     globals: {
         'ts-jest': {
             tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,5 +12,5 @@ export default {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/lipwig',
+    coverageDirectory: '../../../coverage/apps/lipwig/core',
 };
