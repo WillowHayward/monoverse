@@ -30,7 +30,7 @@ export class Ships {
     private async createScene() {
         new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0,1,0), this.scene);
 
-        const player = new 
+        //const player = new 
         const camera = new Camera(this.scene);
         camera.position = new BABYLON.Vector3(5, 5, 5);
 
