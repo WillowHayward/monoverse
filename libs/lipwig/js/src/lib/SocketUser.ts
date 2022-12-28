@@ -11,6 +11,7 @@ export abstract class SocketUser extends EventManager {
     private retry: boolean;
     private url: string;
     constructor(url: string) {
+
       super();
       this.url = url;
       this.id = '';
@@ -29,9 +30,8 @@ export abstract class SocketUser extends EventManager {
       const message: ReconnectEvent = {
         event: CLIENT_EVENT.RECONNECT,
         data: {
-            args: [this.id],
-            sender: this.id,
-            recipient: []
+            code: '', // TODO: Stub
+            id: this.id
         }
       };
       this.sendMessage(message);
@@ -79,6 +79,7 @@ export abstract class SocketUser extends EventManager {
         // TODO: error handling
       });
       this.socket.addEventListener('message', (event: MessageEvent) => {
+          console.log(event);
         this.handle(event);
       });
       this.socket.addEventListener('close', () => {

@@ -8,7 +8,8 @@ export enum SERVER_EVENT {
     JOINED = 'joined',
     RECONNECTED = 'reconnected',
     ERROR = 'error',
-    MESSAGE = 'message'
+    MESSAGE = 'message',
+    KICKED = 'kicked'
 }
 
 // Events that can be sent from a client
@@ -19,7 +20,8 @@ export enum CLIENT_EVENT {
     CLOSE = 'close',
     ADMINISTRATE = 'administrate',
     MESSAGE = 'message',
-    PING = 'lw-ping'
+    PING = 'lw-ping',
+    KICK = 'kick'
 }
 
 export enum ERROR_CODE {

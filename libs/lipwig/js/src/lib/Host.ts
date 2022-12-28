@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { RoomConfig, UserOptions, CloseEvent, CLIENT_EVENT, LipwigMessageEvent, CreateEvent, JoinedEvent } from '@willhaycode/lipwig/types';
+import { RoomConfig, UserOptions, CloseEvent, CLIENT_EVENT, LipwigMessageEvent, CreateEvent, CreatedEvent, JoinedEvent, ServerEvent, SERVER_EVENT } from '@willhaycode/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 
@@ -154,24 +154,45 @@ export class Host extends SocketUser {
     }
 
     protected handle(event: MessageEvent): void {
-      const message: LipwigMessageEvent = JSON.parse(event.data);
-        console.log('host message received', message);
-      const args: unknown[] = message.data.args.concat(message);
-      if (!message.data.event) {
-          message.data.event = message.event;
+      const message: ServerEvent = JSON.parse(event.data);
+
+
+      let eventName: string = message.event; // TODO: For LipwigMessageEvent, change to data event
+      let sender: string | null = null;
+      const args: unknown[] = [];
+      let emit = true;
+      switch (message.event) {
+        case SERVER_EVENT.CREATED:
+            const created = message as CreatedEvent;
+            args.push(created.data.code);
+            break;
+        case SERVER_EVENT.JOINED:
+            const joined = message as JoinedEvent;
+            args.push(joined.data.id);
+            args.push(joined.data.options);
+            emit = false;
+            break;
+          case SERVER_EVENT.MESSAGE:
+              const msg = message as LipwigMessageEvent;
+                args.push(...msg.data.args);
+                eventName = msg.data.event;
+                sender = msg.data.sender;
+                break;
       }
 
       this.reserved.emit(message.event, ...args);
 
-      if (message.data.sender in this.users) {
-        const user: User = this.users[message.data.sender];
+      if (sender && sender in this.users) {
+        const user: User = this.users[sender];
         args.push(message);
-        user.emit(message.data.event, ...args);
+        user.emit(eventName, ...args);
         args.splice(0, 0, user);
+        //args.unshift(user);
       }
-      //console.log(message.data.e
 
-    this.emit(message.data.event, ...args, this);
+      if (emit) {
+        this.emit(eventName, ...args, this);
+      }
     }
 
     /**

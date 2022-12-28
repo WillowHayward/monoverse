@@ -90,6 +90,15 @@ export interface PingEventData {
     time: number;
 }
 
+export interface KickEvent extends ClientEvent {
+    event: CLIENT_EVENT.KICK;
+    data: KickEventData;
+}
+
+export interface KickEventData {
+    reason?: string;
+}
+
 // Server GenericEvents
 
 export interface CreatedEvent extends ServerEvent {
@@ -110,6 +119,7 @@ export interface JoinedEvent extends ServerEvent {
 
 export interface JoinedEventData {
     id: string;
+    options?: UserOptions;
 }
 
 export interface ReconnectedEvent extends ServerEvent {
@@ -128,4 +138,13 @@ export interface ErrorEvent extends ServerEvent {
 
 export interface ErrorEventData {
     code: ERROR_CODE;
+}
+
+export interface KickedEvent extends ServerEvent {
+    event: SERVER_EVENT.KICKED;
+    data: KickedEventData;
+}
+
+export interface KickedEventData {
+    reason?: string;
 }

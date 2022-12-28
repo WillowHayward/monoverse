@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 import { SocketUser } from './SocketUser';
-import { JoinEvent, CLIENT_EVENT, LipwigMessageEvent, UserOptions } from '@willhaycode/lipwig/types';
+import { JoinEvent, CLIENT_EVENT, LipwigMessageEvent, UserOptions, ServerEvent, SERVER_EVENT, JoinedEvent } from '@willhaycode/lipwig/types';
 
 export class Client extends SocketUser {
     /**
@@ -53,15 +53,27 @@ export class Client extends SocketUser {
      * @param event 
      */
     public handle(event: MessageEvent): void {
-      const message: LipwigMessageEvent = JSON.parse(event.data);
-        console.log('client message received', message);
-      const args: unknown[] = message.data.args.concat(message);
+      const message: ServerEvent = JSON.parse(event.data);
+
+      let eventName: string = message.event;
+      const args: unknown[] = [];
+
+      switch (message.event) {
+          case SERVER_EVENT.JOINED:
+              const joined = message as JoinedEvent;
+              args.push(joined.data.id);
+              break;
+          case SERVER_EVENT.MESSAGE:
+              const msg = message as LipwigMessageEvent;
+                args.push(...msg.data.args);
+                eventName = msg.data.event;
+                break;
+
+      }
+      args.push(message);
 
       this.reserved.emit(message.event, ...args);
       
-      if (!message.data.event) {
-          message.data.event = message.event;
-      }
-        this.emit(message.data.event, ...args);
+        this.emit(eventName, ...args);
     }
 }

@@ -7,15 +7,9 @@ import { LocalClient } from './LocalClient';
 import { LipwigMessageEvent, CLIENT_EVENT } from '@willhaycode/lipwig/types';
 
 export class User extends EventManager {
-    public id: string;
-    private parent: Host;
-    public local: boolean;
     public client: LocalClient | undefined;
-    constructor(id: string, parent: Host, local = false) {
+    constructor(public id: string, private parent: Host, public local = false) {
       super();
-      this.id = id;
-      this.parent = parent;
-      this.local = local;
     }
 
     public send(event: string, ...args: unknown[]): void {
