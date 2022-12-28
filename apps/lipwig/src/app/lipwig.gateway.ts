@@ -20,8 +20,8 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
     do {
       code = generateString(4);
     } while (existingCodes.includes(code));
-    // TODO: Room Config
-    const room = new Room(user, code);
+    const config = payload.config;
+    const room = new Room(user, code, config);
     this.rooms[code] = room;
   }
 
@@ -29,6 +29,7 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleJoin(user: LipwigSocket, payload: JoinEventData) {
       console.log(payload);
     const code = payload.code;
+    const options = payload.options;
     // TODO: Join Options
     const room = this.rooms[code];
 
@@ -36,7 +37,7 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
       // Room not found
     }
 
-    room.join(user);
+    room.join(user, options);
   }
 
   @SubscribeMessage('reconnect')

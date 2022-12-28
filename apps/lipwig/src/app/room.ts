@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { SERVER_EVENT, GenericEvent, CreatedEvent, JoinedEvent, LipwigMessageEventData } from '@willhaycode/lipwig/types';
+import { SERVER_EVENT, GenericEvent, CreatedEvent, JoinedEvent, LipwigMessageEventData, RoomConfig, UserOptions } from '@willhaycode/lipwig/types';
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {
@@ -7,7 +7,7 @@ export class Room {
   private connected: { [id: string]: LipwigSocket } = {};
   private disconnected: string[] = [];
 
-  constructor(private host: LipwigSocket, public code: string) {
+  constructor(private host: LipwigSocket, public code: string, private config: RoomConfig) {
     this.initialiseUser(host, true);
     const confirmation: CreatedEvent = {
         event: SERVER_EVENT.CREATED,
@@ -20,7 +20,7 @@ export class Room {
     this.sendMessage(host, confirmation);
   }
 
-  join(client: LipwigSocket) { // TODO: Join data
+  join(client: LipwigSocket, options: UserOptions) { // TODO: Join data
     this.initialiseUser(client, false);
     const id = client.id;
     this.connected[id] = client;
@@ -33,6 +33,9 @@ export class Room {
     }
 
     this.sendMessage(client, confirmation);
+
+    confirmation.data.options = options;
+    this.sendMessage(this.host, confirmation);
   }
 
   disconnect(user: LipwigSocket, permanent: boolean) {
@@ -43,6 +46,7 @@ export class Room {
     const id = user.id;
     delete this.connected[id];
     this.disconnected.push(id);
+    // TODO: Send messages
   }
 
   reconnect(user: LipwigSocket, id: string) {
