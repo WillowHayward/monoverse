@@ -1,0 +1,7 @@
+<div *ngFor="let room of rooms">
+    <lwt-room-container [host]="room.host" [server]="room.server"></lwt-room-container>
+</div>
+<form #roomForm="ngForm" (ngSubmit)="create(roomForm)">
+    Server: <input type="text" name="url" [ngModel]="defaultServer" required/><br/>
+    <button type="submit">Create Room</button>
+</form>

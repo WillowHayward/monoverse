@@ -3,7 +3,7 @@
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "sourceRoot": "apps/lipwig/test-app/src",
-    "prefix": "willhaycode",
+    "prefix": "lwt",
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
@@ -19,6 +19,9 @@
                     "apps/lipwig/test-app/src/favicon.ico",
                     "apps/lipwig/test-app/src/assets"
                 ],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["scss", "scss/themes/default"]
+                },
                 "styles": ["apps/lipwig/test-app/src/styles.scss"],
                 "scripts": []
             },
