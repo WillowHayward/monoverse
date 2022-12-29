@@ -10,6 +10,6 @@ export class GameComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
-        new FrenchToast('ws://localhost:3333');
+        new FrenchToast('ws://localhost:8989');
     }
 }
