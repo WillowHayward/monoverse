@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { RoomContainerComponent } from './room-container/room-container.component';
 import { ClientContainerComponent } from './client-container/client-container.component';
+import { EventLogComponent } from './event-log/event-log.component';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { ClientContainerComponent } from './client-container/client-container.co
         ControlPanelComponent,
         RoomContainerComponent,
         ClientContainerComponent,
+        EventLogComponent,
     ],
     imports: [BrowserModule, FormsModule],
     providers: [],

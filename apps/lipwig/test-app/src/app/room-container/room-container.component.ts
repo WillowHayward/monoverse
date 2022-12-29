@@ -1,5 +1,5 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { Host, Client } from '@willhaycode/lipwig/js';
+import { Host, Client, User } from '@willhaycode/lipwig/js';
 
 @Component({
     selector: 'lwt-room-container',
@@ -12,15 +12,24 @@ export class RoomContainerComponent implements OnInit {
     code: string = '';
 
     clients: Client[] = [];
+    users: User[] = [];
 
     ngOnInit(): void {
         this.host.on('created', (code: string) => {
             this.code = code;
+        });
+
+        this.host.on('joined', (user: User) => {
+            this.users.push(user);
         });
     }
 
     join(): void {
         const client = new Client(this.server, this.code);
         this.clients.push(client);
+    }
+
+    kick(user: User, reason?: string): void {
+        user.kick(reason);
     }
 }

@@ -1,0 +1,11 @@
+.room-container {
+    border: thin solid black;
+
+    &__host {
+        
+    }
+
+    &__client {
+        boder: thin solid black;
+    }
+}
