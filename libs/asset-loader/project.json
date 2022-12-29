@@ -1,4 +1,5 @@
 {
+    "name": "asset-loader",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/asset-loader/src",
     "projectType": "library",

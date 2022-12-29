@@ -13,6 +13,7 @@
         "lipwig-admin": "apps/lipwig/admin",
         "lipwig-core": "apps/lipwig/core",
         "lipwig-js": "libs/lipwig/js",
+        "lipwig-test-app": "apps/lipwig/test-app",
         "lipwig-types": "libs/lipwig/types",
         "lipwig-ui": "libs/lipwig/ui",
         "ridcully": "apps/ridcully",
@@ -22,5 +23,6 @@
         "ui": "libs/ui",
         "utils": "libs/utils",
         "will-hay-code": "apps/will-hay-code"
-    }
+    },
+    "defaultProject": "will-hay-code"
 }
