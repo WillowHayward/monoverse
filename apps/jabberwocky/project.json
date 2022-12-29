@@ -20,7 +20,7 @@
                     "apps/jabberwocky/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss/themes/jabberwocky"]
+                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/jabberwocky/src/lib"]
                 },
                 "styles": ["apps/jabberwocky/src/styles.scss"],
                 "scripts": []

@@ -20,7 +20,7 @@
                     "apps/boarding-party/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss", "scss/themes/pirate"]
+                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/pirate/src/lib"]
                 },
                 "styles": ["apps/boarding-party/src/styles.scss"],
                 "scripts": []

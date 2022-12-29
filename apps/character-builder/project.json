@@ -20,7 +20,7 @@
                     "apps/character-builder/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss/themes/default"]
+                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
                 },
                 "styles": ["apps/character-builder/src/styles.scss"],
                 "scripts": []
