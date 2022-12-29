@@ -1,4 +1,4 @@
-import { Client, Host } from '@willhaycode/lipwig/js';
+import { Client, Host } from '@whc/lipwig/js';
 export class BoardingParty {
     private host: Host;
     private clients: Client[];

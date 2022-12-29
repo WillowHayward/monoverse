@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FrenchToast } from '../../engine/FrenchToast';
 
 @Component({
-    selector: 'willhaycode-game',
+    selector: 'whc-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss'],
 })

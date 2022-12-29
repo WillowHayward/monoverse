@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Host, Client, User } from '@willhaycode/lipwig/js';
-import { EVENTS_ALL, SERVER_EVENT } from '@willhaycode/lipwig/types';
+import { Host, Client, User } from '@whc/lipwig/js';
+import { EVENTS_ALL, SERVER_EVENT } from '@whc/lipwig/types';
 
 @Component({
     selector: 'lwt-event-log',

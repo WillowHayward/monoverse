@@ -1,5 +1,5 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { Host, Client, User } from '@willhaycode/lipwig/js';
+import { Host, Client, User } from '@whc/lipwig/js';
 
 @Component({
     selector: 'lwt-room-container',

@@ -1,14 +1,14 @@
 /**
  * @author: WillHayCode
  */
-import { EventManager } from '@willhaycode/event-manager';
+import { EventManager } from '@whc/event-manager';
 import {
     CLIENT_EVENT,
     GenericEvent,
     LipwigMessageEvent,
     ReconnectEvent,
     PingEvent,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 
 export abstract class SocketUser extends EventManager {
     public id: string;

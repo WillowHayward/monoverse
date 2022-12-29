@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { UiModule } from '@willhaycode/ui';
+import { UiModule } from '@whc/ui';
 
 import { LobbyComponent } from './lobby/lobby.component';
 import { LandingComponent } from './landing/landing.component';

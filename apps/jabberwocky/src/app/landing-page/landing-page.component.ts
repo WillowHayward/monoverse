@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'willhaycode-landing-page',
+    selector: 'whc-landing-page',
     templateUrl: './landing-page.component.html',
     styleUrls: ['./landing-page.component.scss'],
 })

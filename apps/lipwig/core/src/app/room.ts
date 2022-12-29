@@ -7,7 +7,7 @@ import {
     LipwigMessageEventData,
     RoomConfig,
     UserOptions,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {

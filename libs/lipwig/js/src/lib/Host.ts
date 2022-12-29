@@ -13,7 +13,7 @@ import {
     JoinedEvent,
     ServerEvent,
     SERVER_EVENT,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 

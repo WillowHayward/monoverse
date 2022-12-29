@@ -10,7 +10,7 @@ import {
     ServerEvent,
     SERVER_EVENT,
     JoinedEvent,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 
 export class Client extends SocketUser {
     /**

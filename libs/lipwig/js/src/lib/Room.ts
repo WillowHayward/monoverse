@@ -8,7 +8,7 @@ import {
     RoomOptions,
     RoomConfig,
     UserOptions,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 import { User } from './User';
 import { Utility } from './Utility';
 

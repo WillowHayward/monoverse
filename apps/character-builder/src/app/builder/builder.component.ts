@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Canvas } from '../../core/Canvas';
 
 @Component({
-    selector: 'willhaycode-builder',
+    selector: 'whc-builder',
     templateUrl: './builder.component.html',
     styleUrls: ['./builder.component.scss'],
 })
