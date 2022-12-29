@@ -11,6 +11,7 @@ import {
 import { LipwigSocket } from './lipwig.model';
 
 export class Room {
+    private id = v4();
     private users: string[] = []; // Array of user ids, index 0 for host
     private connected: { [id: string]: LipwigSocket } = {};
     private disconnected: string[] = [];
