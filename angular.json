@@ -21,7 +21,8 @@
         "ships": "apps/ships",
         "skeleton": "libs/skeleton",
         "skeleton-animate": "apps/skeleton-animate",
-        "ui": "libs/ui",
+        "ui-lib": "libs/ui/lib",
+        "ui-styles": "libs/ui/styles",
         "utils": "libs/utils",
         "will-hay-code": "apps/will-hay-code"
     },

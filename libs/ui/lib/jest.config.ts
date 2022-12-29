@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'ui',
+    displayName: 'ui-lib',
 
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
@@ -9,7 +9,7 @@ export default {
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
-    coverageDirectory: '../../coverage/libs/ui',
+    coverageDirectory: '../../../coverage/libs/ui/lib',
     transform: {
         '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
     },
@@ -19,5 +19,5 @@ export default {
         'jest-preset-angular/build/serializers/ng-snapshot',
         'jest-preset-angular/build/serializers/html-comment',
     ],
-    preset: '../../jest.preset.js',
+    preset: '../../../jest.preset.js',
 };

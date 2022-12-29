@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { BuilderComponent } from './builder/builder.component';
 
-import { UiModule } from '@whc/ui';
+import { UiModule } from '@whc/ui/lib';
 
 @NgModule({
     declarations: [AppComponent, BuilderComponent],

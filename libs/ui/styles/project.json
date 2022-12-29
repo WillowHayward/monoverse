@@ -1,0 +1,9 @@
+{
+    "name": "ui-styles",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/ui/styles/src",
+    "prefix": "whc",
+    "targets": {},
+    "tags": []
+}
