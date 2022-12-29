@@ -23,6 +23,9 @@
         "skeleton-animate": "apps/skeleton-animate",
         "ui-lib": "libs/ui/lib",
         "ui-styles": "libs/ui/styles",
+        "ui-theme-default": "libs/ui/themes/default",
+        "ui-theme-pirate": "libs/ui/themes/pirate",
+        "ui-theme-jabberwocky": "libs/ui/themes/jabberwocky",
         "utils": "libs/utils",
         "will-hay-code": "apps/will-hay-code"
     },
