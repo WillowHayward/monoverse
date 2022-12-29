@@ -189,6 +189,8 @@ export class Host extends SocketUser {
                 args.push(...msg.data.args);
                 eventName = msg.data.event;
                 sender = msg.data.sender;
+
+                this.emit(message.event, eventName, ...args, this); // Emit 'message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
                 break;

@@ -79,6 +79,8 @@ export class Client extends SocketUser {
                 const msg = message as LipwigMessageEvent;
                 args.push(...msg.data.args);
                 eventName = msg.data.event;
+
+                this.emit(message.event, eventName, ...args, this); // Emit 'message' event on all messages
                 break;
         }
         args.push(message);
