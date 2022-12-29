@@ -1,4 +1,5 @@
 {
+    "name": "boarding-party",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "sourceRoot": "apps/boarding-party/src",
@@ -19,7 +20,7 @@
                     "apps/boarding-party/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss/themes/pirate"]
+                    "includePaths": ["scss", "scss/themes/pirate"]
                 },
                 "styles": ["apps/boarding-party/src/styles.scss"],
                 "scripts": []

@@ -2,7 +2,7 @@
  * @author: WillHayCode
  */
 /*import { SocketUser } from './SocketUser';
-import { Message, DataMap } from '@willhaycode/lipwig/types';
+import { Message, DataMap } from '@whc/lipwig/types';
 import { User } from './User';
 
 export class Admin extends SocketUser {

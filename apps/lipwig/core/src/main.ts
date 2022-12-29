@@ -6,21 +6,18 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { WsAdapter } from '@nestjs/platform-ws';
+import { defaultConfig } from './app/defaults.model';
 
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.useWebSocketAdapter(new WsAdapter(app));
-    /*const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);*/
-    const port = process.env.PORT || 3333;
+    const port = defaultConfig.port;
     await app.listen(port);
     Logger.log(
-        //`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
         `🚀 Application is running on: http://localhost:${port}`
     );
-    //new LipwigGateway();
 }
 
 bootstrap();

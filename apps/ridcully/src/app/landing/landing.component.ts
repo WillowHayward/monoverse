@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../../engine/Main';
 
 @Component({
-    selector: 'willhaycode-landing',
+    selector: 'whc-landing',
     templateUrl: './landing.component.html',
     styleUrls: ['./landing.component.scss'],
 })

@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
-import { Stage } from '@willhaycode/fps';
+import { Stage } from '@whc/fps';
 import { Player } from './Player';
 
 export class Game {

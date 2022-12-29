@@ -1,4 +1,4 @@
-import { Camera, Stage } from '@willhaycode/fps';
+import { Camera, Stage } from '@whc/fps';
 import { FlatActor } from './FlatActor';
 
 export class Player extends FlatActor {

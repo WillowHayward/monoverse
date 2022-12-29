@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'willhaycode-login-page',
+    selector: 'whc-login-page',
     templateUrl: './login-page.component.html',
     styleUrls: ['./login-page.component.scss'],
 })

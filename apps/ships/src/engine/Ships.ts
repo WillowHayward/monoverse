@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
-import { Stage, Camera } from '@willhaycode/fps';
+import { Stage, Camera } from '@whc/fps';
 import { Player } from './Player';
 
 export class Ships {

@@ -5,6 +5,13 @@
 import { SERVER_EVENT, CLIENT_EVENT, ERROR_CODE } from './enums';
 import { RoomConfig, UserOptions } from './common.model';
 
+const serverEvents = Object.values(SERVER_EVENT);
+const clientEvents = Object.values(CLIENT_EVENT);
+
+export const EVENTS_SERVER = new Set(serverEvents);
+export const CLIENT_EVENT_SERVER = new Set(clientEvents);
+export const EVENTS_ALL = new Set([...serverEvents, ...clientEvents]);
+
 export interface GenericEvent {
     event: string;
     data: unknown;

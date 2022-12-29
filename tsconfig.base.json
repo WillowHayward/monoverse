@@ -15,17 +15,17 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@willhaycode/asset-loader": ["libs/asset-loader/src/index.ts"],
-            "@willhaycode/character": ["libs/character/src/index.ts"],
-            "@willhaycode/deck": ["libs/deck/src/index.ts"],
-            "@willhaycode/event-manager": ["libs/event-manager/src/index.ts"],
-            "@willhaycode/fps": ["libs/fps/src/index.ts"],
-            "@willhaycode/lipwig/js": ["libs/lipwig/js/src/index.ts"],
-            "@willhaycode/lipwig/types": ["libs/lipwig/types/src/index.ts"],
-            "@willhaycode/lipwig/ui": ["libs/lipwig/ui/src/index.ts"],
-            "@willhaycode/skeleton": ["libs/skeleton/src/index.ts"],
-            "@willhaycode/ui": ["libs/ui/src/index.ts"],
-            "@willhaycode/utils": ["libs/utils/src/index.ts"]
+            "@whc/asset-loader": ["libs/asset-loader/src/index.ts"],
+            "@whc/character": ["libs/character/src/index.ts"],
+            "@whc/deck": ["libs/deck/src/index.ts"],
+            "@whc/event-manager": ["libs/event-manager/src/index.ts"],
+            "@whc/fps": ["libs/fps/src/index.ts"],
+            "@whc/lipwig/js": ["libs/lipwig/js/src/index.ts"],
+            "@whc/lipwig/types": ["libs/lipwig/types/src/index.ts"],
+            "@whc/lipwig/ui": ["libs/lipwig/ui/src/index.ts"],
+            "@whc/skeleton": ["libs/skeleton/src/index.ts"],
+            "@whc/ui": ["libs/ui/src/index.ts"],
+            "@whc/utils": ["libs/utils/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

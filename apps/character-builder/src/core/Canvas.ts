@@ -1,4 +1,4 @@
-import { Loader, PreloadData } from '@willhaycode/asset-loader';
+import { Loader, PreloadData } from '@whc/asset-loader';
 export const SPRITE_SCALE = 1;
 export class Canvas {
     constructor(canvas: HTMLCanvasElement) {

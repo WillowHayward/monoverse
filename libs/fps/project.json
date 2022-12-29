@@ -1,4 +1,5 @@
 {
+    "name": "fps",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/fps/src",
     "projectType": "library",

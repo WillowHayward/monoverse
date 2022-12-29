@@ -1,0 +1,93 @@
+{
+    "name": "lipwig-test-app",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/lipwig/test-app/src",
+    "prefix": "lwt",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/lipwig/test-app",
+                "index": "apps/lipwig/test-app/src/index.html",
+                "main": "apps/lipwig/test-app/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/lipwig/test-app/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/lipwig/test-app/src/favicon.ico",
+                    "apps/lipwig/test-app/src/assets"
+                ],
+                "stylePreprocessorOptions": {
+                    "includePaths": ["scss", "scss/themes/default"]
+                },
+                "styles": ["apps/lipwig/test-app/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "lipwig-test-app:build:production"
+                },
+                "development": {
+                    "browserTarget": "lipwig-test-app:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "lipwig-test-app:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/lipwig/test-app/**/*.ts",
+                    "apps/lipwig/test-app/**/*.html"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/lipwig/test-app/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

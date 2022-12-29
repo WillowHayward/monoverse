@@ -1,0 +1,26 @@
+<div class="room-container">
+    <h1>{{code}}</h1>
+    <div class="room-container__host">
+        <h5>Host</h5>
+        <lwt-event-log [user]="host"></lwt-event-log>
+        <h5>Users</h5>
+        <ul>
+            <li *ngFor="let user of users">
+                {{user.id}} 
+                <ul>
+                    <li>
+                        <button (click)="kick(user)">Kick (no reason)</button>
+                    </li>
+                    <li>
+                        <input #kickReason type="text"/>
+                        <button (click)="kick(user, kickReason.value)">Kick (w/ reason)</button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <span *ngFor="let client of clients" class="room-container__client">
+        <lwt-client-container [client]="client"></lwt-client-container>
+    </span>
+    <button (click)="join()">Join Room</button>
+</div>

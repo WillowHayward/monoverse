@@ -11,8 +11,8 @@ import {
     ReconnectEventData,
     AdministrateEventData,
     LipwigMessageEventData,
-} from '@willhaycode/lipwig/types';
-import { generateString } from '@willhaycode/utils';
+} from '@whc/lipwig/types';
+import { generateString } from '@whc/utils';
 import { Room } from './room';
 
 @WebSocketGateway()

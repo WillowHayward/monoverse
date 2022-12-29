@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { UiModule } from '@willhaycode/ui';
-import { LipwigUiModule } from '@willhaycode/lipwig/ui';
+import { UiModule } from '@whc/ui';
+import { LipwigUiModule } from '@whc/lipwig/ui';
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
 

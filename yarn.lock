@@ -52,7 +52,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/build-angular@npm:15.0.4":
+"@angular-devkit/build-angular@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular-devkit/build-angular@npm:15.0.4"
   dependencies:
@@ -363,7 +363,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/animations@npm:15.0.4":
+"@angular/animations@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/animations@npm:15.0.4"
   dependencies:
@@ -402,7 +402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/common@npm:15.0.4":
+"@angular/common@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/common@npm:15.0.4"
   dependencies:
@@ -414,7 +414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/compiler-cli@npm:15.0.4":
+"@angular/compiler-cli@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/compiler-cli@npm:15.0.4"
   dependencies:
@@ -439,7 +439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/compiler@npm:15.0.4":
+"@angular/compiler@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/compiler@npm:15.0.4"
   dependencies:
@@ -453,7 +453,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/core@npm:15.0.4":
+"@angular/core@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/core@npm:15.0.4"
   dependencies:
@@ -465,7 +465,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/forms@npm:15.0.4":
+"@angular/forms@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/forms@npm:15.0.4"
   dependencies:
@@ -479,14 +479,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/language-service@npm:15.0.4":
+"@angular/language-service@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/language-service@npm:15.0.4"
   checksum: 04bcbe9fb2fcb32ad5874bf72aaf08a893fc29bcfc409b417100d8263eefc9fa7e0eae1c10a828ca69833b16eeef69ff72b74dca068bd2d8c32bc9c8378251d3
   languageName: node
   linkType: hard
 
-"@angular/platform-browser-dynamic@npm:15.0.4":
+"@angular/platform-browser-dynamic@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/platform-browser-dynamic@npm:15.0.4"
   dependencies:
@@ -500,7 +500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser@npm:15.0.4":
+"@angular/platform-browser@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/platform-browser@npm:15.0.4"
   dependencies:
@@ -516,7 +516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/router@npm:15.0.4":
+"@angular/router@npm:~15.0.0":
   version: 15.0.4
   resolution: "@angular/router@npm:15.0.4"
   dependencies:
@@ -20030,21 +20030,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "monoverse@workspace:."
   dependencies:
-    "@angular-devkit/build-angular": 15.0.4
+    "@angular-devkit/build-angular": ~15.0.0
     "@angular-eslint/eslint-plugin": 15.0.0
     "@angular-eslint/eslint-plugin-template": 15.0.0
     "@angular-eslint/template-parser": 15.0.0
-    "@angular/animations": 15.0.4
+    "@angular/animations": ~15.0.0
     "@angular/cli": ~15.0.0
-    "@angular/common": 15.0.4
-    "@angular/compiler": 15.0.4
-    "@angular/compiler-cli": 15.0.4
-    "@angular/core": 15.0.4
-    "@angular/forms": 15.0.4
-    "@angular/language-service": 15.0.4
-    "@angular/platform-browser": 15.0.4
-    "@angular/platform-browser-dynamic": 15.0.4
-    "@angular/router": 15.0.4
+    "@angular/common": ~15.0.0
+    "@angular/compiler": ~15.0.0
+    "@angular/compiler-cli": ~15.0.0
+    "@angular/core": ~15.0.0
+    "@angular/forms": ~15.0.0
+    "@angular/language-service": ~15.0.0
+    "@angular/platform-browser": ~15.0.0
+    "@angular/platform-browser-dynamic": ~15.0.0
+    "@angular/router": ~15.0.0
     "@commitlint/cli": ^15.0.0
     "@commitlint/config-angular": ^15.0.0
     "@jscutlery/semver": ^2.15.0
@@ -20102,7 +20102,7 @@ __metadata:
     phaser: ^3.55.2
     prettier: 2.8.1
     reflect-metadata: ^0.1.13
-    rxjs: ^7.0.0
+    rxjs: ~7.5.0
     ts-jest: 28.0.5
     ts-node: 10.9.1
     tslib: ^2.3.0
@@ -24048,7 +24048,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.0.0, rxjs@npm:^7.5.5":
+"rxjs@npm:^7.2.0, rxjs@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "rxjs@npm:7.4.0"
+  dependencies:
+    tslib: ~2.1.0
+  checksum: 6b33172a760dcad6882fdc836ee8cf1ebe160dd7eaad95c45a12338ffdaa96eb41e48e6c25bbd3d1fdf45075949ff447954bc17a9d01c688558a67967d09c114
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.5.5":
   version: 7.8.0
   resolution: "rxjs@npm:7.8.0"
   dependencies:
@@ -24057,12 +24066,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.2.0, rxjs@npm:^7.4.0":
-  version: 7.4.0
-  resolution: "rxjs@npm:7.4.0"
+"rxjs@npm:~7.5.0":
+  version: 7.5.7
+  resolution: "rxjs@npm:7.5.7"
   dependencies:
-    tslib: ~2.1.0
-  checksum: 6b33172a760dcad6882fdc836ee8cf1ebe160dd7eaad95c45a12338ffdaa96eb41e48e6c25bbd3d1fdf45075949ff447954bc17a9d01c688558a67967d09c114
+    tslib: ^2.1.0
+  checksum: edabcdb73b0f7e0f5f6e05c2077aff8c52222ac939069729704357d6406438acca831c24210db320aba269e86dbe1a400f3769c89101791885121a342fb15d9c
   languageName: node
   linkType: hard
 

@@ -1,5 +1,5 @@
-import { JSDeck } from '@willhaycode/deck';
-import { Host, Client } from '@willhaycode/lipwig/js';
+import { JSDeck } from '@whc/deck';
+import { Host, Client } from '@whc/lipwig/js';
 import { Player } from './Player';
 import { Game } from './Game';
 import { LocalClient } from './LocalClient';

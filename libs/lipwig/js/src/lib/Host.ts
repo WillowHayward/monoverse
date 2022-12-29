@@ -13,7 +13,7 @@ import {
     JoinedEvent,
     ServerEvent,
     SERVER_EVENT,
-} from '@willhaycode/lipwig/types';
+} from '@whc/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 
@@ -189,6 +189,8 @@ export class Host extends SocketUser {
                 args.push(...msg.data.args);
                 eventName = msg.data.event;
                 sender = msg.data.sender;
+
+                this.emit(message.event, eventName, ...args, this); // Emit 'message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
                 break;
