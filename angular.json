@@ -18,7 +18,6 @@
         "lipwig-types": "libs/lipwig/types",
         "lipwig-ui": "libs/lipwig/ui",
         "ridcully": "apps/ridcully",
-        "ships": "apps/ships",
         "skeleton": "libs/skeleton",
         "skeleton-animate": "apps/skeleton-animate",
         "ui-lib": "libs/ui/lib",
