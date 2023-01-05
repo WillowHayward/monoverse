@@ -24,7 +24,7 @@
             "@whc/lipwig/types": ["libs/lipwig/types/src/index.ts"],
             "@whc/lipwig/ui": ["libs/lipwig/ui/src/index.ts"],
             "@whc/skeleton": ["libs/skeleton/src/index.ts"],
-            "@whc/ui": ["libs/ui/src/index.ts"],
+            "@whc/ui/lib": ["libs/ui/lib/src/index.ts"],
             "@whc/utils": ["libs/utils/src/index.ts"]
         }
     },

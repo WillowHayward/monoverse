@@ -19,7 +19,7 @@
                     "apps/will-hay-code/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss/themes/default"]
+                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
                 },
                 "styles": ["apps/will-hay-code/src/styles.scss"],
                 "scripts": []

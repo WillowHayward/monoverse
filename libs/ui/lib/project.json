@@ -1,15 +1,16 @@
 {
-    "name": "ui",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "ui-lib",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "projectType": "library",
-    "sourceRoot": "libs/ui/src",
+    "sourceRoot": "libs/ui/lib/src",
+    "implicitDependencies": ["ui-styles"],
     "prefix": "whc",
     "targets": {
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/ui"],
+            "outputs": ["{workspaceRoot}/coverage/libs/ui/lib"],
             "options": {
-                "jestConfig": "libs/ui/jest.config.ts",
+                "jestConfig": "libs/ui/lib/jest.config.ts",
                 "passWithNoTests": true
             }
         },
@@ -17,8 +18,8 @@
             "executor": "@nrwl/linter:eslint",
             "options": {
                 "lintFilePatterns": [
-                    "libs/ui/src/**/*.ts",
-                    "libs/ui/src/**/*.html"
+                    "libs/ui/lib/src/**/*.ts",
+                    "libs/ui/lib/src/**/*.html"
                 ]
             }
         },
@@ -26,8 +27,8 @@
             "executor": "@storybook/angular:start-storybook",
             "options": {
                 "port": 4400,
-                "configDir": "libs/ui/.storybook",
-                "browserTarget": "ui:build-storybook",
+                "configDir": "libs/ui/lib/.storybook",
+                "browserTarget": "ui-lib:build-storybook",
                 "compodoc": false
             },
             "configurations": {
@@ -41,8 +42,8 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputDir": "dist/storybook/ui",
-                "configDir": "libs/ui/.storybook",
-                "browserTarget": "ui:build-storybook",
+                "configDir": "libs/ui/lib/.storybook",
+                "browserTarget": "ui-lib:build-storybook",
                 "compodoc": false
             },
             "configurations": {

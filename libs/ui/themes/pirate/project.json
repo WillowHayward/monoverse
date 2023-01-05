@@ -1,0 +1,9 @@
+{
+    "name": "ui-themes-pirate",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "libs/ui/themes/pirate/src",
+    "prefix": "whc",
+    "targets": {},
+    "tags": []
+}

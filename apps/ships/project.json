@@ -20,7 +20,7 @@
                     "apps/ships/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["scss/themes/pirate"]
+                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/pirate/src/lib"]
                 },
                 "styles": ["apps/ships/src/styles.scss"],
                 "scripts": []

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { UiModule } from '@whc/ui';
+import { UiModule } from '@whc/ui/lib';
 import { CommonModule } from '@angular/common';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
