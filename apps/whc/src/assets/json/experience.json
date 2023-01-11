@@ -42,21 +42,21 @@
         "company": "Junior Engineers",
         "position": "Head Teacher",
         "description": "Responsible for teaching basic programming to groups of up to 20 children",
-        "skills": [],
+        "skills": ["Python"],
         "worked": "July 2019 - September 2019"
     },
     {
         "company": "University of Queensland Union",
         "position": "Newspaper Editor",
         "description": "As an editor for UQU's Semper Floreat newspaper, I was tasked with website maintainence as well as writing a weekly column",
-        "skills": [],
+        "skills": ["PHP", "Wordpress", "CSS"],
         "worked": "January 2018 - December 2018"
     },
     {
         "company": "Code Camp",
         "position": "Head Teacher",
         "description": "Worked in a team environment to teach basic programming skills to groups of up to 30 children",
-        "skills": [],
+        "skills": ["JavaScript"],
         "worked": "April 2017 - September 2017"
     }
 ]
