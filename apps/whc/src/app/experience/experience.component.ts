@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import * as experienceJSON from '../../assets/experience.json';
+import * as experienceJSON from '../../assets/json/experience.json';
 
 type Job = {
     company: string;
