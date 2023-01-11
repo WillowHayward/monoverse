@@ -26,8 +26,7 @@
         "ui-theme-jabberwocky": "libs/ui/themes/jabberwocky",
         "ui-theme-pirate": "libs/ui/themes/pirate",
         "utils": "libs/utils",
-        "whc": "apps/whc",
-        "will-hay-code-old": "apps/will-hay-code-old"
+        "whc": "apps/whc"
     },
     "defaultProject": "whc"
 }
