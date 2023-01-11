@@ -1,0 +1,20 @@
+<whc-card>
+    <h1>Experience</h1>
+    <ul>
+        <ng-container *ngFor="let job of experience">
+            <li>{{job.company}}</li>
+            <ul>
+                <li>{{job.position}}</li>
+                <li>{{job.description}}</li>
+                <li>{{job.worked}}</li>
+                <li *ngIf="job.skills.length">
+                    Technologies Used
+                    <ul>
+                        <li *ngFor="let skill of job.skills">{{skill}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </ng-container>
+
+    </ul>
+</whc-card>

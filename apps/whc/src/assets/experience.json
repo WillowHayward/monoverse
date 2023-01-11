@@ -1,0 +1,62 @@
+[
+    {
+        "company": "Auto & General",
+        "position": "Front End Developer",
+        "description": "Responsible for the development and maintenance of a UI component library & enhancing developer experience through build tool optimisation",
+        "skills": [
+            "Angular",
+            "TypeScript",
+            "Node",
+            "NX",
+            "SCSS",
+            "Bootstrap"
+        ],
+        "worked": "Since October 2021"
+    },
+    {
+        "company": "Merchant Warrior",
+        "position": "Full Stack Developer",
+        "description": "A team environment with a variety of tasks including front end design, database optimisation, and developing RESTful interfaces.",
+        "skills": [
+            "PHP",
+            "JavaScript",
+            "jQuery",
+            "CSS",
+            "Bootstrap"
+        ],
+        "worked": "September 2020 - September 2021"
+    },
+    {
+        "company": "Blue Beard Entertainment",
+        "position": "Contract Developer",
+        "description": " Periodic developer of in-house application and utility development. ",
+        "skills": [
+            "NodeJS",
+            "Javascript",
+            "CSS",
+            "WebSockets"
+        ],
+        "worked": "2015 - 2020"
+    },
+    {
+        "company": "Junior Engineers",
+        "position": "Head Teacher",
+        "description": "Responsible for teaching basic programming to groups of up to 20 children",
+        "skills": [],
+        "worked": "July 2019 - September 2019"
+    },
+    {
+        "company": "University of Queensland Union",
+        "position": "Newspaper Editor",
+        "description": "As an editor for UQU's Semper Floreat newspaper, I was tasked with website maintainence as well as writing a weekly column",
+        "skills": [],
+        "worked": "January 2018 - December 2018"
+    },
+    {
+        "company": "Code Camp",
+        "position": "Head Teacher",
+        "description": "Worked in a team environment to teach basic programming skills to groups of up to 30 children",
+        "skills": [],
+        "worked": "April 2017 - September 2017"
+    }
+]
