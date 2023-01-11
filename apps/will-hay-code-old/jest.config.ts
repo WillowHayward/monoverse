@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'will-hay-code',
+    displayName: 'will-hay-code-old',
 
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
@@ -9,7 +9,7 @@ export default {
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
-    coverageDirectory: '../../coverage/apps/will-hay-code',
+    coverageDirectory: '../../coverage/apps/will-hay-code-old',
     transform: {
         '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
     },

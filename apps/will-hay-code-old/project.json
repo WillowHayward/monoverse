@@ -1,27 +1,30 @@
 {
-    "name": "will-hay-code",
+    "name": "will-hay-code-old",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "sourceRoot": "apps/will-hay-code/src",
+    "sourceRoot": "apps/will-hay-code-old/src",
     "prefix": "whc",
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/will-hay-code",
-                "index": "apps/will-hay-code/src/index.html",
-                "main": "apps/will-hay-code/src/main.ts",
-                "tsConfig": "apps/will-hay-code/tsconfig.app.json",
+                "outputPath": "dist/apps/will-hay-code-old",
+                "index": "apps/will-hay-code-old/src/index.html",
+                "main": "apps/will-hay-code-old/src/main.ts",
+                "tsConfig": "apps/will-hay-code-old/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
                 "assets": [
-                    "apps/will-hay-code/src/favicon.ico",
-                    "apps/will-hay-code/src/assets"
+                    "apps/will-hay-code-old/src/favicon.ico",
+                    "apps/will-hay-code-old/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
+                    "includePaths": [
+                        "libs/ui/styles/src/lib",
+                        "libs/ui/themes/default/src/lib"
+                    ]
                 },
-                "styles": ["apps/will-hay-code/src/styles.scss"],
+                "styles": ["apps/will-hay-code-old/src/styles.scss"],
                 "scripts": []
             },
             "configurations": {
@@ -40,8 +43,8 @@
                     ],
                     "fileReplacements": [
                         {
-                            "replace": "apps/will-hay-code/src/environments/environment.ts",
-                            "with": "apps/will-hay-code/src/environments/environment.prod.ts"
+                            "replace": "apps/will-hay-code-old/src/environments/environment.ts",
+                            "with": "apps/will-hay-code-old/src/environments/environment.prod.ts"
                         }
                     ],
                     "outputHashing": "all"
@@ -61,10 +64,10 @@
             "executor": "@angular-devkit/build-angular:dev-server",
             "configurations": {
                 "production": {
-                    "browserTarget": "will-hay-code:build:production"
+                    "browserTarget": "will-hay-code-old:build:production"
                 },
                 "development": {
-                    "browserTarget": "will-hay-code:build:development"
+                    "browserTarget": "will-hay-code-old:build:development"
                 }
             },
             "defaultConfiguration": "development"
@@ -72,23 +75,23 @@
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
             "options": {
-                "browserTarget": "will-hay-code:build"
+                "browserTarget": "will-hay-code-old:build"
             }
         },
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "options": {
                 "lintFilePatterns": [
-                    "apps/will-hay-code/src/**/*.ts",
-                    "apps/will-hay-code/src/**/*.html"
+                    "apps/will-hay-code-old/src/**/*.ts",
+                    "apps/will-hay-code-old/src/**/*.html"
                 ]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/apps/will-hay-code"],
+            "outputs": ["{workspaceRoot}/coverage/apps/will-hay-code-old"],
             "options": {
-                "jestConfig": "apps/will-hay-code/jest.config.ts",
+                "jestConfig": "apps/will-hay-code-old/jest.config.ts",
                 "passWithNoTests": true
             }
         }
