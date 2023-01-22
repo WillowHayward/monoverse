@@ -35,7 +35,6 @@
             "style": "scss"
         }
     },
-    "defaultProject": "will-hay-code",
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build": {
