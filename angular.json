@@ -2,14 +2,11 @@
     "version": 2,
     "projects": {
         "asset-loader": "libs/asset-loader",
-        "boarding-party": "apps/boarding-party",
         "character": "libs/character",
-        "character-builder": "apps/character-builder",
         "deck": "libs/deck",
         "event-manager": "libs/event-manager",
         "fps": "libs/fps",
         "french-toast": "apps/french-toast",
-        "jabberwocky": "apps/jabberwocky",
         "lipwig-admin": "apps/lipwig/admin",
         "lipwig-chat": "apps/lipwig/chat",
         "lipwig-core": "apps/lipwig/core",
@@ -19,14 +16,12 @@
         "lipwig-ui": "libs/lipwig/ui",
         "ridcully": "apps/ridcully",
         "skeleton": "libs/skeleton",
-        "skeleton-animate": "apps/skeleton-animate",
         "ui-lib": "libs/ui/lib",
         "ui-styles": "libs/ui/styles",
         "ui-theme-default": "libs/ui/themes/default",
         "ui-theme-jabberwocky": "libs/ui/themes/jabberwocky",
         "ui-theme-pirate": "libs/ui/themes/pirate",
-        "utils": "libs/utils",
-        "will-hay-code": "apps/will-hay-code"
+        "utils": "libs/utils"
     },
     "defaultProject": "will-hay-code"
 }
