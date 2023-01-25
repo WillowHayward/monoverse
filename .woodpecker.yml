@@ -1,5 +1,21 @@
 pipeline:
+  install:
+    image: node
+    commands:
+      - yarn install
+  lint:
+    image: node
+    commands:
+      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=lint
   test:
     image: node
     commands:
-      - echo "Hello World"
+      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=test
+  build:
+    image: node
+    commands:
+      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=build
+  deploy:
+    image: node
+    commands:
+      - echo "deploying"
