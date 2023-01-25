@@ -19,5 +19,3 @@ pipeline:
     image: node
     commands:
       - echo "deploying"
-    when:
-      - event: push
