@@ -21,7 +21,8 @@
         "ui-theme-default": "libs/ui/themes/default",
         "ui-theme-jabberwocky": "libs/ui/themes/jabberwocky",
         "ui-theme-pirate": "libs/ui/themes/pirate",
-        "utils": "libs/utils"
+        "utils": "libs/utils",
+        "willhaycode": "apps/willhaycode"
     },
-    "defaultProject": "will-hay-code"
+    "defaultProject": "willhaycode"
 }
