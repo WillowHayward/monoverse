@@ -12,3 +12,6 @@ Lipwig is a room-based message server. It consists of two primary components - l
 
 French Toast is an online version of Jellybean Games' [French Toast](http://jellybean.games/french-toast/), developed in early 2020 to help support its Kickstarter campaign.
 
+# Pipeline
+
+Monoverse uses [Woodpecker CI](https://woodpecker-ci.org/) and NX Affected to manage CI/CD
