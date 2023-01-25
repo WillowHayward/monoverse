@@ -38,7 +38,7 @@
             "style": "css",
             "linter": "eslint",
             "unitTestRunner": "jest",
-            "e2eTestRunner": "cypress"
+            "e2eTestRunner": "none"
         },
         "@nrwl/web:library": {
             "style": "css",
@@ -68,9 +68,6 @@
                 "^production",
                 "{workspaceRoot}/.storybook/**/*"
             ]
-        },
-        "e2e": {
-            "inputs": ["default", "^production"]
         }
     },
     "namedInputs": {
