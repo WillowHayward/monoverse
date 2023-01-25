@@ -3,6 +3,9 @@ pipeline:
     image: node
     commands:
       - yarn install
+  print-affected:
+    image: node
+      - npx nx print-affected --base=origin/${CI_COMMIT_BRANCH} 
   lint:
     image: node
     commands:
