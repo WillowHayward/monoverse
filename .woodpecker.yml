@@ -6,16 +6,18 @@ pipeline:
   lint:
     image: node
     commands:
-      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=lint
+      - npx nx affected --base=origin/${CI_COMMIT_BRANCH} --target=lint
   test:
     image: node
     commands:
-      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=test
+      - npx nx affected --base=origin/${CI_COMMIT_BRANCH} --target=test
   build:
     image: node
     commands:
-      - nx affected --base=origin/${CI_COMMIT_BRANCH} --target=build
+      - npx nx affected --base=origin/${CI_COMMIT_BRANCH} --target=build
   deploy:
     image: node
     commands:
       - echo "deploying"
+    when:
+      - event: push
