@@ -33,6 +33,17 @@
         },
         "@nrwl/angular:component": {
             "style": "scss"
+        },
+        "@nrwl/web:application": {
+            "style": "css",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/web:library": {
+            "style": "css",
+            "linter": "eslint",
+            "unitTestRunner": "jest"
         }
     },
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -57,11 +68,14 @@
                 "^production",
                 "{workspaceRoot}/.storybook/**/*"
             ]
+        },
+        "e2e": {
+            "inputs": ["default", "^production"]
         }
     },
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "sharedGlobals": [],
+        "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
         "production": [
             "default",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -71,5 +85,6 @@
             "!{projectRoot}/.storybook/**/*",
             "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
         ]
-    }
+    },
+    "defaultProject": "will-hay-code"
 }
