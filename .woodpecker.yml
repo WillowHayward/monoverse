@@ -3,9 +3,12 @@ pipeline:
     image: node
     commands:
       - yarn install
+  git-status:
+    image: debian
+    commands:
+      - git status
   print-affected:
     image: node
-      - git status
       - npx nx print-affected --base=origin/${CI_COMMIT_BRANCH} 
   lint:
     image: node
