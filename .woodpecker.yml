@@ -1,6 +1,6 @@
 pipeline:
   git-status:
-    image: debian
+    image: alpine/git
     commands:
       - git status
   install:
