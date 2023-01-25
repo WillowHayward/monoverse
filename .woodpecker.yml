@@ -5,6 +5,7 @@ pipeline:
       - yarn install
   print-affected:
     image: node
+      - git status
       - npx nx print-affected --base=origin/${CI_COMMIT_BRANCH} 
   lint:
     image: node
