@@ -21,4 +21,3 @@ pipeline:
       - echo "deploying"
     when:
       - event: push
-
