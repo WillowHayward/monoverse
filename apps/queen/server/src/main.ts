@@ -10,6 +10,8 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; //TODO: REMOVE
+    app.enableCors();
     const globalPrefix = 'api';
     app.setGlobalPrefix(globalPrefix);
     const port = process.env.PORT || 3333;
