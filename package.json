@@ -80,7 +80,7 @@
         "@twittwer/compodoc": "^1.6.6",
         "@types/cannon": "^0.1.8",
         "@types/jest": "28.1.1",
-        "@types/node": "16.11.7",
+        "@types/node": "18.7.1",
         "@types/uuid": "^9.0.0",
         "@types/websocket": "^1.0.5",
         "@typescript-eslint/eslint-plugin": "5.47.0",
