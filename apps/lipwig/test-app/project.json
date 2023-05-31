@@ -20,7 +20,10 @@
                     "apps/lipwig/test-app/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
+                    "includePaths": [
+                        "libs/ui/styles/src/lib",
+                        "libs/ui/themes/default/src/lib"
+                    ]
                 },
                 "styles": ["apps/lipwig/test-app/src/styles.scss"],
                 "scripts": []

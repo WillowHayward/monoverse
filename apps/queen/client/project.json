@@ -1,31 +1,25 @@
 {
-    "name": "ridcully",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "queen-client",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "sourceRoot": "apps/ridcully/src",
-    "prefix": "rc",
+    "sourceRoot": "apps/queen/client/src",
+    "prefix": "whc",
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/ridcully",
-                "index": "apps/ridcully/src/index.html",
-                "main": "apps/ridcully/src/main.ts",
-                "polyfills": "apps/ridcully/src/polyfills.ts",
-                "tsConfig": "apps/ridcully/tsconfig.app.json",
+                "outputPath": "dist/apps/queen/client",
+                "index": "apps/queen/client/src/index.html",
+                "main": "apps/queen/client/src/main.ts",
+                "polyfills": ["zone.js"],
+                "tsConfig": "apps/queen/client/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
                 "assets": [
-                    "apps/ridcully/src/favicon.ico",
-                    "apps/ridcully/src/assets"
+                    "apps/queen/client/src/favicon.ico",
+                    "apps/queen/client/src/assets"
                 ],
-                "stylePreprocessorOptions": {
-                    "includePaths": [
-                        "libs/ui/styles/src/lib",
-                        "libs/ui/themes/default/src/lib"
-                    ]
-                },
-                "styles": ["apps/ridcully/src/styles.scss"],
+                "styles": ["apps/queen/client/src/styles.scss"],
                 "scripts": []
             },
             "configurations": {
@@ -34,18 +28,12 @@
                         {
                             "type": "initial",
                             "maximumWarning": "500kb",
-                            "maximumError": "10mb"
+                            "maximumError": "1mb"
                         },
                         {
                             "type": "anyComponentStyle",
                             "maximumWarning": "2kb",
-                            "maximumError": "1mb"
-                        }
-                    ],
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/ridcully/src/environments/environment.ts",
-                            "with": "apps/ridcully/src/environments/environment.prod.ts"
+                            "maximumError": "4kb"
                         }
                     ],
                     "outputHashing": "all"
@@ -65,10 +53,10 @@
             "executor": "@angular-devkit/build-angular:dev-server",
             "configurations": {
                 "production": {
-                    "browserTarget": "ridcully:build:production"
+                    "browserTarget": "queen-client:build:production"
                 },
                 "development": {
-                    "browserTarget": "ridcully:build:development"
+                    "browserTarget": "queen-client:build:development"
                 }
             },
             "defaultConfiguration": "development"
@@ -76,23 +64,24 @@
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
             "options": {
-                "browserTarget": "ridcully:build"
+                "browserTarget": "queen-client:build"
             }
         },
         "lint": {
             "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": [
-                    "apps/ridcully/src/**/*.ts",
-                    "apps/ridcully/src/**/*.html"
+                    "apps/queen/client/**/*.ts",
+                    "apps/queen/client/**/*.html"
                 ]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/apps/ridcully"],
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "jestConfig": "apps/ridcully/jest.config.ts",
+                "jestConfig": "apps/queen/client/jest.config.ts",
                 "passWithNoTests": true
             }
         }
