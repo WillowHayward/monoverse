@@ -15,6 +15,7 @@
         "lipwig-types": "libs/lipwig/types",
         "lipwig-ui": "libs/lipwig/ui",
         "queen-client": "apps/queen/client",
+        "queen-model": "libs/queen/model",
         "queen-server": "apps/queen/server",
         "ridcully": "apps/ridcully",
         "skeleton": "libs/skeleton",
