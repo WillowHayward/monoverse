@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -6,8 +7,25 @@ import { AuthService } from '../auth.service';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-    constructor(private auth: AuthService) {}
+export class LoginComponent implements OnInit {
+    constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute ) {}
+
+    ngOnInit(): void {
+        this.route.queryParams.subscribe(params => {
+            const token = params['token'];
+
+            const returnUrl = params['return'] ?? '';
+
+            if (token) {
+                console.log(token);
+                this.router.navigate([returnUrl]).catch(() => {
+                    this.router.navigate(['']);
+
+                });
+            }
+        });
+    }
+    
     connect() {
         this.auth.getAuthUrl().subscribe(url => {
             console.log(url);

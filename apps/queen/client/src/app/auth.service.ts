@@ -35,7 +35,7 @@ export class AuthService {
     }
 
     testRequest(token: string) {
-        this.http.get('https://git.whc.local/api/v1/user/repos', {
+        this.http.get(`/api/auth/test`, {
             headers: {
                 'Authorization': `token ${token}`
             }

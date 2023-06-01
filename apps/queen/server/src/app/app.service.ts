@@ -30,11 +30,17 @@ export class AppService {
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
         }).pipe(map(response => {
-
-            //console.log(response.data);
             return {
                 token: response.data.access_token
             }
         }));
+    }
+
+    getTest(token: string) {
+        return this.http.get(`${GITEA_URL}/api/v1/user`, {
+            headers: {
+                'Authorization': `token ${token}`
+            }
+        });
     }
 }
