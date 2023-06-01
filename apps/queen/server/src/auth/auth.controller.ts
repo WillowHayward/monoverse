@@ -1,5 +1,4 @@
-import { Controller, Get, Post, Query, Redirect, Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, Query, Redirect } from '@nestjs/common';
 import { map } from 'rxjs';
 import { AuthTokenRequest } from '@whc/queen/model';
 
@@ -30,15 +29,6 @@ export class AuthController {
             return {
                 url: `/?token=${token}&return=test`
             }
-        }));
-    }
-
-    @Get('test')
-    getTest(@Req() req: Request) { // TODO: Move to @Headers()
-        const token = req.headers.authorization.split(' ')[1];
-
-        return this.auth.getTest(token).pipe(map(resp => {
-            return resp.data;
         }));
     }
 }

@@ -35,12 +35,4 @@ export class AuthService {
             }
         }));
     }
-
-    getTest(token: string) {
-        return this.http.get(`${GITEA_URL}/api/v1/user`, {
-            headers: {
-                'Authorization': `token ${token}`
-            }
-        });
-    }
 }
