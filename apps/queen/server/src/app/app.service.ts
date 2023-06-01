@@ -3,10 +3,10 @@ import { Injectable } from '@nestjs/common';
 import { AuthInitData, AuthTokenRequest, AuthTokenResponse, GiteaTokenResponse } from '@whc/queen/model';
 import { map, Observable } from 'rxjs';
 
-const GITEA_SECRET = 'gto_iqkslhwxmruzactdaqymug7m6u6lys6vacbny5y4enjsx55s5zsa';
-const CLIENT_ID = '24763947-1374-442d-aa1e-e918c743313f';
-const GITEA_URL = 'https://git.whc.local';
-const REDIRECT_URI = 'http://localhost:4200/authorize';
+const GITEA_SECRET = process.env['GITEA_SECRET'];
+const CLIENT_ID = process.env['CLIENT_ID'];
+const GITEA_URL = process.env['GITEA_URL'];
+const REDIRECT_URI = process.env['REDIRECT_URI'];
 
 @Injectable()
 export class AppService {
@@ -31,7 +31,7 @@ export class AppService {
             redirect_uri: REDIRECT_URI
         }).pipe(map(response => {
 
-            console.log(response.data);
+            //console.log(response.data);
             return {
                 token: response.data.access_token
             }

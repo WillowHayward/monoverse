@@ -3,7 +3,7 @@ import { AuthTokenRequest } from '@whc/queen/model';
 
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('auth')
 export class AppController {
     private state: string = '';
     constructor(private readonly appService: AppService) {}
