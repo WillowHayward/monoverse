@@ -11,7 +11,7 @@ export class AuthController {
 
     @Get()
     getData() {
-        const data = this.auth.getInitData();
+        const data = this.auth.initAuth();
         this.state = data.state;
         return data;
     }
@@ -19,8 +19,6 @@ export class AuthController {
     @Get('redirect')
     @Redirect()
     getRedirect(@Query() data: AuthTokenRequest) {
-        console.log(data);
-
         return this.auth.getToken(this.state, data).pipe(map(response => {
             console.log(response);
 
