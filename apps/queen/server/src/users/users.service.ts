@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import * as Gitea from '../types/gitea';
 
 // TODO: make this an actual db
 interface User {
@@ -9,30 +10,36 @@ type UserDB = User[]
 
 @Injectable()
 export class UsersService {
+    constructor() {}
+
     private userDB: UserDB = [];
 
-    createUser(id: number, name: string): User | false {
-        if (this.findUser(id)) {
+    createUser(giteaUser: Gitea.User): User | false {
+        if (this.findUser(giteaUser)) {
             console.error('User Already Exists');
             return false;
         }
 
         const user: User = {
-            gitea_id: id,
-            name
+            gitea_id: giteaUser.id,
+            name: giteaUser.full_name
         }
         this.userDB.push(user);
         console.log('Created user for', user.name);
         return user;
     }
 
-    findUser(id: number): User | false {
+    findUser(user: Gitea.User): User | false {
+        return this.findUserById(user.id);
+    }
+
+    findUserById(id: number): User | false {
         const user = this.userDB.find(user => user.gitea_id === id);
         if (!user) {
             return false;
         }
 
         return user;
-    }
 
+    }
 }

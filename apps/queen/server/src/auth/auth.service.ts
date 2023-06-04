@@ -4,7 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthInitData, AuthTokenRequest, AuthTokenResponse } from '@whc/queen/model';
 import { map, switchMap, Observable } from 'rxjs';
 
-import type { AccessTokenResponse, UserResponse } from '../gitea.api';
+import type { AccessTokenResponse } from '../types/auth';
+import * as Gitea from '../types/gitea';
 import { UsersService } from '../users/users.service';
 
 const GITEA_SECRET = process.env['QUEEN_GITEA_SECRET'];
@@ -27,6 +28,7 @@ export class AuthService {
     }
 
     getToken(state: string, request: AuthTokenRequest): Observable<AuthTokenResponse> {
+        let accessToken: string;
         return this.http.post<AccessTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
             client_id: CLIENT_ID,
             client_secret: GITEA_SECRET,
@@ -34,15 +36,17 @@ export class AuthService {
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
         }).pipe(switchMap(response => {
-            return this.http.get<UserResponse>(`${GITEA_URL}/api/v1/user`, {
+            accessToken = response.data.access_token;
+            return this.http.get<Gitea.User>(`${GITEA_URL}/api/v1/user`, {
                 headers: {
-                    Authorization: `token ${response.data.access_token}`
+                    Authorization: `token ${accessToken}`
                 }
             });
         }), map(response => {
-            let user = this.users.findUser(response.data.id);
+            const giteaUser = response.data;
+            let user = this.users.findUser(giteaUser);
             if (!user) {
-                user = this.users.createUser(response.data.id, response.data.full_name);
+                user = this.users.createUser(giteaUser);
             }
             if (!user) {
                 console.error('Error with auth');

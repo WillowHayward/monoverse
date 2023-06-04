@@ -5,9 +5,3 @@ export interface AccessTokenResponse {
     refresh_token: string;
 }
 
-export interface UserResponse {
-    id: number;
-    full_name: string;
-
-}
-

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { AuthModule } from '../auth/auth.module';
-import { ApiModule } from '../api/api.module';
+import { AuthModule } from './auth/auth.module';
+import { ApiModule } from './api/api.module';
 
 const QUEEN_SECRET = process.env['QUEEN_SECRET'];
 
