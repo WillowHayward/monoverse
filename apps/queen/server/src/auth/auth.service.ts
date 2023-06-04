@@ -2,11 +2,10 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthInitData, AuthTokenRequest } from '@whc/queen/model';
-import { from, map, switchMap, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api/api.service';
 
 import type { AuthTokenResponse, QueenTokenResponse } from '../types/auth';
-import * as Gitea from '../types/gitea';
 import { UsersService } from '../users/users.service';
 
 const GITEA_SECRET = process.env['QUEEN_GITEA_SECRET'];
@@ -37,11 +36,12 @@ export class AuthService {
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
         }));
-        const giteaUser = await this.api.getUser(giteaTokenResponse.data.access_token);
+        const auth = giteaTokenResponse.data;
+        const giteaUser = await this.api.getUser(auth.access_token);
 
         let user = await this.users.findUser(giteaUser);
         if (!user) {
-            user = await this.users.createUser(giteaUser);
+            user = await this.users.createUser(giteaUser, auth);
         }
 
         console.log(user.name, 'logged in');
