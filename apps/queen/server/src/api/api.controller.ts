@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth.guard';
 @Controller()
 @UseGuards(AuthGuard)
 export class ApiController {
-    @Get()
+    @Get('test')
     test() {
         return 'g';
     }

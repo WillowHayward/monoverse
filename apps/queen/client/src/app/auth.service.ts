@@ -35,7 +35,7 @@ export class AuthService {
     }
 
     testRequest(token: string) {
-        this.http.get(`/api/auth/test`, {
+        this.http.get(`/api/test`, {
             headers: {
                 'Authorization': `token ${token}`
             }

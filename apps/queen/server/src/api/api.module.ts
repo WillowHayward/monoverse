@@ -4,6 +4,7 @@ import { ApiController } from './api.controller';
 import { ApiService } from './api.service';
 
 @Module({
+    imports: [UsersModule],
     controllers: [ApiController],
     providers: [ApiService],
 })
