@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthInitData, AuthTokenRequest } from '@whc/queen/model';
 import { from, map, switchMap, firstValueFrom } from 'rxjs';
+import { ApiService } from '../api/api.service';
 
 import type { AuthTokenResponse, QueenTokenResponse } from '../types/auth';
 import * as Gitea from '../types/gitea';
@@ -15,7 +16,7 @@ const REDIRECT_URI = process.env['QUEEN_REDIRECT_URI'];
 
 @Injectable()
 export class AuthService {
-    constructor(private http: HttpService, private users: UsersService, private jwt: JwtService) {}
+    constructor(private http: HttpService, private users: UsersService, private jwt: JwtService, private api: ApiService) {}
 
     initAuth(): AuthInitData {
         const state = 'randomstring';
@@ -36,13 +37,8 @@ export class AuthService {
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
         }));
-        const giteaUserResponse = await firstValueFrom(this.http.get<Gitea.User>(`${GITEA_URL}/api/v1/user`, {
-                headers: {
-                    Authorization: `token ${giteaTokenResponse.data.access_token}`
-                }
-            }
-        ));
-        const giteaUser = giteaUserResponse.data;
+        const giteaUser = await this.api.getUser(giteaTokenResponse.data.access_token);
+
         let user = await this.users.findUser(giteaUser);
         if (!user) {
             user = await this.users.createUser(giteaUser);

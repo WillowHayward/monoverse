@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ApiService } from '../api/api.service';
 import { User } from '../database/entities/user.entity';
 import * as Gitea from '../types/gitea';
 
@@ -8,7 +9,8 @@ import * as Gitea from '../types/gitea';
 export class UsersService {
     constructor(
         @InjectRepository(User)
-        private usersRepository: Repository<User>
+        private usersRepository: Repository<User>,
+        private apiService: ApiService
     ) {}
 
     async createUser(giteaUser: Gitea.User): Promise<User | null> {
