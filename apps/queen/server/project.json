@@ -54,6 +54,14 @@
                 "jestConfig": "apps/queen/server/jest.config.ts",
                 "passWithNoTests": true
             }
+        },
+        "swagger": {
+            "executor": "@whc/plugin:swagger-to-typescript",
+            "options": {
+                "outFile": "apps/queen/server/src/types/gitea.ts",
+                "envBaseUrl": "QUEEN_GITEA_URL",
+                "target": "swagger.v1.json"
+            }
         }
     },
     "tags": []
