@@ -1,43 +1,43 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from '../database/entities/user.entity';
 import * as Gitea from '../types/gitea';
-
-// TODO: make this an actual db
-interface User {
-    gitea_id: number;
-    name: string;
-}
-type UserDB = User[]
 
 @Injectable()
 export class UsersService {
-    constructor() {}
+    constructor(
+        @InjectRepository(User)
+        private usersRepository: Repository<User>
+    ) {}
 
-    private userDB: UserDB = [];
-
-    createUser(giteaUser: Gitea.User): User | false {
-        if (this.findUser(giteaUser)) {
+    async createUser(giteaUser: Gitea.User): Promise<User | null> {
+        if (await this.findUser(giteaUser)) {
             console.error('User Already Exists');
-            return false;
+            return null;
         }
 
-        const user: User = {
+        const user = this.usersRepository.create({
             gitea_id: giteaUser.id,
             name: giteaUser.full_name
-        }
-        this.userDB.push(user);
-        console.log('Created user for', user.name);
+        });
+        this.usersRepository.insert(user);
+
+        console.log('Created user', user.name);
         return user;
     }
 
-    findUser(user: Gitea.User): User | false {
+    async findUser(user: Gitea.User): Promise<User | null> {
         return this.findUserById(user.id);
     }
 
-    findUserById(id: number): User | false {
-        const user = this.userDB.find(user => user.gitea_id === id);
+    async findUserById(id: number): Promise<User | null> {
+        const user = await this.usersRepository.findOneBy({ gitea_id: id })
         if (!user) {
-            return false;
+            return null;
         }
+
+        console.log('Found user', user.name);
 
         return user;
 

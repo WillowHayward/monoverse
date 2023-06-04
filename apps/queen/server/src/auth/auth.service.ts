@@ -1,10 +1,10 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthInitData, AuthTokenRequest, AuthTokenResponse } from '@whc/queen/model';
-import { map, switchMap, Observable } from 'rxjs';
+import { AuthInitData, AuthTokenRequest } from '@whc/queen/model';
+import { from, map, switchMap, firstValueFrom } from 'rxjs';
 
-import type { AccessTokenResponse } from '../types/auth';
+import type { AuthTokenResponse, QueenTokenResponse } from '../types/auth';
 import * as Gitea from '../types/gitea';
 import { UsersService } from '../users/users.service';
 
@@ -27,38 +27,34 @@ export class AuthService {
         };
     }
 
-    getToken(state: string, request: AuthTokenRequest): Observable<AuthTokenResponse> {
-        return this.http.post<AccessTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
+    async getToken(state: string, request: AuthTokenRequest): Promise<QueenTokenResponse> {
+        // Mixing promises and observables got messy - this function will need cleaning up
+        const giteaTokenResponse = await firstValueFrom(this.http.post<AuthTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
             client_id: CLIENT_ID,
             client_secret: GITEA_SECRET,
             code: request.code,
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
-        }).pipe(switchMap(response => {
-            return this.http.get<Gitea.User>(`${GITEA_URL}/api/v1/user`, {
-                headers: {
-                    Authorization: `token ${response.data.access_token}`
-                }
-            });
-        }), map(response => {
-            const giteaUser = response.data;
-            let user = this.users.findUser(giteaUser);
-            if (!user) {
-                user = this.users.createUser(giteaUser);
-            }
-            if (!user) {
-                console.error('Error with auth');
-                return { token: '' };
-            }
-
-            console.log(user.name, 'logged in');
-            const token = this.jwt.sign({
-                id: user.gitea_id
-            });
-
-            return {
-                token
-            }
         }));
+        const giteaUserResponse = await firstValueFrom(this.http.get<Gitea.User>(`${GITEA_URL}/api/v1/user`, {
+                headers: {
+                    Authorization: `token ${giteaTokenResponse.data.access_token}`
+                }
+            }
+        ));
+        const giteaUser = giteaUserResponse.data;
+        let user = await this.users.findUser(giteaUser);
+        if (!user) {
+            user = await this.users.createUser(giteaUser);
+        }
+
+        console.log(user.name, 'logged in');
+        const token = this.jwt.sign({
+            id: user.gitea_id
+        });
+
+        return {
+            token
+        }
     }
 }

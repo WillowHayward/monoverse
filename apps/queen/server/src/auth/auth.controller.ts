@@ -1,5 +1,4 @@
 import { Controller, Get, Query, Redirect } from '@nestjs/common';
-import { map } from 'rxjs';
 import { AuthTokenRequest } from '@whc/queen/model';
 
 import { AuthService } from './auth.service';
@@ -18,8 +17,8 @@ export class AuthController {
 
     @Get('redirect')
     @Redirect()
-    getRedirect(@Query() data: AuthTokenRequest) {
-        return this.auth.getToken(this.state, data).pipe(map(response => {
+    async getRedirect(@Query() data: AuthTokenRequest) {
+        return this.auth.getToken(this.state, data).then(response => {
             console.log(response);
 
             const token = response.token;
@@ -27,6 +26,6 @@ export class AuthController {
             return {
                 url: `/?token=${token}&return=test`
             }
-        }));
+        });
     }
 }
