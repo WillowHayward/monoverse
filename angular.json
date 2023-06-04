@@ -14,6 +14,7 @@
         "lipwig-test-app": "apps/lipwig/test-app",
         "lipwig-types": "libs/lipwig/types",
         "lipwig-ui": "libs/lipwig/ui",
+        "plugin": "libs/plugin",
         "queen-client": "apps/queen/client",
         "queen-model": "libs/queen/model",
         "queen-server": "apps/queen/server",
