@@ -1,8 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
+import { ApiModule } from '../api/api.module';
 import { UsersService } from './users.service';
 
+@Global()
 @Module({
-    imports: [],
+    imports: [ApiModule],
     providers: [UsersService],
     exports: [UsersService]
 })

@@ -1,13 +1,12 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from './users/users.service';
 
 const QUEEN_SECRET = process.env['QUEEN_SECRET'];
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private jwt: JwtService, private users: UsersService) {}
+    constructor(private jwt: JwtService) {}
 
     canActivate(
         context: ExecutionContext
@@ -19,22 +18,14 @@ export class AuthGuard implements CanActivate {
             throw new UnauthorizedException();
         }
 
-        let payload: { id: number };
 
         try {
-            payload = this.jwt.verify(token, {
+            this.jwt.verify(token, {
                 secret: QUEEN_SECRET
             });
         } catch (err) {
             throw new UnauthorizedException('Invalid Token');
         }
-
-        const userId = payload.id;
-
-        const user = this.users.findUserById(userId);
-        if (!user) {
-            throw new UnauthorizedException('Could not find user'); 
-        } 
 
         return true;
     }

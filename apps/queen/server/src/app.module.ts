@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
-import { AuthModule } from './auth/auth.module';
 import { ApiModule } from './api/api.module';
+import { UsersModule } from './users/users.module';
 
 const QUEEN_SECRET = process.env['QUEEN_SECRET'];
 
 @Module({
-    imports: [AuthModule, ApiModule,
+    imports: [ApiModule, UsersModule,
         JwtModule.register({
             global: true,
             secret: QUEEN_SECRET,

@@ -28,7 +28,6 @@ export class AuthService {
     }
 
     getToken(state: string, request: AuthTokenRequest): Observable<AuthTokenResponse> {
-        let accessToken: string;
         return this.http.post<AccessTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
             client_id: CLIENT_ID,
             client_secret: GITEA_SECRET,
@@ -36,10 +35,9 @@ export class AuthService {
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI
         }).pipe(switchMap(response => {
-            accessToken = response.data.access_token;
             return this.http.get<Gitea.User>(`${GITEA_URL}/api/v1/user`, {
                 headers: {
-                    Authorization: `token ${accessToken}`
+                    Authorization: `token ${response.data.access_token}`
                 }
             });
         }), map(response => {
