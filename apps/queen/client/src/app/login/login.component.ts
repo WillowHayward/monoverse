@@ -14,20 +14,16 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe(params => {
             const token = params['token'];
+            const expiry = params['expiry'];
 
-            const returnUrl = params['return'] ?? '';
+            console.log(token, expiry);
 
-            if (token) {
-                console.log(token);
+            //const returnUrl = params['return'] ?? '/';
 
-                this.apiService.testRequest(token).subscribe(resp => {
-                    console.log(resp);
-
-                });
-                /*this.router.navigate([returnUrl]).catch(() => {
-                    this.router.navigate(['']);
-
-                });*/
+            if (token && expiry) {
+                window.localStorage.setItem('token', token);
+                window.localStorage.setItem('tokenExpiry', expiry);
+                this.router.navigate(['/']);
             }
         });
     }

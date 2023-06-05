@@ -65,7 +65,8 @@ export class AuthService {
         console.log(user.name, 'logged in');
 
         return {
-            token: session.token
+            token: session.token,
+            expiry: tokenExpiry
         }
     }
 

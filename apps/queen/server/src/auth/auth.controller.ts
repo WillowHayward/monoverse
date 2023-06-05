@@ -22,9 +22,10 @@ export class AuthController {
             console.log(response);
 
             const token = response.token;
+            const expiry = response.expiry;
 
             return {
-                url: `/?token=${token}&return=test`
+                url: `/login?token=${token}&expiry=${expiry}`
             }
         });
     }

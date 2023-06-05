@@ -7,4 +7,5 @@ export interface AuthTokenResponse {
 
 export interface QueenTokenResponse {
     token: string;
+    expiry: number;
 }

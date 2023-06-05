@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { LoginComponent } from './login/login.component';
-import { AuthorizeComponent } from './authorize/authorize.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, AuthorizeComponent],
+    declarations: [AppComponent, LoginComponent, HomeComponent],
     imports: [
         BrowserModule,
         HttpClientModule,
