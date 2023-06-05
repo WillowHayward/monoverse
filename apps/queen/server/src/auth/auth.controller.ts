@@ -9,8 +9,8 @@ export class AuthController {
     constructor(private readonly auth: AuthService) {}
 
     @Get()
-    getData() {
-        const data = this.auth.initAuth();
+    async getData() {
+        const data = await this.auth.initAuth();
         this.state = data.state;
         return data;
     }

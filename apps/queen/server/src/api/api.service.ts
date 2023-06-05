@@ -2,12 +2,25 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import * as Gitea from '../types/gitea';
-import { GITEA_URL } from '../constants';
+import { AuthTokenResponse } from '../types/auth';
+import { GITEA_URL, GITEA_SECRET, GITEA_CLIENT_ID, GITEA_REDIRECT_URI } from '../constants';
 
 
 @Injectable()
 export class ApiService {
     constructor(private http: HttpService) {}
+
+    async getToken(code: string): Promise<AuthTokenResponse> {
+        const giteaTokenResponse = await firstValueFrom(this.http.post<AuthTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
+            client_id: GITEA_CLIENT_ID,
+            client_secret: GITEA_SECRET,
+            code,
+            grant_type: 'authorization_code',
+            redirect_uri: GITEA_REDIRECT_URI
+        }));
+
+        return giteaTokenResponse.data;
+    }
 
     async getUser(token: string): Promise<Gitea.User> {
         return this.makeGetRequest<Gitea.User>('/user', token);

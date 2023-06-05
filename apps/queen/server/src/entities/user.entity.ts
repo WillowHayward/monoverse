@@ -11,16 +11,4 @@ export class User {
 
     @Column()
     name: string;
-
-    @Column()
-    oauth_access_token: string;
-
-    @Column()
-    oauth_token_expires: number;
-
-    @Column()
-    oauth_refresh_token: string;
-
-    //@Column()
-    //gitea_access_token: string;
 }

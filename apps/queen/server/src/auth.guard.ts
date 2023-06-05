@@ -2,17 +2,14 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Request } from 'express';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { JwtService } from '@nestjs/jwt';
 
-import { User } from './entities';
-import { QUEEN_SECRET } from './constants';
+import { Session } from './entities';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
-        @InjectRepository(User)
-        private usersRepository: Repository<User>,
-        private jwt: JwtService,
+        @InjectRepository(Session)
+        private sessions: Repository<Session>,
     ) {}
 
     async canActivate(
@@ -25,17 +22,19 @@ export class AuthGuard implements CanActivate {
             throw new UnauthorizedException();
         }
 
-        try {
-            this.jwt.verify(token, {
-                secret: QUEEN_SECRET
-            });
-        } catch (err) {
-            throw new UnauthorizedException('Invalid Token');
+        const session = await this.sessions.findOneBy({ token });
+
+        if (!session) {
+            throw new UnauthorizedException();
         }
 
-        const payload = this.jwt.decode(token);
-        const oauthToken = await this.getApiToken(payload['id']);
-        request['token'] = oauthToken;
+
+        const now = (new Date()).valueOf();
+        if (now > session.token_expiry) {
+            throw new Error('Token Expired');
+        }
+
+        request['token'] = session.oauth_access_token;
 
         return true;
     }
@@ -48,19 +47,5 @@ export class AuthGuard implements CanActivate {
         }
 
         return token;
-    }
-
-    private async getApiToken(userId: number): Promise<string> {
-        const user: User = await this.usersRepository.findOneBy({
-            gitea_id: userId
-            }
-        );
-
-        const now = (new Date()).valueOf();
-        if (now < user.oauth_token_expires) {
-            // TODO: Refresh token
-        }
-
-        return user.oauth_access_token;
     }
 }
