@@ -4,10 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ApiModule } from './api/api.module';
 import { UsersModule } from './users/users.module';
-import { User } from './database/entities/user.entity';
+import { User, Project } from './entities';
 import { AuthModule } from './auth/auth.module';
-
-const QUEEN_SECRET = process.env['QUEEN_SECRET'];
+import { ProjectService } from './project/project.service';
+import { ProjectModule } from './project/project.module';
+import { QUEEN_SECRET } from './constants';
 
 @Module({
     imports: [
@@ -17,16 +18,17 @@ const QUEEN_SECRET = process.env['QUEEN_SECRET'];
         TypeOrmModule.forRoot({
             type: 'sqlite',
             database: 'queen.db',
-            entities: [User],
-            synchronize: true // TODO: Turn this off for production
+            entities: [User, Project],
+            synchronize: true, // TODO: Turn this off for production
         }),
         JwtModule.register({
             global: true,
             secret: QUEEN_SECRET,
             signOptions: { expiresIn: '60s' },
         }),
+        ProjectModule,
     ],
     controllers: [],
-    providers: [],
+    providers: [ProjectService],
 })
 export class AppModule {}

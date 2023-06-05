@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../database/entities/user.entity';
+import { User } from '../entities';
 import { AuthTokenResponse } from '../types/auth';
 import * as Gitea from '../types/gitea';
 
@@ -9,7 +9,7 @@ import * as Gitea from '../types/gitea';
 export class UsersService {
     constructor(
         @InjectRepository(User)
-        private usersRepository: Repository<User>
+        private usersRepository: Repository<User>,
     ) {}
 
     async createUser(giteaUser: Gitea.User, authResponse: AuthTokenResponse): Promise<User | null> {
@@ -26,7 +26,7 @@ export class UsersService {
             name: giteaUser.full_name,
             oauth_access_token: authResponse.access_token,
             oauth_token_expires: tokenExpiry,
-            oauth_refresh_token: authResponse.refresh_token
+            oauth_refresh_token: authResponse.refresh_token,
         });
         this.usersRepository.insert(user);
 

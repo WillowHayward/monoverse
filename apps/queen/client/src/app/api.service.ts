@@ -11,7 +11,7 @@ export class ApiService {
 
     }
     testRequest(token: string): Observable<string> {
-        return this.http.get<string>('/api/test', {
+        return this.http.get<string>('/api/repos', {
             headers: {
                 Authorization: `token ${token}`
             }

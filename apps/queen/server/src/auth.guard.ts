@@ -4,9 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
-import { User } from './database/entities/user.entity';
-
-const QUEEN_SECRET = process.env['QUEEN_SECRET'];
+import { User } from './entities';
+import { QUEEN_SECRET } from './constants';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

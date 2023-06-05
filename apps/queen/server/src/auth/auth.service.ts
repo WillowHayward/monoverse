@@ -7,11 +7,8 @@ import { ApiService } from '../api/api.service';
 
 import type { AuthTokenResponse, QueenTokenResponse } from '../types/auth';
 import { UsersService } from '../users/users.service';
+import { GITEA_URL, GITEA_SECRET, GITEA_CLIENT_ID, GITEA_REDIRECT_URI } from '../constants';
 
-const GITEA_SECRET = process.env['QUEEN_GITEA_SECRET'];
-const CLIENT_ID = process.env['QUEEN_CLIENT_ID'];
-const GITEA_URL = process.env['QUEEN_GITEA_URL'];
-const REDIRECT_URI = process.env['QUEEN_REDIRECT_URI'];
 
 @Injectable()
 export class AuthService {
@@ -20,9 +17,9 @@ export class AuthService {
     initAuth(): AuthInitData {
         const state = 'randomstring';
         return {
-            id: CLIENT_ID,
+            id: GITEA_CLIENT_ID,
             url: GITEA_URL,
-            redirect: REDIRECT_URI,
+            redirect: GITEA_REDIRECT_URI,
             state
         };
     }
@@ -30,11 +27,11 @@ export class AuthService {
     async getToken(state: string, request: AuthTokenRequest): Promise<QueenTokenResponse> {
         // Mixing promises and observables got messy - this function will need cleaning up
         const giteaTokenResponse = await firstValueFrom(this.http.post<AuthTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
-            client_id: CLIENT_ID,
+            client_id: GITEA_CLIENT_ID,
             client_secret: GITEA_SECRET,
             code: request.code,
             grant_type: 'authorization_code',
-            redirect_uri: REDIRECT_URI
+            redirect_uri: GITEA_REDIRECT_URI
         }));
         const auth = giteaTokenResponse.data;
         const giteaUser = await this.api.getUser(auth.access_token);

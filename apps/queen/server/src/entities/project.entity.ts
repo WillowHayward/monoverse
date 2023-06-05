@@ -1,11 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class User {
+export class Project {
     @PrimaryGeneratedColumn()
     id: number;
 
-    // TODO: See if this can be consolidated with above
     @Column()
     gitea_id: number;
 
@@ -13,11 +12,8 @@ export class User {
     name: string;
 
     @Column()
-    oauth_access_token: string;
+    owner_id: string;
 
     @Column()
-    oauth_token_expires: number;
-
-    @Column()
-    oauth_refresh_token: string;
+    owner_name: string;
 }
