@@ -18,7 +18,7 @@ export class UsersService {
         }
 
         const user = this.usersRepository.create({
-            gitea_id: giteaUser.id,
+            id: giteaUser.id,
             name: giteaUser.full_name,
         });
         this.usersRepository.insert(user);
@@ -32,7 +32,7 @@ export class UsersService {
     }
 
     async findUserById(id: number): Promise<User | null> {
-        const user = await this.usersRepository.findOneBy({ gitea_id: id })
+        const user = await this.usersRepository.findOneBy({ id })
         if (!user) {
             return null;
         }

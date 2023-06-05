@@ -1,12 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class Project {
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
-    gitea_id: number;
+    @PrimaryColumn()
+    id: number; // Gitea id
 
     @Column()
     name: string;
