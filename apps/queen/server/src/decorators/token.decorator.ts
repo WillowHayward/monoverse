@@ -5,6 +5,5 @@ export const Token = createParamDecorator((data: unknown, context: ExecutionCont
     const request: Request = context.switchToHttp().getRequest();
 
     const token = request['token'];
-    console.log(token);
     return token;
 });

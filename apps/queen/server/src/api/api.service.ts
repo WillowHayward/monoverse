@@ -22,6 +22,18 @@ export class ApiService {
         return giteaTokenResponse.data;
     }
 
+    async refreshToken(refreshToken: string): Promise<AuthTokenResponse> {
+        const giteaTokenResponse = await firstValueFrom(this.http.post<AuthTokenResponse>(`${GITEA_URL}/login/oauth/access_token`, {
+            client_id: GITEA_CLIENT_ID,
+            client_secret: GITEA_SECRET,
+            grant_type: 'refresh_token',
+            refresh_token: refreshToken,
+            redirect_uri: GITEA_REDIRECT_URI
+        }));
+
+        return giteaTokenResponse.data;
+    }
+
     async getUser(token: string): Promise<Gitea.User> {
         return this.makeGetRequest<Gitea.User>('/user', token);
     }

@@ -4,12 +4,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Session } from './entities';
+import { ApiService } from './api/api.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
         @InjectRepository(Session)
         private sessions: Repository<Session>,
+        private api: ApiService
     ) {}
 
     async canActivate(
@@ -34,6 +36,10 @@ export class AuthGuard implements CanActivate {
             throw new Error('Token Expired');
         }
 
+        if (now > session.oauth_token_expires) {
+            await this.updateToken(session);
+        }
+
         request['token'] = session.oauth_access_token;
 
         return true;
@@ -47,5 +53,18 @@ export class AuthGuard implements CanActivate {
         }
 
         return token;
+    }
+
+    private async updateToken(session: Session) {
+        const token = await this.api.refreshToken(session.oauth_refresh_token);
+
+        const now = (new Date()).valueOf();
+        const authExpiry = now + token.expires_in * 1000;
+
+        session.oauth_access_token = token.access_token;
+        session.oauth_refresh_token = token.refresh_token;
+        session.oauth_token_expires = authExpiry;
+
+        this.sessions.update(session.id, session);
     }
 }
