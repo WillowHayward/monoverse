@@ -1,7 +1,8 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Project } from '@whc/queen/model';
 
 @Entity()
-export class ProjectEntity {
+export class ProjectEntity implements Project {
     @PrimaryColumn()
     id: number; // Gitea id
 

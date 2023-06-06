@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Project } from '@whc/queen/model';
 import { Repository } from 'typeorm';
 import { ApiService } from '../api/api.service';
-import { ProjectEntity, UserEntity } from '../entities';
+import { ProjectEntity } from '../entities';
 
 @Injectable()
 export class ProjectsService {
@@ -10,7 +11,7 @@ export class ProjectsService {
         @InjectRepository(ProjectEntity) private projects: Repository<ProjectEntity>,
         private api: ApiService) { }
 
-    async getProjects(token: string, user: UserEntity): Promise<ProjectEntity[]> {
+    async getProjects(token: string): Promise<Project[]> {
         const repos = await this.api.getRepos(token);
         if (!repos.length) {
             return [];
@@ -25,20 +26,7 @@ export class ProjectsService {
         }
         const projects = await this.projects.findBy(repoIds);
 
-        /*const projects: Project[] = [{
-            id: 1,
-            name: 'Project 1',
-            owner_id: 1,
-            owner_name: 'Project 1 Owner Name'
-        }, {
-            id: 3,
-            name: 'Project 3',
-            owner_id: 2,
-            owner_name: 'Project 3 Owner Name'
-        }];*/
-
         return projects;
-
     }
 
 }
