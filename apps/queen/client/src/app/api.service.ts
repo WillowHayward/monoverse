@@ -2,19 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+// TODO: Move to common queen model
+interface Project {
+
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
 
-    }
-    testRequest(token: string): Observable<string> {
-        return this.http.get<string>('/api/repos', {
+    private getHeaders(): { headers: {Authorization: string} } {
+        const token = window.localStorage.getItem('token') || '';
+        return {
             headers: {
                 Authorization: `token ${token}`
             }
-        });
+        }
+    }
+
+    private makeGetRequest<T>(endpoint: string): Observable<T> {
+        const headers = this.getHeaders();
+        return this.http.get<T>(endpoint, headers);
+
+    }
+
+    getProjects(): Observable<Project[]> {
+        return this.makeGetRequest<Project[]>('/api/projects');
     }
 }
