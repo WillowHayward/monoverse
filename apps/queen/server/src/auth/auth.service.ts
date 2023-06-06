@@ -10,7 +10,6 @@ import { Session } from '../entities';
 import { randomBytes } from 'crypto';
 import { Repository } from 'typeorm';
 
-
 @Injectable()
 export class AuthService {
     constructor(private users: UsersService,
@@ -58,7 +57,7 @@ export class AuthService {
             user = await this.users.createUser(giteaUser);
         }
 
-        session.user = user.id;
+        session.user_id = user.id;
 
         this.sessions.update(session.id, session);
 

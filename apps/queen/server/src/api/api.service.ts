@@ -38,8 +38,8 @@ export class ApiService {
         return this.makeGetRequest<Gitea.User>('/user', token);
     }
 
-    async getUserRepos(username: string, token: string): Promise<Gitea.Repository[]> {
-        return this.makeGetRequest<Gitea.Repository[]>(`/users/${username}/repos`, token);
+    async getRepos(token: string): Promise<Gitea.Repository[]> {
+        return this.makeGetRequest<Gitea.Repository[]>(`user/repos`, token);
     }
 
     private async makeGetRequest<T>(endpoint: string, token: string): Promise<T> {

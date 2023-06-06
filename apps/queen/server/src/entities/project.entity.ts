@@ -9,7 +9,7 @@ export class Project {
     name: string;
 
     @Column()
-    owner_id: string;
+    owner_id: number;
 
     @Column()
     owner_name: string;

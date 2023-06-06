@@ -20,6 +20,7 @@ export class UsersService {
         const user = this.usersRepository.create({
             id: giteaUser.id,
             name: giteaUser.full_name,
+            username: giteaUser.login,
         });
         this.usersRepository.insert(user);
 

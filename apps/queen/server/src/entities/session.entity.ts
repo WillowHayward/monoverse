@@ -8,7 +8,7 @@ export class Session {
     @Column({
         nullable: true
     })
-    user: number;
+    user_id: number;
 
     @Column({
         unique: true,

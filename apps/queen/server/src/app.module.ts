@@ -5,8 +5,7 @@ import { ApiModule } from './api/api.module';
 import { UsersModule } from './users/users.module';
 import { User, Project, Session } from './entities';
 import { AuthModule } from './auth/auth.module';
-import { ProjectService } from './project/project.service';
-import { ProjectModule } from './project/project.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
     imports: [
@@ -19,9 +18,9 @@ import { ProjectModule } from './project/project.module';
             entities: [User, Project, Session],
             synchronize: true, // TODO: Turn this off for production
         }),
-        ProjectModule,
+        ProjectsModule,
     ],
     controllers: [],
-    providers: [ProjectService],
+    providers: [],
 })
 export class AppModule {}

@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { Session } from './entities';
 import { ApiService } from './api/api.service';
 
+//TODO: Make this global?
+
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
@@ -40,7 +42,7 @@ export class AuthGuard implements CanActivate {
             await this.updateToken(session);
         }
 
-        request['token'] = session.oauth_access_token;
+        request['session'] = session;
 
         return true;
     }
