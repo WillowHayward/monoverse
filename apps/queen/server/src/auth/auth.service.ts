@@ -6,7 +6,7 @@ import type { QueenTokenResponse } from '../types/auth';
 import { UsersService } from '../users/users.service';
 import { QUEEN_TOKEN_LIFESPAN, GITEA_URL, GITEA_CLIENT_ID, GITEA_REDIRECT_URI } from '../constants';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Session } from '../entities';
+import { SessionEntity } from '../entities';
 import { randomBytes } from 'crypto';
 import { Repository } from 'typeorm';
 
@@ -14,7 +14,7 @@ import { Repository } from 'typeorm';
 export class AuthService {
     constructor(private users: UsersService,
         private api: ApiService,
-        @InjectRepository(Session) private sessions: Repository<Session>
+        @InjectRepository(SessionEntity) private sessions: Repository<SessionEntity>
     ) {}
 
     async initAuth(): Promise<AuthInitData> {
@@ -69,7 +69,7 @@ export class AuthService {
         }
     }
 
-    async createSession(): Promise<Session> {
+    async createSession(): Promise<SessionEntity> {
         let token: string;
         do {
             token = randomBytes(16).toString('hex');

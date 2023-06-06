@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../entities';
+import { UserEntity } from '../entities';
 import * as Gitea from '../types/gitea';
 
 @Injectable()
 export class UsersService {
     constructor(
-        @InjectRepository(User)
-        private usersRepository: Repository<User>,
+        @InjectRepository(UserEntity)
+        private usersRepository: Repository<UserEntity>,
     ) {}
 
-    async createUser(giteaUser: Gitea.User): Promise<User | null> {
+    async createUser(giteaUser: Gitea.User): Promise<UserEntity | null> {
         if (await this.findUser(giteaUser)) {
             console.error('User Already Exists');
             return null;
@@ -28,11 +28,11 @@ export class UsersService {
         return user;
     }
 
-    async findUser(user: Gitea.User): Promise<User | null> {
+    async findUser(user: Gitea.User): Promise<UserEntity | null> {
         return this.findUserById(user.id);
     }
 
-    async findUserById(id: number): Promise<User | null> {
+    async findUserById(id: number): Promise<UserEntity | null> {
         const user = await this.usersRepository.findOneBy({ id })
         if (!user) {
             return null;

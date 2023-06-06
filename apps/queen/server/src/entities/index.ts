@@ -1,5 +1,3 @@
-import { User } from './user.entity';
-import { Project } from './project.entity';
-import { Session } from './session.entity';
-
-export { User, Project, Session };
+export * from './user.entity';
+export * from './project.entity';
+export * from './session.entity';

@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ApiModule } from './api/api.module';
 import { UsersModule } from './users/users.module';
-import { User, Project, Session } from './entities';
+import { UserEntity, ProjectEntity, SessionEntity } from './entities';
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 
@@ -15,7 +15,7 @@ import { ProjectsModule } from './projects/projects.module';
         TypeOrmModule.forRoot({
             type: 'sqlite',
             database: 'queen.db',
-            entities: [User, Project, Session],
+            entities: [UserEntity, ProjectEntity, SessionEntity],
             synchronize: true, // TODO: Turn this off for production
         }),
         ProjectsModule,

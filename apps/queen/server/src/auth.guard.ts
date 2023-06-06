@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Session } from './entities';
+import { SessionEntity } from './entities';
 import { ApiService } from './api/api.service';
 
 //TODO: Make this global?
@@ -11,8 +11,8 @@ import { ApiService } from './api/api.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(
-        @InjectRepository(Session)
-        private sessions: Repository<Session>,
+        @InjectRepository(SessionEntity)
+        private sessions: Repository<SessionEntity>,
         private api: ApiService
     ) {}
 
@@ -57,7 +57,7 @@ export class AuthGuard implements CanActivate {
         return token;
     }
 
-    private async updateToken(session: Session) {
+    private async updateToken(session: SessionEntity) {
         const token = await this.api.refreshToken(session.oauth_refresh_token);
 
         const now = (new Date()).valueOf();
