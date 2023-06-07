@@ -20,7 +20,10 @@
                     "apps/ridcully/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
+                    "includePaths": [
+                        "libs/ui/styles/src/lib",
+                        "libs/ui/themes/default/src/lib"
+                    ]
                 },
                 "styles": ["apps/ridcully/src/styles.scss"],
                 "scripts": []
@@ -77,7 +80,7 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/linter:eslint",
             "options": {
                 "lintFilePatterns": [
                     "apps/ridcully/src/**/*.ts",
@@ -86,7 +89,7 @@
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/apps/ridcully"],
             "options": {
                 "jestConfig": "apps/ridcully/jest.config.ts",

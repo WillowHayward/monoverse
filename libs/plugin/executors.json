@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "build": {
+      "implementation": "./src/executors/build/executor",
+      "schema": "./src/executors/build/schema.json",
+      "description": "build executor"
+    },
+    "swagger-to-typescript": {
+      "implementation": "./src/executors/swagger-to-typescript/executor",
+      "schema": "./src/executors/swagger-to-typescript/schema.json",
+      "description": "swagger-to-typescript executor"
+    }
+  }
+}

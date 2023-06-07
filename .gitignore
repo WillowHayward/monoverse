@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 
+# Databases
+*.db
+
 # logging
 /logs
 
@@ -38,6 +41,7 @@ yarn-error.log
 .yarnrc.yml
 testem.log
 /typings
+.env
 
 # System Files
 .DS_Store

@@ -1,0 +1,26 @@
+{
+    "name": "queen-model",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/queen/model/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/queen/model",
+                "main": "libs/queen/model/src/index.ts",
+                "tsConfig": "libs/queen/model/tsconfig.lib.json",
+                "assets": ["libs/queen/model/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/queen/model/**/*.ts"]
+            }
+        }
+    },
+    "tags": []
+}

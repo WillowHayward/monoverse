@@ -20,7 +20,10 @@
                     "apps/lipwig/admin/src/assets"
                 ],
                 "stylePreprocessorOptions": {
-                    "includePaths": ["libs/ui/styles/src/lib", "libs/ui/themes/default/src/lib"]
+                    "includePaths": [
+                        "libs/ui/styles/src/lib",
+                        "libs/ui/themes/default/src/lib"
+                    ]
                 },
                 "styles": ["apps/lipwig/admin/src/styles.scss"],
                 "scripts": []
@@ -77,7 +80,7 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/linter:eslint",
             "options": {
                 "lintFilePatterns": [
                     "apps/lipwig/admin/src/**/*.ts",
@@ -86,7 +89,7 @@
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/apps/lipwig/admin"],
             "options": {
                 "jestConfig": "apps/lipwig/admin/jest.config.ts",
