@@ -8,9 +8,7 @@
         "start": "nx serve",
         "build": "nx build",
         "test": "nx test",
-        "prepare": "husky install",
-        "storybook:run": "nx run ui:storybook",
-        "sb:run": "yarn storybook:run"
+        "prepare": "husky install"
     },
     "private": true,
     "dependencies": {
@@ -31,7 +29,6 @@
         "@nestjs/websockets": "^9.2.1",
         "@nrwl/angular": "15.4.1",
         "@nrwl/nx-plugin": "15.4.1",
-        "@storybook/core-server": "6.5.15",
         "@swc/helpers": "~0.4.11",
         "@types/express": "^4.17.17",
         "axios": "^1.4.0",
@@ -78,13 +75,8 @@
         "@nrwl/linter": "15.4.1",
         "@nrwl/nest": "15.4.1",
         "@nrwl/node": "15.4.1",
-        "@nrwl/storybook": "15.4.1",
         "@nrwl/web": "15.4.1",
         "@nrwl/workspace": "15.4.1",
-        "@storybook/addon-essentials": "6.5.15",
-        "@storybook/angular": "6.5.15",
-        "@storybook/builder-webpack5": "6.5.15",
-        "@storybook/manager-webpack5": "6.5.15",
         "@swc-node/register": "^1.4.2",
         "@swc/cli": "~0.1.55",
         "@swc/core": "^1.2.173",

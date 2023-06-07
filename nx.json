@@ -14,8 +14,7 @@
                     "build",
                     "lint",
                     "test",
-                    "e2e",
-                    "build-storybook"
+                    "e2e"
                 ]
             }
         }
@@ -62,13 +61,6 @@
         "lint": {
             "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
         },
-        "build-storybook": {
-            "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/.storybook/**/*"
-            ]
-        },
         "e2e": {
             "inputs": ["default", "^production"]
         }
@@ -82,7 +74,6 @@
             "!{projectRoot}/tsconfig.spec.json",
             "!{projectRoot}/jest.config.[jt]s",
             "!{projectRoot}/.eslintrc.json",
-            "!{projectRoot}/.storybook/**/*",
             "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
         ]
     },
