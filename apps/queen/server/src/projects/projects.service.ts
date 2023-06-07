@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Project } from '@whc/queen/model';
+import { GiteaRepository, Project } from '@whc/queen/model';
 import { Repository } from 'typeorm';
 import { ApiService } from '../api/api.service';
 import { ProjectEntity } from '../entities';
@@ -28,5 +28,11 @@ export class ProjectsService {
 
         return projects;
     }
+    
+    async getAvailableRepos(token: string): Promise<GiteaRepository> {
+        //const repos = 
 
+    }
+
+    private async 
 }

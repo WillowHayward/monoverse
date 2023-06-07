@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../api.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'whc-login',
@@ -9,7 +8,7 @@ import { AuthService } from '../auth.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute, private apiService: ApiService) {}
+    constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         const token = window.localStorage.getItem('token');

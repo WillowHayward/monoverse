@@ -1,5 +1,5 @@
 import { Controller, UseGuards, Get, Req } from '@nestjs/common';
-import { Project } from '@whc/queen/model';
+import { Project, GiteaRepository } from '@whc/queen/model';
 import { AuthGuard } from '../auth.guard';
 import { Token } from '../decorators/token.decorator';
 import { ProjectsService } from './projects.service';
@@ -14,6 +14,11 @@ export class ProjectsController {
     @Get()
     async getProjects(@Token() token: string): Promise<Project[]> {
         return this.projects.getProjects(token);
+    }
+
+    @Get('available')
+    async getAvailableRepos(@Token() token: string): Promise<GiteaRepository> {
+
     }
 
 }

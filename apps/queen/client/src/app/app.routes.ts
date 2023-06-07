@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AddProjectComponent } from './add-project/add-project.component';
+import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
@@ -13,4 +14,9 @@ export const appRoutes: Route[] = [
         path: 'login',
         component: LoginComponent
     },
+    {
+        path: 'add',
+        component: AddProjectComponent,
+        canActivate: [AuthGuard]
+    }
 ];

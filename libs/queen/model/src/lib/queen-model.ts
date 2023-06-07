@@ -20,3 +20,7 @@ export interface GiteaTokenResponse {
     expires_in: string;
     refresh_token: string;
 }
+
+export interface GiteaRepository {
+    name: string;
+}

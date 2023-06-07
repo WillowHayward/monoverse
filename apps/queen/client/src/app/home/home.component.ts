@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Project } from '@whc/queen/model';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -7,11 +9,16 @@ import { ApiService } from '../api.service';
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-    constructor(private api: ApiService) { }
+    projects: Project[] = [];
+    constructor(private api: ApiService, private router: Router) { }
 
     ngOnInit(): void {
         this.api.getProjects().subscribe(projects => {
-            console.log(projects);
+            this.projects = projects;
         });
+    }
+
+    addProject() {
+        this.router.navigate(['/add']);
     }
 }

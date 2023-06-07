@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-// TODO: Move to common queen model
-interface Project {
-
-}
+import { Project } from '@whc/queen/model';
 
 @Injectable({
   providedIn: 'root'
