@@ -1,54 +1,55 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/lipwig/src",
-  "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/apps/lipwig",
-        "main": "apps/lipwig/src/main.ts",
-        "tsConfig": "apps/lipwig/tsconfig.app.json",
-        "assets": ["apps/lipwig/src/assets"],
-        "target": "node",
-        "compiler": "tsc"
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/lipwig/src/environments/environment.ts",
-              "with": "apps/lipwig/src/environments/environment.prod.ts"
+    "name": "lipwig",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/lipwig/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/lipwig",
+                "main": "apps/lipwig/src/main.ts",
+                "tsConfig": "apps/lipwig/tsconfig.app.json",
+                "assets": ["apps/lipwig/src/assets"],
+                "target": "node",
+                "compiler": "tsc"
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "extractLicenses": true,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/lipwig/src/environments/environment.ts",
+                            "with": "apps/lipwig/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
             }
-          ]
+        },
+        "serve": {
+            "executor": "@nx/node:node",
+            "options": {
+                "buildTarget": "lipwig:build"
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/lipwig/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/apps/lipwig"],
+            "options": {
+                "jestConfig": "apps/lipwig/jest.config.ts",
+                "passWithNoTests": true
+            }
         }
-      }
     },
-    "serve": {
-      "executor": "@nrwl/node:node",
-      "options": {
-        "buildTarget": "lipwig:build"
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/lipwig/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/lipwig"],
-      "options": {
-        "jestConfig": "apps/lipwig/jest.config.ts",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

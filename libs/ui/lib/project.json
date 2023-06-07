@@ -7,7 +7,7 @@
     "prefix": "whc",
     "targets": {
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/ui/lib"],
             "options": {
                 "jestConfig": "libs/ui/lib/jest.config.ts",
@@ -15,14 +15,14 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/linter:eslint",
             "options": {
                 "lintFilePatterns": [
                     "libs/ui/lib/src/**/*.ts",
                     "libs/ui/lib/src/**/*.html"
                 ]
             }
-        },
+        }
     },
     "tags": []
 }

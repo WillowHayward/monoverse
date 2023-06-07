@@ -17,7 +17,8 @@ export class ProjectsController {
     }
 
     @Get('available')
-    async getAvailableRepos(@Token() token: string): Promise<GiteaRepository> {
+    async getAvailableRepos(@Token() token: string): Promise<GiteaRepository[]> {
+        return this.projects.getAvailableRepos(token);
 
     }
 

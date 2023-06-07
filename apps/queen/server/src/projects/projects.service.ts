@@ -29,8 +29,8 @@ export class ProjectsService {
         return projects;
     }
     
-    async getAvailableRepos(token: string): Promise<GiteaRepository> {
-        //const repos = 
+    async getAvailableRepos(token: string): Promise<GiteaRepository[]> {
+        return [];
 
     }
 

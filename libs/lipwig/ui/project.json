@@ -6,7 +6,7 @@
     "prefix": "lipwig",
     "targets": {
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/libs/lipwig/ui"],
             "options": {
                 "jestConfig": "libs/lipwig/ui/jest.config.ts",
@@ -14,7 +14,7 @@
             }
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/linter:eslint",
             "options": {
                 "lintFilePatterns": [
                     "libs/lipwig/ui/src/**/*.ts",
