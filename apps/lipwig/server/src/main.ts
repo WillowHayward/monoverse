@@ -15,9 +15,7 @@ async function bootstrap() {
     app.useWebSocketAdapter(new WsAdapter(app));
     const port = defaultConfig.port;
     await app.listen(port);
-    Logger.log(
-        `🚀 Application is running on: http://localhost:${port}`
-    );
+    Logger.log(`🚀 Application is running on: http://localhost:${port}`);
 }
 
 bootstrap();
