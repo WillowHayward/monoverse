@@ -1,0 +1,189 @@
+{
+    "name": "Willow Hayward",
+    "title": "Software Developer",
+    "mission": "My goal in this world is simple: I want to make things.",
+    "social": {
+        "github": "https://github.com/WillowHayward/",
+        "linkedin": "https://www.linkedin.com/in/willowhayward/"
+    },
+    "skills": {
+        "Web Technologies": [
+            "JavaScript", "TypeScript", "Node.JS", "PHP", "Angular", "Svelte", "HTML5", "CSS", "Tailwind", "Apache", "Nginx", "WebSockets", "NX", "Wordpress", "MEAN", "LAMP"
+        ],
+        "Other Programming Languages": [
+            "C#", "Python", "C/C++", "Java", ".NET" 
+        ],
+        "Software": [
+            "Windows", "MacOS", "Linux", "Microsoft Office", "Vim/NeoVim", "LaTeX"
+        ]
+    },
+    "experience": [
+        {
+            "title": "Angular Developer",
+            "organisation": "Auto & General",
+            "location": "Brisbane, Australia",
+            "description_": "As a member of the A&G Web Optimisation team, I was charged with improving developer experience. From improving build times to maintaining the common component library, this position had a diverse range of responsibilities attached.",
+            "dates": "Since October 2021",
+            "responsibilities": [
+                "Front End Development",
+                "CI/CD Optimisation",
+                "Developer Experience"
+            ]
+        },
+        {
+            "title": "Full Stack Developer",
+            "organisation": "Merchant Warrior",
+            "location": "Brisbane, Australia",
+            "dates": "September 2020 - September 2021",
+            "responsibilities": [
+                "Front End Design",
+                "RESTful API Development",
+                "Database Optimisation"
+            ]
+        },
+        {
+            "title": "Contractor",
+            "organisation": "Blue Beard Entertainment",
+            "location": "Coral Springs, Florida (Remote)",
+            "dates": "2015-2020",
+            "responsibilities": [
+                "App Development",
+                "In-House Utility Development"
+            ]
+        },
+        {
+            "title": "Head Teacher",
+            "organisation": "Junior Engineers",
+            "location": "Brisbane, Australia",
+            "dates": "July 2019 - September 2019",
+            "responsibilities": [
+                "Responsible for teaching basic programming to groups of up to 20 children"
+            ]
+        },
+        {
+            "title": "Semper Floreat Newspaper Editor",
+            "organisation": "University of Queensland Union (UQU)",
+            "location": "Brisbane, Australia",
+            "dates": "January 2018 - December 2018",
+            "responsibilities": [
+                "Website Management (WordPress)",
+                "Article Writing and Editing"
+            ]
+        },
+        {
+            "title": "Head Teacher",
+            "organisation": "Code Camp",
+            "location": "Brisbane, Australia",
+            "dates": "April 2017 - September 2017",
+            "responsibilities": [
+                "Responsible for teaching basic programming to groups of up to 30 children",
+                "Worked with camp managers and teaching assistants"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "Deadname Remover",
+            "description": "Removes the dead names of transgender individuals from their web browsers",
+            "links": {
+                "View on GitHub": "https://bit.ly/3eDghG2"
+            },
+            "dates": "March 2018 - June 2022",
+            "info": [
+                "Published on the Mozilla Firefox and Google Chrome web stores",
+                "Over 15k users and more than 100 five-star reviews",
+                "Technologies used: JavaScript"
+            ],
+            "image": "deadname-remover.png"
+        },
+        {
+            "name": "French Toast",
+            "description": " A networked browser based game created for Blue Beard Entertainment to help with playtesting and to promote the Kickstarter for a physical version ",
+            "links": {
+                "Play": "https://FrenchToastGame.com",
+                "View on GitHub": "#",
+                "French Toast": "https://jellybean.games/product/french-toast/"
+            },
+            "dates": "April 2020",
+            "info": [
+                "Online multiplayer through Lipwig networking platform",
+                "Thousands of games played",
+                "Technologies used: TypeScript, WebSockets (Lipwig)"
+            ],
+            "image": "french-toast.png"
+        },
+        {
+            "name": "The Social Dial",
+            "description": "Interfacing with modern social media through analog technology",
+            "links": {
+                "Twitter Tapper Feed": "https://bit.ly/2Ba2t7d"
+            },
+            "dates": "May 31st 2018",
+            "info": [
+                "Interfaced a USSR telegraph key to Twitter and a 1985 dial phone to Facebook",
+                "Exhibited at the State Library of Queensland, May 2018; UQ Innovation Showcase, October 2018",
+                "Technologies used: Arduino, C, Python, JavaScript, NodeJS, WebSockets"
+            ],
+            "image": "social-dial.png"
+        },
+        {
+            "name": "Lipwig",
+            "description": "Room-Based Message Server",
+            "links": {
+                "Lipwig Server": "https://npmjs.com/package/lipwig",
+                "Lipwig Browser API": "https://npmjs.com/package/lipwigjs"
+            },
+            "dates": "Since April 2017",
+            "info": [
+                "Designed for development of room based social games",
+                "Developed to act as Platform as a Service (PaaS) message server",
+                "Available on npm",
+                "Technologies used: TypeScript, NodeJS, WebSockets"
+            ],
+            "image": "lipwig.png"
+        },
+        {
+            "name": "Coaster",
+            "description": "Action Platformer",
+            "links": {
+                "View on GitHub": "https://github.com/UQdeco2800/coaster"
+            },
+            "dates": "August 2016 - October 2016",
+            "info": [
+                "Java project with 60 person development team",
+                "Responsible for procedurally generated terrain and object layering system",
+                "Extensive unit test coverage",
+                "Technologies used: Java, JUnit, Gradle"
+            ],
+            "image": "coaster.png"
+        },
+        {
+            "name": "Turrets",
+            "description": "2D Tower Defence Platformer",
+            "links": {
+                "View on GitHub": "https://github.com/WillowHayward/Turrets"
+            },
+            "dates": "December 2016",
+            "info": [
+                "Originally developed using Coaster engine",
+                "Redeveloped with LibGDX Framework",
+                "Technologies used: Java, LibGDX"
+            ],
+            "image": "turrets.png"
+        }
+    ],
+    "education": [
+        {
+            "title": "Bachelor of Information Technology",
+            "subtitle": "Software Design",
+            "institution": "University of Queensland",
+            "dates": "July 2014 - May 2020",
+            "info": [
+                "UQ Employability Award Recipient",
+                "Paul Gampe Prize for Best Open Source Project in the 2016 UQ Innovation Showcase",
+                "UQ Writers Club Social Media Manager, 2015; President, 2016-2017",
+                "UQ Mafia (Social Club) Founder and President, 2016-2017"
+            ]
+        }
+    ]
+}

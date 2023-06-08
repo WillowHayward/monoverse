@@ -75,5 +75,5 @@
             "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
         ]
     },
-    "defaultProject": "will-hay-code"
+    "defaultProject": "whc"
 }
