@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client, Host } from '@whc/lipwig/js';
+import { Client, Host, Lipwig } from '@whc/lipwig/js';
 
 @Injectable({
   providedIn: 'root'
@@ -17,31 +17,24 @@ export class LipwigService {
     public createRoom(name: string): Promise<Host> {
         this.isHost = true;
 
-        return new Promise((resolve, reject) => {
-            const host = new Host(window.env['LIPWIG_HOST'], {
-                name
-            });
+        return Lipwig.create(window.env['LIPWIG_HOST'], {
+            name
+        }).then(host => {
+            this.code = host.room;
+            this.host = host;
 
-            host.on('created', (code: string) => {
-                this.code = code;
-                this.host = host;
-                resolve(host);
-            });
+            return host;
         });
     }
 
     public joinRoom(name: string, code: string): Promise<Client> {
-        return new Promise((resolve, reject) => {
-            const client = new Client(window.env['LIPWIG_HOST'], code, {
-                name
-            });
+        return Lipwig.join(window.env['LIPWIG_HOST'], code, {
+            name
+        }).then(client => {
+            this.code = client.room;
+            this.client = client;
 
-            client.on('joined', () => {
-                this.code = code;
-                this.client = client;
-                resolve(client);
-            });
-
+            return client;
         });
     }
 
