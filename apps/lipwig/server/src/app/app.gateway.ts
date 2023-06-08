@@ -4,7 +4,7 @@ import {
     OnGatewayConnection,
     OnGatewayDisconnect,
 } from '@nestjs/websockets';
-import { LipwigSocket } from '../lipwig.model';
+import { LipwigSocket } from './app.model';
 import {
     CreateEventData,
     JoinEventData,
@@ -16,7 +16,7 @@ import { CLIENT_EVENT } from '@whc/lipwig/types';
 import { RoomService } from '../room/room.service';
 
 @WebSocketGateway()
-export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
+export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
     constructor(private rooms: RoomService) {}
 
     @SubscribeMessage(CLIENT_EVENT.CREATE)

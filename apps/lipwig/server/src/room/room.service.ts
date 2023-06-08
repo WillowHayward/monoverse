@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateEventData, JoinEventData, LipwigMessageEventData, ReconnectEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
-import { LipwigSocket } from '../lipwig.model';
+import { LipwigSocket } from '../app/app.model';
 import { Room } from './room';
 
 @Injectable()
