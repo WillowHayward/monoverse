@@ -18,7 +18,6 @@
             "@whc/asset-loader": ["libs/asset-loader/src/index.ts"],
             "@whc/character": ["libs/character/src/index.ts"],
             "@whc/deck": ["libs/deck/src/index.ts"],
-            "@whc/event-manager": ["libs/event-manager/src/index.ts"],
             "@whc/fps": ["libs/fps/src/index.ts"],
             "@whc/lipwig/js": ["libs/lipwig/js/src/index.ts"],
             "@whc/lipwig/types": ["libs/lipwig/types/src/index.ts"],

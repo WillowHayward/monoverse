@@ -41,8 +41,12 @@ export class Host extends SocketUser {
      */
     constructor(url: string, public config: RoomConfig = {}) {
         super(url);
-        this.reserved.once('created', this.created, { object: this });
-        this.reserved.on('joined', this.joined, { object: this });
+        this.reserved.once('created', (id: string) => {
+            this.created(id);
+        });
+        this.reserved.on('joined', (userID: string, options: UserOptions, message: JoinedEvent) => {
+            this.joined(userID, options, message);
+        });
 
         this.users = {};
         this.groups = {};
@@ -149,7 +153,9 @@ export class Host extends SocketUser {
 
         this.users[localID] = localUser;
 
-        localClient.on('joined', callback, { object: localClient }); // Context?
+        localClient.on('joined', (id: string) => {
+            callback(id);
+        }); 
         /*localClient.emit('joined', localID);
       this.emit('joined', localUser, data);*/
 

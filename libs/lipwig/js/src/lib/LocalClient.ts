@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import { EventManager } from '@whc/event-manager';
+import * as EventManager from 'events';
 import { User } from './User';
 import { Host } from './Host';
 import { LipwigMessageEvent, DataMap } from '@whc/lipwig/types';
@@ -19,7 +19,9 @@ export class LocalClient extends EventManager {
         this.user = user;
         this.data = data;
         this.reserved = new EventManager();
-        this.reserved.on('joined', this.setID, { object: this });
+        this.reserved.on('joined', (id: string) => {
+            this.setID(id);
+        });
     }
 
     public send(event: string, ...args: unknown[]): void {

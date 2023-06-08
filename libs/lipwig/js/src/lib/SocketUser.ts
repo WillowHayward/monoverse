@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import { EventManager } from '@whc/event-manager';
+import * as EventManager from 'events';
 import {
     CLIENT_EVENT,
     GenericEvent,

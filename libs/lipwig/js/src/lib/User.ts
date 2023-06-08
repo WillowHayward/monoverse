@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import { EventManager } from '@whc/event-manager';
+import * as EventManager from 'events';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
 import { LipwigMessageEvent, CLIENT_EVENT } from '@whc/lipwig/types';

@@ -25,7 +25,9 @@ export class Client extends SocketUser {
         private options: UserOptions = {}
     ) {
         super(url);
-        this.reserved.on('joined', this.setID, { object: this });
+        this.reserved.on('joined', (id: string) => {
+            this.setID(id);
+        });
     }
 
     /**
