@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import * as EventManager from 'events';
+import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
 import { LipwigMessageEvent, CLIENT_EVENT } from '@whc/lipwig/types';
@@ -28,6 +28,10 @@ export class User extends EventManager {
         } else {
             this.parent.sendMessage(message);
         }
+    }
+
+    public sendToOthers(event: string, ...args: unknown[]): void {
+        this.parent.sendToAllExcept(event, this, ...args);
     }
 
     public assign(name: string): void {

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { CreateEventData, JoinEventData, LipwigMessageEventData, ReconnectEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
@@ -22,7 +22,6 @@ export class RoomService {
     }
 
     join(user: LipwigSocket, payload: JoinEventData) {
-        Logger.log(payload);
         const code = payload.code;
         const options = payload.options;
         // TODO: Join Options

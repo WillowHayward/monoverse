@@ -1,10 +1,10 @@
 /**
  * @author: WillHayCode
  */
-import * as EventManager from 'events';
 import { User } from './User';
 import { Host } from './Host';
 import { LipwigMessageEvent, DataMap } from '@whc/lipwig/types';
+import { EventManager } from './EventManager';
 
 export class LocalClient extends EventManager {
     public id: string;

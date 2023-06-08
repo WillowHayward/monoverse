@@ -19,11 +19,6 @@ type GroupMap = {
     [index: string]: User[];
 };
 
-type Filter = {
-    whitelist: string[];
-    blacklist: string[];
-};
-
 export class Host extends SocketUser {
     private users: User[] = [];
     private groups: GroupMap;
@@ -105,26 +100,31 @@ export class Host extends SocketUser {
         return group;
     }
 
-    public send(message: string, filter: Filter, ...args: unknown[]): void {
-        // TODO: Move this to server logic
-        let users: User[] = [];
-        if (filter.whitelist === undefined) {
-            filter.whitelist = [];
+    public sendToAll(event: string, ...args: unknown[]) {
+        this.sendTo(event, this.users, ...args);
+    }
+
+    public sendToAllExcept(event: string, except: User | User[], ...args: unknown[]) {
+        const recipient = this.users.filter(user => user !== except);
+
+        this.sendTo(event, recipient, ...args);
+    }
+
+    public sendTo(event: string, users: User | User[], ...args: unknown[]) {
+        if (!Array.isArray(users)) {
+            users = [users];
         }
 
-        users = this.filter(filter.whitelist, true);
-
-        if (filter.blacklist === undefined) {
-            filter.blacklist = [];
-        }
-
-        const blacklist: User[] = this.filter(filter.blacklist, false);
-
-        users.forEach((user: User): void => {
-            if (blacklist.indexOf(user) > -1) {
-                return;
+        const recipient = users.map(user => user.id);
+        console.log(recipient);
+        this.sendMessage({
+            event: CLIENT_EVENT.MESSAGE,
+            data: {
+                event,
+                args,
+                sender: this.id, // TODO: this.room?
+                recipient
             }
-            user.send(message, ...args);
         });
     }
 
@@ -235,30 +235,7 @@ export class Host extends SocketUser {
     ): void {
         const user: User = new User(userID, this);
         this.users.push(user);
+        console.log(this.users);
         this.emit('joined', user, options, message);
-    }
-
-    private filter(groups: string[], whitelist: boolean): User[] {
-        let filtered: User[] = [];
-
-        if (groups.length === 0 && whitelist) {
-            for (const user of this.users) {
-                filtered.push(user);
-            }
-
-            return filtered;
-        }
-
-        groups.forEach((name: string): void => {
-            filtered = filtered.concat(this.getGroup(name));
-        });
-
-        filtered = filtered.filter(
-            (user: User, index: number, users: User[]): boolean => {
-                return users.indexOf(user) === index;
-            }
-        );
-
-        return filtered;
     }
 }

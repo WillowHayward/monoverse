@@ -35,24 +35,16 @@ export class RoomComponent implements OnInit {
         this.name = host.config.name ?? host.id;
         this.users.push(this.name);
 
-        host.on('joined', (newUser: User, data: any) => {
+        host.on('joined', (user: User, data: any) => {
             this.users.push(data.name);
-            newUser.send('existingUsers', this.users);
+            user.send('existingUsers', this.users);
 
-            for (const user of host.getUsers()) {
-                if (user === newUser) {
-                    continue;
-                }
-
-                user.send('newChatter', data.name);
-            }
+            host.sendToAllExcept('newChatter', user, data.name);
         });
 
         host.on('message', (sender: User, name: string, text: string) => {
             this.messages.push({ name, text});
-            for (const user of host.getUsers()) {
-                user.send('message', name, text);
-            }
+            host.sendToAll('message', name, text);
         });
     }
 

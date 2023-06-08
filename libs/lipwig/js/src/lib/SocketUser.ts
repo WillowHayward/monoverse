@@ -1,26 +1,25 @@
 /**
  * @author: WillHayCode
  */
-import * as EventManager from 'events';
 import {
     CLIENT_EVENT,
-    GenericEvent,
     LipwigMessageEvent,
     ReconnectEvent,
     PingEvent,
+    ClientEvent,
 } from '@whc/lipwig/types';
+import { EventManager } from './EventManager';
 
-export abstract class SocketUser {
+export abstract class SocketUser extends EventManager {
     public id: string = '';
     public room: string = '';
     protected reserved: EventManager;
-    protected events: EventManager;
     private socket: WebSocket;
     private retry: boolean;
     private url: string;
     constructor(url: string) {
+        super();
         this.url = url;
-        this.events = new EventManager();
         this.reserved = new EventManager();
         //this.reserved.on('ping', this.pong, this);
 
@@ -43,15 +42,13 @@ export abstract class SocketUser {
         this.sendMessage(message);
     }
 
-    public sendMessage(message: GenericEvent): void {
+    public sendMessage(message: ClientEvent): void {
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         if (message.event === CLIENT_EVENT.MESSAGE) {
-            const messageEvent = message as LipwigMessageEvent; //TODO - There's gotta be a cleaner way to do this
-            if (messageEvent.data.sender.length === 0) {
-                messageEvent.data.sender = this.id;
+            if (message.data.sender.length === 0) {
+                message.data.sender = this.id;
             }
-            message = messageEvent;
         }
         console.log(message);
         this.socket.send(JSON.stringify(message));
@@ -115,17 +112,5 @@ export abstract class SocketUser {
         this.emit('pong', ping);
 
         return false;
-    }
-
-    public on(eventName: string, listener: ((...args: any[]) => void)) {
-        this.events.on(eventName, listener);
-    }
-
-    public once(eventName: string, listener: ((...args: any[]) => void)) {
-        this.events.once(eventName, listener);
-    }
-
-    public emit(eventName: string, ...args: any[]) {
-        this.events.emit(eventName, ...args);
     }
 }

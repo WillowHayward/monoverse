@@ -14,7 +14,7 @@ import { Logger } from '@nestjs/common';
 export class Room {
     private id = v4();
     private users: string[] = []; // Array of user ids, index 0 for host
-    private connected: { [id: string]: LipwigSocket } = {};
+    private connected: LipwigSocket[] = [];
     private disconnected: string[] = [];
 
     constructor(
@@ -39,7 +39,7 @@ export class Room {
         // TODO: Join data
         this.initialiseUser(client, false);
         const id = client.id;
-        this.connected[id] = client;
+        this.connected.push(client);
 
         const confirmation: JoinedEvent = {
             event: SERVER_EVENT.JOINED,
@@ -59,9 +59,13 @@ export class Room {
             // Delete from room
         }
 
-        Logger.log(this.host.id);
         const id = user.id;
-        delete this.connected[id];
+        const index = this.connected.findIndex(value => value === user);
+        if (!index) {
+            // ???
+        }
+        this.connected.splice(index, 1);
+
         this.disconnected.push(id);
         // TODO: Send messages
     }
@@ -81,8 +85,8 @@ export class Room {
         this.disconnected.splice(disconnectedIndex, 1);
     }
 
-    handleMessage(user: LipwigSocket, data: LipwigMessageEventData) {
-        if (user.id !== this.host.id) {
+    handleMessage(sender: LipwigSocket, data: LipwigMessageEventData) {
+        if (sender.id !== this.host.id) {
             // If not host
             this.sendMessage(this.host, {
                 event: SERVER_EVENT.MESSAGE,
@@ -93,16 +97,16 @@ export class Room {
 
         for (const id of data.recipient) {
             //TODO: Disconnected message queuing
-            const user = this.connected[id];
+            const user = this.connected.find(value => id === value.id);
             if (!user) {
                 // stub
+                Logger.warn('Could not find user', id);
             }
 
             this.sendMessage(user, {
                 event: SERVER_EVENT.MESSAGE,
                 data,
             });
-            return;
         }
     }
 
