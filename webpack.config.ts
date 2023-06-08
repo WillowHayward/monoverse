@@ -1,3 +1,4 @@
+import { existsSync } from 'fs';
 import { readJsonSync } from 'fs-extra';
 import * as webpack from 'webpack';
 
@@ -9,19 +10,13 @@ module.exports = (config: webpack.Configuration, options: any, context: any): we
         config.mode = process.env['NODE_ENV'] || config.mode;
     }
 
+
+    ;
     if (!config.plugins) {
         config.plugins = [];
     }
+    config.plugins.push(new webpack.DefinePlugin(injectEnvVars(config)));
 
-    const envPrefixes = ['NX'];
-    if (config.resolve?.roots) {
-        const project = readJsonSync(`${config.resolve.roots[0]}/project.json`);
-        if (project.envPrefixes) {
-            envPrefixes.push(...project.envPrefixes);
-        }
-
-    }
-    config.plugins.push(new webpack.DefinePlugin(getClientEnvironment(envPrefixes)));
     return config;
 };
 
@@ -31,18 +26,24 @@ function nodeEnvValid(nodeEnv: string | undefined): nodeEnv is NodeEnv {
     return true;
 }
 
+function injectEnvVars(config: webpack.Configuration) {
+    if (!config.resolve?.roots) {
+        return {};
+    }
+        const path = `${config.resolve.roots[0]}/package.json`;
+    if(!existsSync(path)) {
+        return {};
+    }
 
-function getClientEnvironment(prefixes: string[]) {
-    //TODO: This injects all the env vars with the given prefixes. THis isn't super secure - need to resolve that
-    // One possible solution is inject env vars from a given list
-    // Define a global.d.ts to remove need to include node type
 
-    // Grab NX_* environment variables and prepare them to be injected
-    // into the application via DefinePlugin in webpack configuration.
-    const NX_APP = new RegExp(`^(${prefixes.join('|')})_`, 'i');
+    const packageJson = readJsonSync(path);
+    if (!packageJson.envVars) {
+        return {};
+    }
+
 
     const raw = Object.keys(process.env)
-        .filter((key) => NX_APP.test(key))
+        .filter((key) => packageJson.envVars.includes(key))
         .reduce((env: NodeJS.ProcessEnv, key) => {
             env[key] = process.env[key];
             return env;
@@ -50,9 +51,10 @@ function getClientEnvironment(prefixes: string[]) {
 
     // Stringify all values so we can feed into webpack DefinePlugin
     return {
-            'process.env': Object.keys(raw).reduce((env: NodeJS.ProcessEnv, key) => {
+            'window.env': Object.keys(raw).reduce((env: any, key) => {
             env[key] = JSON.stringify(raw[key]);
             return env;
         }, {}),
     };
+
 }
