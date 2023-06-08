@@ -10,7 +10,9 @@ import { User } from '@whc/lipwig/js';
 export class RoomComponent implements OnInit {
     code: string;
     users: string[] = [];
-    messages: {user: string; text: string}[] = [];
+    messages: {name: string; text: string}[] = [];
+    private name: string;
+
 
     constructor(private lipwig: LipwigService) { }
 
@@ -30,8 +32,8 @@ export class RoomComponent implements OnInit {
             return;
         }
 
-        const hostName = host.config.name ?? host.id;
-        this.users.push(hostName);
+        this.name = host.config.name ?? host.id;
+        this.users.push(this.name);
 
         host.on('joined', (newUser: User, data: any) => {
             this.users.push(data.name);
@@ -45,6 +47,13 @@ export class RoomComponent implements OnInit {
                 user.send('newChatter', data.name);
             }
         });
+
+        host.on('newMessage', (sender: User, name: string, text: string) => {
+            this.messages.push({ name, text});
+            for (const user of Object.values(host.getUsers())) {
+                user.send('newMessage', name, text);
+            }
+        });
     }
 
     private setupClient() {
@@ -56,16 +65,37 @@ export class RoomComponent implements OnInit {
 
         client.on('existingUsers', (names: string[]) => {
             this.users.push(...names);
-
+            this.name = names.pop() || '';
         });
 
         client.on('newChatter', (name: string) => {
             this.users.push(name);
         });
+
+        client.on('newMessage', (name: string, text: string) => {
+            this.messages.push({ name, text});
+        });
     }
 
-    send() {
-        console.log('sent');
+    send(text: string) {
+        if (this.lipwig.isHost) {
+            const host = this.lipwig.getHost();
+            if (!host) {
+                return;
+            }
 
+            for (const user of Object.values(host.getUsers())) {
+                user.send('newMessage', this.name, text);
+            }
+
+            this.messages.push({ name: this.name, text });
+        } else {
+            const client = this.lipwig.getClient();
+            if (!client) {
+                return;
+            }
+
+            client.send('newMessage', this.name, text);
+        }
     }
 }

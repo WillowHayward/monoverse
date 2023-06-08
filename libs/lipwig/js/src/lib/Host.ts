@@ -39,7 +39,7 @@ export class Host extends SocketUser {
      * @param url       Websocket url of LipwigCore server
      * @param options   Options with which to create room
      */
-    constructor(url: string, private config: RoomConfig = {}) {
+    constructor(url: string, public config: RoomConfig = {}) {
         super(url);
         this.reserved.once('created', this.created, { object: this });
         this.reserved.on('joined', this.joined, { object: this });
@@ -160,7 +160,7 @@ export class Host extends SocketUser {
         // TODO: Add callback as parameter
         setTimeout(() => {
             this.emit('joined', localUser, options);
-            localClient.emit('joined', localID);
+            localClient.emit('joired', localID);
         }, 10);
 
         return localClient;
