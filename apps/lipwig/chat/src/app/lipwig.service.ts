@@ -14,20 +14,23 @@ export class LipwigService {
 
     constructor() { }
 
-    public createRoom(name: string): Promise<Host> {
+    public async createRoom(name: string): Promise<Client> {
         this.isHost = true;
 
-        return Lipwig.create(window.env['LIPWIG_HOST'], {
-            name
-        }).then(host => {
+        return Lipwig.create(window.env['LIPWIG_HOST']).then(host => {
             this.code = host.room;
             this.host = host;
 
-            return host;
+            const client = host.createLocalClient({
+                name
+            });
+            this.client = client;
+
+            return client;
         });
     }
 
-    public joinRoom(name: string, code: string): Promise<Client> {
+    public async joinRoom(name: string, code: string): Promise<Client> {
         return Lipwig.join(window.env['LIPWIG_HOST'], code, {
             name
         }).then(client => {

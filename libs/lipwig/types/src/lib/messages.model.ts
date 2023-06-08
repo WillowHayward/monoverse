@@ -34,7 +34,7 @@ export interface ClientMessageEvent extends GenericEvent {
 
 export interface ClientMessageEventData {
     event: string;
-    recipient?: string[]; // Added by host for host -> client messages
+    recipients?: string[]; // Added by host for host -> client messages
     args: unknown[];
 }
 

@@ -50,7 +50,6 @@ export class Host extends EventManager {
         });
 
         this.groups = {};
-        console.log(this);
     }
 
     // TODO: Move to common file
@@ -138,9 +137,9 @@ export class Host extends EventManager {
     }
 
     public sendToAllExcept(event: string, except: User | User[], ...args: unknown[]) {
-        const recipient = this.users.filter(user => user !== except);
+        const recipients = this.users.filter(user => user !== except);
 
-        this.sendTo(event, recipient, ...args);
+        this.sendTo(event, recipients, ...args);
     }
 
     public sendTo(event: string, users: User | User[], ...args: unknown[]) {
@@ -148,16 +147,20 @@ export class Host extends EventManager {
             users = [users];
         }
 
-        const recipient = users.map(user => user.id);
-        console.log(recipient);
+        const remoteRecipients = users.filter(user => !user.id.startsWith('local-')).map(user => user.id);
+        const localRecipients = users.filter(user => user.id.startsWith('local-'));
         this.socket.send({
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
                 args,
-                recipient
+                recipients: remoteRecipients
             }
         });
+
+        for (const user of localRecipients) {
+            user.send(event, ...args);
+        }
     }
 
     public send(message: ClientEvent) {
@@ -171,11 +174,12 @@ export class Host extends EventManager {
         let localCount = 1;
         let localID: string;
         do {
-            localID = this.id + '-local' + localCount;
+            localID = `local-${this.id}-${localCount}`;
             localCount++;
         } while (this.users.find(user => user.id === localID));
 
         const localUser = new User(localID, this, true);
+        // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
         const localClient = new LocalClient(this, localUser, this.room, options);
 
         localUser.client = localClient;
@@ -200,7 +204,7 @@ export class Host extends EventManager {
         return localClient;
     }
 
-    protected handle(message: ServerEvent): void {
+    public handle(message: ServerEvent): void {
         let eventName: string = message.event; 
         let sender: string | null = null;
         const args: unknown[] = [];
@@ -273,7 +277,6 @@ export class Host extends EventManager {
     ): void {
         const user: User = new User(userID, this);
         this.users.push(user);
-        console.log(this.users);
         this.emit('joined', user, options, message);
     }
 }

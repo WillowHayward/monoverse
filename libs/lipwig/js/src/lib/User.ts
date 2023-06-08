@@ -28,7 +28,7 @@ export class User extends EventManager {
                 data: {
                     event,
                     args,
-                    recipient: [this.id],
+                    recipients: [this.id],
                 },
             };
             this.parent.send(message);

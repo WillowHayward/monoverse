@@ -1,4 +1,4 @@
-import { ClientEvent, ServerEvent } from "@whc/lipwig/types";
+import { ClientEvent, ServerEvent, ServerMessageEvent } from "@whc/lipwig/types";
 import { EventManager } from "./EventManager";
 
 export class Socket extends EventManager {
@@ -18,16 +18,17 @@ export class Socket extends EventManager {
         this.socket.addEventListener('open', () => {
             this.emit('connected');
         });
+
         this.socket.addEventListener('error', () => {
             this.emit('error');
             // TODO: error handling
         });
+
         this.socket.addEventListener('message', (event: MessageEvent) => {
             const message: ServerEvent = JSON.parse(event.data);
             this.emit('message', message);
-            //console.log(event);
-            //this.handle(event);
         });
+
         this.socket.addEventListener('close', () => {
             if (this.retry) {
                 // TODO

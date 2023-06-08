@@ -102,7 +102,7 @@ export class Room {
             return;
         }
 
-        for (const id of data.recipient) {
+        for (const id of data.recipients) {
             //TODO: Disconnected message queuing
             const user = this.connected.find(value => id === value.id);
             if (!user) {

@@ -15,7 +15,7 @@ export class LobbyComponent {
 
     create(): void {
         const name = this.nameInput.nativeElement.value;
-        this.lipwig.createRoom(name).then((host) => {
+        this.lipwig.createRoom(name).then((client) => {
             this.router.navigate(['room']);
         });
     }

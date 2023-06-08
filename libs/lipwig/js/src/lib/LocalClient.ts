@@ -3,7 +3,7 @@
  */
 import { User } from './User';
 import { Host } from './Host';
-import { SERVER_EVENT, ServerEvent, UserOptions } from '@whc/lipwig/types';
+import { SERVER_EVENT, ServerEvent, ServerMessageEvent, UserOptions } from '@whc/lipwig/types';
 import { EventManager } from './EventManager';
 import { Client } from './Client';
 
@@ -23,10 +23,24 @@ export class LocalClient extends Client {
     }
 
     public override send(event: string, ...args: unknown[]): void {
-        this.parent.emit(event, this.user, ...args);
+        let message: ServerEvent = {
+            event: SERVER_EVENT.MESSAGE,
+            data: {
+                event,
+                args,
+                sender: this.id
+
+            }
+        }
+
+        // Stringify + parse to prevent editing by reference and to simulate real process
+        message = JSON.parse(JSON.stringify(message));
+
+        this.parent.handle(message);
     }
 
-    public override handle(message: ServerEvent): void {
+    public override handle(message: ServerMessageEvent): void {
+        message = JSON.parse(JSON.stringify(message));
         // In theory this should never be from a socket
         const args: unknown[] = [];
         if (message.event === SERVER_EVENT.MESSAGE) {
@@ -34,6 +48,6 @@ export class LocalClient extends Client {
         }
 
         this.reserved.emit(message.event, ...args);
-        this.emit(message.event, ...args);
+        this.emit(message.data.event, ...args);
     }
 }
