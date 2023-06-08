@@ -15,10 +15,6 @@ import {
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 
-type UserMap = {
-    [index: string]: User;
-};
-
 type GroupMap = {
     [index: string]: User[];
 };
@@ -29,7 +25,7 @@ type Filter = {
 };
 
 export class Host extends SocketUser {
-    private users: UserMap;
+    private users: User[] = [];
     private groups: GroupMap;
 
     /**
@@ -46,7 +42,6 @@ export class Host extends SocketUser {
             this.joined(userID, options, message);
         });
 
-        this.users = {};
         this.groups = {};
         console.log(this);
     }
@@ -54,7 +49,7 @@ export class Host extends SocketUser {
     /**
      * @return map of all users in room
      */
-    public getUsers(): UserMap {
+    public getUsers(): User[] {
         return this.users; // TODO: This is returning a reference to the original object
     }
 
@@ -142,7 +137,7 @@ export class Host extends SocketUser {
         do {
             localID = this.id + '-local' + localCount;
             localCount++;
-        } while (this.users[localID] !== undefined);
+        } while (this.users.find(user => user.id === localID));
 
         const localUser = new User(localID, this, true);
         const localClient = new LocalClient(this, localUser, options);
@@ -150,7 +145,7 @@ export class Host extends SocketUser {
         localUser.client = localClient;
         localClient.id = localID;
 
-        this.users[localID] = localUser;
+        this.users.push(localUser);
 
         localClient.on(SERVER_EVENT.JOINED, (id: string) => {
             callback(id);
@@ -203,8 +198,8 @@ export class Host extends SocketUser {
 
         this.reserved.emit(message.event, ...args);
 
-        if (sender && sender in this.users) {
-            const user: User = this.users[sender];
+        const user = this.users.find(user => sender === user.id);
+        if (user) {
             args.push(message);
             user.emit(eventName, ...args);
             args.splice(0, 0, user);
@@ -239,7 +234,7 @@ export class Host extends SocketUser {
         message: JoinedEvent
     ): void {
         const user: User = new User(userID, this);
-        this.users[userID] = user;
+        this.users.push(user);
         this.emit('joined', user, options, message);
     }
 
@@ -247,11 +242,9 @@ export class Host extends SocketUser {
         let filtered: User[] = [];
 
         if (groups.length === 0 && whitelist) {
-            const users: UserMap = this.getUsers();
-            const userIDs: string[] = Object.keys(users);
-            userIDs.forEach((id: string): void => {
-                filtered.push(users[id]);
-            });
+            for (const user of this.users) {
+                filtered.push(user);
+            }
 
             return filtered;
         }

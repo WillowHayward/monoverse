@@ -39,7 +39,7 @@ export class RoomComponent implements OnInit {
             this.users.push(data.name);
             newUser.send('existingUsers', this.users);
 
-            for (const user of Object.values(host.getUsers())) {
+            for (const user of host.getUsers()) {
                 if (user === newUser) {
                     continue;
                 }
@@ -50,7 +50,7 @@ export class RoomComponent implements OnInit {
 
         host.on('message', (sender: User, name: string, text: string) => {
             this.messages.push({ name, text});
-            for (const user of Object.values(host.getUsers())) {
+            for (const user of host.getUsers()) {
                 user.send('message', name, text);
             }
         });
@@ -84,7 +84,7 @@ export class RoomComponent implements OnInit {
                 return;
             }
 
-            for (const user of Object.values(host.getUsers())) {
+            for (const user of host.getUsers()) {
                 user.send('message', this.name, text);
             }
 
