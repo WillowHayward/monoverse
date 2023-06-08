@@ -11,17 +11,25 @@ import {
     ServerEvent,
     CLIENT_EVENT,
     SERVER_EVENT,
+    ClientEvent,
 } from '@whc/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
+import { EventManager } from './EventManager';
+import { Socket } from './Socket';
 
 type GroupMap = {
     [index: string]: User[];
 };
 
-export class Host extends SocketUser {
+export class Host extends EventManager {
     private users: User[] = [];
     private groups: GroupMap;
+
+    private socket: Socket;
+    private reserved: EventManager;
+    public room: string = '';
+    public id: string = '';
 
     /**
      * Create a new Lipwig room
@@ -29,7 +37,11 @@ export class Host extends SocketUser {
      * @param options   Options with which to create room
      */
     constructor(url: string, public config: RoomConfig = {}) {
-        super(url);
+        super();
+
+        this.socket = new Socket(url);
+        this.addSocketListeners();
+        this.reserved = new EventManager();
         this.reserved.once(SERVER_EVENT.CREATED, (id: string) => {
             this.created(id);
         });
@@ -40,6 +52,27 @@ export class Host extends SocketUser {
         this.groups = {};
         console.log(this);
     }
+
+    // TODO: Move to common file
+    private addSocketListeners() {
+        this.socket.on('connected', () => {
+            this.connected();
+        });
+
+        this.socket.on('error', () => {
+            // TODO
+        });
+
+        this.socket.on('message', (message: ServerEvent) => {
+            this.handle(message);
+        });
+
+        this.socket.on('reconnected', (socket: Socket) => {
+            this.socket = socket;
+            this.addSocketListeners();
+        });
+    }
+
 
     /**
      * @return map of all users in room
@@ -56,7 +89,7 @@ export class Host extends SocketUser {
             },
         };
 
-        this.sendMessage(message);
+        this.socket.send(message);
     }
 
     public assign(user: User, name: string): void {
@@ -117,7 +150,7 @@ export class Host extends SocketUser {
 
         const recipient = users.map(user => user.id);
         console.log(recipient);
-        this.sendMessage({
+        this.socket.send({
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
@@ -125,6 +158,10 @@ export class Host extends SocketUser {
                 recipient
             }
         });
+    }
+
+    public send(message: ClientEvent) {
+        this.socket.send(message);
     }
 
     public createLocalClient(
@@ -139,7 +176,7 @@ export class Host extends SocketUser {
         } while (this.users.find(user => user.id === localID));
 
         const localUser = new User(localID, this, true);
-        const localClient = new LocalClient(this, localUser, options);
+        const localClient = new LocalClient(this, localUser, this.room, options);
 
         localUser.client = localClient;
         localClient.id = localID;
@@ -163,9 +200,7 @@ export class Host extends SocketUser {
         return localClient;
     }
 
-    protected handle(event: MessageEvent): void {
-        const message: ServerEvent = JSON.parse(event.data);
-
+    protected handle(message: ServerEvent): void {
         let eventName: string = message.event; 
         let sender: string | null = null;
         const args: unknown[] = [];
@@ -220,11 +255,15 @@ export class Host extends SocketUser {
                 config: this.config,
             },
         };
-        this.sendMessage(message);
+        this.socket.send(message);
     }
 
     private created(id: string): void {
         this.setID(id); // Also deleted reserved event
+    }
+
+    private setID(id: string): void {
+        this.id = id;
     }
 
     private joined(

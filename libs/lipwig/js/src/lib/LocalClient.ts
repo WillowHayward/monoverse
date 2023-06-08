@@ -3,40 +3,37 @@
  */
 import { User } from './User';
 import { Host } from './Host';
-import { ClientMessageEvent, DataMap } from '@whc/lipwig/types';
+import { SERVER_EVENT, ServerEvent, UserOptions } from '@whc/lipwig/types';
 import { EventManager } from './EventManager';
+import { Client } from './Client';
 
-export class LocalClient extends EventManager {
-    public id: string;
-    private reserved: EventManager;
+export class LocalClient extends Client {
     private parent: Host;
-    public data: DataMap;
     private user: User;
-    constructor(parent: Host, user: User, data: DataMap = {}) {
-        super();
+    constructor(parent: Host, user: User, code: string, options: UserOptions = {}) {
+        super(null, code, options);
         this.id = '';
         this.parent = parent;
         this.user = user;
-        this.data = data;
+        this.options = options;
         this.reserved = new EventManager();
         this.reserved.on('joined', (id: string) => {
             this.setID(id);
         });
     }
 
-    public send(event: string, ...args: unknown[]): void {
+    public override send(event: string, ...args: unknown[]): void {
         this.parent.emit(event, this.user, ...args);
     }
 
-    public handle(message: ClientMessageEvent): void {
+    public override handle(message: ServerEvent): void {
         // In theory this should never be from a socket
-        const args: unknown[] = message.data.args.concat(message);
+        const args: unknown[] = [];
+        if (message.event === SERVER_EVENT.MESSAGE) {
+            args.push(...message.data.args.concat(message));
+        }
 
         this.reserved.emit(message.event, ...args);
         this.emit(message.event, ...args);
-    }
-
-    private setID(id: string): void {
-        this.id = id;
     }
 }

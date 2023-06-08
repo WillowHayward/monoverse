@@ -12,20 +12,24 @@ import { EventManager } from './EventManager';
 export abstract class SocketUser extends EventManager {
     public id: string = '';
     public room: string = '';
-    protected reserved: EventManager;
-    private socket: WebSocket;
-    private retry: boolean;
-    private url: string;
-    constructor(url: string) {
-        super();
-        this.url = url;
-        this.reserved = new EventManager();
-        //this.reserved.on('ping', this.pong, this);
 
-        this.socket = new WebSocket(url);
-        this.retry = false;
-        //TODO: Make this an option on creation
-        this.addListeners();
+
+
+
+    protected abstract handle(event: MessageEvent): void;
+
+    protected abstract connected(): void;
+
+    /*private autoReconnect(): void {
+        const socket: WebSocket = new WebSocket(this.url);
+
+        socket.addEventListener('error', (): void => {
+            setTimeout(this.autoReconnect, 1000);
+        });
+
+        socket.addEventListener('open', (): void => {
+            this.reconnect(socket);
+        });
     }
 
     public reconnect(socket: WebSocket): void {
@@ -41,12 +45,6 @@ export abstract class SocketUser extends EventManager {
         this.sendMessage(message);
     }
 
-    public sendMessage(message: ClientEvent): void {
-        //TODO: Add in contingency system for messages sent during a disconnection
-        //CONT: A queue of messages to be sent in bulk on resumption of connection
-        this.socket.send(JSON.stringify(message));
-    }
-
     public ping(): void {
         const now: number = new Date().getTime();
         const message: PingEvent = {
@@ -58,52 +56,11 @@ export abstract class SocketUser extends EventManager {
         this.sendMessage(message);
     }
 
-    protected setID(id: string): void {
-        this.id = id;
-    }
-
-    protected abstract handle(event: MessageEvent): void;
-
-    protected abstract connected(): void;
-
-    private addListeners(): void {
-        this.socket.addEventListener('open', () => {
-            this.emit('connected');
-            this.connected();
-        });
-        this.socket.addEventListener('error', () => {
-            // TODO: error handling
-        });
-        this.socket.addEventListener('message', (event: MessageEvent) => {
-            console.log(event);
-            this.handle(event);
-        });
-        this.socket.addEventListener('close', () => {
-            if (this.retry) {
-                this.autoReconnect();
-            }
-            this.emit('reconnected');
-            // TODO: This is a stub - connection close handling
-        });
-    }
-
-    private autoReconnect(): void {
-        const socket: WebSocket = new WebSocket(this.url);
-
-        socket.addEventListener('error', (): void => {
-            setTimeout(this.autoReconnect, 1000);
-        });
-
-        socket.addEventListener('open', (): void => {
-            this.reconnect(socket);
-        });
-    }
-
     private pong(then: number): boolean {
         const now: number = new Date().getTime();
         const ping: number = now - then;
         this.emit('pong', ping);
 
         return false;
-    }
+    }*/
 }

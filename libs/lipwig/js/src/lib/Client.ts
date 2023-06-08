@@ -1,7 +1,7 @@
 /**
+* g
  * @author: WillHayCode
  */
-import { SocketUser } from './SocketUser';
 import {
     JoinEvent,
     ClientMessageEvent,
@@ -10,8 +10,14 @@ import {
     CLIENT_EVENT,
     SERVER_EVENT,
 } from '@whc/lipwig/types';
+import { EventManager } from './EventManager';
+import { Socket } from './Socket';
 
-export class Client extends SocketUser {
+export class Client extends EventManager {
+    private socket?: Socket;
+    protected reserved: EventManager;
+    public room: string;
+    public id: string = '';
     /**
      * Attempt to join an existing Lipwig room
      * @param url   Websocket url of LipwigCore server
@@ -19,16 +25,45 @@ export class Client extends SocketUser {
      * @param data  Data to pass to room host on connection
      */
     constructor(
-        url: string,
-        private code: string,
-        private options: UserOptions = {}
+        url: string | null,
+        code: string,
+        public options: UserOptions = {}
     ) {
-        super(url);
+        super();
+
+        if (url) {
+            this.socket = new Socket(url);
+            this.addSocketListeners();
+        }
         this.room = code;
+        this.reserved = new EventManager();
         this.reserved.on(SERVER_EVENT.JOINED, (id: string) => {
             this.setID(id);
         });
-        console.log(this);
+    }
+
+    // TODO: Move to common file
+    private addSocketListeners() {
+        if (!this.socket) {
+            return;
+        }
+
+        this.socket.on('connected', () => {
+            this.connected();
+        });
+
+        this.socket.on('error', () => {
+            // TODO
+        });
+
+        this.socket.on('message', (message: ServerEvent) => {
+            this.handle(message);
+        });
+
+        this.socket.on('reconnected', (socket: Socket) => {
+            this.socket = socket;
+            this.addSocketListeners();
+        });
     }
 
     /**
@@ -44,7 +79,7 @@ export class Client extends SocketUser {
                 args,
             },
         };
-        this.sendMessage(message);
+        this.socket?.send(message);
     }
 
     /**
@@ -54,20 +89,18 @@ export class Client extends SocketUser {
         const message: JoinEvent = {
             event: CLIENT_EVENT.JOIN,
             data: {
-                code: this.code,
+                code: this.room,
                 options: this.options,
             },
         };
-        this.sendMessage(message);
+        this.socket?.send(message);
     }
 
     /**
      * Handle received message
      * @param event
      */
-    public handle(event: MessageEvent): void {
-        const message: ServerEvent = JSON.parse(event.data);
-
+    public handle(message: ServerEvent): void {
         let eventName: string = message.event;
         const args: unknown[] = [];
 
@@ -87,5 +120,9 @@ export class Client extends SocketUser {
         this.reserved.emit(message.event, ...args);
 
         this.emit(eventName, ...args);
+    }
+
+    protected setID(id: string): void {
+        this.id = id;
     }
 }
