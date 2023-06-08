@@ -48,10 +48,10 @@ export class RoomComponent implements OnInit {
             }
         });
 
-        host.on('newMessage', (sender: User, name: string, text: string) => {
+        host.on('message', (sender: User, name: string, text: string) => {
             this.messages.push({ name, text});
             for (const user of Object.values(host.getUsers())) {
-                user.send('newMessage', name, text);
+                user.send('message', name, text);
             }
         });
     }
@@ -72,7 +72,7 @@ export class RoomComponent implements OnInit {
             this.users.push(name);
         });
 
-        client.on('newMessage', (name: string, text: string) => {
+        client.on('message', (name: string, text: string) => {
             this.messages.push({ name, text});
         });
     }
@@ -85,7 +85,7 @@ export class RoomComponent implements OnInit {
             }
 
             for (const user of Object.values(host.getUsers())) {
-                user.send('newMessage', this.name, text);
+                user.send('message', this.name, text);
             }
 
             this.messages.push({ name: this.name, text });
@@ -95,7 +95,7 @@ export class RoomComponent implements OnInit {
                 return;
             }
 
-            client.send('newMessage', this.name, text);
+            client.send('message', this.name, text);
         }
     }
 }

@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import {
     SERVER_EVENT,
-    GenericEvent,
+    ServerEvent,
     CreatedEvent,
     JoinedEvent,
     LipwigMessageEventData,
@@ -82,7 +82,7 @@ export class Room {
         if (user.id !== this.users[0]) {
             // If not host
             this.sendMessage(this.host, {
-                event: 'message',
+                event: SERVER_EVENT.MESSAGE,
                 data,
             });
             return;
@@ -96,14 +96,14 @@ export class Room {
             }
 
             this.sendMessage(user, {
-                event: 'message',
+                event: SERVER_EVENT.MESSAGE,
                 data,
             });
             return;
         }
     }
 
-    private sendMessage(user: LipwigSocket, message: GenericEvent) {
+    private sendMessage(user: LipwigSocket, message: ServerEvent) {
         const messageString = JSON.stringify(message);
         user.send(messageString);
     }

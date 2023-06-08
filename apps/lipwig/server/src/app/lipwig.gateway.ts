@@ -14,12 +14,13 @@ import {
 } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 import { Room } from './room';
+import { CLIENT_EVENT } from '@whc/lipwig/types';
 
 @WebSocketGateway()
 export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
     private rooms: { [code: string]: Room } = {};
 
-    @SubscribeMessage('create')
+    @SubscribeMessage(CLIENT_EVENT.CREATE)
     handleCreate(user: LipwigSocket, payload: CreateEventData) {
         const existingCodes = Object.keys(this.rooms);
         let code: string;
@@ -31,7 +32,7 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.rooms[code] = room;
     }
 
-    @SubscribeMessage('join')
+    @SubscribeMessage(CLIENT_EVENT.JOIN)
     handleJoin(user: LipwigSocket, payload: JoinEventData) {
         console.log(payload);
         const code = payload.code;
@@ -46,7 +47,7 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
         room.join(user, options);
     }
 
-    @SubscribeMessage('reconnect')
+    @SubscribeMessage(CLIENT_EVENT.RECONNECT)
     handleReconnect(user: LipwigSocket, payload: ReconnectEventData) {
         const code = payload.code;
         const id = payload.id;
@@ -55,12 +56,12 @@ export class LipwigGateway implements OnGatewayConnection, OnGatewayDisconnect {
         room.reconnect(user, id);
     }
 
-    @SubscribeMessage('administrate')
+    @SubscribeMessage(CLIENT_EVENT.ADMINISTRATE)
     handleAdmin(user: LipwigSocket, payload: AdministrateEventData) {
         // stub
     }
 
-    @SubscribeMessage('message')
+    @SubscribeMessage(CLIENT_EVENT.MESSAGE)
     handleMessage(user: LipwigSocket, payload: LipwigMessageEventData) {
         const code = user.room;
         const room = this.rooms[code];
