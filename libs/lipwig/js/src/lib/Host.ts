@@ -122,7 +122,6 @@ export class Host extends SocketUser {
             data: {
                 event,
                 args,
-                sender: this.id, // TODO: this.room?
                 recipient
             }
         });
@@ -184,7 +183,7 @@ export class Host extends SocketUser {
             case SERVER_EVENT.MESSAGE:
                 args.push(...message.data.args);
                 eventName = message.data.event;
-                sender = message.data.sender;
+                sender = message.data?.sender || '';
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;

@@ -4,7 +4,7 @@
 import { SocketUser } from './SocketUser';
 import {
     JoinEvent,
-    LipwigMessageEvent,
+    ClientMessageEvent,
     UserOptions,
     ServerEvent,
     CLIENT_EVENT,
@@ -37,13 +37,11 @@ export class Client extends SocketUser {
      * @param args  Arguments to send
      */
     public send(event: string, ...args: unknown[]): void {
-        const message: LipwigMessageEvent = {
+        const message: ClientMessageEvent = {
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
                 args,
-                sender: this.id,
-                recipient: [],
             },
         };
         this.sendMessage(message);

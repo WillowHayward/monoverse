@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { CreateEventData, JoinEventData, LipwigMessageEventData, ReconnectEventData } from '@whc/lipwig/types';
+import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -42,7 +42,7 @@ export class RoomService {
         room.reconnect(user, id);
     }
 
-    message(user: LipwigSocket, payload: LipwigMessageEventData) {
+    message(user: LipwigSocket, payload: ClientMessageEventData) {
         const code = user.room;
         const room = this.rooms[code];
 

@@ -4,9 +4,10 @@ import {
     ServerEvent,
     CreatedEvent,
     JoinedEvent,
-    LipwigMessageEventData,
     RoomConfig,
     UserOptions,
+    ClientMessageEventData,
+    ServerMessageEvent,
 } from '@whc/lipwig/types';
 import { LipwigSocket } from '../app/app.model';
 import { Logger } from '@nestjs/common';
@@ -85,13 +86,19 @@ export class Room {
         this.disconnected.splice(disconnectedIndex, 1);
     }
 
-    handleMessage(sender: LipwigSocket, data: LipwigMessageEventData) {
+    handleMessage(sender: LipwigSocket, data: ClientMessageEventData) {
         if (sender.id !== this.host.id) {
             // If not host
-            this.sendMessage(this.host, {
+            const message: ServerMessageEvent = {
                 event: SERVER_EVENT.MESSAGE,
-                data,
-            });
+                data: {
+                    event: data.event,
+                    sender: sender.id,
+                    args: data.args
+                }
+
+            }
+            this.sendMessage(this.host, message);
             return;
         }
 
@@ -102,11 +109,15 @@ export class Room {
                 // stub
                 Logger.warn('Could not find user', id);
             }
-
-            this.sendMessage(user, {
+            const message: ServerMessageEvent = {
                 event: SERVER_EVENT.MESSAGE,
-                data,
-            });
+                data: {
+                    event: data.event,
+                    args: data.args
+                }
+            }
+
+            this.sendMessage(user, message);
         }
     }
 
@@ -119,6 +130,8 @@ export class Room {
         user.host = host;
         user.room = this.code;
         user.id = id || v4();
-        this.users.push(user.id);
+        if (!host) {
+            this.users.push(user.id);
+        }
     }
 }

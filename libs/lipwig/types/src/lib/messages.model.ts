@@ -12,7 +12,7 @@ export const EVENTS_SERVER = new Set(serverEvents);
 export const CLIENT_EVENT_SERVER = new Set(clientEvents);
 export const EVENTS_ALL = new Set([...serverEvents, ...clientEvents]);
 
-export interface GenericEvent {
+interface GenericEvent {
     event: CLIENT_EVENT | SERVER_EVENT;
     data: unknown;
 }
@@ -25,21 +25,19 @@ interface ServerEventStructure extends GenericEvent {
     event: SERVER_EVENT;
 }
 
-// Common GenericEvents
 
-export interface LipwigMessageEvent extends GenericEvent {
-    event: CLIENT_EVENT.MESSAGE | SERVER_EVENT.MESSAGE;
-    data: LipwigMessageEventData;
+// Client GenericEvents
+export interface ClientMessageEvent extends GenericEvent {
+    event: CLIENT_EVENT.MESSAGE;
+    data: ClientMessageEventData;
 }
 
-export interface LipwigMessageEventData {
+export interface ClientMessageEventData {
     event: string;
-    sender: string;
-    recipient: string[];
+    recipient?: string[]; // Added by host for host -> client messages
     args: unknown[];
 }
 
-// Client GenericEvents
 export interface CreateEvent extends ClientEventStructure {
     event: CLIENT_EVENT.CREATE;
     data: CreateEventData;
@@ -103,9 +101,19 @@ export interface KickEventData {
     reason?: string;
 }
 
-export type ClientEvent = LipwigMessageEvent | CreateEvent | JoinEvent | ReconnectEvent | CloseEvent | AdministrateEvent | PingEvent | KickEvent;
+export type ClientEvent = ClientMessageEvent | CreateEvent | JoinEvent | ReconnectEvent | CloseEvent | AdministrateEvent | PingEvent | KickEvent;
 
 // Server GenericEvents
+export interface ServerMessageEvent extends GenericEvent {
+    event: SERVER_EVENT.MESSAGE;
+    data: ServerMessageEventData;
+}
+
+export interface ServerMessageEventData {
+    event: string;
+    sender?: string; // Added by server for client -> host messages
+    args: unknown[];
+}
 
 export interface CreatedEvent extends ServerEventStructure {
     event: SERVER_EVENT.CREATED;
@@ -152,4 +160,4 @@ export interface KickedEventData {
     reason?: string;
 }
 
-export type ServerEvent = LipwigMessageEvent | CreatedEvent | JoinedEvent | ReconnectedEvent | ErrorEvent | KickedEvent;
+export type ServerEvent = ServerMessageEvent | CreatedEvent | JoinedEvent | ReconnectedEvent | ErrorEvent | KickedEvent;

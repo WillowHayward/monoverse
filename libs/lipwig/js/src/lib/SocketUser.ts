@@ -3,7 +3,6 @@
  */
 import {
     CLIENT_EVENT,
-    LipwigMessageEvent,
     ReconnectEvent,
     PingEvent,
     ClientEvent,
@@ -45,12 +44,6 @@ export abstract class SocketUser extends EventManager {
     public sendMessage(message: ClientEvent): void {
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
-        if (message.event === CLIENT_EVENT.MESSAGE) {
-            if (message.data.sender.length === 0) {
-                message.data.sender = this.id;
-            }
-        }
-        console.log(message);
         this.socket.send(JSON.stringify(message));
     }
 

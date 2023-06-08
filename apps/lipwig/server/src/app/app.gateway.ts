@@ -10,7 +10,7 @@ import {
     JoinEventData,
     ReconnectEventData,
     AdministrateEventData,
-    LipwigMessageEventData,
+    ClientMessageEventData,
 } from '@whc/lipwig/types';
 import { CLIENT_EVENT } from '@whc/lipwig/types';
 import { RoomService } from '../room/room.service';
@@ -41,7 +41,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 
     @SubscribeMessage(CLIENT_EVENT.MESSAGE)
-    message(user: LipwigSocket, payload: LipwigMessageEventData) {
+    message(user: LipwigSocket, payload: ClientMessageEventData) {
         this.rooms.message(user, payload);
     }
 

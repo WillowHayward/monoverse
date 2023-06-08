@@ -4,7 +4,7 @@
 import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
-import { LipwigMessageEvent, CLIENT_EVENT } from '@whc/lipwig/types';
+import { ClientMessageEvent, CLIENT_EVENT } from '@whc/lipwig/types';
 
 export class User extends EventManager {
     public client: LocalClient | undefined;
@@ -13,12 +13,11 @@ export class User extends EventManager {
     }
 
     public send(event: string, ...args: unknown[]): void {
-        const message: LipwigMessageEvent = {
+        const message: ClientMessageEvent = {
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
                 args,
-                sender: this.parent.id,
                 recipient: [this.id],
             },
         };
