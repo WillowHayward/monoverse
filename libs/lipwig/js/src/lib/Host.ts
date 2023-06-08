@@ -6,12 +6,10 @@ import {
     RoomConfig,
     UserOptions,
     CloseEvent,
-    CLIENT_EVENT,
-    LipwigMessageEvent,
     CreateEvent,
-    CreatedEvent,
     JoinedEvent,
     ServerEvent,
+    CLIENT_EVENT,
     SERVER_EVENT,
 } from '@whc/lipwig/types';
 import { User } from './User';
@@ -41,15 +39,16 @@ export class Host extends SocketUser {
      */
     constructor(url: string, public config: RoomConfig = {}) {
         super(url);
-        this.reserved.once('created', (id: string) => {
+        this.reserved.once(SERVER_EVENT.CREATED, (id: string) => {
             this.created(id);
         });
-        this.reserved.on('joined', (userID: string, options: UserOptions, message: JoinedEvent) => {
+        this.reserved.on(SERVER_EVENT.JOINED, (userID: string, options: UserOptions, message: JoinedEvent) => {
             this.joined(userID, options, message);
         });
 
         this.users = {};
         this.groups = {};
+        console.log(this);
     }
 
     /**
@@ -153,11 +152,9 @@ export class Host extends SocketUser {
 
         this.users[localID] = localUser;
 
-        localClient.on('joined', (id: string) => {
+        localClient.on(SERVER_EVENT.JOINED, (id: string) => {
             callback(id);
         }); 
-        /*localClient.emit('joined', localID);
-      this.emit('joined', localUser, data);*/
 
         // Set timeout to allow moment for listeners to be set on both ends
         // Hopefully this doesn't introduce a race condition
@@ -165,8 +162,8 @@ export class Host extends SocketUser {
         //       Not a massive surprise I guess.
         // TODO: Add callback as parameter
         setTimeout(() => {
-            this.emit('joined', localUser, options);
-            localClient.emit('joired', localID);
+            this.emit(SERVER_EVENT.JOINED, localUser, options);
+            localClient.emit(SERVER_EVENT.JOINED, localID);
         }, 10);
 
         return localClient;
@@ -175,28 +172,26 @@ export class Host extends SocketUser {
     protected handle(event: MessageEvent): void {
         const message: ServerEvent = JSON.parse(event.data);
 
-        let eventName: string = message.event; // TODO: For LipwigMessageEvent, change to data event
+        let eventName: string = message.event; 
         let sender: string | null = null;
         const args: unknown[] = [];
         let emit = true;
         switch (message.event) {
             case SERVER_EVENT.CREATED:
-                const created = message as CreatedEvent;
-                args.push(created.data.code);
+                this.room = message.data.code;
+                args.push(message.data.code);
                 break;
             case SERVER_EVENT.JOINED:
-                const joined = message as JoinedEvent;
-                args.push(joined.data.id);
-                args.push(joined.data.options);
+                args.push(message.data.id);
+                args.push(message.data.options);
                 emit = false;
                 break;
             case SERVER_EVENT.MESSAGE:
-                const msg = message as LipwigMessageEvent;
-                args.push(...msg.data.args);
-                eventName = msg.data.event;
-                sender = msg.data.sender;
+                args.push(...message.data.args);
+                eventName = message.data.event;
+                sender = message.data.sender;
 
-                this.emit(message.event, eventName, ...args, this);
+                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
                 break;

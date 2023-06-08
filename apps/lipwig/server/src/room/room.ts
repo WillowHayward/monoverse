@@ -8,7 +8,7 @@ import {
     RoomConfig,
     UserOptions,
 } from '@whc/lipwig/types';
-import { LipwigSocket } from './lipwig.model';
+import { LipwigSocket } from '../lipwig.model';
 
 export class Room {
     private id = v4();
@@ -21,6 +21,7 @@ export class Room {
         public code: string,
         private config: RoomConfig
     ) {
+        // TODO: Room config
         this.initialiseUser(host, true);
         const confirmation: CreatedEvent = {
             event: SERVER_EVENT.CREATED,
@@ -57,6 +58,7 @@ export class Room {
             // Delete from room
         }
 
+        console.log(this.host.id);
         const id = user.id;
         delete this.connected[id];
         this.disconnected.push(id);

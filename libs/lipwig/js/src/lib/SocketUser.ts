@@ -11,7 +11,8 @@ import {
 } from '@whc/lipwig/types';
 
 export abstract class SocketUser extends EventManager {
-    public id: string;
+    public id: string = '';
+    public room: string = '';
     protected reserved: EventManager;
     private socket: WebSocket;
     private retry: boolean;
@@ -19,7 +20,6 @@ export abstract class SocketUser extends EventManager {
     constructor(url: string) {
         super();
         this.url = url;
-        this.id = '';
         this.reserved = new EventManager();
         //this.reserved.on('ping', this.pong, this);
 

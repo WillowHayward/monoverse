@@ -4,12 +4,11 @@
 import { SocketUser } from './SocketUser';
 import {
     JoinEvent,
-    CLIENT_EVENT,
     LipwigMessageEvent,
     UserOptions,
     ServerEvent,
+    CLIENT_EVENT,
     SERVER_EVENT,
-    JoinedEvent,
 } from '@whc/lipwig/types';
 
 export class Client extends SocketUser {
@@ -25,9 +24,11 @@ export class Client extends SocketUser {
         private options: UserOptions = {}
     ) {
         super(url);
-        this.reserved.on('joined', (id: string) => {
+        this.room = code;
+        this.reserved.on(SERVER_EVENT.JOINED, (id: string) => {
             this.setID(id);
         });
+        console.log(this);
     }
 
     /**
@@ -74,15 +75,13 @@ export class Client extends SocketUser {
 
         switch (message.event) {
             case SERVER_EVENT.JOINED:
-                const joined = message as JoinedEvent;
-                args.push(joined.data.id);
+                args.push(message.data.id);
                 break;
             case SERVER_EVENT.MESSAGE:
-                const msg = message as LipwigMessageEvent;
-                args.push(...msg.data.args);
-                eventName = msg.data.event;
+                args.push(...message.data.args);
+                eventName = message.data.event;
 
-                this.emit(message.event, eventName, ...args, this); // Emit 'message' event on all messages
+                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
         }
         args.push(message);
