@@ -71,7 +71,7 @@ export class Room {
             return;
         }
 
-        if (this.users[0] === id) {
+        if (this.host.id === id) {
             this.host = user;
         } else {
             this.connected[id] = user;
@@ -81,7 +81,7 @@ export class Room {
     }
 
     handleMessage(user: LipwigSocket, data: LipwigMessageEventData) {
-        if (user.id !== this.users[0]) {
+        if (user.id !== this.host.id) {
             // If not host
             this.sendMessage(this.host, {
                 event: SERVER_EVENT.MESSAGE,

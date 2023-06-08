@@ -10,16 +10,17 @@ import {
     PingEvent,
 } from '@whc/lipwig/types';
 
-export abstract class SocketUser extends EventManager {
+export abstract class SocketUser {
     public id: string = '';
     public room: string = '';
     protected reserved: EventManager;
+    protected events: EventManager;
     private socket: WebSocket;
     private retry: boolean;
     private url: string;
     constructor(url: string) {
-        super();
         this.url = url;
+        this.events = new EventManager();
         this.reserved = new EventManager();
         //this.reserved.on('ping', this.pong, this);
 
@@ -114,5 +115,17 @@ export abstract class SocketUser extends EventManager {
         this.emit('pong', ping);
 
         return false;
+    }
+
+    public on(eventName: string, listener: ((...args: any[]) => void)) {
+        this.events.on(eventName, listener);
+    }
+
+    public once(eventName: string, listener: ((...args: any[]) => void)) {
+        this.events.once(eventName, listener);
+    }
+
+    public emit(eventName: string, ...args: any[]) {
+        this.events.emit(eventName, ...args);
     }
 }
