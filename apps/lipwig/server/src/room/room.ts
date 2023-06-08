@@ -8,7 +8,8 @@ import {
     RoomConfig,
     UserOptions,
 } from '@whc/lipwig/types';
-import { LipwigSocket } from '../lipwig.model';
+import { LipwigSocket } from '../app/app.model';
+import { Logger } from '@nestjs/common';
 
 export class Room {
     private id = v4();
@@ -58,7 +59,7 @@ export class Room {
             // Delete from room
         }
 
-        console.log(this.host.id);
+        Logger.log(this.host.id);
         const id = user.id;
         delete this.connected[id];
         this.disconnected.push(id);
