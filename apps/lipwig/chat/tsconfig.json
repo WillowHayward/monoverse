@@ -11,7 +11,7 @@
         "strictPropertyInitialization": false
     },
     "files": [],
-    "include": [],
+    "include": ["../../../types/*.d.ts"],
     "references": [
         {
             "path": "./tsconfig.app.json"
