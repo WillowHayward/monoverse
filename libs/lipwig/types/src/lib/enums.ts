@@ -25,7 +25,7 @@ export enum CLIENT_EVENT {
     ADMINISTRATE = 'administrate',
     MESSAGE = 'lw-message',
     PING = 'lw-ping',
-    KICK = 'kick',
+    KICK = 'lw-kick',
 }
 
 export enum ERROR_CODE {

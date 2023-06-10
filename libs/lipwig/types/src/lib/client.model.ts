@@ -31,7 +31,7 @@ export interface CreateEvent extends ClientEventStructure {
 }
 
 export interface CreateEventData {
-    config: RoomConfig;
+    config?: RoomConfig;
 }
 
 export interface JoinEvent extends ClientEventStructure {
@@ -41,7 +41,7 @@ export interface JoinEvent extends ClientEventStructure {
 
 export interface JoinEventData {
     code: string;
-    options: UserOptions;
+    options?: UserOptions;
 }
 
 export interface ReconnectEvent extends ClientEventStructure {
@@ -69,6 +69,15 @@ export interface AdministrateEvent extends ClientEventStructure {
 }
 
 export interface AdministrateEventData {}
+
+export interface LeaveEvent extends ClientEventStructure {
+    event: CLIENT_EVENT.LEAVE;
+    data: LeaveEventData;
+}
+
+export interface LeaveEventData {
+
+}
 
 export interface PingEvent extends ClientEventStructure {
     event: CLIENT_EVENT.PING;

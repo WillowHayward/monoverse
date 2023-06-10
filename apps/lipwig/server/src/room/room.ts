@@ -11,6 +11,11 @@ import {
     ServerMessageEvent,
     ErrorEvent,
     ERROR_CODE,
+    CloseEventData,
+    LeaveEventData,
+    AdministrateEventData,
+    PingEventData,
+    KickEventData,
 } from '@whc/lipwig/types';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
@@ -34,6 +39,18 @@ export class Room {
                 id: host.id,
             },
         });
+    }
+
+    inRoom(id: string) {
+        if (this.isHost(id)) {
+            return true;
+        }
+
+        return this.users.some(user => id === user.id);
+    }
+
+    isHost(id: string) {
+        return id === this.host.id;
     }
 
     private initialiseUser(user: LipwigSocket, host: boolean, id?: string) {
@@ -115,6 +132,18 @@ export class Room {
         return true;
     }
 
+    close(user: LipwigSocket, payload: CloseEventData) {
+
+    }
+
+    leave(user: LipwigSocket, payload: LeaveEventData) {
+
+    }
+
+    administrate(user: LipwigSocket, payload: AdministrateEventData) {
+
+    }
+
     handle(sender: LipwigSocket, data: ClientMessageEventData) {
         if (sender.id !== this.host.id) {
             // If not host
@@ -145,6 +174,14 @@ export class Room {
                 }
             });
         }
+    }
+
+    ping(user: LipwigSocket, payload: PingEventData) {
+
+    }
+
+    kick(user: LipwigSocket, payload: KickEventData) {
+
     }
 
     private send<T extends ServerEvent>(user: LipwigSocket, message: T) {

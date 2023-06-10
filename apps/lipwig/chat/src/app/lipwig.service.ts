@@ -26,7 +26,7 @@ export class LipwigService {
     public async createRoom(name: string, reconnect?: ReconnectData): Promise<Client> {
         this.isHost = true;
 
-        const config: RoomConfig = {}
+        const config: RoomConfig = { name }
 
         if (reconnect) {
             config.reconnect = reconnect;

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE } from '@whc/lipwig/types';
+import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE, CloseEventData, LeaveEventData, PingEventData, KickEventData, AdministrateEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -10,6 +10,26 @@ import { sendError } from './utils';
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
+
+    getRoom(room: string): Room {
+        return this.rooms[room];
+    }
+
+    roomExists(room: string): boolean {
+        if (this.getRoom(room)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    userInRoom(room: string, id: string): boolean {
+        return this.getRoom(room).inRoom(id);
+    }
+
+    userIsHost(room: string, id: string): boolean {
+        return this.getRoom(room).isHost(id);
+    }
 
     create(user: LipwigSocket, payload: CreateEventData) {
         const config = payload.config;
@@ -62,6 +82,18 @@ export class RoomService {
         return room.reconnect(user, id);
     }
 
+    close(user: LipwigSocket, payload: CloseEventData) {
+
+    }
+
+    leave(user: LipwigSocket, payload: LeaveEventData) {
+
+    }
+
+    administrate(user: LipwigSocket, payload: AdministrateEventData) {
+
+    }
+
     message(user: LipwigSocket, payload: ClientMessageEventData) {
         const code = user.room;
         const room = this.rooms[code];
@@ -73,6 +105,14 @@ export class RoomService {
         }
 
         room.handle(user, payload);
+    }
+
+    ping(user: LipwigSocket, payload: PingEventData) {
+
+    }
+
+    kick(user: LipwigSocket, payload: KickEventData) {
+
     }
 
     disconnect(user: LipwigSocket) {

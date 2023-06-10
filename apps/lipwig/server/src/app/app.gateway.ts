@@ -10,11 +10,18 @@ import {
     ReconnectEventData,
     AdministrateEventData,
     ClientMessageEventData,
+    CloseEventData,
+    LeaveEventData,
+    PingEventData,
+    KickEventData,
 } from '@whc/lipwig/types';
 import { CLIENT_EVENT } from '@whc/lipwig/types';
 import { RoomService } from '../room/room.service';
+import { UseGuards } from '@nestjs/common';
+import { RoomGuard } from '../room/room.guard';
 
 @WebSocketGateway()
+@UseGuards(RoomGuard)
 export class AppGateway implements OnGatewayDisconnect {
     constructor(private rooms: RoomService) {}
 
@@ -33,14 +40,34 @@ export class AppGateway implements OnGatewayDisconnect {
         this.rooms.reconnect(user, payload);
     }
 
+    @SubscribeMessage(CLIENT_EVENT.CLOSE)
+    close(user: LipwigSocket, payload: CloseEventData) {
+        this.rooms.close(user, payload);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.LEAVE)
+    leave(user: LipwigSocket, payload: LeaveEventData) {
+        this.rooms.leave(user, payload);
+    }
+
     @SubscribeMessage(CLIENT_EVENT.ADMINISTRATE)
     administrate(user: LipwigSocket, payload: AdministrateEventData) {
-        // stub
+        this.rooms.administrate(user, payload);
     }
 
     @SubscribeMessage(CLIENT_EVENT.MESSAGE)
     message(user: LipwigSocket, payload: ClientMessageEventData) {
         this.rooms.message(user, payload);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.PING)
+    ping(user: LipwigSocket, payload: PingEventData) {
+        this.rooms.ping(user, payload);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.KICK)
+    kick(user: LipwigSocket, payload: KickEventData) {
+        this.rooms.kick(user, payload);
     }
 
     handleDisconnect(user: LipwigSocket) {
