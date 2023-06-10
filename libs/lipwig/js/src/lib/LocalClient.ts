@@ -4,7 +4,6 @@
 import { User } from './User';
 import { Host } from './Host';
 import { SERVER_EVENT, ServerEvent, ServerMessageEvent, UserOptions } from '@whc/lipwig/types';
-import { EventManager } from './EventManager';
 import { Client } from './Client';
 
 export class LocalClient extends Client {
@@ -16,10 +15,6 @@ export class LocalClient extends Client {
         this.parent = parent;
         this.user = user;
         this.options = options;
-        this.reserved = new EventManager();
-        this.reserved.on('joined', (id: string) => {
-            this.setID(id);
-        });
     }
 
     public override send(event: string, ...args: unknown[]): void {
@@ -39,15 +34,25 @@ export class LocalClient extends Client {
         this.parent.handle(message);
     }
 
-    public override handle(message: ServerMessageEvent): void {
+    public override handle(message: ServerEvent): void {
         message = JSON.parse(JSON.stringify(message));
+        let eventName: string = message.event;
+
         // In theory this should never be from a socket
         const args: unknown[] = [];
-        if (message.event === SERVER_EVENT.MESSAGE) {
-            args.push(...message.data.args.concat(message));
+        switch (message.event) {
+            case SERVER_EVENT.JOINED:
+                this.id = message.data.id;
+                break;
+            case SERVER_EVENT.MESSAGE:
+                args.push(...message.data.args.concat(message));
+                eventName = message.data.event;
+
+                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
+                break;
+
         }
 
-        this.reserved.emit(message.event, ...args);
-        this.emit(message.data.event, ...args);
+        this.emit(eventName, ...args);
     }
 }

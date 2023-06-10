@@ -15,6 +15,7 @@ import {
 import { CLIENT_EVENT } from '@whc/lipwig/types';
 import { RoomService } from '../room/room.service';
 import { Logger } from '@nestjs/common';
+import { WebSocket } from 'ws';
 
 @WebSocketGateway()
 export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -45,9 +46,10 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.rooms.message(user, payload);
     }
 
-    handleConnection(user: LipwigSocket) {
+    handleConnection(socket: WebSocket) {
         //TODO: Is this needed?
-        Logger.log(user);
+        //Logger.log(user.url);
+        //Logger.log(user);
     }
 
     handleDisconnect(user: LipwigSocket) {

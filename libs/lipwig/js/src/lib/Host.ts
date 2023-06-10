@@ -1,7 +1,6 @@
 /**
  * @author: WillHayCode
  */
-import { SocketUser } from './SocketUser';
 import {
     RoomConfig,
     UserOptions,
@@ -27,7 +26,6 @@ export class Host extends EventManager {
     private groups: GroupMap;
 
     private socket: Socket;
-    private reserved: EventManager;
     public room: string = '';
     public id: string = '';
 
@@ -41,13 +39,6 @@ export class Host extends EventManager {
 
         this.socket = new Socket(url);
         this.addSocketListeners();
-        this.reserved = new EventManager();
-        this.reserved.once(SERVER_EVENT.CREATED, (id: string) => {
-            this.created(id);
-        });
-        this.reserved.on(SERVER_EVENT.JOINED, (userID: string, options: UserOptions, message: JoinedEvent) => {
-            this.joined(userID, options, message);
-        });
 
         this.groups = {};
     }
@@ -208,17 +199,21 @@ export class Host extends EventManager {
         let eventName: string = message.event; 
         let sender: string | null = null;
         const args: unknown[] = [];
-        let emit = true;
         switch (message.event) {
             case SERVER_EVENT.CREATED:
                 this.room = message.data.code;
+                this.id = message.data.id;
                 args.push(message.data.code);
+
+                this.socket.setData(this.room, message.data.id);
                 break;
             case SERVER_EVENT.JOINED:
-                args.push(message.data.id);
+                const user: User = new User(message.data.id, this);
+                this.users.push(user);
+                args.push(user);
                 args.push(message.data.options);
-                emit = false;
-                break;
+                this.emit(eventName, ...args, this);
+                return;
             case SERVER_EVENT.MESSAGE:
                 args.push(...message.data.args);
                 eventName = message.data.event;
@@ -227,6 +222,7 @@ export class Host extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
+                console.log('Reconnected');
                 break;
             case SERVER_EVENT.ERROR:
                 break;
@@ -234,19 +230,14 @@ export class Host extends EventManager {
                 break;
         }
 
-        this.reserved.emit(message.event, ...args);
-
         const user = this.users.find(user => sender === user.id);
         if (user) {
             args.push(message);
             user.emit(eventName, ...args);
             args.splice(0, 0, user);
-            //args.unshift(user);
         }
 
-        if (emit) {
-            this.emit(eventName, ...args, this);
-        }
+        this.emit(eventName, ...args, this);
     }
 
     /**
@@ -260,23 +251,5 @@ export class Host extends EventManager {
             },
         };
         this.socket.send(message);
-    }
-
-    private created(id: string): void {
-        this.setID(id); // Also deleted reserved event
-    }
-
-    private setID(id: string): void {
-        this.id = id;
-    }
-
-    private joined(
-        userID: string,
-        options: UserOptions,
-        message: JoinedEvent
-    ): void {
-        const user: User = new User(userID, this);
-        this.users.push(user);
-        this.emit('joined', user, options, message);
     }
 }

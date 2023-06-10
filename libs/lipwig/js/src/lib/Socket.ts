@@ -1,24 +1,25 @@
-import { ClientEvent, ServerEvent, ServerMessageEvent } from "@whc/lipwig/types";
+import { CLIENT_EVENT, ClientEvent, ReconnectEvent, ServerEvent, ServerMessageEvent } from "@whc/lipwig/types";
 import { EventManager } from "./EventManager";
 
 export class Socket extends EventManager {
     private socket: WebSocket;
     private retry: boolean;
+    private id: string | undefined;
+    private room: string | undefined;
     constructor(private url: string) {
         super();
         this.url = url;
 
         this.socket = new WebSocket(url);
-        this.retry = false;
-        //TODO: Make this an option on creation
+        console.log('New WebSocket', this.socket); 
+        this.retry = true; //TODO: Make this an option on creation
+        this.socket.addEventListener('open', () => {
+            this.emit('connected');
+        });
         this.addListeners();
     }
 
     private addListeners(): void {
-        this.socket.addEventListener('open', () => {
-            this.emit('connected');
-        });
-
         this.socket.addEventListener('error', () => {
             this.emit('error');
             // TODO: error handling
@@ -30,13 +31,17 @@ export class Socket extends EventManager {
         });
 
         this.socket.addEventListener('close', () => {
-            if (this.retry) {
-                // TODO
-                //this.autoReconnect();
+            console.log('disconnected');
+
+            if (!this.room || !this.id) {
+                console.log('Room or ID not set');
+                // Nothing to reconnect to
+                return;
             }
-            const newSocket = null;
-            this.emit('reconnected', newSocket);
-            // TODO: This is a stub - connection close handling
+
+            if (this.retry) {
+                this.autoReconnect();
+            }
         });
     }
 
@@ -46,4 +51,46 @@ export class Socket extends EventManager {
         //CONT: Possible return unsent messages from this method
         this.socket.send(JSON.stringify(message));
     }
+
+    private autoReconnect(): void {
+        console.log('Attempting to reconnect');
+        const socket: WebSocket = new WebSocket(this.url);
+
+        socket.addEventListener('error', (): void => {
+            console.log('Reconnect failed, retrying');
+            setTimeout(this.autoReconnect, 1000);
+        });
+
+        socket.addEventListener('open', (): void => {
+            this.reconnect(socket);
+        });
+    }
+
+    public setData(room: string, id: string) {
+        this.room = room;
+        this.id = id;
+    }
+
+    public reconnect(socket: WebSocket): void {
+        if (!this.room || !this.id) {
+            console.log('----');
+            // Nothing to reconnect to
+            return;
+        }
+
+        console.log('Connection established');
+        this.socket = socket;
+        this.addListeners();
+        const message: ReconnectEvent = {
+            event: CLIENT_EVENT.RECONNECT,
+            data: {
+                code: this.room, 
+                id: this.id
+            },
+        };
+
+        this.send(message);
+
+    }
+
 }

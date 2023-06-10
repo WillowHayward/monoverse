@@ -3,6 +3,7 @@ import {
     SERVER_EVENT,
     ServerEvent,
     CreatedEvent,
+    ReconnectedEvent,
     JoinedEvent,
     RoomConfig,
     UserOptions,
@@ -25,15 +26,14 @@ export class Room {
     ) {
         // TODO: Room config
         this.initialiseUser(host, true);
-        const confirmation: CreatedEvent = {
+
+        this.sendMessage<CreatedEvent>(host, {
             event: SERVER_EVENT.CREATED,
             data: {
                 code,
                 id: host.id,
             },
-        };
-
-        this.sendMessage(host, confirmation);
+        });
     }
 
     join(client: LipwigSocket, options: UserOptions) {
@@ -49,15 +49,21 @@ export class Room {
             },
         };
 
-        this.sendMessage(client, confirmation);
+        this.sendMessage<JoinedEvent>(client, confirmation);
 
         confirmation.data.options = options;
-        this.sendMessage(this.host, confirmation);
+        this.sendMessage<JoinedEvent>(this.host, confirmation);
     }
 
     disconnect(user: LipwigSocket, permanent: boolean) {
+        console.log('Disconnect');
         if (permanent) {
             // Delete from room
+        }
+
+        if (user === this.host) {
+
+            return;
         }
 
         const id = user.id;
@@ -65,40 +71,63 @@ export class Room {
         if (!index) {
             // ???
         }
-        this.connected.splice(index, 1);
+        //this.connected.splice(index, 1);
 
         this.disconnected.push(id);
         // TODO: Send messages
     }
 
     reconnect(user: LipwigSocket, id: string) {
-        const disconnectedIndex = this.disconnected.indexOf(id);
-        if (disconnectedIndex === -1) {
-            return;
-        }
-
-        if (this.host.id === id) {
+        user.id = id;
+        user.room = this.code;
+        if (id === this.host.id) {
+            Logger.log('Host reconnected');
             this.host = user;
         } else {
-            this.connected[id] = user;
+            if (!this.reconnectUser(user)) {
+                console.log('Could not reconnect');
+                return;
+            }
+        }
+
+        this.sendMessage<ReconnectedEvent>(user, {
+            event: SERVER_EVENT.RECONNECTED,
+            data: {}
+        });
+    }
+
+
+    private reconnectUser(user: LipwigSocket): boolean {
+        const id = user.id;
+        const disconnectedIndex = this.disconnected.indexOf(id);
+        if (disconnectedIndex === -1) {
+            console.log('A');
+            return false;
+        }
+
+        const connectedIndex = this.connected.findIndex(value => value.id === id);
+        if (connectedIndex === -1) {
+            console.log('B');
+            return false;
         }
 
         this.disconnected.splice(disconnectedIndex, 1);
+        this.connected[connectedIndex] = user;
+
+        return true;
     }
 
     handleMessage(sender: LipwigSocket, data: ClientMessageEventData) {
         if (sender.id !== this.host.id) {
             // If not host
-            const message: ServerMessageEvent = {
+            this.sendMessage<ServerMessageEvent>(this.host, {
                 event: SERVER_EVENT.MESSAGE,
                 data: {
                     event: data.event,
                     sender: sender.id,
                     args: data.args
                 }
-
-            }
-            this.sendMessage(this.host, message);
+            });
             return;
         }
 
@@ -109,19 +138,18 @@ export class Room {
                 // stub
                 Logger.warn('Could not find user', id);
             }
-            const message: ServerMessageEvent = {
+
+            this.sendMessage<ServerMessageEvent>(user, {
                 event: SERVER_EVENT.MESSAGE,
                 data: {
                     event: data.event,
                     args: data.args
                 }
-            }
-
-            this.sendMessage(user, message);
+            });
         }
     }
 
-    private sendMessage(user: LipwigSocket, message: ServerEvent) {
+    private sendMessage<T extends ServerEvent>(user: LipwigSocket, message: T) {
         const messageString = JSON.stringify(message);
         user.send(messageString);
     }

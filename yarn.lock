@@ -16263,6 +16263,7 @@ __metadata:
     websocket: ^1.0.34
     winston: ^3.3.3
     winston-daily-rotate-file: ^4.5.5
+    ws: ^8.13.0
     zone.js: 0.13.0
   languageName: unknown
   linkType: soft

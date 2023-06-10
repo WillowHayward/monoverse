@@ -15,9 +15,9 @@ import { Socket } from './Socket';
 
 export class Client extends EventManager {
     private socket?: Socket;
-    protected reserved: EventManager;
     public room: string;
     public id: string = '';
+
     /**
      * Attempt to join an existing Lipwig room
      * @param url   Websocket url of LipwigCore server
@@ -36,10 +36,6 @@ export class Client extends EventManager {
             this.addSocketListeners();
         }
         this.room = code;
-        this.reserved = new EventManager();
-        this.reserved.on(SERVER_EVENT.JOINED, (id: string) => {
-            this.setID(id);
-        });
     }
 
     // TODO: Move to common file
@@ -106,7 +102,10 @@ export class Client extends EventManager {
 
         switch (message.event) {
             case SERVER_EVENT.JOINED:
+                this.id = message.data.id;
                 args.push(message.data.id);
+
+                this.socket?.setData(this.room, this.id);
                 break;
             case SERVER_EVENT.MESSAGE:
                 args.push(...message.data.args);
@@ -114,15 +113,13 @@ export class Client extends EventManager {
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
+            case SERVER_EVENT.RECONNECTED:
+                console.log('Reconnected');
+                break;
         }
         args.push(message);
 
-        this.reserved.emit(message.event, ...args);
 
         this.emit(eventName, ...args);
-    }
-
-    protected setID(id: string): void {
-        this.id = id;
     }
 }

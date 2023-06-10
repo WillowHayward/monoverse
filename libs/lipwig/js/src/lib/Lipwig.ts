@@ -10,7 +10,8 @@ export class Lipwig {
     static create(url: string, config: RoomConfig = {}): Promise<Host> {
         return new Promise((resolve, reject) => {
             const host = new Host(url, config);
-            host.on('created', (code: string) => {
+            host.on('created', (code: string, ...args: any) => {
+                console.log(code, ...args);
                 resolve(host);
             });
 

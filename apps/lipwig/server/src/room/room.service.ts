@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
@@ -39,6 +39,11 @@ export class RoomService {
         const id = payload.id;
 
         const room = this.rooms[code];
+        if (!room) {
+            Logger.log(`Room ${code} not found`);
+
+            return;
+        }
         room.reconnect(user, id);
     }
 
@@ -48,6 +53,8 @@ export class RoomService {
 
         if (!room) {
             // Room not found
+            console.log(code, 'not found');
+            return;
         }
 
         room.handleMessage(user, payload);
@@ -56,6 +63,8 @@ export class RoomService {
     disconnect(user: LipwigSocket) {
         const code = user.room;
         const room = this.rooms[code];
-        room.disconnect(user, false);
+        if (room) {
+            room.disconnect(user, false);
+        }
     }
 }
