@@ -140,7 +140,11 @@ export interface ReconnectedEvent extends ServerEventStructure {
     data: ReconnectedEventData;
 }
 
-export interface ReconnectedEventData {}
+export interface ReconnectedEventData {
+    room: string;
+    id: string;
+    users?: string[]; // Array of user ids
+}
 
 export interface ErrorEvent extends ServerEventStructure {
     event: SERVER_EVENT.ERROR;
@@ -148,7 +152,8 @@ export interface ErrorEvent extends ServerEventStructure {
 }
 
 export interface ErrorEventData {
-    code: ERROR_CODE;
+    error: ERROR_CODE;
+    message?: string;
 }
 
 export interface KickedEvent extends ServerEventStructure {

@@ -114,7 +114,11 @@ export class Client extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
-                console.log('Reconnected');
+                this.id = message.data.id;
+                break;
+            case SERVER_EVENT.ERROR:
+                args.push(message.data.error);
+                args.push(message.data.message);
                 break;
         }
         args.push(message);

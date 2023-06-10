@@ -222,7 +222,29 @@ export class Host extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
-                console.log('Reconnected');
+                console.log('Host received RECONNECTED event', message.data);
+                // TODO: Does this need to be two events? One for the host reconnecting, one for a client?
+                // CONT: "users" field suggests two events
+                if (this.id.length) {
+                    // Client reconnecting
+                    const user = this.users.find(user => message.data.id === user.id);
+                    if (!user) {
+                        // TODO: Handle this. Malformed error?
+                    }
+                    args.push(user);
+                } else {
+                    // Host reconnecting
+                    this.room = message.data.room;
+                    this.id = message.data.id;
+                    this.socket.setData(this.room, this.id);
+                    if (!message.data.users) {
+                        break;
+                    }
+                    for (const existing of message.data.users) {
+                        const user: User = new User(existing, this);
+                        this.users.push(user);
+                    }
+                }
                 break;
             case SERVER_EVENT.ERROR:
                 break;

@@ -31,8 +31,6 @@ export class Socket extends EventManager {
         });
 
         this.socket.addEventListener('close', () => {
-            console.log('disconnected');
-
             if (!this.room || !this.id) {
                 console.log('Room or ID not set');
                 // Nothing to reconnect to
@@ -73,12 +71,11 @@ export class Socket extends EventManager {
 
     public reconnect(socket: WebSocket): void {
         if (!this.room || !this.id) {
-            console.log('----');
             // Nothing to reconnect to
             return;
         }
 
-        console.log('Connection established');
+        console.log('Reconnected');
         this.socket = socket;
         this.addListeners();
         const message: ReconnectEvent = {

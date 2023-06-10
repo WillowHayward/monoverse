@@ -24,6 +24,14 @@ export class HostService {
             host.sendToAllExcept('newChatter', user, data.name);
         });
 
+        host.on('reconnected', (user?: User) => {
+            if (user) {
+                user.send('existingUsers', this.users);
+            } else {
+                console.log(host.getUsers());
+            }
+        });
+
         host.on('message', (sender: User, name: string, text: string) => {
             host.sendToAll('message', name, text);
         });

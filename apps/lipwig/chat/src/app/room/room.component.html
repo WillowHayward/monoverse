@@ -15,7 +15,7 @@
     <textarea #message></textarea> 
     <br/><button (click)="send(message.value)">Send</button>
 </ng-container>
-<ng-container *ngIf="!connected">
+<ng-container *ngIf="!connected && !pending">
     Please enter a name
     <lwc-name-input #name></lwc-name-input>
     <button (click)="connect()">Join</button>

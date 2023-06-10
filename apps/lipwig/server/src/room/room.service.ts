@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData } from '@whc/lipwig/types';
+import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ErrorEvent, SERVER_EVENT, ERROR_CODE } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -11,12 +11,18 @@ export class RoomService {
     private rooms: { [code: string]: Room } = {};
 
     create(user: LipwigSocket, payload: CreateEventData) {
+        const config = payload.config;
         const existingCodes = Object.keys(this.rooms);
+
+        if (config.reconnect && existingCodes.includes(config.reconnect.code)) {
+            if (this.reconnect(user, config.reconnect)) {
+                return;
+            }
+        }
         let code: string;
         do {
             code = generateString(4);
         } while (existingCodes.includes(code));
-        const config = payload.config;
         const room = new Room(user, code, config);
         this.rooms[code] = room;
     }
@@ -29,12 +35,27 @@ export class RoomService {
 
         if (!room) {
             // Room not found
+            const message: ErrorEvent = {
+                event: SERVER_EVENT.ERROR,
+                data: {
+                    error: ERROR_CODE.ROOMNOTFOUND
+                }
+            }
+            user.send(JSON.stringify(message));
+            return;
         }
+
+        if (options.reconnect) {
+            if (room.reconnect(user, options.reconnect)) {
+                return;
+            }
+        }
+
 
         room.join(user, options);
     }
 
-    reconnect(user: LipwigSocket, payload: ReconnectEventData) {
+    reconnect(user: LipwigSocket, payload: ReconnectEventData): boolean {
         const code = payload.code;
         const id = payload.id;
 
@@ -44,7 +65,7 @@ export class RoomService {
 
             return;
         }
-        room.reconnect(user, id);
+        return room.reconnect(user, id);
     }
 
     message(user: LipwigSocket, payload: ClientMessageEventData) {

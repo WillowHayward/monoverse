@@ -77,23 +77,36 @@ export class Room {
         // TODO: Send messages
     }
 
-    reconnect(user: LipwigSocket, id: string) {
+    reconnect(user: LipwigSocket, id: string): boolean {
         user.id = id;
         user.room = this.code;
-        if (id === this.host.id) {
-            Logger.log('Host reconnected');
-            this.host = user;
-        } else {
-            if (!this.reconnectUser(user)) {
-                console.log('Could not reconnect');
-                return;
+
+        const reconnectMessage: ReconnectedEvent = {
+            event: SERVER_EVENT.RECONNECTED,
+            data: {
+                room: this.code,
+                id
             }
         }
 
-        this.sendMessage<ReconnectedEvent>(user, {
-            event: SERVER_EVENT.RECONNECTED,
-            data: {}
-        });
+        if (id === this.host.id) {
+            Logger.log('Host reconnected');
+            this.host = user;
+            reconnectMessage.data.users = this.users;
+            this.sendMessage<ReconnectedEvent>(user, reconnectMessage);
+        } else {
+            if (!this.reconnectUser(user)) {
+                console.log('Could not reconnect');
+                return false;
+            }
+
+            this.sendMessage<ReconnectedEvent>(user, reconnectMessage);
+            // Send to user first to allow listeners to be in localhost
+            // TODO: This may still introduce a race condition
+            this.sendMessage(this.host, reconnectMessage);
+        }
+
+        return true;
     }
 
 
@@ -101,13 +114,11 @@ export class Room {
         const id = user.id;
         const disconnectedIndex = this.disconnected.indexOf(id);
         if (disconnectedIndex === -1) {
-            console.log('A');
             return false;
         }
 
         const connectedIndex = this.connected.findIndex(value => value.id === id);
         if (connectedIndex === -1) {
-            console.log('B');
             return false;
         }
 

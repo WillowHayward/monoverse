@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LipwigService } from '../lipwig.service';
 import { HostService } from '../host.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NameInputComponent } from '../name-input/name-input.component';
 
 @Component({
@@ -15,33 +15,66 @@ export class RoomComponent implements OnInit {
     users: string[] = [];
     messages: {name: string; text: string}[] = [];
     connected: boolean = false;
+    pending: boolean = true;
     private name: string;
 
 
-    constructor(private lipwig: LipwigService, private host: HostService, private route: ActivatedRoute) { }
+    constructor(private lipwig: LipwigService, private host: HostService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
-        if (this.lipwig.connected) {
-            this.connected = true;
-            this.initClient();
-        } 
+        this.route.params.subscribe((data) => {
+            this.code = data['code'];
+            if (this.lipwig.connected) {
+                this.pending = false;
+                this.connected = true;
+                this.initClient();
+            } else {
+                this.attemptReconnect();
+            }
+        });
+    }
+
+    attemptReconnect() {
+        const name = window.sessionStorage.getItem('name');
+        const code = window.sessionStorage.getItem('code');
+        const id = window.sessionStorage.getItem('id');
+        const isHost = window.sessionStorage.getItem('host') === 'true' ? true : false;
+        
+        if (name && code === this.code && id) {
+            if (isHost) {
+                this.lipwig.createRoom(name, { code, id }).then(client => {
+                    this.pending = false;
+                    this.connected = true;
+                    this.initClient();
+                }).catch(() => {
+                    this.pending = false;
+                });
+            } else {
+                this.lipwig.joinRoom(name, code, id).then(client => {
+                    this.pending = false;
+                    this.connected = true;
+                    this.initClient();
+                }).catch((err) => {
+                    this.pending = false;
+                });
+
+            }
+        } else {
+            this.pending = false;
+        }
     }
 
     connect() {
         const name = this.nameInput.name;
-        this.route.params.subscribe((data) => {
-            const code: string = data['code'];
-            this.lipwig.joinRoom(name, code).then(client => {
-                this.connected = true;
-                this.initClient();
-            });
+        this.lipwig.joinRoom(name, this.code).then(client => {
+            this.connected = true;
+            this.initClient();
+        }).catch(err => {
+            this.router.navigate(['/']);
         });
-
     }
 
     initClient() {
-        this.code = this.lipwig.code;
-
         if (this.lipwig.isHost) {
             this.host.setup();
         }

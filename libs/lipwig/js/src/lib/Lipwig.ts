@@ -2,7 +2,7 @@
  * Class to initate interaction with a Lipwig server using promises
  * @author: WillHayCode
  */
-import { RoomConfig, UserOptions } from "@whc/lipwig/types";
+import { ERROR_CODE, RoomConfig, SERVER_EVENT, UserOptions } from "@whc/lipwig/types";
 import { Host } from "./Host";
 import { Client } from "./Client";
 
@@ -11,13 +11,17 @@ export class Lipwig {
         return new Promise((resolve, reject) => {
             const host = new Host(url, config);
             host.on('created', (code: string, ...args: any) => {
-                console.log(code, ...args);
                 resolve(host);
             });
 
-            // TODO: Error handling
-        });
+            host.on('reconnected', () => {
+                resolve(host);
+            });
 
+            host.once(SERVER_EVENT.ERROR, (error: ERROR_CODE, message?: string) => {
+                reject({error, message });
+            });
+        });
     }
 
     static join(url: string, code: string, options: UserOptions = {}): Promise<Client> {
@@ -27,7 +31,13 @@ export class Lipwig {
                 resolve(client);
             });
 
-            // TODO: Error handling
+            client.on('reconnected', () => {
+                resolve(client);
+            });
+
+            client.once(SERVER_EVENT.ERROR, (error: ERROR_CODE, message?: string) => {
+                reject({error, message });
+            });
         });
     }
 
