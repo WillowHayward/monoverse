@@ -4,11 +4,20 @@ import { Observable } from 'rxjs';
 import { RoomService } from './room.service';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
-import { AdministrateEventData, CLIENT_EVENT, ClientMessageEventData, CloseEventData, CreateEventData, ERROR_CODE, JoinEventData, KickEventData, LeaveEventData, PingEventData, ReconnectEventData, SERVER_EVENT } from '@whc/lipwig/types';
+import { CLIENT_EVENT, ERROR_CODE } from '@whc/lipwig/types';
+
+interface Validator {
+    required?: string[]; // Required paramaters on request
+    roomExists?: boolean; // Code parameter passed is real room
+    validUser?: boolean; // User is valid (initialised, exists in room)
+    isHost?: boolean; // If the user is or isn't the host. Leave undefined for either.
+    other?: (args: any) => boolean; // Event-specific validation function
+}
 
 @Injectable()
 export class RoomGuard implements CanActivate {
     private socket: LipwigSocket;
+
     constructor(private reflector: Reflector, private rooms: RoomService) {}
 
     canActivate(
@@ -16,35 +25,49 @@ export class RoomGuard implements CanActivate {
     ): boolean | Promise<boolean> | Observable<boolean> {
         this.socket = context.switchToWs().getClient();
         const event = this.reflector.get<string>('message', context.getHandler());
+        const args: any = context.getArgs()[1];
+
+        if (!this.validate(event, args)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private validate(event: string, args: any): boolean {
         if (!this.isValidEvent(event)) {
             sendError(this.socket, ERROR_CODE.MALFORMED, `Invalid event '${event}'`);
             return false;
         }
 
-        const args: any = context.getArgs()[1];
+        const validator = this.getValidator(event);
 
-        switch (event) {
-            case CLIENT_EVENT.CREATE:
-                return this.validateCreate(args);
-            case CLIENT_EVENT.JOIN:
-                return this.validateJoin(args);
-            case CLIENT_EVENT.RECONNECT:
-                return this.validateReconnect(args);
-            case CLIENT_EVENT.CLOSE:
-                return this.validateClose(args);
-            case CLIENT_EVENT.LEAVE:
-                return this.validateLeave(args);
-            case CLIENT_EVENT.ADMINISTRATE:
-                return this.validateAdministrate(args);
-            case CLIENT_EVENT.MESSAGE:
-                return this.validateMessage(args);
-            case CLIENT_EVENT.PING:
-                return this.validatePing(args);
-            case CLIENT_EVENT.KICK:
-                return this.validateKick(args);
-            default:
-                sendError(this.socket, ERROR_CODE.MALFORMED, `Guard not set up for event '${event}'`);
-                break;
+        if (validator.required && !this.validateParameters(args, validator.required)) {
+            return false;
+        }
+
+        if (validator.roomExists && !this.validateRoomExists(args.code)) {
+            return false;
+        }
+
+        if (validator.validUser && !this.validateUser()) {
+            return false;
+        }
+
+        if (validator.isHost !== undefined) {
+            const isHost = this.userIsHost();
+            if (!isHost && validator.isHost) {
+                sendError(this.socket, ERROR_CODE.INSUFFICIENTPERMISSIONS);
+                return false;
+            } else if (isHost && !validator.isHost) {
+                // TODO: Is this also just insufficient permissions?
+                sendError(this.socket, ERROR_CODE.MALFORMED, `Cannot use event '${event}' as host`);
+                return false;
+            }
+        }
+
+        if (validator.other && !validator.other(args)) {
+            return false;
         }
 
         return true;
@@ -53,6 +76,10 @@ export class RoomGuard implements CanActivate {
     private isValidEvent(event: string): event is CLIENT_EVENT {
         const events = Object.values(CLIENT_EVENT);
         return events.includes(event as CLIENT_EVENT);
+    }
+
+    private userIsHost(): boolean {
+        return this.rooms.userIsHost(this.socket.room, this.socket.id);
     }
 
     private validateRoomExists(room: string): boolean {
@@ -64,9 +91,6 @@ export class RoomGuard implements CanActivate {
         return true;
     }
 
-    private userIsHost(): boolean {
-        return this.rooms.userIsHost(this.socket.room, this.socket.id);
-    }
 
     private validateParameters(args: any, required: string[]): boolean {
         const params = Object.keys(args);
@@ -105,76 +129,60 @@ export class RoomGuard implements CanActivate {
         return true;
     }
 
-    private validateCreate(args: CreateEventData): boolean {
-        return true;
-    }
+    private getValidator(event: CLIENT_EVENT): Validator {
+        switch (event) {
+            case CLIENT_EVENT.CREATE:
+                return {};
+            case CLIENT_EVENT.JOIN:
+                return {
+                    required: ['code'],
+                    roomExists: true
+                }
+            case CLIENT_EVENT.RECONNECT:
+                return {
+                    required: ['code', 'id'],
+                    roomExists: true
+                }
+            case CLIENT_EVENT.CLOSE:
+                return {
+                    validUser: true,
+                    isHost: true
+                }
+            case CLIENT_EVENT.LEAVE:
+                return {
+                    validUser: true,
+                    isHost: false
+                }
+            case CLIENT_EVENT.ADMINISTRATE:
+                return {}; // TODO: Determine administrate flow
+            case CLIENT_EVENT.MESSAGE:
+                return {
+                    required: ['event', 'args'],
+                    validUser: true,
+                    other: (args: any) => {
+                        if (this.userIsHost() && !args.recipients) {
+                            sendError(this.socket, ERROR_CODE.MALFORMED, 'Message from host must contain recipients');
+                            return false;
+                        } else if (!this.userIsHost() && args.recipients) {
+                            sendError(this.socket, ERROR_CODE.MALFORMED, 'Message from client must not contain recipients');
+                            return false;
+                        }
 
-    private validateJoin(args: JoinEventData): boolean {
-        if (!this.validateParameters(args, ['code'])) {
-            return false;
+                        return true;
+                    }
+                }
+            case CLIENT_EVENT.PING:
+                return {
+                    required: ['time'],
+                    validUser: true
+                }
+            case CLIENT_EVENT.KICK:
+                return {
+                    isHost: true
+                }
+            default:
+                console.warn(`Guard not set up for event '${event}'`);
+                return {};
         }
-
-        return this.validateRoomExists(args.code);
-    }
-
-    private validateReconnect(args: ReconnectEventData): boolean {
-        if (!this.validateParameters(args, ['code', 'id'])) {
-            return false;
-        }
-
-        return this.validateRoomExists(args.code);
-    }
-
-    private validateClose(args: CloseEventData): boolean {
-        return this.validateUser();
-    }
-
-    private validateLeave(args: LeaveEventData): boolean {
-        return this.validateUser();
-    }
-
-    private validateAdministrate(args: AdministrateEventData): boolean {
-        return this.validateUser();
-    }
-
-    private validateMessage(args: ClientMessageEventData): boolean {
-        if (!this.validateParameters(args, ['event', 'args'])) {
-            return false;
-        }
-
-        if (!this.validateUser()) {
-            return false;
-        }
-
-        if (this.userIsHost() && !args.recipients) {
-            sendError(this.socket, ERROR_CODE.MALFORMED, 'Message from host must contain recipients');
-            return false;
-        } else if (!this.userIsHost() && args.recipients) {
-            sendError(this.socket, ERROR_CODE.MALFORMED, 'Message from client must not contain recipients');
-            return false;
-        }
-
-        return true;
-    }
-
-    private validatePing(args: PingEventData): boolean {
-        if (!this.validateParameters(args, ['time'])) {
-            return false;
-        }
-
-        return this.validateUser();
-    }
-
-    private validateKick(args: KickEventData): boolean {
-        if (!this.validateUser()) {
-            return false;
-        }
-
-        if (!this.userIsHost()) {
-            sendError(this.socket, ERROR_CODE.INSUFFICIENTPERMISSIONS, 'Only the host can kick');
-            return false;
-        }
-
-        return true;
     }
 }
