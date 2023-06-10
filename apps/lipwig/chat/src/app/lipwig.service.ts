@@ -12,6 +12,8 @@ export class LipwigService {
 
     code: string;
 
+    connected: boolean = false;
+
     constructor() { }
 
     public async createRoom(name: string): Promise<Client> {
@@ -20,6 +22,7 @@ export class LipwigService {
         return Lipwig.create(window.env['LIPWIG_HOST']).then(host => {
             this.code = host.room;
             this.host = host;
+            this.connected = true;
 
             const client = host.createLocalClient({
                 name
@@ -36,6 +39,7 @@ export class LipwigService {
         }).then(client => {
             this.code = client.room;
             this.client = client;
+            this.connected = true;
 
             return client;
         });

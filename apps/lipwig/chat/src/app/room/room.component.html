@@ -1,15 +1,22 @@
-<h1>Room {{code}}</h1>
-<h2>Connected</h2>
-<ul>
-    <li *ngFor="let user of users">
-        {{user}}
-    </li>
-<h2>Messages</h2>
-<ul>
-    <li *ngFor="let message of messages">
-        {{message.name}}: {{message.text}}
-    </li>
-</ul>
-<textarea #message></textarea> 
-<br/><button (click)="send(message.value)">Send</button>
-
+<ng-container *ngIf="connected">
+    <h1>Room {{code}}</h1>
+    <h2>Connected</h2>
+    <ul>
+        <li *ngFor="let user of users">
+            {{user}}
+        </li>
+    </ul>
+    <h2>Messages</h2>
+    <ul>
+        <li *ngFor="let message of messages">
+            {{message.name}}: {{message.text}}
+        </li>
+    </ul>
+    <textarea #message></textarea> 
+    <br/><button (click)="send(message.value)">Send</button>
+</ng-container>
+<ng-container *ngIf="!connected">
+    Please enter a name
+    <lwc-name-input #name></lwc-name-input>
+    <button (click)="connect()">Join</button>
+</ng-container>
