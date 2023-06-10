@@ -57,6 +57,11 @@ export class Host extends EventManager {
             this.handle(message);
         });
 
+        this.socket.on('disconnected', () => {
+            // TODO: Reconnection should be handled differently for a disconnect vs a refresh - a flag here might be the go
+            this.emit('host-disconnected');
+        });
+
         this.socket.on('reconnected', (socket: Socket) => {
             this.socket = socket;
             this.addSocketListeners();
@@ -160,14 +165,15 @@ export class Host extends EventManager {
 
     public createLocalClient(
         options: UserOptions = {},
-        callback: (id: string) => void = () => null
+        localID?: string
     ): LocalClient {
-        let localCount = 1;
-        let localID: string;
-        do {
-            localID = `local-${this.id}-${localCount}`;
-            localCount++;
-        } while (this.users.find(user => user.id === localID));
+        if (!localID) {
+            let localCount = 1;
+            do {
+                localID = `local-${this.id}-${localCount}`;
+                localCount++;
+            } while (this.users.find(user => user.id === localID));
+        }
 
         const localUser = new User(localID, this, true);
         // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
@@ -177,10 +183,6 @@ export class Host extends EventManager {
         localClient.id = localID;
 
         this.users.push(localUser);
-
-        localClient.on(SERVER_EVENT.JOINED, (id: string) => {
-            callback(id);
-        }); 
 
         // Set timeout to allow moment for listeners to be set on both ends
         // Hopefully this doesn't introduce a race condition
@@ -222,33 +224,49 @@ export class Host extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
-                console.log('Host received RECONNECTED event', message.data);
-                // TODO: Does this need to be two events? One for the host reconnecting, one for a client?
-                // CONT: "users" field suggests two events
-                if (this.id.length) {
-                    // Client reconnecting
-                    const user = this.users.find(user => message.data.id === user.id);
-                    if (!user) {
-                        // TODO: Handle this. Malformed error?
-                    }
-                    args.push(user);
-                } else {
-                    // Host reconnecting
-                    this.room = message.data.room;
-                    this.id = message.data.id;
-                    this.socket.setData(this.room, this.id);
-                    if (!message.data.users) {
-                        break;
-                    }
-                    for (const existing of message.data.users) {
-                        const user: User = new User(existing, this);
-                        this.users.push(user);
-                    }
+                const reconnected = this.users.find(user => message.data.id === user.id);
+                if (!reconnected) {
+                    // TODO: Handle this. Malformed error?
                 }
+                args.push(reconnected);
+                break;
+            case SERVER_EVENT.HOST_RECONNECTED:
+                this.room = message.data.room;
+                this.id = message.data.id;
+                this.socket.setData(this.room, this.id);
+                if (!message.data.users || !message.data.local) {
+                    // TODO: This shouldn't happen, but should be handled
+                    break;
+                }
+
+                for (const existing of message.data.users) {
+                    if (this.users.find(user => existing === user.id)) {
+                        // Don't need to recreate if non-reload reconnection
+                        continue;
+                    }
+                    const user: User = new User(existing, this);
+                    this.users.push(user);
+                }
+
+                for (let i = 0; i < message.data.local; i++) {
+                    const localID = `local-${this.id}-${i}`;
+                    if (this.users.find(user => localID === user.id)) {
+                        // Don't need to recreate if non-reload reconnection
+                        continue;
+                    }
+                    // TODO: finish this
+                    //this.c
+                }
+
+                args.push(this.users);
                 break;
             case SERVER_EVENT.ERROR:
                 break;
             case SERVER_EVENT.KICKED:
+                break;
+            case SERVER_EVENT.DISCONNECTED:
+                const disconnected = this.users.find(user => user.id === message.data.id);
+                args.push(disconnected);
                 break;
         }
 
@@ -259,6 +277,7 @@ export class Host extends EventManager {
             args.splice(0, 0, user);
         }
 
+        console.log(eventName, ...args);
         this.emit(eventName, ...args, this);
     }
 

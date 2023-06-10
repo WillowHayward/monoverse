@@ -56,6 +56,10 @@ export class Client extends EventManager {
             this.handle(message);
         });
 
+        this.socket.on('disconnected', () => {
+            this.emit('disconnected');
+        });
+
         this.socket.on('reconnected', (socket: Socket) => {
             this.socket = socket;
             this.addSocketListeners();
@@ -119,6 +123,10 @@ export class Client extends EventManager {
             case SERVER_EVENT.ERROR:
                 args.push(message.data.error);
                 args.push(message.data.message);
+                break;
+            case SERVER_EVENT.HOST_DISCONNECTED:
+                break;
+            case SERVER_EVENT.HOST_RECONNECTED:
                 break;
         }
         args.push(message);

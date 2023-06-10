@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE, CloseEventData, LeaveEventData, PingEventData, KickEventData, AdministrateEventData } from '@whc/lipwig/types';
+import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE, CloseEventData, LeaveEventData, PingEventData, KickEventData, AdministrateEventData, LocalJoinEventData, LocalLeaveEventData } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -112,6 +112,34 @@ export class RoomService {
     }
 
     kick(user: LipwigSocket, payload: KickEventData) {
+
+    }
+
+    localJoin(user: LipwigSocket, payload: LocalJoinEventData) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+
+        room.localJoin(user, payload);
+
+    }
+
+    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+
+        room.localLeave(user, payload);
 
     }
 

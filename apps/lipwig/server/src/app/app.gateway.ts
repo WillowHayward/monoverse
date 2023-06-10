@@ -14,6 +14,8 @@ import {
     LeaveEventData,
     PingEventData,
     KickEventData,
+    LocalJoinEventData,
+    LocalLeaveEventData,
 } from '@whc/lipwig/types';
 import { CLIENT_EVENT } from '@whc/lipwig/types';
 import { RoomService } from '../room/room.service';
@@ -69,6 +71,17 @@ export class AppGateway implements OnGatewayDisconnect {
     kick(user: LipwigSocket, payload: KickEventData) {
         this.rooms.kick(user, payload);
     }
+
+    @SubscribeMessage(CLIENT_EVENT.LOCAL_JOIN)
+    localJoin(user: LipwigSocket, payload: LocalJoinEventData) {
+        this.rooms.localJoin(user, payload);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.LOCAL_LEAVE)
+    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
+        this.rooms.localLeave(user, payload);
+    }
+
 
     handleDisconnect(user: LipwigSocket) {
         this.rooms.disconnect(user);

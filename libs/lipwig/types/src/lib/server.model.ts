@@ -59,7 +59,18 @@ export interface ReconnectedEvent extends ServerEventStructure {
 export interface ReconnectedEventData {
     room: string;
     id: string;
-    users?: string[]; // Array of user ids
+}
+
+export interface HostReconnectedEvent extends ServerEventStructure {
+    event: SERVER_EVENT.HOST_RECONNECTED;
+    data: HostReconnectedEventData;
+}
+
+export interface HostReconnectedEventData {
+    room: string;
+    id: string;
+    users?: string[]; // Array of user ids sent to host
+    local?: number; // Number of local users to send to host
 }
 
 export interface ErrorEvent extends ServerEventStructure {
@@ -81,5 +92,22 @@ export interface KickedEventData {
     reason?: string;
 }
 
-export type ServerEvent = ServerMessageEvent | CreatedEvent | JoinedEvent | ReconnectedEvent | ErrorEvent | KickedEvent;
+export interface DisconnectedEvent {
+    event: SERVER_EVENT.DISCONNECTED
+    data: DisconnectedEventData;
+}
+
+export interface DisconnectedEventData {
+    id: string;
+}
+
+export interface HostDisconnectedEvent {
+    event: SERVER_EVENT.HOST_DISCONNECTED
+    data: HostDisconnectedEventData;
+}
+
+export interface HostDisconnectedEventData {
+}
+
+export type ServerEvent = ServerMessageEvent | CreatedEvent | JoinedEvent | ReconnectedEvent | HostReconnectedEvent | ErrorEvent | KickedEvent | DisconnectedEvent | HostDisconnectedEvent;
 

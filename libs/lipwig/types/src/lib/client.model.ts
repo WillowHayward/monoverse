@@ -97,5 +97,21 @@ export interface KickEventData {
     reason?: string;
 }
 
+export interface LocalJoinEvent extends ClientEventStructure {
+    event: CLIENT_EVENT.LOCAL_JOIN;
+    data: LocalJoinEventData;
+}
+
+export interface LocalJoinEventData {
+}
+
+export interface LocalLeaveEvent extends ClientEventStructure {
+    event: CLIENT_EVENT.LOCAL_LEAVE;
+    data: LocalLeaveEventData;
+}
+
+export interface LocalLeaveEventData {
+}
+
 export type ClientEvent = ClientMessageEvent | CreateEvent | JoinEvent | ReconnectEvent | CloseEvent | AdministrateEvent | PingEvent | KickEvent;
 

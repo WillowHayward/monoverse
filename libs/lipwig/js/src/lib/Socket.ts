@@ -31,6 +31,8 @@ export class Socket extends EventManager {
         });
 
         this.socket.addEventListener('close', () => {
+            this.emit('disconnected');
+
             if (!this.room || !this.id) {
                 console.log('Room or ID not set');
                 // Nothing to reconnect to

@@ -43,6 +43,7 @@ export class RoomComponent implements OnInit {
         if (name && code === this.code && id) {
             if (isHost) {
                 this.lipwig.createRoom(name, { code, id }).then(client => {
+                    console.log(this.lipwig.host.getUsers());
                     this.pending = false;
                     this.connected = true;
                     this.initClient();
@@ -98,6 +99,22 @@ export class RoomComponent implements OnInit {
             this.messages.push({ name, text});
         });
 
+        client.on('disconnected', () => {
+            console.log('disconnected');
+        });
+
+        client.on('host-disconnected', () => {
+            console.log('host disconnected');
+        });
+
+        client.on('reconnected', () => {
+            this.users = [];
+            console.log('reconnected');
+        });
+
+        client.on('host-reconnected', () => {
+            console.log('host reconnected');
+        });
     }
 
     send(text: string) {

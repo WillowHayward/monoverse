@@ -9,13 +9,17 @@ import {
     UserOptions,
     ClientMessageEventData,
     ServerMessageEvent,
-    ErrorEvent,
     ERROR_CODE,
     CloseEventData,
     LeaveEventData,
     AdministrateEventData,
     PingEventData,
     KickEventData,
+    HostDisconnectedEvent,
+    DisconnectedEvent,
+    HostReconnectedEvent,
+    LocalJoinEventData,
+    LocalLeaveEventData,
 } from '@whc/lipwig/types';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
@@ -23,6 +27,7 @@ import { sendError } from './utils';
 export class Room {
     private id = v4();
     private users: LipwigSocket[] = []; 
+    private local: number = 0;
 
     constructor(
         private host: LipwigSocket,
@@ -82,38 +87,65 @@ export class Room {
         this.send<JoinedEvent>(this.host, confirmation);
     }
 
-    disconnect(user: LipwigSocket) {
-        user.connected = false;
+    disconnect(disconnected: LipwigSocket) {
+        disconnected.connected = false;
+        if (this.host.id === disconnected.id) {
+            for (const user of this.users) {
+                this.send<HostDisconnectedEvent>(user, {
+                    event: SERVER_EVENT.HOST_DISCONNECTED,
+                    data: {}
+                })
+            }
+        } else {
+            this.send<DisconnectedEvent>(this.host, {
+                event: SERVER_EVENT.DISCONNECTED,
+                data: {
+                    id: disconnected.id
+                }
+            });
+        }
     }
 
     reconnect(user: LipwigSocket, id: string): boolean {
         user.id = id;
         user.room = this.code;
 
-        const reconnectMessage: ReconnectedEvent = {
-            event: SERVER_EVENT.RECONNECTED,
-            data: {
-                room: this.code,
-                id
-            }
-        }
-
         if (id === this.host.id) {
-            this.host = user;
-            reconnectMessage.data.users = this.users.map(user => user.id);
-            this.send<ReconnectedEvent>(user, reconnectMessage);
+            if (!this.reconnectHost(user)) {
+                return false;
+            }
         } else {
             if (!this.reconnectUser(user)) {
                 return false;
             }
-
-            this.send<ReconnectedEvent>(user, reconnectMessage);
-            // Send to user first to allow listeners to be in localhost
-            // TODO: This may still introduce a race condition
-            this.send<ReconnectedEvent>(this.host, reconnectMessage);
         }
 
         user.connected = true;
+
+        return true;
+    }
+
+    private reconnectHost(host: LipwigSocket): boolean {
+        this.host = host;
+        this.send<HostReconnectedEvent>(host, {
+            event: SERVER_EVENT.HOST_RECONNECTED,
+            data: {
+                room: this.code,
+                id: host.id,
+                users: this.users.map(user => user.id),
+                local: this.local
+            }
+        });
+
+        for (const user of this.users) {
+            this.send<HostReconnectedEvent>(user, {
+                event: SERVER_EVENT.HOST_RECONNECTED,
+                data: {
+                    room: this.code,
+                    id: host.id
+                }
+            });
+        }
 
         return true;
     }
@@ -128,6 +160,19 @@ export class Room {
         }
 
         this.users.splice(index, 1, user);
+
+        const reconnectMessage: ReconnectedEvent = {
+            event: SERVER_EVENT.RECONNECTED,
+            data: {
+                room: this.code,
+                id: user.id
+            }
+        }
+
+        this.send<ReconnectedEvent>(user, reconnectMessage);
+        // Send to user first to allow listeners to be in localhost
+        // TODO: This may still introduce a race condition
+        this.send<ReconnectedEvent>(this.host, reconnectMessage);
 
         return true;
     }
@@ -181,6 +226,14 @@ export class Room {
     }
 
     kick(user: LipwigSocket, payload: KickEventData) {
+
+    }
+
+    localJoin(user: LipwigSocket, payload: LocalJoinEventData) {
+        this.local++;
+    }
+
+    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
 
     }
 

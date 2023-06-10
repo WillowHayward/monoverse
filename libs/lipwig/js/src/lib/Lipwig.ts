@@ -14,7 +14,7 @@ export class Lipwig {
                 resolve(host);
             });
 
-            host.on('reconnected', () => {
+            host.on('host-reconnected', () => {
                 resolve(host);
             });
 
