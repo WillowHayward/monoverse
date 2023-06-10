@@ -6,10 +6,13 @@
 export enum SERVER_EVENT {
     CREATED = 'created',
     JOINED = 'joined',
+    DISCONNECTED = 'disconnected',
     RECONNECTED = 'reconnected',
     ERROR = 'error',
     MESSAGE = 'lw-message',
     KICKED = 'kicked',
+    CLOSED = 'closed',
+    LEFT = 'left'
 }
 
 // Events that can be sent from a client
@@ -18,6 +21,7 @@ export enum CLIENT_EVENT {
     JOIN = 'join',
     RECONNECT = 'reconnect',
     CLOSE = 'close',
+    LEAVE = 'leave',
     ADMINISTRATE = 'administrate',
     MESSAGE = 'lw-message',
     PING = 'lw-ping',

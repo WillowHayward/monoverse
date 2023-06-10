@@ -4,4 +4,5 @@ export interface LipwigSocket extends WebSocket {
     id: string;
     room: string;
     host: boolean;
+    connected: boolean;
 }

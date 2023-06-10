@@ -1,10 +1,11 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
-import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ErrorEvent, SERVER_EVENT, ERROR_CODE } from '@whc/lipwig/types';
+import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE } from '@whc/lipwig/types';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
 import { Room } from './room';
+import { sendError } from './utils';
 
 @Injectable()
 export class RoomService {
@@ -35,13 +36,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            const message: ErrorEvent = {
-                event: SERVER_EVENT.ERROR,
-                data: {
-                    error: ERROR_CODE.ROOMNOTFOUND
-                }
-            }
-            user.send(JSON.stringify(message));
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -50,7 +45,6 @@ export class RoomService {
                 return;
             }
         }
-
 
         room.join(user, options);
     }
@@ -61,10 +55,10 @@ export class RoomService {
 
         const room = this.rooms[code];
         if (!room) {
-            Logger.log(`Room ${code} not found`);
-
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
             return;
         }
+
         return room.reconnect(user, id);
     }
 
@@ -74,18 +68,18 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            console.log(code, 'not found');
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
-        room.handleMessage(user, payload);
+        room.handle(user, payload);
     }
 
     disconnect(user: LipwigSocket) {
         const code = user.room;
         const room = this.rooms[code];
         if (room) {
-            room.disconnect(user, false);
+            room.disconnect(user);
         }
     }
 }

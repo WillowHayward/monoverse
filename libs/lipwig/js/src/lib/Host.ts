@@ -71,11 +71,11 @@ export class Host extends EventManager {
         return this.users; // TODO: This is returning a reference to the original object
     }
 
-    public close(reason = ''): void {
+    public close(reason?: string): void {
         const message: CloseEvent = {
             event: CLIENT_EVENT.CLOSE,
             data: {
-                reason,
+                reason
             },
         };
 

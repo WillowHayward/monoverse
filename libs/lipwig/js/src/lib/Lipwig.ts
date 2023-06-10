@@ -41,4 +41,10 @@ export class Lipwig {
         });
     }
 
+    static reconnect(url: string, code: string, id: string): Promise<Host | Client | null> {
+        return new Promise((resolve, reject) => {
+            // TODO
+            resolve(null);
+        });
+    }
 }

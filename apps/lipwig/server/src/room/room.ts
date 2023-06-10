@@ -9,15 +9,15 @@ import {
     UserOptions,
     ClientMessageEventData,
     ServerMessageEvent,
+    ErrorEvent,
+    ERROR_CODE,
 } from '@whc/lipwig/types';
 import { LipwigSocket } from '../app/app.model';
-import { Logger } from '@nestjs/common';
+import { sendError } from './utils';
 
 export class Room {
     private id = v4();
-    private users: string[] = []; // Array of user ids, index 0 for host
-    private connected: LipwigSocket[] = [];
-    private disconnected: string[] = [];
+    private users: LipwigSocket[] = []; 
 
     constructor(
         private host: LipwigSocket,
@@ -27,7 +27,7 @@ export class Room {
         // TODO: Room config
         this.initialiseUser(host, true);
 
-        this.sendMessage<CreatedEvent>(host, {
+        this.send<CreatedEvent>(host, {
             event: SERVER_EVENT.CREATED,
             data: {
                 code,
@@ -36,11 +36,21 @@ export class Room {
         });
     }
 
+    private initialiseUser(user: LipwigSocket, host: boolean, id?: string) {
+        user.host = host;
+        user.room = this.code;
+        user.id = id || v4();
+        user.connected = true;
+        if (!host) {
+            this.users.push(user);
+        }
+    }
+
     join(client: LipwigSocket, options: UserOptions) {
         // TODO: Join data
         this.initialiseUser(client, false);
         const id = client.id;
-        this.connected.push(client);
+        this.users.push(client);
 
         const confirmation: JoinedEvent = {
             event: SERVER_EVENT.JOINED,
@@ -49,32 +59,14 @@ export class Room {
             },
         };
 
-        this.sendMessage<JoinedEvent>(client, confirmation);
+        this.send<JoinedEvent>(client, confirmation);
 
         confirmation.data.options = options;
-        this.sendMessage<JoinedEvent>(this.host, confirmation);
+        this.send<JoinedEvent>(this.host, confirmation);
     }
 
-    disconnect(user: LipwigSocket, permanent: boolean) {
-        console.log('Disconnect');
-        if (permanent) {
-            // Delete from room
-        }
-
-        if (user === this.host) {
-
-            return;
-        }
-
-        const id = user.id;
-        const index = this.connected.findIndex(value => value === user);
-        if (!index) {
-            // ???
-        }
-        //this.connected.splice(index, 1);
-
-        this.disconnected.push(id);
-        // TODO: Send messages
+    disconnect(user: LipwigSocket) {
+        user.connected = false;
     }
 
     reconnect(user: LipwigSocket, id: string): boolean {
@@ -90,48 +82,43 @@ export class Room {
         }
 
         if (id === this.host.id) {
-            Logger.log('Host reconnected');
             this.host = user;
-            reconnectMessage.data.users = this.users;
-            this.sendMessage<ReconnectedEvent>(user, reconnectMessage);
+            reconnectMessage.data.users = this.users.map(user => user.id);
+            this.send<ReconnectedEvent>(user, reconnectMessage);
         } else {
             if (!this.reconnectUser(user)) {
-                console.log('Could not reconnect');
                 return false;
             }
 
-            this.sendMessage<ReconnectedEvent>(user, reconnectMessage);
+            this.send<ReconnectedEvent>(user, reconnectMessage);
             // Send to user first to allow listeners to be in localhost
             // TODO: This may still introduce a race condition
-            this.sendMessage(this.host, reconnectMessage);
+            this.send<ReconnectedEvent>(this.host, reconnectMessage);
         }
+
+        user.connected = true;
 
         return true;
     }
 
 
     private reconnectUser(user: LipwigSocket): boolean {
-        const id = user.id;
-        const disconnectedIndex = this.disconnected.indexOf(id);
-        if (disconnectedIndex === -1) {
+        const index = this.users.findIndex(other => other.id === user.id);
+        if (index === -1) {
+            // Could not find user
+            sendError(user, ERROR_CODE.USERNOTFOUND);
             return false;
         }
 
-        const connectedIndex = this.connected.findIndex(value => value.id === id);
-        if (connectedIndex === -1) {
-            return false;
-        }
-
-        this.disconnected.splice(disconnectedIndex, 1);
-        this.connected[connectedIndex] = user;
+        this.users.splice(index, 1, user);
 
         return true;
     }
 
-    handleMessage(sender: LipwigSocket, data: ClientMessageEventData) {
+    handle(sender: LipwigSocket, data: ClientMessageEventData) {
         if (sender.id !== this.host.id) {
             // If not host
-            this.sendMessage<ServerMessageEvent>(this.host, {
+            this.send<ServerMessageEvent>(this.host, {
                 event: SERVER_EVENT.MESSAGE,
                 data: {
                     event: data.event,
@@ -144,13 +131,13 @@ export class Room {
 
         for (const id of data.recipients) {
             //TODO: Disconnected message queuing
-            const user = this.connected.find(value => id === value.id);
+            const user = this.users.find(value => id === value.id);
             if (!user) {
-                // stub
-                Logger.warn('Could not find user', id);
+                sendError(sender, ERROR_CODE.USERNOTFOUND);
+                continue;
             }
 
-            this.sendMessage<ServerMessageEvent>(user, {
+            this.send<ServerMessageEvent>(user, {
                 event: SERVER_EVENT.MESSAGE,
                 data: {
                     event: data.event,
@@ -160,17 +147,8 @@ export class Room {
         }
     }
 
-    private sendMessage<T extends ServerEvent>(user: LipwigSocket, message: T) {
+    private send<T extends ServerEvent>(user: LipwigSocket, message: T) {
         const messageString = JSON.stringify(message);
         user.send(messageString);
-    }
-
-    private initialiseUser(user: LipwigSocket, host: boolean, id?: string) {
-        user.host = host;
-        user.room = this.code;
-        user.id = id || v4();
-        if (!host) {
-            this.users.push(user.id);
-        }
     }
 }
