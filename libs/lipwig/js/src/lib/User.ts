@@ -4,7 +4,7 @@
 import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
-import { ClientMessageEvent, CLIENT_EVENT, ServerMessageEvent, SERVER_EVENT } from '@whc/lipwig/types';
+import { ClientMessageEvent, CLIENT_EVENT, ServerMessageEvent, SERVER_EVENT, KickEvent, KickedEvent } from '@whc/lipwig/types';
 
 export class User extends EventManager {
     public client: LocalClient | undefined;
@@ -47,8 +47,25 @@ export class User extends EventManager {
         this.parent.unassign(this, name);
     }
 
-    public kick(reason = ''): void {
-        // TODO: For a local client this won't quite work I believe
-        this.send('kick', this.id, reason);
+    public kick(reason?: string): void {
+        if (this.local && this.client) {
+            const message: KickedEvent = {
+                event: SERVER_EVENT.KICKED,
+                data: {
+                    reason
+                }
+            }
+            this.client.handle(message);
+            return;
+        }
+
+        const message: KickEvent = {
+            event: CLIENT_EVENT.KICK,
+            data: {
+                id: this.id,
+                reason
+            }
+        }
+        this.parent.send(message);
     }
 }

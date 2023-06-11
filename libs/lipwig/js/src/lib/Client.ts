@@ -1,5 +1,4 @@
 /**
-* g
  * @author: WillHayCode
  */
 import {

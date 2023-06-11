@@ -20,6 +20,7 @@ import {
     HostReconnectedEvent,
     LocalJoinEventData,
     LocalLeaveEventData,
+    KickedEvent,
 } from '@whc/lipwig/types';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
@@ -226,7 +227,20 @@ export class Room {
     }
 
     kick(user: LipwigSocket, payload: KickEventData) {
+        const target = this.users.find(user => user.id === payload.id);
+        const index = this.users.indexOf(target);
+        if (!target || index === -1) {
+            sendError(user, ERROR_CODE.USERNOTFOUND);
+        }
 
+        this.send<KickedEvent>(target, {
+            event: SERVER_EVENT.KICKED,
+            data: {
+                reason: payload.reason
+            }
+        });
+        target.close();
+        this.users.splice(index, 1);
     }
 
     localJoin(user: LipwigSocket, payload: LocalJoinEventData) {

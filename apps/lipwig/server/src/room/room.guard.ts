@@ -178,6 +178,7 @@ export class RoomGuard implements CanActivate {
                 }
             case CLIENT_EVENT.KICK:
                 return {
+                    required: ['id'],
                     isHost: true
                 }
             default:

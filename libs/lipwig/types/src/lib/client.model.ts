@@ -94,6 +94,7 @@ export interface KickEvent extends ClientEventStructure {
 }
 
 export interface KickEventData {
+    id: string;
     reason?: string;
 }
 
