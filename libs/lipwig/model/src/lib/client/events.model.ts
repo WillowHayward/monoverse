@@ -37,6 +37,15 @@ export interface PingData {
     time: number;
 }
 
+export interface Pong extends EventStructure {
+    event: CLIENT_EVENT.PONG;
+    data: PongData;
+}
+
+export interface PongData {
+    time: number;
+}
+
 export interface Reconnect extends EventStructure {
     event: CLIENT_EVENT.RECONNECT;
     data: ReconnectData;
@@ -47,5 +56,5 @@ export interface ReconnectData {
     id: string;
 }
 
-export type Event = Join | Message | Ping | Reconnect;
+export type Event = Join | Message | Reconnect | Ping | Pong;
 

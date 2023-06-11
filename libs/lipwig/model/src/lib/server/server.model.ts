@@ -18,6 +18,8 @@ export enum SERVER_HOST_EVENT {
     ERROR = 'error',
     MESSAGE = 'lw-message',
     LEFT = 'left',
+    PING = 'lw-ping',
+    PONG = 'lw-pong',
 }
 
 export enum SERVER_CLIENT_EVENT {
@@ -28,5 +30,7 @@ export enum SERVER_CLIENT_EVENT {
     HOST_RECONNECTED = 'host-reconnected',
     ERROR = 'error',
     MESSAGE = 'lw-message',
+    PING = 'lw-ping',
+    PONG = 'lw-pong',
 }
 

@@ -92,4 +92,23 @@ export interface LeftData {
     reason?: string;
 }
 
-export type Event = Created | Joined | Disconnected | ClientDisconnected | Reconnected | ClientReconnected | Error | Message | Left;
+export interface Ping {
+    event: SERVER_HOST_EVENT.PING;
+    data: PingData;
+}
+
+export interface PingData {
+    time: number;
+}
+
+export interface Pong {
+    event: SERVER_HOST_EVENT.PONG;
+    data: PongData;
+}
+
+export interface PongData {
+    time: number;
+}
+
+
+export type Event = Created | Joined | Disconnected | ClientDisconnected | Reconnected | ClientReconnected | Error | Message | Left | Ping | Pong;

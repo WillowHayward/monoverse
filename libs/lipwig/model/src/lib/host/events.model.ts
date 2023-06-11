@@ -34,6 +34,15 @@ export interface PingData {
     time: number;
 }
 
+export interface Pong extends EventStructure {
+    event: HOST_EVENT.PONG;
+    data: PongData;
+}
+
+export interface PongData {
+    time: number;
+}
+
 export interface Kick extends EventStructure {
     event: HOST_EVENT.KICK;
     data: KickData;
@@ -62,5 +71,5 @@ export interface LocalLeave extends EventStructure {
     event: HOST_EVENT.LOCAL_LEAVE;
 }
 
-export type Event = Create | Message | Ping | Kick | LocalJoin | LocalLeave;
+export type Event = Create | Message | Kick | LocalJoin | LocalLeave | Ping | Pong;
 

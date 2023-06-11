@@ -69,4 +69,22 @@ export interface MessageData {
     args: unknown[];
 }
 
-export type Event = Joined | Disconnected | HostDisconnected | Reconnected | HostReconnected | Error | Message;
+export interface Ping {
+    event: SERVER_CLIENT_EVENT.PING;
+    data: PingData;
+}
+
+export interface PingData {
+    time: number;
+}
+
+export interface Pong {
+    event: SERVER_CLIENT_EVENT.PONG;
+    data: PongData;
+}
+
+export interface PongData {
+    time: number;
+}
+
+export type Event = Joined | Disconnected | HostDisconnected | Reconnected | HostReconnected | Error | Message | Ping | Pong;
