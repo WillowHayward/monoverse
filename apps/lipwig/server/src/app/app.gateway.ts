@@ -16,8 +16,8 @@ import {
     KickEventData,
     LocalJoinEventData,
     LocalLeaveEventData,
-} from '@whc/lipwig/types';
-import { CLIENT_EVENT } from '@whc/lipwig/types';
+} from '@whc/lipwig/model';
+import { CLIENT_EVENT } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { UseGuards } from '@nestjs/common';
 import { RoomGuard } from '../room/room.guard';
@@ -81,7 +81,6 @@ export class AppGateway implements OnGatewayDisconnect {
     localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
         this.rooms.localLeave(user, payload);
     }
-
 
     handleDisconnect(user: LipwigSocket) {
         this.rooms.disconnect(user);

@@ -1,13 +1,17 @@
-import { ErrorEvent, ERROR_CODE, SERVER_EVENT } from "@whc/lipwig/types";
-import { LipwigSocket } from "../app/app.model";
+import { ErrorEvent, ERROR_CODE, SERVER_EVENT } from '@whc/lipwig/model';
+import { LipwigSocket } from '../app/app.model';
 
-export function sendError(user: LipwigSocket, error: ERROR_CODE, message?: string) {
+export function sendError(
+    user: LipwigSocket,
+    error: ERROR_CODE,
+    message?: string
+) {
     const errorMessage: ErrorEvent = {
         event: SERVER_EVENT.ERROR,
         data: {
             error,
-            message
-        }
-    }
+            message,
+        },
+    };
     user.send(JSON.stringify(errorMessage));
 }

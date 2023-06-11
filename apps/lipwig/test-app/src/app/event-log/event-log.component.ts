@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Host, Client, User } from '@whc/lipwig/js';
-import { EVENTS_ALL, SERVER_EVENT } from '@whc/lipwig/types';
+import { EVENTS_ALL, SERVER_EVENT } from '@whc/lipwig/model';
 
 @Component({
     selector: 'lwt-event-log',
@@ -26,12 +26,7 @@ export class EventLogComponent implements OnInit {
                 const argsFormatted = JSON.stringify(args, null, 2);
                 const log = `${event}: ${argsFormatted}\n`;
                 this.log += log;
-
             });
-
         }
-
-        
     }
-
 }

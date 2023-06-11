@@ -21,13 +21,13 @@ import {
     LocalJoinEventData,
     LocalLeaveEventData,
     KickedEvent,
-} from '@whc/lipwig/types';
+} from '@whc/lipwig/model';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
 
 export class Room {
     private id = v4();
-    private users: LipwigSocket[] = []; 
+    private users: LipwigSocket[] = [];
     private local: number = 0;
 
     constructor(
@@ -52,7 +52,7 @@ export class Room {
             return true;
         }
 
-        return this.users.some(user => id === user.id);
+        return this.users.some((user) => id === user.id);
     }
 
     isHost(id: string) {
@@ -94,15 +94,15 @@ export class Room {
             for (const user of this.users) {
                 this.send<HostDisconnectedEvent>(user, {
                     event: SERVER_EVENT.HOST_DISCONNECTED,
-                    data: {}
-                })
+                    data: {},
+                });
             }
         } else {
             this.send<DisconnectedEvent>(this.host, {
                 event: SERVER_EVENT.DISCONNECTED,
                 data: {
-                    id: disconnected.id
-                }
+                    id: disconnected.id,
+                },
             });
         }
     }
@@ -133,9 +133,9 @@ export class Room {
             data: {
                 room: this.code,
                 id: host.id,
-                users: this.users.map(user => user.id),
-                local: this.local
-            }
+                users: this.users.map((user) => user.id),
+                local: this.local,
+            },
         });
 
         for (const user of this.users) {
@@ -143,17 +143,16 @@ export class Room {
                 event: SERVER_EVENT.HOST_RECONNECTED,
                 data: {
                     room: this.code,
-                    id: host.id
-                }
+                    id: host.id,
+                },
             });
         }
 
         return true;
     }
 
-
     private reconnectUser(user: LipwigSocket): boolean {
-        const index = this.users.findIndex(other => other.id === user.id);
+        const index = this.users.findIndex((other) => other.id === user.id);
         if (index === -1) {
             // Could not find user
             sendError(user, ERROR_CODE.USERNOTFOUND);
@@ -166,9 +165,9 @@ export class Room {
             event: SERVER_EVENT.RECONNECTED,
             data: {
                 room: this.code,
-                id: user.id
-            }
-        }
+                id: user.id,
+            },
+        };
 
         this.send<ReconnectedEvent>(user, reconnectMessage);
         // Send to user first to allow listeners to be in localhost
@@ -178,17 +177,11 @@ export class Room {
         return true;
     }
 
-    close(user: LipwigSocket, payload: CloseEventData) {
+    close(user: LipwigSocket, payload: CloseEventData) {}
 
-    }
+    leave(user: LipwigSocket, payload: LeaveEventData) {}
 
-    leave(user: LipwigSocket, payload: LeaveEventData) {
-
-    }
-
-    administrate(user: LipwigSocket, payload: AdministrateEventData) {
-
-    }
+    administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     handle(sender: LipwigSocket, data: ClientMessageEventData) {
         if (sender.id !== this.host.id) {
@@ -198,15 +191,15 @@ export class Room {
                 data: {
                     event: data.event,
                     sender: sender.id,
-                    args: data.args
-                }
+                    args: data.args,
+                },
             });
             return;
         }
 
         for (const id of data.recipients) {
             //TODO: Disconnected message queuing
-            const user = this.users.find(value => id === value.id);
+            const user = this.users.find((value) => id === value.id);
             if (!user) {
                 sendError(sender, ERROR_CODE.USERNOTFOUND);
                 continue;
@@ -216,18 +209,16 @@ export class Room {
                 event: SERVER_EVENT.MESSAGE,
                 data: {
                     event: data.event,
-                    args: data.args
-                }
+                    args: data.args,
+                },
             });
         }
     }
 
-    ping(user: LipwigSocket, payload: PingEventData) {
-
-    }
+    ping(user: LipwigSocket, payload: PingEventData) {}
 
     kick(user: LipwigSocket, payload: KickEventData) {
-        const target = this.users.find(user => user.id === payload.id);
+        const target = this.users.find((user) => user.id === payload.id);
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
             sendError(user, ERROR_CODE.USERNOTFOUND);
@@ -236,8 +227,8 @@ export class Room {
         this.send<KickedEvent>(target, {
             event: SERVER_EVENT.KICKED,
             data: {
-                reason: payload.reason
-            }
+                reason: payload.reason,
+            },
         });
         target.close();
         this.users.splice(index, 1);
@@ -247,9 +238,7 @@ export class Room {
         this.local++;
     }
 
-    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
-
-    }
+    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {}
 
     private send<T extends ServerEvent>(user: LipwigSocket, message: T) {
         const messageString = JSON.stringify(message);

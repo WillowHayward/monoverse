@@ -3,13 +3,23 @@
  */
 import { User } from './User';
 import { Host } from './Host';
-import { SERVER_EVENT, ServerEvent, ServerMessageEvent, UserOptions } from '@whc/lipwig/types';
+import {
+    SERVER_EVENT,
+    ServerEvent,
+    ServerMessageEvent,
+    UserOptions,
+} from '@whc/lipwig/model';
 import { Client } from './Client';
 
 export class LocalClient extends Client {
     private parent: Host;
     private user: User;
-    constructor(parent: Host, user: User, code: string, options: UserOptions = {}) {
+    constructor(
+        parent: Host,
+        user: User,
+        code: string,
+        options: UserOptions = {}
+    ) {
         super(null, code, options);
         this.id = '';
         this.parent = parent;
@@ -23,10 +33,9 @@ export class LocalClient extends Client {
             data: {
                 event,
                 args,
-                sender: this.id
-
-            }
-        }
+                sender: this.id,
+            },
+        };
 
         // Stringify + parse to prevent editing by reference and to simulate real process
         message = JSON.parse(JSON.stringify(message));
@@ -50,7 +59,6 @@ export class LocalClient extends Client {
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
-
         }
 
         this.emit(eventName, ...args);

@@ -4,7 +4,14 @@
 import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
-import { ClientMessageEvent, CLIENT_EVENT, ServerMessageEvent, SERVER_EVENT, KickEvent, KickedEvent } from '@whc/lipwig/types';
+import {
+    ClientMessageEvent,
+    CLIENT_EVENT,
+    ServerMessageEvent,
+    SERVER_EVENT,
+    KickEvent,
+    KickedEvent,
+} from '@whc/lipwig/model';
 
 export class User extends EventManager {
     public client: LocalClient | undefined;
@@ -52,9 +59,9 @@ export class User extends EventManager {
             const message: KickedEvent = {
                 event: SERVER_EVENT.KICKED,
                 data: {
-                    reason
-                }
-            }
+                    reason,
+                },
+            };
             this.client.handle(message);
             return;
         }
@@ -63,9 +70,9 @@ export class User extends EventManager {
             event: CLIENT_EVENT.KICK,
             data: {
                 id: this.id,
-                reason
-            }
-        }
+                reason,
+            },
+        };
         this.parent.send(message);
     }
 }

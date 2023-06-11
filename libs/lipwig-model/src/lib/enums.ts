@@ -14,7 +14,7 @@ export enum SERVER_EVENT {
     MESSAGE = 'lw-message',
     KICKED = 'kicked',
     CLOSED = 'closed',
-    LEFT = 'left'
+    LEFT = 'left',
 }
 
 // Events that can be sent from a client
@@ -29,7 +29,7 @@ export enum CLIENT_EVENT {
     PING = 'lw-ping',
     KICK = 'lw-kick',
     LOCAL_JOIN = 'lw-local-join', // Used to register local client
-    LOCAL_LEAVE = 'lw-local-leave' // Used to remove local client
+    LOCAL_LEAVE = 'lw-local-leave', // Used to remove local client
 }
 
 export enum ERROR_CODE {
