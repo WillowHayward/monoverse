@@ -3,6 +3,7 @@ import {
     ClientEvents,
     HostEvents,
     ServerClientEvents,
+    WEBSOCKET_CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 
@@ -36,17 +37,30 @@ export class Socket extends EventManager {
             this.emit('message', message);
         });
 
-        this.socket.addEventListener('close', () => {
-            this.emit('disconnected');
+        this.socket.addEventListener('close', (event: CloseEvent) => {
+            switch (event.code) {
+                case WEBSOCKET_CLOSE_CODE.KICKED:
+                    this.emit('kicked', event.reason);
+                    break;
+                case WEBSOCKET_CLOSE_CODE.LEFT:
+                    // TODO
+                    break;
+                case WEBSOCKET_CLOSE_CODE.CLOSED:
+                    // TODO
+                    break;
+                default:
+                    this.emit('disconnected');
 
-            if (!this.room || !this.id) {
-                console.log('Room or ID not set');
-                // Nothing to reconnect to
-                return;
-            }
+                    if (!this.room || !this.id) {
+                        console.log('Room or ID not set');
+                        // Nothing to reconnect to
+                        return;
+                    }
 
-            if (this.retry) {
-                this.autoReconnect();
+                    if (this.retry) {
+                        this.autoReconnect();
+                    }
+                    break;
             }
         });
     }

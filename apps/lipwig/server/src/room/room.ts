@@ -8,7 +8,8 @@ import {
     ServerHostEvents,
     ServerClientEvents,
     RoomConfig,
-    UserOptions
+    UserOptions,
+    WEBSOCKET_CLOSE_CODE
 } from '@whc/lipwig/model';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
@@ -218,19 +219,18 @@ export class Room {
     ping(user: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {}
 
     kick(user: LipwigSocket, payload: HostEvents.KickData) {
+        if (user !== this.host) {
+            sendError(user, ERROR_CODE.INSUFFICIENTPERMISSIONS);
+            return;
+        }
+
         const target = this.users.find((user) => user.id === payload.id);
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
             sendError(user, ERROR_CODE.USERNOTFOUND);
         }
 
-        this.send<ServerClientEvents.Kicked>(target, {
-            event: SERVER_CLIENT_EVENT.KICKED,
-            data: {
-                reason: payload.reason,
-            },
-        });
-        target.close();
+        target.close(WEBSOCKET_CLOSE_CODE.KICKED, payload.reason);
         this.users.splice(index, 1);
     }
 

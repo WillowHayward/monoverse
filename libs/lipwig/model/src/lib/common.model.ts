@@ -12,8 +12,9 @@ export type RoomOptions = {
 export type RoomConfig = Partial<RoomOptions>;
 
 export type UserOptions = {
-    [index: string]: unknown;
-    name?: string;
+    data?: {
+        [index: string]: unknown;
+    }
     reconnect?: string;
 };
 
@@ -25,4 +26,11 @@ export enum ERROR_CODE {
     USERNOTFOUND = 'USERNOTFOUND',
     INSUFFICIENTPERMISSIONS = 'INSUFFICIENTPERMISSIONS',
     INCORRECTPASSWORD = 'INCORRECTPASSWORD',
+}
+
+// 3000-3999 reserved close codes https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent/code
+export enum WEBSOCKET_CLOSE_CODE {
+    KICKED = 3400,
+    CLOSED = 3401,
+    LEFT = 3402,
 }

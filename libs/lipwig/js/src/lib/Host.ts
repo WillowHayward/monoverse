@@ -150,7 +150,7 @@ export class Host extends EventManager {
         const localRecipients = users.filter((user) =>
             user.id.startsWith('local-')
         );
-        this.socket.send({
+        this.send({
             event: HOST_EVENT.MESSAGE,
             data: {
                 event,
@@ -165,6 +165,14 @@ export class Host extends EventManager {
     }
 
     public send(message: HostEvents.Event) {
+        if (message.event === HOST_EVENT.KICK) {
+            const id = message.data.id;
+            const index = this.users.findIndex(user => id === user.id);
+            if (index === -1) {
+                // TODO: user not found
+            } 
+            this.users.splice(index, 1);
+        }
         this.socket.send(message);
     }
 
@@ -180,7 +188,8 @@ export class Host extends EventManager {
             } while (this.users.find((user) => user.id === localID));
         }
 
-        const localUser = new User(localID, this, true);
+        const localUser = new User(localID, this, options.data, true);
+        console.log(localUser);
         // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
         const localClient = new LocalClient(
             this,
@@ -220,10 +229,11 @@ export class Host extends EventManager {
                 this.socket.setData(this.room, message.data.id);
                 break;
             case SERVER_HOST_EVENT.JOINED:
-                const user: User = new User(message.data.id, this);
+                const data = message.data;
+                const user: User = new User(data.id, this, data.options?.data);
                 this.users.push(user);
                 args.push(user);
-                args.push(message.data.options);
+                args.push(data.options?.data); //TODO: Potentially just send the data in the end, trim the rest on the server. Currently only 'reconnect' is used.
                 this.emit(eventName, ...args, this);
                 return;
             case SERVER_HOST_EVENT.MESSAGE:

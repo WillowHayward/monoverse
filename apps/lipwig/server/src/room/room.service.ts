@@ -108,7 +108,18 @@ export class RoomService {
 
     ping(user: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {}
 
-    kick(user: LipwigSocket, payload: HostEvents.KickData) {}
+    kick(user: LipwigSocket, payload: HostEvents.KickData) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+
+        room.kick(user, payload);
+    }
 
     localJoin(user: LipwigSocket) {
         const code = user.room;

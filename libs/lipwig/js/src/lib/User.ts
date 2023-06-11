@@ -1,4 +1,4 @@
-/**
+/*
  * @author: WillHayCode
  */
 import { EventManager } from './EventManager';
@@ -9,12 +9,18 @@ import {
     SERVER_CLIENT_EVENT,
     HostEvents,
     ServerClientEvents,
+    UserOptions,
 } from '@whc/lipwig/model';
 
 export class User extends EventManager {
-    public client: LocalClient | undefined;
-    constructor(public id: string, private parent: Host, public local = false) {
+    public client: LocalClient | null = null;
+    public data: {[key: string]: any};
+    constructor(public id: string, private parent: Host, data?: {[key: string]: any}, public local = false) {
         super();
+        if (!data) {
+            data = {};
+        }
+        this.data = data;
     }
 
     public send(event: string, ...args: unknown[]): void {
@@ -72,5 +78,9 @@ export class User extends EventManager {
             },
         };
         this.parent.send(message);
+    }
+
+    public getLocalClient(): LocalClient | null {
+        return this.client;
     }
 }
