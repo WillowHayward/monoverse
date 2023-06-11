@@ -1,55 +1,115 @@
 import { Injectable } from '@angular/core';
 import { LipwigService } from './lipwig.service';
-import { Host, User } from '@whc/lipwig/js';
+import { Client, Host, User } from '@whc/lipwig/js';
+import { Chatter, Reconnectable } from './app.model';
+import { ClientService } from './client.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class HostService {
-    users: string[] = [];
+export class HostService implements Reconnectable {
+    private host: Host;
 
-    constructor(private lipwig: LipwigService) { }
+    constructor(private lipwig: LipwigService, private client: ClientService) { }
 
-    getListeners(host: Host) {
-        // TODO: Move the setup() listeners to here.
-        // There needs to be some mechanism for assigning these listeners in advance, for the promise-based initialisation
+    async connect(name: string): Promise<Client> {
+        const host = await this.lipwig.createRoom(name);
+        this.host = host;
+
+        const local = host.createLocalClient({
+            data: {
+                name
+            }
+        });
+        this.client.setClient(local);
+
+        this.setup();
+
+        return local;
     }
 
-    setup() {
-        const host = this.lipwig.getHost();
-        if (!host) {
-            return;
+    async reconnect(name: string, code: string, id: string): Promise<Client> {
+        const host = await this.lipwig.createRoom(name, {
+            code, id
+        });
+        this.host = host;
+        this.setup();
+
+
+        // Get local client here
+        const users = host.getUsers();
+        if (!users.length) {
+            throw new Error('Users not properly initialized');
         }
 
-        
-        host.on('joined', (user: User, data: any) => {
-            this.users.push(data.name);
-            user.send('existingUsers', this.users);
+        let client: Client | null = null;
+        for (const user of users) {
+            client = user.getLocalClient();
+            if (client) {
+                break;
+            }
+        }
 
-            host.sendToAllExcept('newChatter', user, data.name);
+        if (!client) {
+            throw new Error('Local users not initialized');
+        }
+
+        this.client.setClient(client);
+
+        return client;
+    }
+
+    kick(id: string, reason?: string) {
+        const user = this.host.getUsers().find(user => user.id === id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        user.kick(reason);
+        this.host.sendToAll('chatters', this.getChatters());
+    }
+
+    private setup() {
+        this.host.on('joined', (user: User, data: any) => {
+            user.send('chatters', this.getChatters());
+
+            this.host.sendToAllExcept('newChatter', user, data.name, user.id);
         });
 
-        host.on('host-reconnected', (users: User[]) => {
-            console.log('reconnected');
-        });
-
-        host.on('reconnected', (user: User) => {
+        this.host.on('client-reconnected', (user: User) => {
+            user.send('chatters', this.getChatters());
             console.log(user.id, 'reconnected');
-            user.send('existingUsers', this.users);
         });
 
-        host.on('host-disconnected', () => {
+        this.host.on('reconnected', (users: User[]) => {
+            console.log('host reconnected', users);
+        });
+
+        this.host.on('disconnected', () => {
             console.log('disconnected');
         });
 
-        host.on('disconnected', (user: User) => {
+        this.host.on('client-disconnected', (user: User) => {
+            if (!user) {
+                //TODO: Add websocket close reason or better way to handle this generally
+                return;
+            }
             console.log(user.id, 'disconnected');
         });
 
-
-        host.on('message', (sender: User, name: string, text: string) => {
-            host.sendToAll('message', name, text);
+        this.host.on('message', (user: User, message: string) => {
+            const name: string = user.data['name'];
+            this.host.sendToAll('message', name, message);
         });
+    }
 
+    private getChatters(): Chatter[] {
+        return this.host.getUsers().map(user => {
+            const name: string = user.data['name'];
+            return {
+                name,
+                id: user.id
+            }
+        });
     }
 }

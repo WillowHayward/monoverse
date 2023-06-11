@@ -14,11 +14,6 @@ interface ReconnectData {
 export class LipwigService {
     isHost: boolean = false;
 
-    host: Host;
-    client: Client;
-
-    code: string;
-
     connected: boolean = false;
 
     constructor() {}
@@ -26,7 +21,7 @@ export class LipwigService {
     public async createRoom(
         name: string,
         reconnect?: ReconnectData
-    ): Promise<Client> {
+    ): Promise<Host> {
         this.isHost = true;
 
         const config: RoomConfig = { name };
@@ -36,18 +31,11 @@ export class LipwigService {
         }
 
         return Lipwig.create(window.env['LIPWIG_HOST'], config).then((host) => {
-            this.code = host.room;
-            this.host = host;
             this.connected = true;
 
             this.setSessionData(name, host.room, host.id, true);
 
-            const client = host.createLocalClient({
-                name,
-            });
-            this.client = client;
-
-            return client;
+            return host;
         });
     }
 
@@ -56,15 +44,18 @@ export class LipwigService {
         code: string,
         reconnect?: string
     ): Promise<Client> {
-        const options: UserOptions = { name };
+        const options: UserOptions = { 
+            data: {
+                name 
+            }
+        };
 
         if (reconnect) {
             options.reconnect = reconnect;
         }
+
         return Lipwig.join(window.env['LIPWIG_HOST'], code, options).then(
             (client) => {
-                this.code = client.room;
-                this.client = client;
                 this.connected = true;
 
                 this.setSessionData(name, client.room, client.id, false);
@@ -72,14 +63,6 @@ export class LipwigService {
                 return client;
             }
         );
-    }
-
-    public getHost(): Host | undefined {
-        return this.host;
-    }
-
-    public getClient(): Client | undefined {
-        return this.client;
     }
 
     private setSessionData(

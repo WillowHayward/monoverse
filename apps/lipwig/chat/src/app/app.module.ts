@@ -8,6 +8,8 @@ import { LobbyComponent } from './lobby/lobby.component';
 import { RoomComponent } from './room/room.component';
 import { CommonModule } from '@angular/common';
 import { NameInputComponent } from './name-input/name-input.component';
+import { MessagesComponent } from './messages/messages.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
     {
@@ -26,8 +28,15 @@ const routes: Routes = [
         LobbyComponent,
         RoomComponent,
         NameInputComponent,
+        MessagesComponent,
+        UserListComponent,
     ],
-    imports: [BrowserModule, CommonModule, FormsModule, RouterModule.forRoot(routes)],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        FormsModule,
+        RouterModule.forRoot(routes),
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })

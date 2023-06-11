@@ -1,8 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LipwigService } from '../lipwig.service';
 import { HostService } from '../host.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NameInputComponent } from '../name-input/name-input.component';
+import { ClientService } from '../client.service';
+import { Reconnectable } from '../app.model';
+
+enum RoomState {
+    LOADING,
+    NAME_REQUIRED,
+    CONNECTED
+}
 
 @Component({
     selector: 'lwc-room',
@@ -12,22 +20,20 @@ import { NameInputComponent } from '../name-input/name-input.component';
 export class RoomComponent implements OnInit {
     @ViewChild('name') nameInput: NameInputComponent;
     code: string;
-    users: string[] = [];
-    messages: {name: string; text: string}[] = [];
-    connected: boolean = false;
-    pending: boolean = true;
-    private name: string;
 
+    isHost = false;
 
-    constructor(private lipwig: LipwigService, private host: HostService, private route: ActivatedRoute, private router: Router) { }
+    RoomState = RoomState;
+    state: RoomState = RoomState.LOADING;
+
+    constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.route.params.subscribe((data) => {
             this.code = data['code'];
             if (this.lipwig.connected) {
-                this.pending = false;
-                this.connected = true;
-                this.initClient();
+                this.state = RoomState.CONNECTED;
+                this.isHost = this.lipwig.isHost;
             } else {
                 this.attemptReconnect();
             }
@@ -41,88 +47,27 @@ export class RoomComponent implements OnInit {
         const isHost = window.sessionStorage.getItem('host') === 'true' ? true : false;
         
         if (name && code === this.code && id) {
+            let target: Reconnectable;
             if (isHost) {
-                this.lipwig.createRoom(name, { code, id }).then(client => {
-                    console.log(this.lipwig.host.getUsers());
-                    this.pending = false;
-                    this.connected = true;
-                    this.initClient();
-                }).catch(() => {
-                    this.pending = false;
-                });
+                target = this.host;
             } else {
-                this.lipwig.joinRoom(name, code, id).then(client => {
-                    this.pending = false;
-                    this.connected = true;
-                    this.initClient();
-                }).catch((err) => {
-                    this.pending = false;
-                });
-
+                target = this.client;
             }
+
+            target.reconnect(name, code, id).then(client => {
+                this.state = RoomState.CONNECTED;
+                this.isHost = this.lipwig.isHost;
+            }).catch(() => {
+                this.state = RoomState.NAME_REQUIRED;
+            });
         } else {
-            this.pending = false;
+            this.state = RoomState.NAME_REQUIRED;
         }
     }
 
     connect() {
-        const name = this.nameInput.name;
-        this.lipwig.joinRoom(name, this.code).then(client => {
-            this.connected = true;
-            this.initClient();
-        }).catch(err => {
-            this.router.navigate(['/']);
+        this.client.connect(this.nameInput.name, this.code).then(client => {
+            this.state = RoomState.CONNECTED;
         });
-    }
-
-    initClient() {
-        if (this.lipwig.isHost) {
-            this.host.setup();
-        }
-
-        const client = this.lipwig.getClient();
-
-        if (!client) {
-            return;
-        }
-
-        client.on('existingUsers', (names: string[]) => {
-            this.users.push(...names);
-            this.name = names.pop() || '';
-        });
-
-        client.on('newChatter', (name: string) => {
-            this.users.push(name);
-        });
-
-        client.on('message', (name: string, text: string) => {
-            this.messages.push({ name, text});
-        });
-
-        client.on('disconnected', () => {
-            console.log('disconnected');
-        });
-
-        client.on('host-disconnected', () => {
-            console.log('host disconnected');
-        });
-
-        client.on('reconnected', () => {
-            this.users = [];
-            console.log('reconnected');
-        });
-
-        client.on('host-reconnected', () => {
-            console.log('host reconnected');
-        });
-    }
-
-    send(text: string) {
-        const client = this.lipwig.getClient();
-        if (!client) {
-            return;
-        }
-
-        client.send('message', this.name, text);
     }
 }
