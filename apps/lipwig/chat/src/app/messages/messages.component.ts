@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Message } from '../app.model';
 import { ClientService } from '../client.service';
 
 @Component({
@@ -10,11 +9,11 @@ import { ClientService } from '../client.service';
 export class MessagesComponent implements OnInit {
     @ViewChild('message') messageBox: ElementRef<HTMLTextAreaElement>;
     constructor(private client: ClientService) {}
-    messages: Message[] = [];
+    messages: string[] = [];
 
     ngOnInit(): void {
-        this.client.getMessages().subscribe(([name, text]) => {
-            this.messages.push({ name, text});
+        this.client.getMessages().subscribe(message => {
+            this.messages.push(message);
         });
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client } from '@whc/lipwig/js';
+import { Client, Host, User } from '@whc/lipwig/js';
 import { Observable } from 'rxjs';
 import { Chatter, Reconnectable } from './app.model';
 import { LipwigService } from './lipwig.service';
@@ -33,12 +33,16 @@ export class ClientService implements Reconnectable {
         return client;
     }
 
-    getMessages(): Observable<[string, string]> {
+    getMessages(): Observable<string> {
         return new Observable(observer => {
-            this.client.on('message', (...args) => {
-                const [name, message] = args;
-                observer.next([name, message]);
+            this.client.on('message', (name, message) => {
+                observer.next(`${name}: ${message}`);
             });
+
+            this.client.on('left', (name: string, reason?: string) => {
+                observer.next(`${name} left. Reason: ${reason}`);
+            });
+
         });
     }
 
@@ -66,6 +70,10 @@ export class ClientService implements Reconnectable {
 
     send(message: string) {
         this.client.send('message', message);
+    }
+
+    leave(reason?: string) {
+        this.client.leave(reason);
     }
 
     private setup(client: Client) {

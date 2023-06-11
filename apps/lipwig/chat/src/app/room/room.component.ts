@@ -75,4 +75,9 @@ export class RoomComponent implements OnInit {
         this.host.close('Room done now');
         this.router.navigate(['/']);
     }
+
+    leave() {
+        this.client.leave('Done here');
+        this.router.navigate(['/']);
+    }
 }

@@ -105,6 +105,12 @@ export class HostService implements Reconnectable {
             const name: string = user.data['name'];
             this.host.sendToAll('message', name, message);
         });
+        this.host.on('left', (user: User, reason?: string) => {
+            const name = user.data['name'];
+            this.host.sendToAll('chatters', this.getChatters());
+
+            this.host.sendToAll('left', name, reason);
+        });
     }
 
     private getChatters(): Chatter[] {
