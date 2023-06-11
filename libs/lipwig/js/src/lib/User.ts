@@ -5,12 +5,10 @@ import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
 import {
-    ClientMessageEvent,
-    CLIENT_EVENT,
-    ServerMessageEvent,
-    SERVER_EVENT,
-    KickEvent,
-    KickedEvent,
+    HOST_EVENT,
+    SERVER_CLIENT_EVENT,
+    HostEvents,
+    ServerClientEvents,
 } from '@whc/lipwig/model';
 
 export class User extends EventManager {
@@ -21,8 +19,8 @@ export class User extends EventManager {
 
     public send(event: string, ...args: unknown[]): void {
         if (this.local && this.client) {
-            const message: ServerMessageEvent = {
-                event: SERVER_EVENT.MESSAGE,
+            const message: ServerClientEvents.Message = {
+                event: SERVER_CLIENT_EVENT.MESSAGE,
                 data: {
                     event,
                     args,
@@ -30,8 +28,8 @@ export class User extends EventManager {
             };
             this.client.handle(message);
         } else {
-            const message: ClientMessageEvent = {
-                event: CLIENT_EVENT.MESSAGE,
+            const message: HostEvents.Message = {
+                event: HOST_EVENT.MESSAGE,
                 data: {
                     event,
                     args,
@@ -56,8 +54,8 @@ export class User extends EventManager {
 
     public kick(reason?: string): void {
         if (this.local && this.client) {
-            const message: KickedEvent = {
-                event: SERVER_EVENT.KICKED,
+            const message: ServerClientEvents.Kicked = {
+                event: SERVER_CLIENT_EVENT.KICKED,
                 data: {
                     reason,
                 },
@@ -66,8 +64,8 @@ export class User extends EventManager {
             return;
         }
 
-        const message: KickEvent = {
-            event: CLIENT_EVENT.KICK,
+        const message: HostEvents.Kick = {
+            event: HOST_EVENT.KICK,
             data: {
                 id: this.id,
                 reason,

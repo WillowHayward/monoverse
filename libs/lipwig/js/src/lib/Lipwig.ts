@@ -2,10 +2,10 @@
  * Class to initate interaction with a Lipwig server using promises
  * @author: WillHayCode
  */
+//TODO: Update the string to enums from the model
 import {
     ERROR_CODE,
     RoomConfig,
-    SERVER_EVENT,
     UserOptions,
 } from '@whc/lipwig/model';
 import { Host } from './Host';
@@ -23,9 +23,7 @@ export class Lipwig {
                 resolve(host);
             });
 
-            host.once(
-                SERVER_EVENT.ERROR,
-                (error: ERROR_CODE, message?: string) => {
+            host.once('error', (error: ERROR_CODE, message?: string) => {
                     reject({ error, message });
                 }
             );
@@ -47,8 +45,7 @@ export class Lipwig {
                 resolve(client);
             });
 
-            client.once(
-                SERVER_EVENT.ERROR,
+            client.once('error',
                 (error: ERROR_CODE, message?: string) => {
                     reject({ error, message });
                 }

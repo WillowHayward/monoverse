@@ -2,15 +2,13 @@
  * @author: WillHayCode
  */
 import {
+    SERVER_HOST_EVENT,
+    HostEvents,
+    ServerHostEvents,
     RoomConfig,
     UserOptions,
-    CloseEvent,
-    CreateEvent,
-    JoinedEvent,
-    ServerEvent,
-    CLIENT_EVENT,
-    SERVER_EVENT,
-    ClientEvent,
+    HOST_EVENT,
+    SERVER_CLIENT_EVENT,
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
@@ -26,8 +24,8 @@ export class Host extends EventManager {
     private groups: GroupMap;
 
     private socket: Socket;
-    public room: string = '';
-    public id: string = '';
+    public room = '';
+    public id = '';
 
     /**
      * Create a new Lipwig room
@@ -53,7 +51,7 @@ export class Host extends EventManager {
             // TODO
         });
 
-        this.socket.on('message', (message: ServerEvent) => {
+        this.socket.on('message', (message: ServerHostEvents.Event) => {
             this.handle(message);
         });
 
@@ -76,8 +74,8 @@ export class Host extends EventManager {
     }
 
     public close(reason?: string): void {
-        const message: CloseEvent = {
-            event: CLIENT_EVENT.CLOSE,
+        const message: HostEvents.Close = {
+            event: HOST_EVENT.CLOSE,
             data: {
                 reason,
             },
@@ -153,7 +151,7 @@ export class Host extends EventManager {
             user.id.startsWith('local-')
         );
         this.socket.send({
-            event: CLIENT_EVENT.MESSAGE,
+            event: HOST_EVENT.MESSAGE,
             data: {
                 event,
                 args,
@@ -166,7 +164,7 @@ export class Host extends EventManager {
         }
     }
 
-    public send(message: ClientEvent) {
+    public send(message: HostEvents.Event) {
         this.socket.send(message);
     }
 
@@ -202,40 +200,40 @@ export class Host extends EventManager {
         //       Not a massive surprise I guess.
         // TODO: Add callback as parameter
         setTimeout(() => {
-            this.emit(SERVER_EVENT.JOINED, localUser, options);
-            localClient.emit(SERVER_EVENT.JOINED, localID);
+            this.emit(SERVER_HOST_EVENT.JOINED, localUser, options);
+            localClient.emit(SERVER_CLIENT_EVENT.JOINED, localID);
         }, 10);
 
         return localClient;
     }
 
-    public handle(message: ServerEvent): void {
+    public handle(message: ServerHostEvents.Event): void {
         let eventName: string = message.event;
         let sender: string | null = null;
         const args: unknown[] = [];
         switch (message.event) {
-            case SERVER_EVENT.CREATED:
+            case SERVER_HOST_EVENT.CREATED:
                 this.room = message.data.code;
                 this.id = message.data.id;
                 args.push(message.data.code);
 
                 this.socket.setData(this.room, message.data.id);
                 break;
-            case SERVER_EVENT.JOINED:
+            case SERVER_HOST_EVENT.JOINED:
                 const user: User = new User(message.data.id, this);
                 this.users.push(user);
                 args.push(user);
                 args.push(message.data.options);
                 this.emit(eventName, ...args, this);
                 return;
-            case SERVER_EVENT.MESSAGE:
+            case SERVER_HOST_EVENT.MESSAGE:
                 args.push(...message.data.args);
                 eventName = message.data.event;
                 sender = message.data?.sender || '';
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
-            case SERVER_EVENT.RECONNECTED:
+            case SERVER_HOST_EVENT.CLIENT_RECONNECTED:
                 const reconnected = this.users.find(
                     (user) => message.data.id === user.id
                 );
@@ -244,7 +242,7 @@ export class Host extends EventManager {
                 }
                 args.push(reconnected);
                 break;
-            case SERVER_EVENT.HOST_RECONNECTED:
+            case SERVER_HOST_EVENT.RECONNECTED:
                 this.room = message.data.room;
                 this.id = message.data.id;
                 this.socket.setData(this.room, this.id);
@@ -274,11 +272,9 @@ export class Host extends EventManager {
 
                 args.push(this.users);
                 break;
-            case SERVER_EVENT.ERROR:
+            case SERVER_HOST_EVENT.ERROR:
                 break;
-            case SERVER_EVENT.KICKED:
-                break;
-            case SERVER_EVENT.DISCONNECTED:
+            case SERVER_HOST_EVENT.CLIENT_DISCONNECTED:
                 const disconnected = this.users.find(
                     (user) => user.id === message.data.id
                 );
@@ -301,8 +297,8 @@ export class Host extends EventManager {
      * Final stage of connection handshake - sends create message to LipwigCore server
      */
     protected connected(): void {
-        const message: CreateEvent = {
-            event: CLIENT_EVENT.CREATE,
+        const message: HostEvents.Create = {
+            event: HOST_EVENT.CREATE,
             data: {
                 config: this.config,
             },

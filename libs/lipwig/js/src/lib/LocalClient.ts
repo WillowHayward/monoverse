@@ -4,9 +4,10 @@
 import { User } from './User';
 import { Host } from './Host';
 import {
-    SERVER_EVENT,
-    ServerEvent,
-    ServerMessageEvent,
+    SERVER_CLIENT_EVENT,
+    SERVER_HOST_EVENT,
+    ServerClientEvents,
+    ServerHostEvents,
     UserOptions,
 } from '@whc/lipwig/model';
 import { Client } from './Client';
@@ -28,8 +29,8 @@ export class LocalClient extends Client {
     }
 
     public override send(event: string, ...args: unknown[]): void {
-        let message: ServerEvent = {
-            event: SERVER_EVENT.MESSAGE,
+        let message: ServerHostEvents.Message = {
+            event: SERVER_HOST_EVENT.MESSAGE,
             data: {
                 event,
                 args,
@@ -43,17 +44,17 @@ export class LocalClient extends Client {
         this.parent.handle(message);
     }
 
-    public override handle(message: ServerEvent): void {
+    public override handle(message: ServerClientEvents.Event): void {
         message = JSON.parse(JSON.stringify(message));
         let eventName: string = message.event;
 
         // In theory this should never be from a socket
         const args: unknown[] = [];
         switch (message.event) {
-            case SERVER_EVENT.JOINED:
+            case SERVER_CLIENT_EVENT.JOINED:
                 this.id = message.data.id;
                 break;
-            case SERVER_EVENT.MESSAGE:
+            case SERVER_CLIENT_EVENT.MESSAGE:
                 args.push(...message.data.args.concat(message));
                 eventName = message.data.event;
 

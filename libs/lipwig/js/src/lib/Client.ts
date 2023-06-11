@@ -2,12 +2,11 @@
  * @author: WillHayCode
  */
 import {
-    JoinEvent,
-    ClientMessageEvent,
-    UserOptions,
-    ServerEvent,
     CLIENT_EVENT,
-    SERVER_EVENT,
+    SERVER_CLIENT_EVENT,
+    ClientEvents,
+    ServerClientEvents,
+    UserOptions
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
@@ -15,7 +14,7 @@ import { Socket } from './Socket';
 export class Client extends EventManager {
     private socket?: Socket;
     public room: string;
-    public id: string = '';
+    public id = '';
 
     /**
      * Attempt to join an existing Lipwig room
@@ -51,7 +50,7 @@ export class Client extends EventManager {
             // TODO
         });
 
-        this.socket.on('message', (message: ServerEvent) => {
+        this.socket.on('message', (message: ServerClientEvents.Event) => {
             this.handle(message);
         });
 
@@ -71,7 +70,7 @@ export class Client extends EventManager {
      * @param args  Arguments to send
      */
     public send(event: string, ...args: unknown[]): void {
-        const message: ClientMessageEvent = {
+        const message: ClientEvents.Message = {
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
@@ -85,7 +84,7 @@ export class Client extends EventManager {
      * Final stage of connection handshake - sends join message to LipwigCore server
      */
     protected connected(): void {
-        const message: JoinEvent = {
+        const message: ClientEvents.Join = {
             event: CLIENT_EVENT.JOIN,
             data: {
                 code: this.room,
@@ -99,33 +98,33 @@ export class Client extends EventManager {
      * Handle received message
      * @param event
      */
-    public handle(message: ServerEvent): void {
+    public handle(message: ServerClientEvents.Event): void {
         let eventName: string = message.event;
         const args: unknown[] = [];
 
         switch (message.event) {
-            case SERVER_EVENT.JOINED:
+            case SERVER_CLIENT_EVENT.JOINED:
                 this.id = message.data.id;
                 args.push(message.data.id);
 
                 this.socket?.setData(this.room, this.id);
                 break;
-            case SERVER_EVENT.MESSAGE:
+            case SERVER_CLIENT_EVENT.MESSAGE:
                 args.push(...message.data.args);
                 eventName = message.data.event;
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
-            case SERVER_EVENT.RECONNECTED:
+            case SERVER_CLIENT_EVENT.RECONNECTED:
                 this.id = message.data.id;
                 break;
-            case SERVER_EVENT.ERROR:
+            case SERVER_CLIENT_EVENT.ERROR:
                 args.push(message.data.error);
                 args.push(message.data.message);
                 break;
-            case SERVER_EVENT.HOST_DISCONNECTED:
+            case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
                 break;
-            case SERVER_EVENT.HOST_RECONNECTED:
+            case SERVER_CLIENT_EVENT.HOST_RECONNECTED:
                 break;
         }
         args.push(message);

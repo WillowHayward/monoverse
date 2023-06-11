@@ -1,9 +1,8 @@
 import {
     CLIENT_EVENT,
-    ClientEvent,
-    ReconnectEvent,
-    ServerEvent,
-    ServerMessageEvent,
+    ClientEvents,
+    HostEvents,
+    ServerClientEvents,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 
@@ -32,7 +31,8 @@ export class Socket extends EventManager {
         });
 
         this.socket.addEventListener('message', (event: MessageEvent) => {
-            const message: ServerEvent = JSON.parse(event.data);
+            //TODO: Try and make this account for ServerClient and ServerHost split
+            const message: ServerClientEvents.Event = JSON.parse(event.data);
             this.emit('message', message);
         });
 
@@ -51,7 +51,7 @@ export class Socket extends EventManager {
         });
     }
 
-    public send(message: ClientEvent): void {
+    public send(message: ClientEvents.Event | HostEvents.Event): void {
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         //CONT: Possible return unsent messages from this method
@@ -86,7 +86,8 @@ export class Socket extends EventManager {
         console.log('Reconnected');
         this.socket = socket;
         this.addListeners();
-        const message: ReconnectEvent = {
+        //TODO: Try and make this account for ServerClient and ServerHost split
+        const message: ClientEvents.Reconnect = {
             event: CLIENT_EVENT.RECONNECT,
             data: {
                 code: this.room,
