@@ -276,21 +276,21 @@ export class Room {
         });
     }
 
-    ping(user: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {}
+    ping(user: LipwigSocket, time: number) {}
 
-    kick(user: LipwigSocket, payload: HostEvents.KickData) {
+    kick(user: LipwigSocket, id: string, reason?: string) {
         if (user !== this.host) {
             sendError(user, ERROR_CODE.INSUFFICIENTPERMISSIONS);
             return;
         }
 
-        const target = this.users.find((user) => user.id === payload.id);
+        const target = this.users.find((user) => user.id === id);
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
             sendError(user, ERROR_CODE.USERNOTFOUND);
         }
 
-        target.close(WEBSOCKET_CLOSE_CODE.KICKED, payload.reason);
+        target.close(WEBSOCKET_CLOSE_CODE.KICKED, reason);
         this.users.splice(index, 1);
     }
 

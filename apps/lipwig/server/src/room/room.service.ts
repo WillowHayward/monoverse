@@ -3,7 +3,9 @@ import { Injectable } from '@nestjs/common';
 import {
     ERROR_CODE,
     ClientEvents,
-    HostEvents
+    HostEvents,
+    RoomConfig,
+    UserOptions
 } from '@whc/lipwig/model';
 
 import { generateString } from '@whc/utils';
@@ -40,12 +42,11 @@ export class RoomService {
         return this.getRoom(room).isHost(id);
     }
 
-    create(user: LipwigSocket, payload: HostEvents.CreateData) {
-        const config = payload.config;
+    create(user: LipwigSocket, config: RoomConfig) {
         const existingCodes = Object.keys(this.rooms);
 
         if (config.reconnect && existingCodes.includes(config.reconnect.code)) {
-            if (this.reconnect(user, config.reconnect)) {
+            if (this.reconnect(user, config.reconnect.code, config.reconnect.id)) {
                 return;
             }
         }
@@ -61,9 +62,7 @@ export class RoomService {
         }
     }
 
-    join(user: LipwigSocket, payload: ClientEvents.JoinData) {
-        const code = payload.code;
-        const options = payload.options;
+    join(user: LipwigSocket, code: string, options?: UserOptions) {
         // TODO: Join Options
         const room = this.rooms[code];
 
@@ -82,10 +81,7 @@ export class RoomService {
         room.join(user, options);
     }
 
-    reconnect(user: LipwigSocket, payload: HostEvents.ReconnectData | ClientEvents.ReconnectData): boolean {
-        const code = payload.code;
-        const id = payload.id;
-
+    reconnect(user: LipwigSocket, code: string, id: string): boolean {
         const room = this.rooms[code];
         if (!room) {
             sendError(user, ERROR_CODE.ROOMNOTFOUND);
@@ -110,9 +106,9 @@ export class RoomService {
         room.handle(user, payload);
     }
 
-    ping(user: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {}
+    ping(user: LipwigSocket, time: number) {}
 
-    kick(user: LipwigSocket, payload: HostEvents.KickData) {
+    kick(user: LipwigSocket, id: string, reason?: string) {
         const code = user.room;
         const room = this.rooms[code];
 
@@ -122,7 +118,7 @@ export class RoomService {
             return;
         }
 
-        room.kick(user, payload);
+        room.kick(user, id, reason);
     }
 
     localJoin(user: LipwigSocket) {
