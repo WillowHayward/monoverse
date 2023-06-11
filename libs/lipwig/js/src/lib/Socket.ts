@@ -1,11 +1,5 @@
-import {
-    CLIENT_EVENT,
-    ClientEvent,
-    ReconnectEvent,
-    ServerEvent,
-    ServerMessageEvent,
-} from '@whc/lipwig/model';
-import { EventManager } from './EventManager';
+import { CLIENT_EVENT, ClientEvent, ReconnectEvent, ServerEvent, ServerMessageEvent } from "@whc/lipwig/types";
+import { EventManager } from "./EventManager";
 
 export class Socket extends EventManager {
     private socket: WebSocket;
@@ -17,7 +11,7 @@ export class Socket extends EventManager {
         this.url = url;
 
         this.socket = new WebSocket(url);
-        console.log('New WebSocket', this.socket);
+        console.log('New WebSocket', this.socket); 
         this.retry = true; //TODO: Make this an option on creation
         this.socket.addEventListener('open', () => {
             this.emit('connected');
@@ -89,11 +83,13 @@ export class Socket extends EventManager {
         const message: ReconnectEvent = {
             event: CLIENT_EVENT.RECONNECT,
             data: {
-                code: this.room,
-                id: this.id,
+                code: this.room, 
+                id: this.id
             },
         };
 
         this.send(message);
+
     }
+
 }

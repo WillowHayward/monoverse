@@ -8,7 +8,7 @@ import {
     ServerEvent,
     CLIENT_EVENT,
     SERVER_EVENT,
-} from '@whc/lipwig/model';
+} from '@whc/lipwig/types';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
 
@@ -129,6 +129,7 @@ export class Client extends EventManager {
                 break;
         }
         args.push(message);
+
 
         this.emit(eventName, ...args);
     }

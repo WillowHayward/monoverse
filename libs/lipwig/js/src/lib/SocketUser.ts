@@ -6,12 +6,15 @@ import {
     ReconnectEvent,
     PingEvent,
     ClientEvent,
-} from '@whc/lipwig/model';
+} from '@whc/lipwig/types';
 import { EventManager } from './EventManager';
 
 export abstract class SocketUser extends EventManager {
     public id: string = '';
     public room: string = '';
+
+
+
 
     protected abstract handle(event: MessageEvent): void;
 

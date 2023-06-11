@@ -1,8 +1,8 @@
 /**
  * @author: WillHayCode
  */
-import { UserOptions } from './common.model';
-import { ERROR_CODE, SERVER_EVENT } from './enums';
+import { UserOptions } from "./common.model";
+import { ERROR_CODE, SERVER_EVENT } from "./enums";
 
 export type LipwigOptions = {
     port: number;
@@ -93,7 +93,7 @@ export interface KickedEventData {
 }
 
 export interface DisconnectedEvent {
-    event: SERVER_EVENT.DISCONNECTED;
+    event: SERVER_EVENT.DISCONNECTED
     data: DisconnectedEventData;
 }
 
@@ -102,19 +102,12 @@ export interface DisconnectedEventData {
 }
 
 export interface HostDisconnectedEvent {
-    event: SERVER_EVENT.HOST_DISCONNECTED;
+    event: SERVER_EVENT.HOST_DISCONNECTED
     data: HostDisconnectedEventData;
 }
 
-export interface HostDisconnectedEventData {}
+export interface HostDisconnectedEventData {
+}
 
-export type ServerEvent =
-    | ServerMessageEvent
-    | CreatedEvent
-    | JoinedEvent
-    | ReconnectedEvent
-    | HostReconnectedEvent
-    | ErrorEvent
-    | KickedEvent
-    | DisconnectedEvent
-    | HostDisconnectedEvent;
+export type ServerEvent = ServerMessageEvent | CreatedEvent | JoinedEvent | ReconnectedEvent | HostReconnectedEvent | ErrorEvent | KickedEvent | DisconnectedEvent | HostDisconnectedEvent;
+

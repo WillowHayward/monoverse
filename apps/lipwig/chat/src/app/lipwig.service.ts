@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Client, Host, Lipwig } from '@whc/lipwig/js';
 
-import { RoomConfig, UserOptions } from '@whc/lipwig/model';
+import { RoomConfig, UserOptions } from '@whc/lipwig/types';
 
 interface ReconnectData {
     code: string;
@@ -9,7 +9,7 @@ interface ReconnectData {
 }
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 export class LipwigService {
     isHost: boolean = false;
@@ -21,21 +21,18 @@ export class LipwigService {
 
     connected: boolean = false;
 
-    constructor() {}
+    constructor() { }
 
-    public async createRoom(
-        name: string,
-        reconnect?: ReconnectData
-    ): Promise<Client> {
+    public async createRoom(name: string, reconnect?: ReconnectData): Promise<Client> {
         this.isHost = true;
 
-        const config: RoomConfig = { name };
+        const config: RoomConfig = { name }
 
         if (reconnect) {
             config.reconnect = reconnect;
         }
 
-        return Lipwig.create(window.env['LIPWIG_HOST'], config).then((host) => {
+        return Lipwig.create(window.env['LIPWIG_HOST'], config).then(host => {
             this.code = host.room;
             this.host = host;
             this.connected = true;
@@ -43,7 +40,7 @@ export class LipwigService {
             this.setSessionData(name, host.room, host.id, true);
 
             const client = host.createLocalClient({
-                name,
+                name
             });
             this.client = client;
 
@@ -51,27 +48,21 @@ export class LipwigService {
         });
     }
 
-    public async joinRoom(
-        name: string,
-        code: string,
-        reconnect?: string
-    ): Promise<Client> {
+    public async joinRoom(name: string, code: string, reconnect?: string): Promise<Client> {
         const options: UserOptions = { name };
 
         if (reconnect) {
             options.reconnect = reconnect;
         }
-        return Lipwig.join(window.env['LIPWIG_HOST'], code, options).then(
-            (client) => {
-                this.code = client.room;
-                this.client = client;
-                this.connected = true;
+        return Lipwig.join(window.env['LIPWIG_HOST'], code, options).then(client => {
+            this.code = client.room;
+            this.client = client;
+            this.connected = true;
 
-                this.setSessionData(name, client.room, client.id, false);
+            this.setSessionData(name, client.room, client.id, false);
 
-                return client;
-            }
-        );
+            return client;
+        });
     }
 
     public getHost(): Host | undefined {
@@ -82,17 +73,13 @@ export class LipwigService {
         return this.client;
     }
 
-    private setSessionData(
-        name: string,
-        code: string,
-        id: string,
-        isHost: boolean
-    ) {
+    private setSessionData(name: string, code: string, id: string, isHost: boolean) {
         window.sessionStorage.setItem('name', name);
         window.sessionStorage.setItem('code', code);
         window.sessionStorage.setItem('id', id);
 
         const host = isHost ? 'true' : 'false';
         window.sessionStorage.setItem('host', host);
+
     }
 }

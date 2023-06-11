@@ -6,7 +6,7 @@ export type RoomOptions = {
     reconnect?: {
         code: string;
         id: string;
-    };
+    }
 };
 
 export type RoomConfig = Partial<RoomOptions>;

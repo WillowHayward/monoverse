@@ -1,8 +1,8 @@
 /**
  * @author: WillHayCode
  */
-import { RoomConfig, UserOptions } from './common.model';
-import { CLIENT_EVENT } from './enums';
+import { RoomConfig, UserOptions } from "./common.model";
+import { CLIENT_EVENT } from "./enums";
 
 export const DEFAULTS = {
     port: 8989,
@@ -75,7 +75,9 @@ export interface LeaveEvent extends ClientEventStructure {
     data: LeaveEventData;
 }
 
-export interface LeaveEventData {}
+export interface LeaveEventData {
+
+}
 
 export interface PingEvent extends ClientEventStructure {
     event: CLIENT_EVENT.PING;
@@ -101,21 +103,16 @@ export interface LocalJoinEvent extends ClientEventStructure {
     data: LocalJoinEventData;
 }
 
-export interface LocalJoinEventData {}
+export interface LocalJoinEventData {
+}
 
 export interface LocalLeaveEvent extends ClientEventStructure {
     event: CLIENT_EVENT.LOCAL_LEAVE;
     data: LocalLeaveEventData;
 }
 
-export interface LocalLeaveEventData {}
+export interface LocalLeaveEventData {
+}
 
-export type ClientEvent =
-    | ClientMessageEvent
-    | CreateEvent
-    | JoinEvent
-    | ReconnectEvent
-    | CloseEvent
-    | AdministrateEvent
-    | PingEvent
-    | KickEvent;
+export type ClientEvent = ClientMessageEvent | CreateEvent | JoinEvent | ReconnectEvent | CloseEvent | AdministrateEvent | PingEvent | KickEvent;
+

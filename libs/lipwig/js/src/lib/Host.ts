@@ -11,7 +11,7 @@ import {
     CLIENT_EVENT,
     SERVER_EVENT,
     ClientEvent,
-} from '@whc/lipwig/model';
+} from '@whc/lipwig/types';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 import { EventManager } from './EventManager';
@@ -68,6 +68,7 @@ export class Host extends EventManager {
         });
     }
 
+
     /**
      * @return map of all users in room
      */
@@ -79,7 +80,7 @@ export class Host extends EventManager {
         const message: CloseEvent = {
             event: CLIENT_EVENT.CLOSE,
             data: {
-                reason,
+                reason
             },
         };
 
@@ -131,12 +132,8 @@ export class Host extends EventManager {
         this.sendTo(event, this.users, ...args);
     }
 
-    public sendToAllExcept(
-        event: string,
-        except: User | User[],
-        ...args: unknown[]
-    ) {
-        const recipients = this.users.filter((user) => user !== except);
+    public sendToAllExcept(event: string, except: User | User[], ...args: unknown[]) {
+        const recipients = this.users.filter(user => user !== except);
 
         this.sendTo(event, recipients, ...args);
     }
@@ -146,19 +143,15 @@ export class Host extends EventManager {
             users = [users];
         }
 
-        const remoteRecipients = users
-            .filter((user) => !user.id.startsWith('local-'))
-            .map((user) => user.id);
-        const localRecipients = users.filter((user) =>
-            user.id.startsWith('local-')
-        );
+        const remoteRecipients = users.filter(user => !user.id.startsWith('local-')).map(user => user.id);
+        const localRecipients = users.filter(user => user.id.startsWith('local-'));
         this.socket.send({
             event: CLIENT_EVENT.MESSAGE,
             data: {
                 event,
                 args,
-                recipients: remoteRecipients,
-            },
+                recipients: remoteRecipients
+            }
         });
 
         for (const user of localRecipients) {
@@ -179,17 +172,12 @@ export class Host extends EventManager {
             do {
                 localID = `local-${this.id}-${localCount}`;
                 localCount++;
-            } while (this.users.find((user) => user.id === localID));
+            } while (this.users.find(user => user.id === localID));
         }
 
         const localUser = new User(localID, this, true);
         // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
-        const localClient = new LocalClient(
-            this,
-            localUser,
-            this.room,
-            options
-        );
+        const localClient = new LocalClient(this, localUser, this.room, options);
 
         localUser.client = localClient;
         localClient.id = localID;
@@ -210,7 +198,7 @@ export class Host extends EventManager {
     }
 
     public handle(message: ServerEvent): void {
-        let eventName: string = message.event;
+        let eventName: string = message.event; 
         let sender: string | null = null;
         const args: unknown[] = [];
         switch (message.event) {
@@ -236,9 +224,7 @@ export class Host extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_EVENT.RECONNECTED:
-                const reconnected = this.users.find(
-                    (user) => message.data.id === user.id
-                );
+                const reconnected = this.users.find(user => message.data.id === user.id);
                 if (!reconnected) {
                     // TODO: Handle this. Malformed error?
                 }
@@ -254,7 +240,7 @@ export class Host extends EventManager {
                 }
 
                 for (const existing of message.data.users) {
-                    if (this.users.find((user) => existing === user.id)) {
+                    if (this.users.find(user => existing === user.id)) {
                         // Don't need to recreate if non-reload reconnection
                         continue;
                     }
@@ -264,7 +250,7 @@ export class Host extends EventManager {
 
                 for (let i = 0; i < message.data.local; i++) {
                     const localID = `local-${this.id}-${i}`;
-                    if (this.users.find((user) => localID === user.id)) {
+                    if (this.users.find(user => localID === user.id)) {
                         // Don't need to recreate if non-reload reconnection
                         continue;
                     }
@@ -279,14 +265,12 @@ export class Host extends EventManager {
             case SERVER_EVENT.KICKED:
                 break;
             case SERVER_EVENT.DISCONNECTED:
-                const disconnected = this.users.find(
-                    (user) => user.id === message.data.id
-                );
+                const disconnected = this.users.find(user => user.id === message.data.id);
                 args.push(disconnected);
                 break;
         }
 
-        const user = this.users.find((user) => sender === user.id);
+        const user = this.users.find(user => sender === user.id);
         if (user) {
             args.push(message);
             user.emit(eventName, ...args);
