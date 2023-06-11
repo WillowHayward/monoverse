@@ -2,14 +2,14 @@
  * @author: WillHayCode
  */
 import {
+    HOST_EVENT,
     SERVER_HOST_EVENT,
+    SERVER_CLIENT_EVENT,
+    WEBSOCKET_CLOSE_CODE,
     HostEvents,
     ServerHostEvents,
     RoomConfig,
     UserOptions,
-    HOST_EVENT,
-    SERVER_CLIENT_EVENT,
-    WEBSOCKET_CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
@@ -62,8 +62,9 @@ export class Host extends EventManager {
         });
 
         this.socket.on('reconnected', (socket: Socket) => {
-            this.socket = socket;
-            this.addSocketListeners();
+            // TODO: Does this make sense for the Socket class abstraction?
+            //this.socket = socket;
+            //this.addSocketListeners();
         });
     }
 
@@ -217,6 +218,7 @@ export class Host extends EventManager {
     public handle(message: ServerHostEvents.Event): void {
         let eventName: string = message.event;
         let sender: string | null = null;
+        let user: User | undefined;
         const args: unknown[] = [];
         switch (message.event) {
             case SERVER_HOST_EVENT.CREATED:
@@ -228,7 +230,7 @@ export class Host extends EventManager {
                 break;
             case SERVER_HOST_EVENT.JOINED:
                 const data = message.data;
-                const user: User = new User(data.id, this, data.options?.data);
+                user = new User(data.id, this, data.options?.data);
                 this.users.push(user);
                 args.push(user);
                 args.push(data.options?.data); //TODO: Potentially just send the data in the end, trim the rest on the server. Currently only 'reconnect' is used.
@@ -288,13 +290,26 @@ export class Host extends EventManager {
                 );
                 args.push(disconnected);
                 break;
+            case SERVER_HOST_EVENT.LEFT:
+                const id = message.data.id;
+                const index = this.users.findIndex(user => id === user.id);
+                if (index === -1) {
+                    // TODO: user not found
+                } 
+                user = this.users[index];
+                this.users.splice(index, 1);
+                args.push(message.data.reason);
+                break;
         }
 
-        const user = this.users.find((user) => sender === user.id);
+        if (!user) {
+            user = this.users.find((user) => sender === user.id);
+        }
+
         if (user) {
             args.push(message);
             user.emit(eventName, ...args);
-            args.splice(0, 0, user);
+            args.unshift(user);
         }
 
         console.log(eventName, ...args);

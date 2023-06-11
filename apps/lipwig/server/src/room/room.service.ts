@@ -95,8 +95,6 @@ export class RoomService {
         return room.reconnect(user, id);
     }
 
-    leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {}
-
     //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     message(user: LipwigSocket, payload: HostEvents.MessageData | ClientEvents.MessageData) {

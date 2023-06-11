@@ -4,7 +4,6 @@ export const DEFAULTS = {
 
 export enum CLIENT_EVENT {
     JOIN = 'join',
-    LEAVE = 'leave',
     MESSAGE = 'lw-message',
     PING = 'lw-ping',
     RECONNECT = 'reconnect'

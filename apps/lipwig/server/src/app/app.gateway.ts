@@ -35,11 +35,6 @@ export class AppGateway implements OnGatewayDisconnect {
         this.rooms.reconnect(user, payload);
     }
 
-    @SubscribeMessage(CLIENT_EVENT.LEAVE)
-    leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {
-        this.rooms.leave(user, payload);
-    }
-
     /* TODO
      * @SubscribeMessage(HOST_EVENT.ADMINISTRATE)
      * administrate(user: LipwigSocket, payload: AdministrateEventData) {
@@ -67,11 +62,6 @@ export class AppGateway implements OnGatewayDisconnect {
     @SubscribeMessage(HOST_EVENT.LOCAL_JOIN)
     localJoin(user: LipwigSocket) {
         this.rooms.localJoin(user);
-    }
-
-    @SubscribeMessage(HOST_EVENT.LOCAL_LEAVE)
-    localLeave(user: LipwigSocket) {
-        this.rooms.localLeave(user);
     }
 
     handleDisconnect(user: LipwigSocket) {

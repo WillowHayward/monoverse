@@ -29,7 +29,7 @@ export class LocalClient extends Client {
     }
 
     public override send(event: string, ...args: unknown[]): void {
-        let message: ServerHostEvents.Message = {
+        const message: ServerHostEvents.Message = {
             event: SERVER_HOST_EVENT.MESSAGE,
             data: {
                 event,
@@ -38,6 +38,22 @@ export class LocalClient extends Client {
             },
         };
 
+        this.sendToParent(message);
+    }
+
+    public override leave(reason?: string) {
+        const message: ServerHostEvents.Left = {
+            event: SERVER_HOST_EVENT.LEFT,
+            data: {
+                id: this.id,
+                reason
+            }
+        }
+
+        this.sendToParent(message);
+    }
+
+    private sendToParent(message: ServerHostEvents.Event) {
         // Stringify + parse to prevent editing by reference and to simulate real process
         message = JSON.parse(JSON.stringify(message));
 

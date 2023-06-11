@@ -61,6 +61,17 @@ export class Room {
         const id = v4();
         this.initialiseSocket(client, id, false);
         this.users.push(client);
+        client.on('close', (code: WEBSOCKET_CLOSE_CODE, reasonBuffer: Buffer) => {
+            if (code !== WEBSOCKET_CLOSE_CODE.LEFT) {
+                return;
+            }
+            let reason: string;
+            if (reasonBuffer.length) {
+                reason = reasonBuffer.toString('utf8');
+            }
+
+            this.leave(client, reason);
+        });
     }
 
     private initialiseHost(host: LipwigSocket) {
@@ -68,18 +79,16 @@ export class Room {
         this.initialiseSocket(host, id, true);
 
         host.on('close', (code: WEBSOCKET_CLOSE_CODE, reasonBuffer: Buffer) => {
-            if (code === WEBSOCKET_CLOSE_CODE.CLOSED) {
-                let reason: string;
-                if (reasonBuffer.length) {
-                    reason = reasonBuffer.toString('utf8');
-                }
-
-                this.close(reason);
-
-                if (this.onclose) {
-                    this.onclose();
-                }
+            if (code !== WEBSOCKET_CLOSE_CODE.CLOSED) {
+                return;
             }
+            let reason: string;
+            if (reasonBuffer.length) {
+                reason = reasonBuffer.toString('utf8');
+            }
+
+            this.close(reason);
+
         });
     }
 
@@ -203,9 +212,29 @@ export class Room {
         for (const user of this.users) {
             user.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
         }
+
+        if (this.onclose) {
+            this.onclose();
+        }
     }
 
-    leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {}
+    leave(user: LipwigSocket, reason?: string) {
+        this.send<ServerHostEvents.Left>(this.host, {
+            event: SERVER_HOST_EVENT.LEFT,
+            data: {
+                id: user.id,
+                reason
+            }
+        });
+
+        const index = this.users.indexOf(user);
+        if (index === -1) {
+            // TODO: Handle
+            return;
+        }
+
+        this.users.splice(index, 1);
+    }
 
     //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 

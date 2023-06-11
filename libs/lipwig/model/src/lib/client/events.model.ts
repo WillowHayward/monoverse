@@ -18,15 +18,6 @@ export interface JoinData {
     options?: UserOptions;
 }
 
-export interface Leave extends EventStructure {
-    event: CLIENT_EVENT.LEAVE;
-    data: LeaveData;
-}
-
-export interface LeaveData {
-    reason?: string;
-}
-
 export interface Message extends EventStructure {
     event: CLIENT_EVENT.MESSAGE;
     data: MessageData;
@@ -56,5 +47,5 @@ export interface ReconnectData {
     id: string;
 }
 
-export type Event = Join | Leave | Message | Ping | Reconnect;
+export type Event = Join | Message | Ping | Reconnect;
 

@@ -88,6 +88,7 @@ export interface Left {
 }
 
 export interface LeftData {
+    id: string;
     reason?: string;
 }
 

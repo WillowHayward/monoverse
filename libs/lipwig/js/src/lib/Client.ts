@@ -4,9 +4,10 @@
 import {
     CLIENT_EVENT,
     SERVER_CLIENT_EVENT,
+    WEBSOCKET_CLOSE_CODE,
     ClientEvents,
     ServerClientEvents,
-    UserOptions
+    UserOptions,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
@@ -86,6 +87,10 @@ export class Client extends EventManager {
             },
         };
         this.socket?.send(message);
+    }
+
+    public leave(reason?: string) {
+        this.socket?.close(WEBSOCKET_CLOSE_CODE.LEFT, reason);
     }
 
     /**
