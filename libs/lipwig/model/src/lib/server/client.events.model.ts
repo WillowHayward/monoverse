@@ -69,22 +69,4 @@ export interface MessageData {
     args: unknown[];
 }
 
-export interface Kicked extends EventStructure {
-    event: SERVER_CLIENT_EVENT.KICKED;
-    data: KickedData;
-}
-
-export interface KickedData {
-    reason?: string;
-}
-
-export interface Closed extends EventStructure {
-    event: SERVER_CLIENT_EVENT.CLOSED;
-    data: ClosedData;
-}
-
-export interface ClosedData {
-    reason?: string;
-}
-
-export type Event = Joined | Kicked | Disconnected | HostDisconnected | Reconnected | HostReconnected | Error | Message | Closed;
+export type Event = Joined | Disconnected | HostDisconnected | Reconnected | HostReconnected | Error | Message;

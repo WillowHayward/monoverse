@@ -18,14 +18,16 @@ export class Room {
     private id = v4();
     private users: LipwigSocket[] = [];
     private local: number = 0;
+    // TODO: This feels hacky
+    public onclose: () => void;
 
     constructor(
         private host: LipwigSocket,
         public code: string,
-        private config: RoomConfig
+        private config: RoomConfig,
     ) {
         // TODO: Room config
-        this.initialiseUser(host, true);
+        this.initialiseHost(host);
 
         this.send<ServerHostEvents.Created>(host, {
             event: SERVER_HOST_EVENT.CREATED,
@@ -48,19 +50,42 @@ export class Room {
         return id === this.host.id;
     }
 
-    private initialiseUser(user: LipwigSocket, host: boolean, id?: string) {
+    private initialiseSocket(user: LipwigSocket, id: string, host: boolean) {
         user.host = host;
         user.room = this.code;
-        user.id = id || v4();
+        user.id = id;
         user.connected = true;
-        if (!host) {
-            this.users.push(user);
-        }
+    }
+
+    private initialiseClient(client: LipwigSocket) {
+        const id = v4();
+        this.initialiseSocket(client, id, false);
+        this.users.push(client);
+    }
+
+    private initialiseHost(host: LipwigSocket) {
+        const id = v4();
+        this.initialiseSocket(host, id, true);
+
+        host.on('close', (code: WEBSOCKET_CLOSE_CODE, reasonBuffer: Buffer) => {
+            if (code === WEBSOCKET_CLOSE_CODE.CLOSED) {
+                let reason: string;
+                if (reasonBuffer.length) {
+                    reason = reasonBuffer.toString('utf8');
+                }
+
+                this.close(reason);
+
+                if (this.onclose) {
+                    this.onclose();
+                }
+            }
+        });
     }
 
     join(client: LipwigSocket, options: UserOptions) {
         // TODO: Join data
-        this.initialiseUser(client, false);
+        this.initialiseClient(client);
         const id = client.id;
         this.users.push(client);
 
@@ -99,6 +124,7 @@ export class Room {
     }
 
     reconnect(user: LipwigSocket, id: string): boolean {
+        // TODO: Is setting these prior to confirming reconnection gonna be an issue?
         user.id = id;
         user.room = this.code;
 
@@ -172,7 +198,12 @@ export class Room {
         return true;
     }
 
-    close(user: LipwigSocket, payload: HostEvents.CloseData) {}
+    close(reason?: string) {
+        console.log('room closing', reason);
+        for (const user of this.users) {
+            user.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
+        }
+    }
 
     leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {}
 

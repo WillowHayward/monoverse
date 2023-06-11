@@ -9,6 +9,7 @@ import {
     UserOptions,
     HOST_EVENT,
     SERVER_CLIENT_EVENT,
+    WEBSOCKET_CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
@@ -73,15 +74,8 @@ export class Host extends EventManager {
         return this.users; // TODO: This is returning a reference to the original object
     }
 
-    public close(reason?: string): void {
-        const message: HostEvents.Close = {
-            event: HOST_EVENT.CLOSE,
-            data: {
-                reason,
-            },
-        };
-
-        this.socket.send(message);
+    public getUser(id: string) {
+        return this.users.find(user => id === user.id);
     }
 
     public assign(user: User, name: string): void {
@@ -174,6 +168,10 @@ export class Host extends EventManager {
             this.users.splice(index, 1);
         }
         this.socket.send(message);
+    }
+
+    public close(reason?: string) {
+        this.socket.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
     }
 
     public createLocalClient(

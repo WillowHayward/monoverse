@@ -60,13 +60,7 @@ export class User extends EventManager {
 
     public kick(reason?: string): void {
         if (this.local && this.client) {
-            const message: ServerClientEvents.Kicked = {
-                event: SERVER_CLIENT_EVENT.KICKED,
-                data: {
-                    reason,
-                },
-            };
-            this.client.handle(message);
+            this.client.emit('kicked', reason);
             return;
         }
 

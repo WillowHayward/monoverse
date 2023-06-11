@@ -8,7 +8,7 @@
         <button (click)="connect()">Join</button>
     </ng-container>
     <ng-container *ngSwitchCase="RoomState.CONNECTED">
-        <h1>Room {{code}}</h1>
+        <h1>Room {{code}}<button *ngIf="isHost" (click)="close()">Close</button></h1>
         <lwc-user-list [isHost]="isHost"></lwc-user-list>
         <lwc-messages></lwc-messages>
     </ng-container>

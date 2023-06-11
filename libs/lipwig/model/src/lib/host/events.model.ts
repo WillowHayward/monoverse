@@ -14,15 +14,6 @@ export interface CreateData {
     config?: RoomConfig;
 }
 
-export interface Close extends EventStructure {
-    event: HOST_EVENT.CLOSE;
-    data: CloseData;
-}
-
-export interface CloseData {
-    reason?: string;
-}
-
 export interface Message extends EventStructure {
     event: HOST_EVENT.MESSAGE;
     data: MessageData;
@@ -71,5 +62,5 @@ export interface LocalLeave extends EventStructure {
     event: HOST_EVENT.LOCAL_LEAVE;
 }
 
-export type Event = Create | Close | Message | Ping | Kick | LocalJoin | LocalLeave;
+export type Event = Create | Message | Ping | Kick | LocalJoin | LocalLeave;
 

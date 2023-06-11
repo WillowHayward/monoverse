@@ -28,7 +28,5 @@ export enum SERVER_CLIENT_EVENT {
     HOST_RECONNECTED = 'host-reconnected',
     ERROR = 'error',
     MESSAGE = 'lw-message',
-    KICKED = 'kicked',
-    CLOSED = 'closed',
 }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LipwigService } from '../lipwig.service';
 import { HostService } from '../host.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NameInputComponent } from '../name-input/name-input.component';
 import { ClientService } from '../client.service';
 import { Reconnectable } from '../app.model';
@@ -26,7 +26,7 @@ export class RoomComponent implements OnInit {
     RoomState = RoomState;
     state: RoomState = RoomState.LOADING;
 
-    constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute) { }
+    constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit(): void {
         this.route.params.subscribe((data) => {
@@ -69,5 +69,10 @@ export class RoomComponent implements OnInit {
         this.client.connect(this.nameInput.name, this.code).then(client => {
             this.state = RoomState.CONNECTED;
         });
+    }
+
+    close() {
+        this.host.close('Room done now');
+        this.router.navigate(['/']);
     }
 }

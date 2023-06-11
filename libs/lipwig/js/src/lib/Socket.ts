@@ -46,7 +46,7 @@ export class Socket extends EventManager {
                     // TODO
                     break;
                 case WEBSOCKET_CLOSE_CODE.CLOSED:
-                    // TODO
+                    this.emit('closed', event.reason);
                     break;
                 default:
                     this.emit('disconnected');
@@ -63,6 +63,10 @@ export class Socket extends EventManager {
                     break;
             }
         });
+    }
+
+    public close(code: WEBSOCKET_CLOSE_CODE, data?: any) {
+        this.socket.close(code, data);
     }
 
     public send(message: ClientEvents.Event | HostEvents.Event): void {

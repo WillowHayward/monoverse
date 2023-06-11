@@ -2,7 +2,6 @@ import {
     SubscribeMessage,
     WebSocketGateway,
     OnGatewayDisconnect,
-    OnGatewayConnection,
 } from '@nestjs/websockets';
 import { LipwigSocket } from './app.model';
 import {
@@ -17,7 +16,7 @@ import { RoomGuard } from '../room/room.guard';
 
 @WebSocketGateway()
 @UseGuards(RoomGuard)
-export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
+export class AppGateway implements OnGatewayDisconnect {
     constructor(private rooms: RoomService) {}
 
     @SubscribeMessage(HOST_EVENT.CREATE)
@@ -34,11 +33,6 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     @SubscribeMessage(CLIENT_EVENT.RECONNECT)
     reconnect(user: LipwigSocket, payload: HostEvents.ReconnectData | ClientEvents.ReconnectData) {
         this.rooms.reconnect(user, payload);
-    }
-
-    @SubscribeMessage(HOST_EVENT.CLOSE)
-    close(user: LipwigSocket, payload: HostEvents.CloseData) {
-        this.rooms.close(user, payload);
     }
 
     @SubscribeMessage(CLIENT_EVENT.LEAVE)
@@ -78,14 +72,6 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     @SubscribeMessage(HOST_EVENT.LOCAL_LEAVE)
     localLeave(user: LipwigSocket) {
         this.rooms.localLeave(user);
-    }
-
-    handleConnection(client: LipwigSocket, ...args: any[]) {
-        client.on('close', (socket: any, ...args: any[]) => {
-            // TODO: Get close reason here, better disconnect?
-            //console.log('-close-', ...args);
-        });
-        
     }
 
     handleDisconnect(user: LipwigSocket) {

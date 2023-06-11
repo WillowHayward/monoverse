@@ -12,6 +12,10 @@ import { LipwigSocket } from '../app/app.model';
 import { Room } from './room';
 import { sendError } from './utils';
 
+// TODO: Make @Room param decorator
+// TODO: Move all the room checking to guard
+// TODO: Make @SubscribeHostEvent and @SubscribeClientEvent method decorators
+// TODO: Make exception which sends error?
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
@@ -51,6 +55,10 @@ export class RoomService {
         } while (existingCodes.includes(code));
         const room = new Room(user, code, config);
         this.rooms[code] = room;
+        room.onclose = () => {
+            console.log(code, 'closed');
+            delete this.rooms[code];
+        }
     }
 
     join(user: LipwigSocket, payload: ClientEvents.JoinData) {
@@ -86,8 +94,6 @@ export class RoomService {
 
         return room.reconnect(user, id);
     }
-
-    close(user: LipwigSocket, payload: HostEvents.CloseData) {}
 
     leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {}
 

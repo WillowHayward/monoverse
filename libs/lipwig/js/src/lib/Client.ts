@@ -59,12 +59,11 @@ export class Client extends EventManager {
         });
 
         this.socket.on('kicked', (reason?: string) => {
-            this.handle({
-                event: SERVER_CLIENT_EVENT.KICKED,
-                data: {
-                    reason
-                }
-            });
+            this.emit('kicked', reason);
+        });
+
+        this.socket.on('closed', (reason?: string) => {
+            this.emit('closed', reason);
         });
 
         this.socket.on('reconnected', (socket: Socket) => {
@@ -130,9 +129,6 @@ export class Client extends EventManager {
             case SERVER_CLIENT_EVENT.ERROR:
                 args.push(message.data.error);
                 args.push(message.data.message);
-                break;
-            case SERVER_CLIENT_EVENT.KICKED:
-                args.push(message.data.reason);
                 break;
             case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
                 break;

@@ -69,6 +69,10 @@ export class HostService implements Reconnectable {
         this.host.sendToAll('chatters', this.getChatters());
     }
 
+    close(reason?: string) {
+        this.host.close(reason);
+    }
+
     private setup() {
         this.host.on('joined', (user: User, data: any) => {
             user.send('chatters', this.getChatters());

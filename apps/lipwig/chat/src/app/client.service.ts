@@ -90,5 +90,10 @@ export class ClientService implements Reconnectable {
             alert(`Kicked. Reason: ${reason}`);
             this.router.navigate(['/']);
         });
+
+        this.client.on('closed', (reason?: string) => {
+            alert(`Room closed. Reason: ${reason}`);
+            this.router.navigate(['/']);
+        });
     }
 }
