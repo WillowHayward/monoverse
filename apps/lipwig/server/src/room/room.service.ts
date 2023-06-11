@@ -1,19 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
 import {
-    ClientMessageEventData,
-    CreateEventData,
-    JoinEventData,
-    ReconnectEventData,
     ERROR_CODE,
-    CloseEventData,
-    LeaveEventData,
-    PingEventData,
-    KickEventData,
-    AdministrateEventData,
-    LocalJoinEventData,
-    LocalLeaveEventData,
+    ClientEvents,
+    HostEvents
 } from '@whc/lipwig/model';
+
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -44,7 +36,7 @@ export class RoomService {
         return this.getRoom(room).isHost(id);
     }
 
-    create(user: LipwigSocket, payload: CreateEventData) {
+    create(user: LipwigSocket, payload: HostEvents.CreateData) {
         const config = payload.config;
         const existingCodes = Object.keys(this.rooms);
 
@@ -61,7 +53,7 @@ export class RoomService {
         this.rooms[code] = room;
     }
 
-    join(user: LipwigSocket, payload: JoinEventData) {
+    join(user: LipwigSocket, payload: ClientEvents.JoinData) {
         const code = payload.code;
         const options = payload.options;
         // TODO: Join Options
@@ -82,7 +74,7 @@ export class RoomService {
         room.join(user, options);
     }
 
-    reconnect(user: LipwigSocket, payload: ReconnectEventData): boolean {
+    reconnect(user: LipwigSocket, payload: HostEvents.ReconnectData | ClientEvents.ReconnectData): boolean {
         const code = payload.code;
         const id = payload.id;
 
@@ -95,13 +87,13 @@ export class RoomService {
         return room.reconnect(user, id);
     }
 
-    close(user: LipwigSocket, payload: CloseEventData) {}
+    close(user: LipwigSocket, payload: HostEvents.CloseData) {}
 
-    leave(user: LipwigSocket, payload: LeaveEventData) {}
+    leave(user: LipwigSocket, payload: ClientEvents.LeaveData) {}
 
-    administrate(user: LipwigSocket, payload: AdministrateEventData) {}
+    //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
-    message(user: LipwigSocket, payload: ClientMessageEventData) {
+    message(user: LipwigSocket, payload: HostEvents.MessageData | ClientEvents.MessageData) {
         const code = user.room;
         const room = this.rooms[code];
 
@@ -114,11 +106,11 @@ export class RoomService {
         room.handle(user, payload);
     }
 
-    ping(user: LipwigSocket, payload: PingEventData) {}
+    ping(user: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {}
 
-    kick(user: LipwigSocket, payload: KickEventData) {}
+    kick(user: LipwigSocket, payload: HostEvents.KickData) {}
 
-    localJoin(user: LipwigSocket, payload: LocalJoinEventData) {
+    localJoin(user: LipwigSocket) {
         const code = user.room;
         const room = this.rooms[code];
 
@@ -128,10 +120,10 @@ export class RoomService {
             return;
         }
 
-        room.localJoin(user, payload);
+        room.localJoin(user);
     }
 
-    localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
+    localLeave(user: LipwigSocket) {
         const code = user.room;
         const room = this.rooms[code];
 
@@ -141,7 +133,7 @@ export class RoomService {
             return;
         }
 
-        room.localLeave(user, payload);
+        room.localLeave(user);
     }
 
     disconnect(user: LipwigSocket) {

@@ -20,6 +20,11 @@ export interface JoinData {
 
 export interface Leave extends EventStructure {
     event: CLIENT_EVENT.LEAVE;
+    data: LeaveData;
+}
+
+export interface LeaveData {
+    reason?: string;
 }
 
 export interface Message extends EventStructure {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RoomService } from './room.service';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
-import { CLIENT_EVENT, ERROR_CODE } from '@whc/lipwig/model';
+import { CLIENT_EVENT, ERROR_CODE, HOST_EVENT } from '@whc/lipwig/model';
 
 interface Validator {
     required?: string[]; // Required paramaters on request
@@ -23,6 +23,9 @@ export class RoomGuard implements CanActivate {
     canActivate(
         context: ExecutionContext
     ): boolean | Promise<boolean> | Observable<boolean> {
+        return true;
+    }
+        /*
         this.socket = context.switchToWs().getClient();
         const event = this.reflector.get<string>(
             'message',
@@ -88,8 +91,17 @@ export class RoomGuard implements CanActivate {
     }
 
     private isValidEvent(event: string): event is CLIENT_EVENT {
-        const events = Object.values(CLIENT_EVENT);
-        return events.includes(event as CLIENT_EVENT);
+        const clientEvents = Object.values(CLIENT_EVENT);
+        if (clientEvents.includes(event as CLIENT_EVENT)) {
+            return true;
+        }
+
+        const hostEvents = Object.values(HOST_EVENT);
+        if (hostEvents.includes(event as HOST_EVENT)) {
+            return true;
+        }
+
+        return false;
     }
 
     private userIsHost(): boolean {
@@ -148,9 +160,9 @@ export class RoomGuard implements CanActivate {
         return true;
     }
 
-    private getValidator(event: CLIENT_EVENT): Validator {
+    private getValidator(event: CLIENT_EVENT | HOST_EVENT): Validator {
         switch (event) {
-            case CLIENT_EVENT.CREATE:
+            case HOST_EVENT.CREATE:
                 return {};
             case CLIENT_EVENT.JOIN:
                 return {
@@ -212,5 +224,5 @@ export class RoomGuard implements CanActivate {
                 console.warn(`Guard not set up for event '${event}'`);
                 return {};
         }
-    }
+    }*/
 }

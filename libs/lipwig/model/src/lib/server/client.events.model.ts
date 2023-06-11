@@ -47,8 +47,6 @@ export interface HostReconnected extends EventStructure {
 export interface HostReconnectedData {
     room: string;
     id: string;
-    users?: string[]; // Array of user ids sent to host
-    local?: number; // Number of local users to send to host
 }
 
 export interface Error extends EventStructure {

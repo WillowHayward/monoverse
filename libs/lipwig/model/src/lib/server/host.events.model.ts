@@ -6,7 +6,7 @@ interface EventStructure {
     event: SERVER_HOST_EVENT,
 }
 
-export interface Create extends EventStructure {
+export interface Created extends EventStructure {
     event: SERVER_HOST_EVENT.CREATED;
     data: CreatedData;
 }
@@ -47,6 +47,8 @@ export interface Reconnected extends EventStructure {
 export interface ReconnectedData {
     room: string;
     id: string;
+    users?: string[]; // Array of user ids sent to host
+    local?: number; // Number of local users to send to host
 }
 
 export interface ClientReconnected extends EventStructure {
@@ -57,8 +59,6 @@ export interface ClientReconnected extends EventStructure {
 export interface ClientReconnectedData {
     room: string;
     id: string;
-    users?: string[]; // Array of user ids sent to host
-    local?: number; // Number of local users to send to host
 }
 
 export interface Error extends EventStructure {
@@ -91,4 +91,4 @@ export interface LeftData {
     reason?: string;
 }
 
-export type Event = Create | Joined | Disconnected | ClientDisconnected | Reconnected | ClientReconnected | Error | Message | Left;
+export type Event = Created | Joined | Disconnected | ClientDisconnected | Reconnected | ClientReconnected | Error | Message | Left;
