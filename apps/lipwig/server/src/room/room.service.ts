@@ -1,6 +1,19 @@
 import { Injectable } from '@nestjs/common';
 
-import { ClientMessageEventData, CreateEventData, JoinEventData, ReconnectEventData, ERROR_CODE, CloseEventData, LeaveEventData, PingEventData, KickEventData, AdministrateEventData, LocalJoinEventData, LocalLeaveEventData } from '@whc/lipwig/types';
+import {
+    ClientMessageEventData,
+    CreateEventData,
+    JoinEventData,
+    ReconnectEventData,
+    ERROR_CODE,
+    CloseEventData,
+    LeaveEventData,
+    PingEventData,
+    KickEventData,
+    AdministrateEventData,
+    LocalJoinEventData,
+    LocalLeaveEventData,
+} from '@whc/lipwig/model';
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
@@ -82,17 +95,11 @@ export class RoomService {
         return room.reconnect(user, id);
     }
 
-    close(user: LipwigSocket, payload: CloseEventData) {
+    close(user: LipwigSocket, payload: CloseEventData) {}
 
-    }
+    leave(user: LipwigSocket, payload: LeaveEventData) {}
 
-    leave(user: LipwigSocket, payload: LeaveEventData) {
-
-    }
-
-    administrate(user: LipwigSocket, payload: AdministrateEventData) {
-
-    }
+    administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     message(user: LipwigSocket, payload: ClientMessageEventData) {
         const code = user.room;
@@ -107,13 +114,9 @@ export class RoomService {
         room.handle(user, payload);
     }
 
-    ping(user: LipwigSocket, payload: PingEventData) {
+    ping(user: LipwigSocket, payload: PingEventData) {}
 
-    }
-
-    kick(user: LipwigSocket, payload: KickEventData) {
-
-    }
+    kick(user: LipwigSocket, payload: KickEventData) {}
 
     localJoin(user: LipwigSocket, payload: LocalJoinEventData) {
         const code = user.room;
@@ -126,7 +129,6 @@ export class RoomService {
         }
 
         room.localJoin(user, payload);
-
     }
 
     localLeave(user: LipwigSocket, payload: LocalLeaveEventData) {
@@ -140,7 +142,6 @@ export class RoomService {
         }
 
         room.localLeave(user, payload);
-
     }
 
     disconnect(user: LipwigSocket) {

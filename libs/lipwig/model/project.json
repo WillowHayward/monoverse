@@ -1,24 +1,24 @@
 {
-    "name": "lipwig-types",
+    "name": "lipwig-model",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "libs/lipwig/types/src",
+    "sourceRoot": "libs/lipwig/model/src",
     "projectType": "library",
     "targets": {
         "build": {
             "executor": "@nx/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/libs/lipwig/types",
-                "main": "libs/lipwig/types/src/index.ts",
-                "tsConfig": "libs/lipwig/types/tsconfig.lib.json",
-                "assets": ["libs/lipwig/types/*.md"]
+                "outputPath": "dist/libs/lipwig/model",
+                "main": "libs/lipwig/model/src/index.ts",
+                "tsConfig": "libs/lipwig/model/tsconfig.lib.json",
+                "assets": ["libs/lipwig/model/*.md"]
             }
         },
         "lint": {
             "executor": "@nx/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["libs/lipwig/types/**/*.ts"]
+                "lintFilePatterns": ["libs/lipwig/model/**/*.ts"]
             }
         }
     },

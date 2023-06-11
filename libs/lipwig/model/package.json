@@ -1,5 +1,5 @@
 {
-    "name": "@whc/lipwig/types",
+    "name": "@whc/lipwig/model",
     "version": "0.0.1",
     "type": "commonjs"
 }
