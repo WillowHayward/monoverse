@@ -28,24 +28,6 @@ export interface MessageData {
     args: unknown[];
 }
 
-export interface Ping extends EventStructure {
-    event: CLIENT_EVENT.PING;
-    data: PingData;
-}
-
-export interface PingData {
-    time: number;
-}
-
-export interface Pong extends EventStructure {
-    event: CLIENT_EVENT.PONG;
-    data: PongData;
-}
-
-export interface PongData {
-    time: number;
-}
-
 export interface Reconnect extends EventStructure {
     event: CLIENT_EVENT.RECONNECT;
     data: ReconnectData;
@@ -56,5 +38,33 @@ export interface ReconnectData {
     id: string;
 }
 
-export type Event = Join | Message | Reconnect | Ping | Pong;
+export interface PingHost extends EventStructure {
+    event: CLIENT_EVENT.PING_HOST;
+    data: PingHostData;
+}
+
+export interface PingHostData {
+    time: number;
+}
+
+export interface PingServer extends EventStructure {
+    event: CLIENT_EVENT.PING_SERVER;
+    data: PingServerData;
+}
+
+export interface PingServerData {
+    time: number;
+}
+
+export interface PongClient extends EventStructure {
+    event: CLIENT_EVENT.PONG_CLIENT;
+    data: PongClientData;
+}
+
+export interface PongClientData {
+    time: number;
+}
+
+
+export type Event = Join | Message | Reconnect | PingServer | PingHost | PongClient;
 

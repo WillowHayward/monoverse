@@ -34,3 +34,4 @@ export enum WEBSOCKET_CLOSE_CODE {
     CLOSED = 3401,
     LEFT = 3402,
 }
+

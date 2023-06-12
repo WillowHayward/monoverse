@@ -1,3 +1,3 @@
-export * as ServerHostEvents from './host.events.model';
-export * as ServerClientEvents from './client.events.model';
+export * from './host';
+export * from './client';
 export * from './server.model';

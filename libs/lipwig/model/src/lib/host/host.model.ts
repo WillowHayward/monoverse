@@ -10,7 +10,8 @@ export enum HOST_EVENT {
     RECONNECT = 'reconnect',
     LOCAL_JOIN = 'lw-local-join', // Used to register local client
     LOCAL_LEAVE = 'lw-local-leave', // Used to remove local client
-    PING = 'lw-ping',
-    PONG = 'lw-pong',
+    PING_SERVER = 'lw-ping-server',
+    PING_CLIENT = 'lw-ping-client',
+    PONG_HOST = 'lw-pong-host',
 }
 
