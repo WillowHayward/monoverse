@@ -74,8 +74,12 @@ export class HostService implements Reconnectable {
     }
 
     private setup() {
+        this.setPingServerListener();
         this.host.on('joined', (user: User, data: any) => {
             user.send('chatters', this.getChatters());
+
+            this.setPingListener(user);
+
 
             this.host.sendToAllExcept('newChatter', user, data.name, user.id);
         });
@@ -118,8 +122,31 @@ export class HostService implements Reconnectable {
             const name: string = user.data['name'];
             return {
                 name,
-                id: user.id
+                id: user.id,
             }
         });
+    }
+
+    private setPingServerListener() {
+        this.host.ping().then(ping => {
+            console.debug('Ping to server:', ping);
+            setTimeout(() => {
+                this.setPingServerListener();
+            }, 1000);
+        });
+    }
+
+    private setPingListener(user: User) {
+        user.ping().then(ping => {
+            console.debug(`Ping to ${user.id}:`, ping);
+            user.data['ping'] = ping;
+            setTimeout(() => {
+                this.setPingListener(user);
+            }, 1000);
+        });
+    }
+
+    getUser(id: string) {
+        return this.host.getUser(id);
     }
 }

@@ -78,6 +78,8 @@ export class ClientService implements Reconnectable {
 
     private setup(client: Client) {
         this.client = client;
+        this.setPingListener();
+        this.setPingServerListener();
         this.client.on('disconnected', () => {
             console.log('disconnected');
         });
@@ -104,4 +106,23 @@ export class ClientService implements Reconnectable {
             this.router.navigate(['/']);
         });
     }
+    private setPingListener() {
+        this.client.ping().then(ping => {
+            console.debug('Ping to host:', ping);
+            setTimeout(() => {
+                this.setPingListener();
+            }, 1000);
+        });
+    }
+
+
+    private setPingServerListener() {
+        this.client.ping(false).then(ping => {
+            console.debug('Ping to server:', ping);
+            setTimeout(() => {
+                this.setPingServerListener();
+            }, 1000);
+        });
+    }
+
 }
