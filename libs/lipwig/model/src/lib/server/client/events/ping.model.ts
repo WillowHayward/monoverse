@@ -15,11 +15,11 @@ export interface PongHost extends EventStructure {
     data: PongHostData;
 }
 
-export interface PongHostData extends EventStructure {
+export interface PongHostData {
     time: number;
 }
 
-export interface PongServer {
+export interface PongServer extends EventStructure {
     event: SERVER_CLIENT_EVENT.PONG_SERVER;
     data: PongServerData;
 }

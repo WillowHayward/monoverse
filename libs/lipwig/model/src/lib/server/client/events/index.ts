@@ -1,7 +1,7 @@
 import { Error } from './generic.model';
 import { Joined, Message } from './lipwig.model';
 import { Disconnected, HostDisconnected, Reconnected, HostReconnected } from './connection.model';
-import { PingHost, PongHost, PongServer } from './ping.model';
+import { PingClient, PongHost, PongServer } from './ping.model';
 
 export * from './generic.model';
 export * from './lipwig.model';
@@ -16,6 +16,6 @@ export type Event =
     // Connection Events
     Disconnected | HostDisconnected | Reconnected | HostReconnected |
     // Ping Events
-    PingHost | PongHost | PongServer;
+    PingClient | PongHost | PongServer;
 
 

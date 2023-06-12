@@ -35,3 +35,11 @@ export enum WEBSOCKET_CLOSE_CODE {
     LEFT = 3402,
 }
 
+export enum PING_EVENT {
+    PING_SERVER = 'lw-ping-server',
+    PONG_SERVER = 'lw-pong-server',
+    PING_HOST = 'lw-ping-host',
+    PONG_HOST = 'lw-pong-host',
+    PING_CLIENT = 'lw-ping-client',
+    PONG_CLIENT = 'lw-pong-client',
+}

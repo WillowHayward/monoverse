@@ -1,3 +1,5 @@
+import { PING_EVENT } from "../../common.model";
+
 export enum SERVER_CLIENT_EVENT {
     // Generic Events
     ERROR = 'error',
@@ -13,8 +15,8 @@ export enum SERVER_CLIENT_EVENT {
     HOST_RECONNECTED = 'host-reconnected',
 
     // Ping events
-    PING_CLIENT = 'lw-ping-client',
-    PONG_HOST = 'lw-pong-host',
-    PONG_SERVER = 'lw-pong-server'
+    PING_CLIENT = PING_EVENT.PONG_CLIENT,
+    PONG_HOST = PING_EVENT.PONG_HOST,
+    PONG_SERVER = PING_EVENT.PONG_SERVER
 }
 

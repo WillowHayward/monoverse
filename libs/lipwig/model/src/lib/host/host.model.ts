@@ -2,6 +2,9 @@
  *
  * @author: Willow Hayward, whc.fyi
  */
+
+import { PING_EVENT } from "../common.model";
+
 // Events sent from a Host to the Server
 export enum HOST_EVENT {
     CREATE = 'create',
@@ -10,8 +13,8 @@ export enum HOST_EVENT {
     RECONNECT = 'reconnect',
     LOCAL_JOIN = 'lw-local-join', // Used to register local client
     LOCAL_LEAVE = 'lw-local-leave', // Used to remove local client
-    PING_SERVER = 'lw-ping-server',
-    PING_CLIENT = 'lw-ping-client',
-    PONG_HOST = 'lw-pong-host',
+    PING_SERVER = PING_EVENT.PING_SERVER,
+    PING_CLIENT = PING_EVENT.PING_CLIENT,
+    PONG_HOST = PING_EVENT.PONG_HOST,
 }
 

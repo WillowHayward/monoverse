@@ -8,7 +8,7 @@ import {
     Disconnected, ClientDisconnected, Reconnected, ClientReconnected
 } from './connection.model';
 import {
-    PingClient, PongClient, PongServer
+    PingHost, PongClient, PongServer
 } from './ping.model';
 export * from './generic.model';
 export * from './lipwig.model'
@@ -23,4 +23,4 @@ export type Event =
     // Connection Events
     Disconnected | ClientDisconnected | Reconnected | ClientReconnected |
     // Ping Events
-    PingClient | PongClient | PongServer;
+    PingHost | PongClient | PongServer;
