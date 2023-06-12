@@ -5,7 +5,7 @@ import {
     HOST_EVENT,
     SERVER_HOST_EVENT,
     SERVER_CLIENT_EVENT,
-    WEBSOCKET_CLOSE_CODE,
+    CLOSE_CODE,
     HostEvents,
     ServerHostEvents,
     RoomConfig,
@@ -172,7 +172,7 @@ export class Host extends EventManager {
     }
 
     public close(reason?: string) {
-        this.socket.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
+        this.socket.close(CLOSE_CODE.CLOSED, reason);
     }
 
     public ping(id?: string): Promise<number> {

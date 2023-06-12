@@ -10,7 +10,7 @@ import {
 
 import { generateString } from '@whc/utils';
 
-import { LipwigSocket } from '../app/app.model';
+import { LipwigSocket } from '../socket/LipwigSocket';
 import { Room } from './room';
 
 // TODO: Make @Room param decorator
@@ -63,11 +63,10 @@ export class RoomService {
 
     join(user: LipwigSocket, code: string, options?: UserOptions) {
         // TODO: Join Options
-        const room = this.rooms[code];
+        const room = this.getRoom(code);
 
         if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
+            user.error(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -81,11 +80,7 @@ export class RoomService {
     }
 
     reconnect(user: LipwigSocket, code: string, id: string): boolean {
-        const room = this.rooms[code];
-        if (!room) {
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
+        const room = this.getRoom(code);
 
         return room.reconnect(user, id);
     }
@@ -93,110 +88,47 @@ export class RoomService {
     //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     message(user: LipwigSocket, payload: HostEvents.MessageData | ClientEvents.MessageData) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
-
+        const room = user.room;
         room.handle(user, payload);
     }
 
     pingHost(user: LipwigSocket, time: number) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
+        const room = user.room;
         room.pingHost(user, time);
     }
 
     pongHost(user: LipwigSocket, time: number, id: string) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
+        const room = user.room;
         room.pongHost(user, time, id);
     }
 
     pingClient(user: LipwigSocket, time: number, id: string) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
+        const room = user.room;
         room.pingClient(user, time, id);
     }
 
     pongClient(user: LipwigSocket, time: number) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
+        const room = user.room;
         room.pongClient(user, time);
     }
 
     kick(user: LipwigSocket, id: string, reason?: string) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
-
+        const room = user.room;
         room.kick(user, id, reason);
     }
 
     localJoin(user: LipwigSocket) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
-
+        const room = user.room;
         room.localJoin(user);
     }
 
     localLeave(user: LipwigSocket) {
-        const code = user.room;
-        const room = this.rooms[code];
-
-        if (!room) {
-            // Room not found
-            user.sendError(ERROR_CODE.ROOMNOTFOUND);
-            return;
-        }
-
+        const room = user.room;
         room.localLeave(user);
     }
 
     disconnect(user: LipwigSocket) {
-        const code = user.room;
-        const room = this.rooms[code];
-        if (room) {
-            room.disconnect(user);
-        }
+        const room = user.room;
+        room.disconnect(user);
     }
 }

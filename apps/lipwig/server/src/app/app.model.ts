@@ -1,12 +1,6 @@
-import { ERROR_CODE, ServerClientEvents, ServerHostEvents } from '@whc/lipwig/model';
-import * as WebSocket from 'ws';
+import * as RawWebSocket from 'ws';
+import { LipwigSocket } from '../socket/LipwigSocket';
 
-export interface LipwigSocket extends WebSocket {
-    id: string;
-    room: string;
-    isHost: boolean;
-    connected: boolean;
-
-    sendError: (error: ERROR_CODE, message?: string) => void;
-    sendMessage: (message: ServerHostEvents.Event | ServerClientEvents.Event) => void;
+export interface WebSocket extends RawWebSocket {
+    socket: LipwigSocket
 }

@@ -2,8 +2,9 @@ import { Reflector } from '@nestjs/core';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { RoomService } from './room.service';
-import { LipwigSocket } from '../app/app.model';
+import { WebSocket } from '../app/app.model';
 import { CLIENT_EVENT, ERROR_CODE, HOST_EVENT } from '@whc/lipwig/model';
+import { LipwigSocket } from '../socket/LipwigSocket';
 
 interface Validator {
     required?: string[]; // Required paramaters on request
@@ -22,27 +23,20 @@ export class RoomGuard implements CanActivate {
     canActivate(
         context: ExecutionContext
     ): boolean | Promise<boolean> | Observable<boolean> {
-        return true;
-    }
-        /*
-        this.socket = context.switchToWs().getClient();
+        const rawSocket: WebSocket = context.switchToWs().getClient();
+        this.socket = rawSocket.socket;
         const event = this.reflector.get<string>(
             'message',
             context.getHandler()
         );
         const args: any = context.getArgs()[1];
 
-        if (!this.validate(event, args)) {
-            return false;
-        }
-
-        return true;
+        return this.validate(event, args);
     }
 
     private validate(event: string, args: any): boolean {
         if (!this.isValidEvent(event)) {
-            sendError(
-                this.socket,
+            this.socket.error(
                 ERROR_CODE.MALFORMED,
                 `Invalid event '${event}'`
             );
@@ -67,14 +61,13 @@ export class RoomGuard implements CanActivate {
         }
 
         if (validator.isHost !== undefined) {
-            const isHost = this.userIsHost();
+            const isHost = this.socket.isHost;
             if (!isHost && validator.isHost) {
-                sendError(this.socket, ERROR_CODE.INSUFFICIENTPERMISSIONS);
+                this.socket.error(ERROR_CODE.INSUFFICIENTPERMISSIONS);
                 return false;
             } else if (isHost && !validator.isHost) {
                 // TODO: Is this also just insufficient permissions?
-                sendError(
-                    this.socket,
+                this.socket.error(
                     ERROR_CODE.MALFORMED,
                     `Cannot use event '${event}' as host`
                 );
@@ -100,16 +93,13 @@ export class RoomGuard implements CanActivate {
             return true;
         }
 
+        this.socket.error(ERROR_CODE.MALFORMED, `No such event '${event}'`);
         return false;
-    }
-
-    private userIsHost(): boolean {
-        return this.rooms.userIsHost(this.socket.room, this.socket.id);
     }
 
     private validateRoomExists(room: string): boolean {
         if (!room || !this.rooms.roomExists(room)) {
-            sendError(this.socket, ERROR_CODE.ROOMNOTFOUND);
+            this.socket.error(ERROR_CODE.ROOMNOTFOUND);
             return false;
         }
 
@@ -121,8 +111,7 @@ export class RoomGuard implements CanActivate {
         const missing = required.filter((param) => !params.includes(param));
 
         if (missing.length) {
-            sendError(
-                this.socket,
+            this.socket.error(
                 ERROR_CODE.MALFORMED,
                 `Missing required parameters: ${missing.join(', ')}`
             );
@@ -133,26 +122,15 @@ export class RoomGuard implements CanActivate {
     }
 
     private validateUser(): boolean {
-        const required = ['id', 'room', 'host', 'connected'];
-        const properties = Object.keys(this.socket);
-        const missing = required.filter(
-            (property) => !properties.includes(property)
-        );
-
-        if (missing.length) {
+        if (!this.socket.initialized) {
             // socket improperly initialized
-            sendError(this.socket, ERROR_CODE.MALFORMED);
+            this.socket.error(ERROR_CODE.MALFORMED);
             return false;
         }
 
         const room = this.socket.room;
-        if (!this.validateRoomExists(room)) {
-            return false;
-        }
-
-        const id = this.socket.id;
-        if (!this.rooms.userInRoom(room, id)) {
-            sendError(this.socket, ERROR_CODE.USERNOTFOUND);
+        if (room.closed) {
+            this.socket.error(ERROR_CODE.ROOMCLOSED);
             return false;
         }
 
@@ -173,33 +151,21 @@ export class RoomGuard implements CanActivate {
                     required: ['code', 'id'],
                     roomExists: true,
                 };
-            case CLIENT_EVENT.CLOSE:
-                return {
-                    validUser: true,
-                    isHost: true,
-                };
-            case CLIENT_EVENT.LEAVE:
-                return {
-                    validUser: true,
-                    isHost: false,
-                };
-            case CLIENT_EVENT.ADMINISTRATE:
-                return {}; // TODO: Determine administrate flow
+            //case CLIENT_EVENT.ADMINISTRATE:
+                //return {}; // TODO: Determine administrate flow
             case CLIENT_EVENT.MESSAGE:
                 return {
                     required: ['event', 'args'],
                     validUser: true,
                     other: (args: any) => {
-                        if (this.userIsHost() && !args.recipients) {
-                            sendError(
-                                this.socket,
+                        if (this.socket.isHost && !args.recipients) {
+                            this.socket.error(
                                 ERROR_CODE.MALFORMED,
                                 'Message from host must contain recipients'
                             );
                             return false;
-                        } else if (!this.userIsHost() && args.recipients) {
-                            sendError(
-                                this.socket,
+                        } else if (!this.socket.isHost && args.recipients) {
+                            this.socket.error(
                                 ERROR_CODE.MALFORMED,
                                 'Message from client must not contain recipients'
                             );
@@ -209,12 +175,25 @@ export class RoomGuard implements CanActivate {
                         return true;
                     },
                 };
-            case CLIENT_EVENT.PING:
+            /*case CLIENT_EVENT.PING:
                 return {
                     required: ['time'],
                     validUser: true,
+                };*/
+            case HOST_EVENT.PING_CLIENT:
+            case HOST_EVENT.PONG_HOST:
+                return {
+                    required: ['time', 'id'],
+                    isHost: true
                 };
-            case CLIENT_EVENT.KICK:
+            case CLIENT_EVENT.PING_HOST:
+            case CLIENT_EVENT.PONG_CLIENT:
+            case CLIENT_EVENT.PING_SERVER:
+            case HOST_EVENT.PING_SERVER: 
+                return {
+                    required: ['time']
+                }
+            case HOST_EVENT.KICK:
                 return {
                     required: ['id'],
                     isHost: true,
@@ -223,5 +202,5 @@ export class RoomGuard implements CanActivate {
                 console.warn(`Guard not set up for event '${event}'`);
                 return {};
         }
-    }*/
+    }
 }

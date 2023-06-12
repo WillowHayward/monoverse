@@ -3,7 +3,7 @@ import {
     ClientEvents,
     HostEvents,
     ServerClientEvents,
-    WEBSOCKET_CLOSE_CODE,
+    CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 
@@ -39,13 +39,13 @@ export class Socket extends EventManager {
 
         this.socket.addEventListener('close', (event: CloseEvent) => {
             switch (event.code) {
-                case WEBSOCKET_CLOSE_CODE.KICKED:
+                case CLOSE_CODE.KICKED:
                     this.emit('kicked', event.reason);
                     break;
-                case WEBSOCKET_CLOSE_CODE.LEFT:
+                case CLOSE_CODE.LEFT:
                     // TODO
                     break;
-                case WEBSOCKET_CLOSE_CODE.CLOSED:
+                case CLOSE_CODE.CLOSED:
                     this.emit('closed', event.reason);
                     break;
                 default:
@@ -65,7 +65,7 @@ export class Socket extends EventManager {
         });
     }
 
-    public close(code: WEBSOCKET_CLOSE_CODE, data?: any) {
+    public close(code: CLOSE_CODE, data?: any) {
         this.socket.close(code, data);
     }
 

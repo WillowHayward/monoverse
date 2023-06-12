@@ -4,7 +4,7 @@
 import {
     CLIENT_EVENT,
     SERVER_CLIENT_EVENT,
-    WEBSOCKET_CLOSE_CODE,
+    CLOSE_CODE,
     ClientEvents,
     ServerClientEvents,
     UserOptions,
@@ -90,7 +90,7 @@ export class Client extends EventManager {
     }
 
     public leave(reason?: string) {
-        this.socket?.close(WEBSOCKET_CLOSE_CODE.LEFT, reason);
+        this.socket?.close(CLOSE_CODE.LEFT, reason);
     }
 
     public ping(full: boolean = true): Promise<number> {

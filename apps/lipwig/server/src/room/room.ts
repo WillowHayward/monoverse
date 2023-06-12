@@ -7,9 +7,9 @@ import {
     ClientEvents,
     RoomConfig,
     UserOptions,
-    WEBSOCKET_CLOSE_CODE,
+    CLOSE_CODE,
 } from '@whc/lipwig/model';
-import { LipwigSocket } from '../app/app.model';
+import { LipwigSocket } from '../socket/LipwigSocket';
 
 export class Room {
     private id = v4();
@@ -17,6 +17,7 @@ export class Room {
     private local: number = 0;
     // TODO: This feels hacky
     public onclose: () => void;
+    public closed: boolean = false;
 
     constructor(
         private host: LipwigSocket,
@@ -26,7 +27,7 @@ export class Room {
         // TODO: Room config
         this.initialiseHost(host);
 
-        host.sendMessage({
+        host.send({
             event: SERVER_HOST_EVENT.CREATED,
             data: {
                 code,
@@ -47,45 +48,21 @@ export class Room {
         return id === this.host.id;
     }
 
-    private initialiseSocket(user: LipwigSocket, id: string, isHost: boolean) {
-        user.isHost = isHost;
-        user.room = this.code;
-        user.id = id;
-        user.connected = true;
-    }
-
     private initialiseClient(client: LipwigSocket) {
         const id = v4();
-        this.initialiseSocket(client, id, false);
+        client.initialize(id, false, this);
         this.users.push(client);
-        client.on('close', (code: WEBSOCKET_CLOSE_CODE, reasonBuffer: Buffer) => {
-            if (code !== WEBSOCKET_CLOSE_CODE.LEFT) {
-                return;
-            }
-            let reason: string;
-            if (reasonBuffer.length) {
-                reason = reasonBuffer.toString('utf8');
-            }
-
+        client.on('leave', (reason?: string) => {
             this.leave(client, reason);
         });
     }
 
     private initialiseHost(host: LipwigSocket) {
         const id = v4();
-        this.initialiseSocket(host, id, true);
+        host.initialize(id, true, this);
 
-        host.on('close', (code: WEBSOCKET_CLOSE_CODE, reasonBuffer: Buffer) => {
-            if (code !== WEBSOCKET_CLOSE_CODE.CLOSED) {
-                return;
-            }
-            let reason: string;
-            if (reasonBuffer.length) {
-                reason = reasonBuffer.toString('utf8');
-            }
-
+        host.on('close', (reason?: string) => {
             this.close(reason);
-
         });
     }
 
@@ -95,14 +72,14 @@ export class Room {
         const id = client.id;
         this.users.push(client);
 
-        client.sendMessage({
+        client.send({
             event: SERVER_CLIENT_EVENT.JOINED,
             data: {
                 id,
             },
         });
 
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.JOINED,
             data: {
                 id,
@@ -115,12 +92,12 @@ export class Room {
         disconnected.connected = false;
         if (disconnected.isHost) {
             for (const user of this.users) {
-                user.sendMessage({
+                user.send({
                     event: SERVER_CLIENT_EVENT.HOST_DISCONNECTED,
                 });
             }
         } else {
-            this.host.sendMessage({
+            this.host.send({
                 event: SERVER_HOST_EVENT.CLIENT_DISCONNECTED,
                 data: {
                     id: disconnected.id,
@@ -130,16 +107,12 @@ export class Room {
     }
 
     reconnect(user: LipwigSocket, id: string): boolean {
-        // TODO: Is setting these prior to confirming reconnection gonna be an issue?
-        user.id = id;
-        user.room = this.code;
-
         if (this.isHost(id)) {
-            if (!this.reconnectHost(user)) {
+            if (!this.reconnectHost(user, id)) {
                 return false;
             }
         } else {
-            if (!this.reconnectUser(user)) {
+            if (!this.reconnectUser(user, id)) {
                 return false;
             }
         }
@@ -149,9 +122,11 @@ export class Room {
         return true;
     }
 
-    private reconnectHost(host: LipwigSocket): boolean {
+    private reconnectHost(host: LipwigSocket, id: string): boolean {
         this.host = host;
-        host.sendMessage({
+        host.initialize(id, true, this);
+
+        host.send({
             event: SERVER_HOST_EVENT.RECONNECTED,
             data: {
                 room: this.code,
@@ -162,7 +137,7 @@ export class Room {
         });
 
         for (const user of this.users) {
-            user.sendMessage({
+            user.send({
                 event: SERVER_CLIENT_EVENT.HOST_RECONNECTED,
                 data: {
                     room: this.code,
@@ -174,26 +149,28 @@ export class Room {
         return true;
     }
 
-    private reconnectUser(user: LipwigSocket): boolean {
-        const index = this.users.findIndex((other) => other.id === user.id);
+    private reconnectUser(user: LipwigSocket, id: string): boolean {
+        const index = this.users.findIndex((other) => other.id === id);
         if (index === -1) {
             // Could not find user
-            user.sendError(ERROR_CODE.USERNOTFOUND);
+            user.error(ERROR_CODE.USERNOTFOUND);
             return false;
         }
 
+        user.initialize(id, false, this);
+
         this.users.splice(index, 1, user);
 
-        user.sendMessage({
+        user.send({
             event: SERVER_CLIENT_EVENT.RECONNECTED,
             data: {
                 room: this.code,
-                id: user.id,
+                id
             },
         });
         // Send to user first to allow listeners to be in localhost
         // TODO: This may still introduce a race condition
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.CLIENT_RECONNECTED,
             data: {
                 room: this.code,
@@ -205,10 +182,12 @@ export class Room {
     }
 
     close(reason?: string) {
+        this.closed = true;
         console.log('room closing', reason);
         for (const user of this.users) {
-            user.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
+            user.close(CLOSE_CODE.CLOSED, reason);
         }
+
 
         if (this.onclose) {
             this.onclose();
@@ -216,7 +195,7 @@ export class Room {
     }
 
     leave(user: LipwigSocket, reason?: string) {
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.LEFT,
             data: {
                 id: user.id,
@@ -248,11 +227,11 @@ export class Room {
             //TODO: Disconnected message queuing
             const user = this.users.find((value) => id === value.id);
             if (!user) {
-                host.sendError(ERROR_CODE.USERNOTFOUND);
+                host.error(ERROR_CODE.USERNOTFOUND);
                 continue;
             }
 
-            user.sendMessage({
+            user.send({
                 event: SERVER_CLIENT_EVENT.MESSAGE,
                 data: {
                     event: data.event,
@@ -263,7 +242,7 @@ export class Room {
     }
 
     private handleClient(client: LipwigSocket, data: ClientEvents.MessageData) {
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.MESSAGE,
             data: {
                 event: data.event,
@@ -276,7 +255,7 @@ export class Room {
     pingHost(socket: LipwigSocket, time: number) {
         const id = socket.id;
 
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.PING_HOST,
             data: {
                 time, id
@@ -289,11 +268,11 @@ export class Room {
         const user = this.users.find(user => user.id === id);
 
         if (!user) {
-            socket.sendError(ERROR_CODE.USERNOTFOUND);
+            socket.error(ERROR_CODE.USERNOTFOUND);
             return;
         }
         
-        user.sendMessage({
+        user.send({
             event: SERVER_CLIENT_EVENT.PONG_HOST,
             data: {
                 time
@@ -305,11 +284,11 @@ export class Room {
         const user = this.users.find(user => user.id === id);
 
         if (!user) {
-            socket.sendError(ERROR_CODE.USERNOTFOUND);
+            socket.error(ERROR_CODE.USERNOTFOUND);
             return;
         }
 
-        user.sendMessage({
+        user.send({
             event: SERVER_CLIENT_EVENT.PING_CLIENT,
             data: {
                 time
@@ -320,7 +299,7 @@ export class Room {
     pongClient(socket: LipwigSocket, time: number) {
         const id = socket.id;
 
-        this.host.sendMessage({
+        this.host.send({
             event: SERVER_HOST_EVENT.PONG_CLIENT,
             data: {
                 time,
@@ -331,17 +310,17 @@ export class Room {
 
     kick(user: LipwigSocket, id: string, reason?: string) {
         if (!user.isHost) {
-            user.sendError(ERROR_CODE.INSUFFICIENTPERMISSIONS);
+            user.error(ERROR_CODE.INSUFFICIENTPERMISSIONS);
             return;
         }
 
         const target = this.users.find((user) => user.id === id);
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
-            user.sendError(ERROR_CODE.USERNOTFOUND);
+            user.error(ERROR_CODE.USERNOTFOUND);
         }
 
-        target.close(WEBSOCKET_CLOSE_CODE.KICKED, reason);
+        target.close(CLOSE_CODE.KICKED, reason);
         this.users.splice(index, 1);
     }
 
