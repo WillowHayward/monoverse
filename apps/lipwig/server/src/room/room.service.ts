@@ -124,14 +124,4 @@ export class RoomService {
         const room = user.room;
         room.localLeave(user);
     }
-
-    disconnect(user: LipwigSocket) {
-        const room = user.room;
-        if (!room) {
-            // TODO: This fires twice for some reason
-            // TODO: Move to LipwigSocket regardless
-            return;
-        }
-        room.disconnect(user);
-    }
 }

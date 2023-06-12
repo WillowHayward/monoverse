@@ -33,29 +33,51 @@ export class LipwigSocket {
 
     private setHostListeners() {
         this.socket.on('close', (code: CLOSE_CODE, reasonBuffer: Buffer) => {
-            if (code !== CLOSE_CODE.CLOSED) {
-                return;
-            }
+            let emit: string;
             let reason: string;
-            if (reasonBuffer.length) {
-                reason = reasonBuffer.toString('utf8');
+            switch (code) {
+                case CLOSE_CODE.CLOSED:
+                    emit = 'close';
+                    if (reasonBuffer.length) {
+                        reason = reasonBuffer.toString('utf8');
+                    }
+                break;
+                case CLOSE_CODE.LEFT:
+                case CLOSE_CODE.KICKED:
+                    break;
+                default:
+                    emit = 'disconnect';
+                    break;
             }
 
-            this.emit('close', reason);
+            if (emit) {
+                this.emit(emit, reason);
+            }
         });
     }
 
     private setClientListeners() {
         this.socket.on('close', (code: CLOSE_CODE, reasonBuffer: Buffer) => {
-            if (code !== CLOSE_CODE.LEFT) {
-                return;
-            }
+            let emit: string;
             let reason: string;
-            if (reasonBuffer.length) {
-                reason = reasonBuffer.toString('utf8');
+            switch (code) {
+                case CLOSE_CODE.LEFT:
+                    emit = 'leave';
+                    if (reasonBuffer.length) {
+                        reason = reasonBuffer.toString('utf8');
+                    }
+                break;
+                case CLOSE_CODE.CLOSED:
+                case CLOSE_CODE.KICKED:
+                    break;
+                default:
+                    emit = 'disconnect';
+                    break;
             }
 
-            this.emit('leave', reason);
+            if (emit) {
+                this.emit(emit, reason);
+            }
         });
 
     }
@@ -84,6 +106,7 @@ export class LipwigSocket {
 
     on(event: 'leave', callback: (reason?: string) => void): void
     on(event: 'close', callback: (reason?: string) => void): void
+    on(event: 'disconnect', callback: (reason?: string) => void): void
     on(event: string, callback: (...args: any[]) => void): void {
         if (!this.events[event]) {
             this.events[event] = [];

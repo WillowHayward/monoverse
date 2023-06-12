@@ -1,7 +1,6 @@
 import {
     SubscribeMessage,
     WebSocketGateway,
-    OnGatewayDisconnect,
     OnGatewayConnection,
 } from '@nestjs/websockets';
 import {
@@ -19,8 +18,14 @@ import { LipwigSocket } from '../socket/LipwigSocket';
 
 @WebSocketGateway()
 @UseGuards(RoomGuard)
-export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
+export class AppGateway implements OnGatewayConnection {
     constructor(private rooms: RoomService) {}
+
+    handleConnection(socket: WebSocket) {
+        // TODO: This is firing twice on reconnection, for some reason
+        const lipwigSocket = new LipwigSocket(socket);
+        socket.socket = lipwigSocket;
+    }
 
     @SubscribeMessage(HOST_EVENT.CREATE)
     create(socket: WebSocket, payload: HostEvents.CreateData) {
@@ -101,14 +106,5 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     @SubscribeMessage(HOST_EVENT.LOCAL_JOIN)
     localJoin(socket: WebSocket) {
         this.rooms.localJoin(socket.socket);
-    }
-
-    handleConnection(socket: WebSocket) {
-        const lipwigSocket = new LipwigSocket(socket);
-        socket.socket = lipwigSocket;
-    }
-
-    handleDisconnect(socket: WebSocket) {
-        this.rooms.disconnect(socket.socket);
     }
 }

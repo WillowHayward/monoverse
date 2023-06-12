@@ -55,6 +55,10 @@ export class Room {
         client.on('leave', (reason?: string) => {
             this.leave(client, reason);
         });
+
+        client.on('disconnect', () => {
+            this.disconnect(client);
+        });
     }
 
     private initialiseHost(host: LipwigSocket) {
@@ -63,6 +67,10 @@ export class Room {
 
         host.on('close', (reason?: string) => {
             this.close(reason);
+        });
+
+        host.on('disconnect', () => {
+            this.disconnect(host);
         });
     }
 
@@ -88,7 +96,7 @@ export class Room {
         });
     }
 
-    disconnect(disconnected: LipwigSocket) {
+    private disconnect(disconnected: LipwigSocket) {
         disconnected.connected = false;
         if (disconnected.isHost) {
             for (const user of this.users) {
