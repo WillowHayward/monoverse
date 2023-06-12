@@ -11,17 +11,34 @@ import {
 } from '@whc/lipwig/model';
 import { Client } from './Client';
 
+// TODO: If the host gets disconnected, should this also emit disconnected?
+
 export class LocalClient extends Client {
-    private parent: Host;
     constructor(
-        parent: Host,
+        public host: Host,
         room: string,
         options: UserOptions = {}
     ) {
         super('', room, options);
-        this.id = '';
-        this.parent = parent;
-        this.options = options;
+
+        const id = host.getNewLocalClientID();
+        this.id = id;
+
+        host.addLocalClient(this);
+
+        // 100 Milliseconds to allow listeners to be set
+        // TODO: Check for race conditions
+        setTimeout(() => {
+            this.sendToHost({
+                event: SERVER_HOST_EVENT.JOINED,
+                data: {
+                    id,
+                    options
+                }
+            });
+
+            this.emit(SERVER_CLIENT_EVENT.JOINED, id);
+        }, 100);
     }
 
     public override send(event: string, ...args: unknown[]): void {
@@ -34,7 +51,7 @@ export class LocalClient extends Client {
             },
         };
 
-        this.sendToParent(message);
+        this.sendToHost(message);
     }
 
     public override leave(reason?: string) {
@@ -46,14 +63,14 @@ export class LocalClient extends Client {
             }
         }
 
-        this.sendToParent(message);
+        this.sendToHost(message);
     }
 
-    private sendToParent(message: ServerHostEvents.Event) {
+    private sendToHost(message: ServerHostEvents.Event) {
         // Stringify + parse to prevent editing by reference and to simulate real process
         message = JSON.parse(JSON.stringify(message));
 
-        this.parent.handle(message);
+        this.host.handle(message);
     }
 
     public override handle(message: ServerClientEvents.Event): void {
@@ -73,7 +90,7 @@ export class LocalClient extends Client {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_CLIENT_EVENT.PING_CLIENT:
-                this.sendToParent({
+                this.sendToHost({
                     event: SERVER_HOST_EVENT.PONG_CLIENT,
                     data: {
                         time: message.data.time,

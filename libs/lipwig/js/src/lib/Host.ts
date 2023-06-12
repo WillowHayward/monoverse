@@ -22,6 +22,7 @@ type GroupMap = {
 
 export class Host extends EventManager {
     private users: User[] = [];
+    private localClients: LocalClient[] = [];
     private groups: GroupMap;
 
     private socket: Socket;
@@ -105,18 +106,20 @@ export class Host extends EventManager {
         const remoteRecipients = users
             .filter((user) => !user.id.startsWith('local-'))
             .map((user) => user.id);
+        if (remoteRecipients.length) {
+            this.send({
+                event: HOST_EVENT.MESSAGE,
+                data: {
+                    event,
+                    args,
+                    recipients: remoteRecipients,
+                },
+            });
+        }
+
         const localRecipients = users.filter((user) =>
             user.id.startsWith('local-')
         );
-        this.send({
-            event: HOST_EVENT.MESSAGE,
-            data: {
-                event,
-                args,
-                recipients: remoteRecipients,
-            },
-        });
-
         for (const user of localRecipients) {
             user.send(event, ...args);
         }
@@ -124,6 +127,7 @@ export class Host extends EventManager {
 
     public send(message: HostEvents.Event) {
         if (message.event === HOST_EVENT.KICK) {
+            // TODO: LocalClient kicking?
             const id = message.data.id;
             const index = this.users.findIndex(user => id === user.id);
             if (index === -1) {
@@ -136,41 +140,25 @@ export class Host extends EventManager {
 
     public createLocalClient(
         options: UserOptions = {},
-        localID?: string
     ): LocalClient {
-        if (!localID) {
-            let localCount = 1;
-            do {
-                localID = `local-${this.id}-${localCount}`;
-                localCount++;
-            } while (this.users.find((user) => user.id === localID));
+        return new LocalClient(this, this.room, options);
+    }
+
+    public addLocalClient(client: LocalClient) {
+        if (client.host !== this) {
+            return;
         }
+        this.localClients.push(client);
+    }
 
-        const localUser = new User(localID, this, options.data, true);
-        console.log(localUser);
-        // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
-        const localClient = new LocalClient(
-            this,
-            this.room,
-            options
-        );
-
-        localUser.client = localClient;
-        localClient.id = localID;
-
-        this.users.push(localUser);
-
-        // Set timeout to allow moment for listeners to be set on both ends
-        // Hopefully this doesn't introduce a race condition
-        // TODO: Looks like this introduced a race condition.
-        //       Not a massive surprise I guess.
-        // TODO: Add callback as parameter
-        setTimeout(() => {
-            this.emit(SERVER_HOST_EVENT.JOINED, localUser, options);
-            localClient.emit(SERVER_CLIENT_EVENT.JOINED, localID);
-        }, 10);
-
-        return localClient;
+    public getNewLocalClientID(): string {
+        let count = this.localClients.length + 1;
+        let id: string;
+        do {
+            id = `local-${this.id}-${count}`;
+            count++;
+        } while (this.localClients.find(client => client.id === id));
+        return id;
     }
 
     public close(reason?: string) {
@@ -216,12 +204,20 @@ export class Host extends EventManager {
                 break;
             case SERVER_HOST_EVENT.JOINED:
                 const data = message.data;
-                user = new User(data.id, this, data.options?.data);
+                const local = data.id.startsWith('local-');
+                user = new User(data.id, this, data.options?.data, local);
                 this.users.push(user);
-                args.push(user);
                 args.push(data.options?.data); //TODO: Potentially just send the data in the end, trim the rest on the server. Currently only 'reconnect' is used.
-                this.emit(eventName, ...args, this);
-                return;
+
+                if (local) {
+                    const client = this.localClients.find(client => data.id === client.id);
+                    if (!client) {
+                        // TODO: Handle
+                        return;
+                    }
+                    user.client = client;
+                }
+                break;
             case SERVER_HOST_EVENT.MESSAGE:
                 args.push(...message.data.args);
                 eventName = message.data.event;

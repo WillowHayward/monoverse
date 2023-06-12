@@ -12,6 +12,7 @@ import {
     UserOptions,
 } from '@whc/lipwig/model';
 
+// TODO: Can the local stuff be moved into Host?
 export class User extends EventManager {
     public client: LocalClient | null = null;
     public data: {[key: string]: any};

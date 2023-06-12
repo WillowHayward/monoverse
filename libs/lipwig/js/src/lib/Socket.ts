@@ -16,6 +16,7 @@ export class Socket extends EventManager {
         super();
 
         if (url.length) {
+            console.log(url);
             // This is a tiny bit hacky, but for the LocalClient functionality this had to be option here or in Client, and this has less potential impact
             this.socket = new WebSocket(url);
             this.addListeners();
