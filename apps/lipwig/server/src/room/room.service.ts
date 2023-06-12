@@ -13,8 +13,6 @@ import { generateString } from '@whc/utils';
 import { LipwigSocket } from '../socket/LipwigSocket';
 import { Room } from './room';
 
-// TODO: Make @Room param decorator
-// TODO: Move all the room checking to guard
 // TODO: Make @SubscribeHostEvent and @SubscribeClientEvent method decorators
 // TODO: Make exception which sends error?
 @Injectable()
@@ -129,6 +127,11 @@ export class RoomService {
 
     disconnect(user: LipwigSocket) {
         const room = user.room;
+        if (!room) {
+            // TODO: This fires twice for some reason
+            // TODO: Move to LipwigSocket regardless
+            return;
+        }
         room.disconnect(user);
     }
 }
