@@ -3,7 +3,6 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { RoomService } from './room.service';
 import { LipwigSocket } from '../app/app.model';
-import { sendError } from './utils';
 import { CLIENT_EVENT, ERROR_CODE, HOST_EVENT } from '@whc/lipwig/model';
 
 interface Validator {

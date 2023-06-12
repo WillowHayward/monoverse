@@ -5,15 +5,11 @@ import {
     ERROR_CODE,
     HostEvents,
     ClientEvents,
-    ServerHostEvents,
-    ServerClientEvents,
     RoomConfig,
     UserOptions,
     WEBSOCKET_CLOSE_CODE,
-    PING_EVENT
 } from '@whc/lipwig/model';
 import { LipwigSocket } from '../app/app.model';
-import { sendError } from './utils';
 
 export class Room {
     private id = v4();
@@ -30,7 +26,7 @@ export class Room {
         // TODO: Room config
         this.initialiseHost(host);
 
-        this.send<ServerHostEvents.Created>(host, {
+        host.sendMessage({
             event: SERVER_HOST_EVENT.CREATED,
             data: {
                 code,
@@ -51,8 +47,8 @@ export class Room {
         return id === this.host.id;
     }
 
-    private initialiseSocket(user: LipwigSocket, id: string, host: boolean) {
-        user.host = host;
+    private initialiseSocket(user: LipwigSocket, id: string, isHost: boolean) {
+        user.isHost = isHost;
         user.room = this.code;
         user.id = id;
         user.connected = true;
@@ -99,14 +95,14 @@ export class Room {
         const id = client.id;
         this.users.push(client);
 
-        this.send<ServerClientEvents.Joined>(client, {
+        client.sendMessage({
             event: SERVER_CLIENT_EVENT.JOINED,
             data: {
                 id,
             },
         });
 
-        this.send<ServerHostEvents.Joined>(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.JOINED,
             data: {
                 id,
@@ -117,14 +113,14 @@ export class Room {
 
     disconnect(disconnected: LipwigSocket) {
         disconnected.connected = false;
-        if (this.host.id === disconnected.id) {
+        if (disconnected.isHost) {
             for (const user of this.users) {
-                this.send<ServerClientEvents.HostDisconnected>(user, {
+                user.sendMessage({
                     event: SERVER_CLIENT_EVENT.HOST_DISCONNECTED,
                 });
             }
         } else {
-            this.send<ServerHostEvents.ClientDisconnected>(this.host, {
+            this.host.sendMessage({
                 event: SERVER_HOST_EVENT.CLIENT_DISCONNECTED,
                 data: {
                     id: disconnected.id,
@@ -138,7 +134,7 @@ export class Room {
         user.id = id;
         user.room = this.code;
 
-        if (id === this.host.id) {
+        if (this.isHost(id)) {
             if (!this.reconnectHost(user)) {
                 return false;
             }
@@ -155,7 +151,7 @@ export class Room {
 
     private reconnectHost(host: LipwigSocket): boolean {
         this.host = host;
-        this.send<ServerHostEvents.Reconnected>(host, {
+        host.sendMessage({
             event: SERVER_HOST_EVENT.RECONNECTED,
             data: {
                 room: this.code,
@@ -166,7 +162,7 @@ export class Room {
         });
 
         for (const user of this.users) {
-            this.send<ServerClientEvents.HostReconnected>(user, {
+            user.sendMessage({
                 event: SERVER_CLIENT_EVENT.HOST_RECONNECTED,
                 data: {
                     room: this.code,
@@ -182,13 +178,13 @@ export class Room {
         const index = this.users.findIndex((other) => other.id === user.id);
         if (index === -1) {
             // Could not find user
-            sendError(user, ERROR_CODE.USERNOTFOUND);
+            user.sendError(ERROR_CODE.USERNOTFOUND);
             return false;
         }
 
         this.users.splice(index, 1, user);
 
-        this.send<ServerClientEvents.Reconnected>(user, {
+        user.sendMessage({
             event: SERVER_CLIENT_EVENT.RECONNECTED,
             data: {
                 room: this.code,
@@ -197,7 +193,7 @@ export class Room {
         });
         // Send to user first to allow listeners to be in localhost
         // TODO: This may still introduce a race condition
-        this.send<ServerHostEvents.ClientReconnected>(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.CLIENT_RECONNECTED,
             data: {
                 room: this.code,
@@ -220,7 +216,7 @@ export class Room {
     }
 
     leave(user: LipwigSocket, reason?: string) {
-        this.send<ServerHostEvents.Left>(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.LEFT,
             data: {
                 id: user.id,
@@ -240,7 +236,7 @@ export class Room {
     //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     handle(sender: LipwigSocket, data: HostEvents.MessageData | ClientEvents.MessageData) {
-        if (sender.id === this.host.id) {
+        if (sender.isHost) {
             this.handleHost(sender, data as HostEvents.MessageData);
         } else {
             this.handleClient(sender, data as ClientEvents.MessageData);
@@ -252,11 +248,11 @@ export class Room {
             //TODO: Disconnected message queuing
             const user = this.users.find((value) => id === value.id);
             if (!user) {
-                sendError(host, ERROR_CODE.USERNOTFOUND);
+                host.sendError(ERROR_CODE.USERNOTFOUND);
                 continue;
             }
 
-            this.send<ServerClientEvents.Message>(user, {
+            user.sendMessage({
                 event: SERVER_CLIENT_EVENT.MESSAGE,
                 data: {
                     event: data.event,
@@ -267,7 +263,7 @@ export class Room {
     }
 
     private handleClient(client: LipwigSocket, data: ClientEvents.MessageData) {
-        this.send<ServerHostEvents.Message>(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.MESSAGE,
             data: {
                 event: data.event,
@@ -280,7 +276,7 @@ export class Room {
     pingHost(socket: LipwigSocket, time: number) {
         const id = socket.id;
 
-        this.send(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.PING_HOST,
             data: {
                 time, id
@@ -293,11 +289,11 @@ export class Room {
         const user = this.users.find(user => user.id === id);
 
         if (!user) {
-            sendError(user, ERROR_CODE.USERNOTFOUND);
+            socket.sendError(ERROR_CODE.USERNOTFOUND);
             return;
         }
         
-        this.send(user, {
+        user.sendMessage({
             event: SERVER_CLIENT_EVENT.PONG_HOST,
             data: {
                 time
@@ -309,11 +305,11 @@ export class Room {
         const user = this.users.find(user => user.id === id);
 
         if (!user) {
-            sendError(socket, ERROR_CODE.USERNOTFOUND);
+            socket.sendError(ERROR_CODE.USERNOTFOUND);
             return;
         }
 
-        this.send(user, {
+        user.sendMessage({
             event: SERVER_CLIENT_EVENT.PING_CLIENT,
             data: {
                 time
@@ -324,7 +320,7 @@ export class Room {
     pongClient(socket: LipwigSocket, time: number) {
         const id = socket.id;
 
-        this.send(this.host, {
+        this.host.sendMessage({
             event: SERVER_HOST_EVENT.PONG_CLIENT,
             data: {
                 time,
@@ -334,15 +330,15 @@ export class Room {
     }
 
     kick(user: LipwigSocket, id: string, reason?: string) {
-        if (user !== this.host) {
-            sendError(user, ERROR_CODE.INSUFFICIENTPERMISSIONS);
+        if (!user.isHost) {
+            user.sendError(ERROR_CODE.INSUFFICIENTPERMISSIONS);
             return;
         }
 
         const target = this.users.find((user) => user.id === id);
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
-            sendError(user, ERROR_CODE.USERNOTFOUND);
+            user.sendError(ERROR_CODE.USERNOTFOUND);
         }
 
         target.close(WEBSOCKET_CLOSE_CODE.KICKED, reason);
@@ -354,9 +350,4 @@ export class Room {
     }
 
     localLeave(user: LipwigSocket) {}
-
-    private send<T extends ServerHostEvents.Event | ServerClientEvents.Event>(user: LipwigSocket, message: T) {
-        const messageString = JSON.stringify(message);
-        user.send(messageString);
-    }
 }

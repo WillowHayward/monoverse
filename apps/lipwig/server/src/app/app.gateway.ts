@@ -2,6 +2,7 @@ import {
     SubscribeMessage,
     WebSocketGateway,
     OnGatewayDisconnect,
+    OnGatewayConnection,
 } from '@nestjs/websockets';
 import { LipwigSocket } from './app.model';
 import {
@@ -14,10 +15,11 @@ import {
 import { RoomService } from '../room/room.service';
 import { UseGuards } from '@nestjs/common';
 import { RoomGuard } from '../room/room.guard';
+import { sendError, sendMessage } from './utils';
 
 @WebSocketGateway()
 @UseGuards(RoomGuard)
-export class AppGateway implements OnGatewayDisconnect {
+export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     constructor(private rooms: RoomService) {}
 
     @SubscribeMessage(HOST_EVENT.CREATE)
@@ -89,8 +91,6 @@ export class AppGateway implements OnGatewayDisconnect {
         this.rooms.pongClient(socket, time);
     }
 
-
-
     @SubscribeMessage(HOST_EVENT.KICK)
     kick(socket: LipwigSocket, payload: HostEvents.KickData) {
         const id = payload.id;
@@ -101,6 +101,11 @@ export class AppGateway implements OnGatewayDisconnect {
     @SubscribeMessage(HOST_EVENT.LOCAL_JOIN)
     localJoin(socket: LipwigSocket) {
         this.rooms.localJoin(socket);
+    }
+
+    handleConnection(socket: LipwigSocket) {
+        socket.sendError = sendError;
+        socket.sendMessage = sendMessage;
     }
 
     handleDisconnect(socket: LipwigSocket) {

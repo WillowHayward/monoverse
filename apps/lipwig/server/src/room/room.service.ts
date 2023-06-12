@@ -12,7 +12,6 @@ import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../app/app.model';
 import { Room } from './room';
-import { sendError } from './utils';
 
 // TODO: Make @Room param decorator
 // TODO: Move all the room checking to guard
@@ -68,7 +67,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -84,7 +83,7 @@ export class RoomService {
     reconnect(user: LipwigSocket, code: string, id: string): boolean {
         const room = this.rooms[code];
         if (!room) {
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -99,7 +98,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -112,7 +111,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
         room.pingHost(user, time);
@@ -124,7 +123,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
         room.pongHost(user, time, id);
@@ -136,7 +135,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
         room.pingClient(user, time, id);
@@ -148,7 +147,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
         room.pongClient(user, time);
@@ -160,7 +159,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -173,7 +172,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
@@ -186,7 +185,7 @@ export class RoomService {
 
         if (!room) {
             // Room not found
-            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            user.sendError(ERROR_CODE.ROOMNOTFOUND);
             return;
         }
 
