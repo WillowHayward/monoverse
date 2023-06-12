@@ -125,7 +125,7 @@ export class Host extends EventManager {
         }
     }
 
-    public send(message: HostEvents.Event) {
+    protected preSend(message: HostEvents.Event) {
         if (message.event === HOST_EVENT.KICK) {
             // TODO: LocalClient kicking?
             const id = message.data.id;
@@ -135,6 +135,10 @@ export class Host extends EventManager {
             } 
             this.users.splice(index, 1);
         }
+    }
+
+    public send(message: HostEvents.Event) {
+        this.preSend(message);
         this.socket.send(message);
     }
 
@@ -149,6 +153,10 @@ export class Host extends EventManager {
             return;
         }
         this.localClients.push(client);
+    }
+
+    public getLocalClient(id: string): LocalClient | null {
+        return this.localClients.find(client => client.id === id) || null;
     }
 
     public getNewLocalClientID(): string {
@@ -179,7 +187,7 @@ export class Host extends EventManager {
     /**
      * Final stage of connection handshake - sends create message to LipwigCore server
      */
-    protected connected(): void {
+    private connected(): void {
         const message: HostEvents.Create = {
             event: HOST_EVENT.CREATE,
             data: {

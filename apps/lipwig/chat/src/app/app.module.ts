@@ -10,11 +10,16 @@ import { CommonModule } from '@angular/common';
 import { NameInputComponent } from './name-input/name-input.component';
 import { MessagesComponent } from './messages/messages.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { LocalComponent } from './local/local.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LobbyComponent,
+    },
+    {
+        path: 'local',
+        component: LocalComponent
     },
     {
         path: ':code',
@@ -30,6 +35,7 @@ const routes: Routes = [
         NameInputComponent,
         MessagesComponent,
         UserListComponent,
+        LocalComponent,
     ],
     imports: [
         BrowserModule,
