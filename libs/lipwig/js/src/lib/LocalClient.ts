@@ -1,7 +1,6 @@
 /**
  * @author: WillHayCode
  */
-import { User } from './User';
 import { Host } from './Host';
 import {
     SERVER_CLIENT_EVENT,
@@ -14,17 +13,14 @@ import { Client } from './Client';
 
 export class LocalClient extends Client {
     private parent: Host;
-    private user: User;
     constructor(
         parent: Host,
-        user: User,
-        code: string,
+        room: string,
         options: UserOptions = {}
     ) {
-        super(null, code, options);
+        super('', room, options);
         this.id = '';
         this.parent = parent;
-        this.user = user;
         this.options = options;
     }
 

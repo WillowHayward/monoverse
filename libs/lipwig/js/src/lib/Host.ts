@@ -37,13 +37,9 @@ export class Host extends EventManager {
         super();
 
         this.socket = new Socket(url);
-        this.addSocketListeners();
 
         this.groups = {};
-    }
 
-    // TODO: Move to common file
-    private addSocketListeners() {
         this.socket.on('connected', () => {
             this.connected();
         });
@@ -64,7 +60,6 @@ export class Host extends EventManager {
         this.socket.on('reconnected', (socket: Socket) => {
             // TODO: Does this make sense for the Socket class abstraction?
             //this.socket = socket;
-            //this.addSocketListeners();
         });
     }
 
@@ -77,38 +72,6 @@ export class Host extends EventManager {
 
     public getUser(id: string) {
         return this.users.find(user => id === user.id);
-    }
-
-    public assign(user: User, name: string): void {
-        let group: User[] = this.groups[name];
-        if (group === undefined) {
-            this.groups[name] = [];
-            group = this.groups[name];
-        }
-
-        if (group.indexOf(user) !== -1) {
-            // Already in group
-            return;
-        }
-
-        group.push(user);
-        user.send('assigned', name);
-    }
-
-    public unassign(user: User, name: string): void {
-        const group: User[] = this.groups[name];
-        if (group === undefined) {
-            return;
-        }
-
-        const position: number = group.indexOf(user);
-        if (position === -1) {
-            // Not in group
-            return;
-        }
-
-        this.groups[name] = group.splice(position, 1);
-        user.send('unassigned', name);
     }
 
     public getGroup(name: string): User[] {
@@ -171,66 +134,6 @@ export class Host extends EventManager {
         this.socket.send(message);
     }
 
-    public close(reason?: string) {
-        this.socket.close(CLOSE_CODE.CLOSED, reason);
-    }
-
-    public ping(id?: string): Promise<number> {
-        const now = (new Date()).getTime();
-
-        if (id) {
-            return this.pingClient(id, now);
-        } else {
-            return this.pingServer(now);
-        }
-
-    }
-
-    private pingServer(now: number): Promise<number> {
-        const promise = new Promise<number>(resolve => {
-            this.once(SERVER_HOST_EVENT.PONG_SERVER, ping => {
-                resolve(ping);
-            });
-        });
-
-        this.send({
-            event: HOST_EVENT.PING_SERVER,
-            data: {
-                time: now
-            }
-        });
-        return promise;
-    }
-
-    private pingClient(id: string, now: number): Promise<number> {
-        const promise = new Promise<number>(resolve => {
-            const event = `${SERVER_HOST_EVENT.PONG_CLIENT}-${id}`;
-            this.once(event, ping => {
-                resolve(ping);
-            });
-        });
-
-        if (id.startsWith('local-')) {
-            const user = this.users.find(user => user.id === id);
-            user?.client?.handle({
-                event: SERVER_CLIENT_EVENT.PING_CLIENT,
-                data: {
-                    time: now
-                }
-            });
-        } else {
-            this.send({
-                event: HOST_EVENT.PING_CLIENT,
-                data: {
-                    time: now,
-                    id
-                }
-            });
-        }
-
-        return promise;
-    }
-
     public createLocalClient(
         options: UserOptions = {},
         localID?: string
@@ -248,7 +151,6 @@ export class Host extends EventManager {
         // TODO: Changing this to socket will need to be re-evaluated when reconnection comes into play
         const localClient = new LocalClient(
             this,
-            localUser,
             this.room,
             options
         );
@@ -269,6 +171,34 @@ export class Host extends EventManager {
         }, 10);
 
         return localClient;
+    }
+
+    public close(reason?: string) {
+        this.socket.close(CLOSE_CODE.CLOSED, reason);
+    }
+
+    public ping(id?: string): Promise<number> {
+        const now = (new Date()).getTime();
+
+        if (id) {
+            return this.pingClient(id, now);
+        } else {
+            return this.pingServer(now);
+        }
+
+    }
+
+    /**
+     * Final stage of connection handshake - sends create message to LipwigCore server
+     */
+    protected connected(): void {
+        const message: HostEvents.Create = {
+            event: HOST_EVENT.CREATE,
+            data: {
+                config: this.config,
+            },
+        };
+        this.socket.send(message);
     }
 
     public handle(message: ServerHostEvents.Event): void {
@@ -389,16 +319,80 @@ export class Host extends EventManager {
         this.emit(eventName, ...args, this);
     }
 
-    /**
-     * Final stage of connection handshake - sends create message to LipwigCore server
-     */
-    protected connected(): void {
-        const message: HostEvents.Create = {
-            event: HOST_EVENT.CREATE,
+    private pingServer(now: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            this.once(SERVER_HOST_EVENT.PONG_SERVER, ping => {
+                resolve(ping);
+            });
+        });
+
+        this.send({
+            event: HOST_EVENT.PING_SERVER,
             data: {
-                config: this.config,
-            },
-        };
-        this.socket.send(message);
+                time: now
+            }
+        });
+        return promise;
+    }
+
+    private pingClient(id: string, now: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            const event = `${SERVER_HOST_EVENT.PONG_CLIENT}-${id}`;
+            this.once(event, ping => {
+                resolve(ping);
+            });
+        });
+
+        if (id.startsWith('local-')) {
+            const user = this.users.find(user => user.id === id);
+            user?.client?.handle({
+                event: SERVER_CLIENT_EVENT.PING_CLIENT,
+                data: {
+                    time: now
+                }
+            });
+        } else {
+            this.send({
+                event: HOST_EVENT.PING_CLIENT,
+                data: {
+                    time: now,
+                    id
+                }
+            });
+        }
+
+        return promise;
+    }
+
+    public assign(user: User, name: string): void {
+        let group: User[] = this.groups[name];
+        if (group === undefined) {
+            this.groups[name] = [];
+            group = this.groups[name];
+        }
+
+        if (group.indexOf(user) !== -1) {
+            // Already in group
+            return;
+        }
+
+        group.push(user);
+        user.send('assigned', name);
+    }
+
+    public unassign(user: User, name: string): void {
+        const group: User[] = this.groups[name];
+        if (group === undefined) {
+            return;
+        }
+
+        const position: number = group.indexOf(user);
+        if (position === -1) {
+            // Not in group
+            return;
+        }
+
+        this.groups[name] = group.splice(position, 1);
+        user.send('unassigned', name);
     }
 }

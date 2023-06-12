@@ -81,6 +81,12 @@ export class LipwigSocket {
         });
 
     }
+
+    send(message: ServerHostEvents.Event | ServerClientEvents.Event) {
+        const messageString = JSON.stringify(message);
+        this.socket.send(messageString);
+    }
+
     error(error: ERROR_CODE, message?: string) {
         console.error('Error with', this.id, error, message);
         // TODO: Try to make this more generic than ServerClient (it's just for type checking but it'd be nice)
@@ -97,12 +103,6 @@ export class LipwigSocket {
     close(code: CLOSE_CODE, reason?: string) {
         this.socket.close(code, reason);
     }
-
-    send(message: ServerHostEvents.Event | ServerClientEvents.Event) {
-        const messageString = JSON.stringify(message);
-        this.socket.send(messageString);
-    }
-
 
     on(event: 'leave', callback: (reason?: string) => void): void
     on(event: 'close', callback: (reason?: string) => void): void

@@ -13,8 +13,7 @@ import { EventManager } from './EventManager';
 import { Socket } from './Socket';
 
 export class Client extends EventManager {
-    private socket?: Socket;
-    public room: string;
+    private socket: Socket;
     public id = '';
 
     /**
@@ -24,24 +23,13 @@ export class Client extends EventManager {
      * @param data  Data to pass to room host on connection
      */
     constructor(
-        url: string | null,
-        code: string,
+        url: string,
+        public room: string,
         public options: UserOptions = {}
     ) {
         super();
 
-        if (url) {
-            this.socket = new Socket(url);
-            this.addSocketListeners();
-        }
-        this.room = code;
-    }
-
-    // TODO: Move to common file
-    private addSocketListeners() {
-        if (!this.socket) {
-            return;
-        }
+        this.socket = new Socket(url);
 
         this.socket.on('connected', () => {
             this.connected();
@@ -66,11 +54,6 @@ export class Client extends EventManager {
         this.socket.on('closed', (reason?: string) => {
             this.emit('closed', reason);
         });
-
-        this.socket.on('reconnected', (socket: Socket) => {
-            this.socket = socket;
-            this.addSocketListeners();
-        });
     }
 
     /**
@@ -86,11 +69,11 @@ export class Client extends EventManager {
                 args,
             },
         };
-        this.socket?.send(message);
+        this.socket.send(message);
     }
 
     public leave(reason?: string) {
-        this.socket?.close(CLOSE_CODE.LEFT, reason);
+        this.socket.close(CLOSE_CODE.LEFT, reason);
     }
 
     public ping(full: boolean = true): Promise<number> {
@@ -111,7 +94,7 @@ export class Client extends EventManager {
                 resolve(ping);
             });
         });
-        this.socket?.send({
+        this.socket.send({
             event: CLIENT_EVENT.PING_SERVER,
             data: {
                 time
@@ -127,7 +110,7 @@ export class Client extends EventManager {
                 resolve(ping);
             });
         });
-        this.socket?.send({
+        this.socket.send({
             event: CLIENT_EVENT.PING_HOST,
             data: {
                 time
@@ -147,7 +130,7 @@ export class Client extends EventManager {
                 options: this.options,
             },
         };
-        this.socket?.send(message);
+        this.socket.send(message);
     }
 
     /**
@@ -163,7 +146,7 @@ export class Client extends EventManager {
                 this.id = message.data.id;
                 args.push(message.data.id);
 
-                this.socket?.setData(this.room, this.id);
+                this.socket.setData(this.room, this.id);
                 break;
             case SERVER_CLIENT_EVENT.MESSAGE:
                 args.push(...message.data.args);
@@ -183,7 +166,7 @@ export class Client extends EventManager {
             case SERVER_CLIENT_EVENT.HOST_RECONNECTED:
                 break;
             case SERVER_CLIENT_EVENT.PING_CLIENT:
-                this.socket?.send({
+                this.socket.send({
                     event: CLIENT_EVENT.PONG_CLIENT,
                     data: {
                         time: message.data.time

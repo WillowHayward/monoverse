@@ -8,24 +8,30 @@ import {
 import { EventManager } from './EventManager';
 
 export class Socket extends EventManager {
-    private socket: WebSocket;
+    private socket?: WebSocket;
     private retry: boolean;
-    private id: string | undefined;
-    private room: string | undefined;
+    private id?: string;
+    private room?: string;
     constructor(private url: string) {
         super();
-        this.url = url;
 
-        this.socket = new WebSocket(url);
-        console.log('New WebSocket', this.socket);
+        if (url.length) {
+            // This is a tiny bit hacky, but for the LocalClient functionality this had to be option here or in Client, and this has less potential impact
+            this.socket = new WebSocket(url);
+            this.addListeners();
+            console.log('New WebSocket', this.socket);
+        }
         this.retry = true; //TODO: Make this an option on creation
-        this.socket.addEventListener('open', () => {
-            this.emit('connected');
-        });
-        this.addListeners();
     }
 
     private addListeners(): void {
+        if (!this.socket) {
+            return;
+        }
+
+        this.socket.addEventListener('open', () => {
+            this.emit('connected');
+        });
         this.socket.addEventListener('error', () => {
             this.emit('error');
             // TODO: error handling
@@ -66,17 +72,21 @@ export class Socket extends EventManager {
     }
 
     public close(code: CLOSE_CODE, data?: any) {
-        this.socket.close(code, data);
+        this.socket?.close(code, data);
     }
 
     public send(message: ClientEvents.Event | HostEvents.Event): void {
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         //CONT: Possible return unsent messages from this method
-        this.socket.send(JSON.stringify(message));
+        this.socket?.send(JSON.stringify(message));
     }
 
     private autoReconnect(): void {
+        if (!this.url.length) {
+            return;
+        }
+
         console.log('Attempting to reconnect');
         const socket: WebSocket = new WebSocket(this.url);
 

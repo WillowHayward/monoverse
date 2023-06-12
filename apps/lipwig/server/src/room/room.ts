@@ -220,6 +220,22 @@ export class Room {
         this.users.splice(index, 1);
     }
 
+    kick(user: LipwigSocket, id: string, reason?: string) {
+        if (!user.isHost) {
+            user.error(ERROR_CODE.INSUFFICIENTPERMISSIONS);
+            return;
+        }
+
+        const target = this.users.find((user) => user.id === id);
+        const index = this.users.indexOf(target);
+        if (!target || index === -1) {
+            user.error(ERROR_CODE.USERNOTFOUND);
+        }
+
+        target.close(CLOSE_CODE.KICKED, reason);
+        this.users.splice(index, 1);
+    }
+
     //administrate(user: LipwigSocket, payload: AdministrateEventData) {}
 
     handle(sender: LipwigSocket, data: HostEvents.MessageData | ClientEvents.MessageData) {
@@ -314,22 +330,6 @@ export class Room {
                 id
             }
         });
-    }
-
-    kick(user: LipwigSocket, id: string, reason?: string) {
-        if (!user.isHost) {
-            user.error(ERROR_CODE.INSUFFICIENTPERMISSIONS);
-            return;
-        }
-
-        const target = this.users.find((user) => user.id === id);
-        const index = this.users.indexOf(target);
-        if (!target || index === -1) {
-            user.error(ERROR_CODE.USERNOTFOUND);
-        }
-
-        target.close(CLOSE_CODE.KICKED, reason);
-        this.users.splice(index, 1);
     }
 
     localJoin(user: LipwigSocket) {
