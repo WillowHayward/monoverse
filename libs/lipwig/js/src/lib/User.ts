@@ -74,6 +74,10 @@ export class User extends EventManager {
         this.parent.send(message);
     }
 
+    public ping(): Promise<number> {
+        return this.parent.ping(this.id);
+    }
+
     public getLocalClient(): LocalClient | null {
         return this.client;
     }

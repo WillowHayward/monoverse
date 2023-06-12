@@ -9,7 +9,8 @@ import {
     ServerClientEvents,
     RoomConfig,
     UserOptions,
-    WEBSOCKET_CLOSE_CODE
+    WEBSOCKET_CLOSE_CODE,
+    PING_EVENT
 } from '@whc/lipwig/model';
 import { LipwigSocket } from '../app/app.model';
 import { sendError } from './utils';
@@ -276,7 +277,61 @@ export class Room {
         });
     }
 
-    ping(user: LipwigSocket, time: number) {}
+    pingHost(socket: LipwigSocket, time: number) {
+        const id = socket.id;
+
+        this.send(this.host, {
+            event: SERVER_HOST_EVENT.PING_HOST,
+            data: {
+                time, id
+            }
+        });
+
+    }
+
+    pongHost(socket: LipwigSocket, time: number, id: string) {
+        const user = this.users.find(user => user.id === id);
+
+        if (!user) {
+            sendError(user, ERROR_CODE.USERNOTFOUND);
+            return;
+        }
+        
+        this.send(user, {
+            event: SERVER_CLIENT_EVENT.PONG_HOST,
+            data: {
+                time
+            }
+        });
+    }
+
+    pingClient(socket: LipwigSocket, time: number, id: string) {
+        const user = this.users.find(user => user.id === id);
+
+        if (!user) {
+            sendError(socket, ERROR_CODE.USERNOTFOUND);
+            return;
+        }
+
+        this.send(user, {
+            event: SERVER_CLIENT_EVENT.PING_CLIENT,
+            data: {
+                time
+            }
+        });
+    }
+
+    pongClient(socket: LipwigSocket, time: number) {
+        const id = socket.id;
+
+        this.send(this.host, {
+            event: SERVER_HOST_EVENT.PONG_CLIENT,
+            data: {
+                time,
+                id
+            }
+        });
+    }
 
     kick(user: LipwigSocket, id: string, reason?: string) {
         if (user !== this.host) {

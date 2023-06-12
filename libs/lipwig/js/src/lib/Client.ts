@@ -93,6 +93,49 @@ export class Client extends EventManager {
         this.socket?.close(WEBSOCKET_CLOSE_CODE.LEFT, reason);
     }
 
+    public ping(full: boolean = true): Promise<number> {
+        const now = (new Date()).getTime();
+
+        if (full) {
+            // Round trip to host
+            return this.pingHost(now);
+        } else {
+            // Just server
+            return this.pingServer(now);
+        }
+    }
+
+    private pingServer(time: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            this.once(SERVER_CLIENT_EVENT.PONG_SERVER, ping => {
+                resolve(ping);
+            });
+        });
+        this.socket?.send({
+            event: CLIENT_EVENT.PING_SERVER,
+            data: {
+                time
+            }
+        });
+
+        return promise;
+    }
+
+    private pingHost(time: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            this.once(SERVER_CLIENT_EVENT.PONG_HOST, ping => {
+                resolve(ping);
+            });
+        });
+        this.socket?.send({
+            event: CLIENT_EVENT.PING_HOST,
+            data: {
+                time
+            }
+        });
+        return promise;
+    }
+
     /**
      * Final stage of connection handshake - sends join message to LipwigCore server
      */
@@ -138,6 +181,20 @@ export class Client extends EventManager {
             case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
                 break;
             case SERVER_CLIENT_EVENT.HOST_RECONNECTED:
+                break;
+            case SERVER_CLIENT_EVENT.PING_CLIENT:
+                this.socket?.send({
+                    event: CLIENT_EVENT.PONG_CLIENT,
+                    data: {
+                        time: message.data.time
+                    }
+                });
+                break;
+            case SERVER_CLIENT_EVENT.PONG_HOST:
+            case SERVER_CLIENT_EVENT.PONG_SERVER:
+                const now = (new Date()).getTime();
+                const ping = now - message.data.time;
+                args.push(ping);
                 break;
         }
         args.push(message);

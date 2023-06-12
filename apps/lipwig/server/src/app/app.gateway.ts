@@ -8,7 +8,8 @@ import {
     CLIENT_EVENT,
     HOST_EVENT,
     ClientEvents,
-    HostEvents
+    HostEvents,
+    PING_EVENT
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { UseGuards } from '@nestjs/common';
@@ -53,12 +54,42 @@ export class AppGateway implements OnGatewayDisconnect {
         this.rooms.message(socket, payload);
     }
 
-    @SubscribeMessage(HOST_EVENT.PING)
-    @SubscribeMessage(CLIENT_EVENT.PING)
-    ping(socket: LipwigSocket, payload: HostEvents.PingData | ClientEvents.PingData) {
+    @SubscribeMessage(PING_EVENT.PING_SERVER)
+    pingServer(socket: LipwigSocket, payload: HostEvents.PingServerData | ClientEvents.PingServerData) {
         const time = payload.time;
-        this.rooms.ping(socket, time);
+        socket.send(JSON.stringify({
+            event: PING_EVENT.PONG_SERVER,
+            data: { time }
+        }));
     }
+
+    @SubscribeMessage(CLIENT_EVENT.PING_HOST)
+    pingHost(socket: LipwigSocket, payload: ClientEvents.PingHostData) {
+        const time = payload.time;
+        this.rooms.pingHost(socket, time);
+    }
+
+    @SubscribeMessage(HOST_EVENT.PONG_HOST)
+    pongHost(socket: LipwigSocket, payload: HostEvents.PongHostData) {
+        const time = payload.time;
+        const id = payload.id;
+        this.rooms.pongHost(socket, time, id);
+    }
+
+    @SubscribeMessage(HOST_EVENT.PING_CLIENT)
+    pingClient(socket: LipwigSocket, payload: HostEvents.PingClientData) {
+        const time = payload.time;
+        const id = payload.id;
+        this.rooms.pingClient(socket, time, id);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.PONG_CLIENT)
+    pongClient(socket: LipwigSocket, payload: ClientEvents.PongClientData) {
+        const time = payload.time;
+        this.rooms.pongClient(socket, time);
+    }
+
+
 
     @SubscribeMessage(HOST_EVENT.KICK)
     kick(socket: LipwigSocket, payload: HostEvents.KickData) {

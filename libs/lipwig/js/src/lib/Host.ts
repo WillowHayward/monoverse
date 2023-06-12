@@ -175,6 +175,62 @@ export class Host extends EventManager {
         this.socket.close(WEBSOCKET_CLOSE_CODE.CLOSED, reason);
     }
 
+    public ping(id?: string): Promise<number> {
+        const now = (new Date()).getTime();
+
+        if (id) {
+            return this.pingClient(id, now);
+        } else {
+            return this.pingServer(now);
+        }
+
+    }
+
+    private pingServer(now: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            this.once(SERVER_HOST_EVENT.PONG_SERVER, ping => {
+                resolve(ping);
+            });
+        });
+
+        this.send({
+            event: HOST_EVENT.PING_SERVER,
+            data: {
+                time: now
+            }
+        });
+        return promise;
+    }
+
+    private pingClient(id: string, now: number): Promise<number> {
+        const promise = new Promise<number>(resolve => {
+            const event = `${SERVER_HOST_EVENT.PONG_CLIENT}-${id}`;
+            this.once(event, ping => {
+                resolve(ping);
+            });
+        });
+
+        if (id.startsWith('local-')) {
+            const user = this.users.find(user => user.id === id);
+            user?.client?.handle({
+                event: SERVER_CLIENT_EVENT.PING_CLIENT,
+                data: {
+                    time: now
+                }
+            });
+        } else {
+            this.send({
+                event: HOST_EVENT.PING_CLIENT,
+                data: {
+                    time: now,
+                    id
+                }
+            });
+        }
+
+        return promise;
+    }
+
     public createLocalClient(
         options: UserOptions = {},
         localID?: string
@@ -300,6 +356,24 @@ export class Host extends EventManager {
                 this.users.splice(index, 1);
                 args.push(message.data.reason);
                 break;
+            case SERVER_HOST_EVENT.PING_HOST:
+                this.send({
+                    event: HOST_EVENT.PONG_HOST,
+                    data: message.data
+                });
+                user = this.users.find(value => value.id === message.data.id);
+                break;
+            case SERVER_HOST_EVENT.PONG_SERVER:
+            case SERVER_HOST_EVENT.PONG_CLIENT:
+                const now = (new Date()).getTime();
+                const ping = now - message.data.time;
+                args.push(ping);
+
+                if (message.event === SERVER_HOST_EVENT.PONG_CLIENT) {
+                    user = this.users.find(user => user.id === message.data.id);
+                    this.emit(`${SERVER_HOST_EVENT.PONG_CLIENT}-${message.data.id}`, ping);
+                }
+                break;
         }
 
         if (!user) {
@@ -312,7 +386,6 @@ export class Host extends EventManager {
             args.unshift(user);
         }
 
-        console.log(eventName, ...args);
         this.emit(eventName, ...args, this);
     }
 

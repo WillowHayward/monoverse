@@ -106,7 +106,53 @@ export class RoomService {
         room.handle(user, payload);
     }
 
-    ping(user: LipwigSocket, time: number) {}
+    pingHost(user: LipwigSocket, time: number) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+        room.pingHost(user, time);
+    }
+
+    pongHost(user: LipwigSocket, time: number, id: string) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+        room.pongHost(user, time, id);
+    }
+
+    pingClient(user: LipwigSocket, time: number, id: string) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+        room.pingClient(user, time, id);
+    }
+
+    pongClient(user: LipwigSocket, time: number) {
+        const code = user.room;
+        const room = this.rooms[code];
+
+        if (!room) {
+            // Room not found
+            sendError(user, ERROR_CODE.ROOMNOTFOUND);
+            return;
+        }
+        room.pongClient(user, time);
+    }
 
     kick(user: LipwigSocket, id: string, reason?: string) {
         const code = user.room;

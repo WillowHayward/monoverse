@@ -76,8 +76,28 @@ export class LocalClient extends Client {
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
+            case SERVER_CLIENT_EVENT.PING_CLIENT:
+                this.sendToParent({
+                    event: SERVER_HOST_EVENT.PONG_CLIENT,
+                    data: {
+                        time: message.data.time,
+                        id: this.id
+                    }
+                });
+                break;
+            case SERVER_CLIENT_EVENT.PONG_HOST:
+            case SERVER_CLIENT_EVENT.PONG_SERVER:
+                const now = (new Date()).getTime();
+                const ping = now - message.data.time;
+                args.push(ping);
+                break;
         }
 
         this.emit(eventName, ...args);
+    }
+
+    public override ping(full?: boolean): Promise<number> {
+        // TODO
+        return Promise.resolve(0);
     }
 }
