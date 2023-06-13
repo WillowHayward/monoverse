@@ -1,6 +1,6 @@
-import * as RawWebSocket from 'ws';
+import * as WSSocket from 'ws';
 import { LipwigSocket } from '../classes/LipwigSocket';
 
-export interface WebSocket extends RawWebSocket {
+export declare class WebSocket extends WSSocket {
     socket: LipwigSocket
 }
