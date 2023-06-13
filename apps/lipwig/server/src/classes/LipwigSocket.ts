@@ -1,6 +1,7 @@
 import { ERROR_CODE, SERVER_CLIENT_EVENT, ServerClientEvents, ServerHostEvents, CLOSE_CODE } from '@whc/lipwig/model';
 import { WebSocket } from '../app/app.model';
 import { Room } from './Room';
+import { Logger } from '@nestjs/common';
 
 type Callback = (...args: any[]) => void;
 
@@ -15,6 +16,10 @@ export class LipwigSocket {
     connected = false;
     initialized = false;
     constructor(private socket: WebSocket) {
+        socket.on('close', (code: CLOSE_CODE) => {
+            const context = this.id || 'Uninitialized Socket';
+            Logger.debug(`Disconnected with code ${code}`, context);
+        });
     }
 
     public initialize(id: string, isHost: boolean, room: Room) {
@@ -29,6 +34,7 @@ export class LipwigSocket {
         } else {
             this.setClientListeners();
         }
+        Logger.debug('Initialised', this.id);
     }
 
     private setHostListeners() {
@@ -83,12 +89,19 @@ export class LipwigSocket {
     }
 
     send(message: ServerHostEvents.Event | ServerClientEvents.Event) {
+        const context = this.id || 'Uninitialized Socket';
+        Logger.debug(`Sending event '${message.event}'`, context);
         const messageString = JSON.stringify(message);
         this.socket.send(messageString);
     }
 
     error(error: ERROR_CODE, message?: string) {
-        console.error('Error with', this.id, error, message);
+        const context = this.id || 'Uninitialized Socket';
+        if (message) {
+            Logger.debug(`Sending error ${error} - ${message}`, context);
+        } else {
+            Logger.debug(`Sending error ${error}`, context);
+        }
         // TODO: Try to make this more generic than ServerClient (it's just for type checking but it'd be nice)
         const errorMessage: ServerClientEvents.Error = {
             event: SERVER_CLIENT_EVENT.ERROR,

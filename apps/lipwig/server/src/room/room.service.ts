@@ -54,7 +54,6 @@ export class RoomService {
         const room = new Room(user, code, config);
         this.rooms[code] = room;
         room.onclose = () => {
-            console.log(code, 'closed');
             delete this.rooms[code];
         }
     }

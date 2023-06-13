@@ -11,7 +11,7 @@ import {
     PING_EVENT
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
-import { UseGuards } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { RoomGuard } from '../guards/room.guard';
 import { WebSocket } from '../app/app.model';
 import { LipwigSocket } from '../classes/LipwigSocket';
@@ -23,6 +23,7 @@ export class AppGateway implements OnGatewayConnection {
 
     handleConnection(socket: WebSocket) {
         // TODO: This is firing twice on reconnection, for some reason
+        Logger.debug('New Websocket Connection', 'Uninitialized Socket');
         const lipwigSocket = new LipwigSocket(socket);
         socket.socket = lipwigSocket;
     }

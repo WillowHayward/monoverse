@@ -10,6 +10,7 @@ import {
     CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { LipwigSocket } from './LipwigSocket';
+import { Logger } from '@nestjs/common';
 
 export class Room {
     private id = v4();
@@ -26,6 +27,7 @@ export class Room {
     ) {
         // TODO: Room config
         this.initialiseHost(host);
+        Logger.debug(`${this.code} created by ${host.id}`, this.id);
 
         host.send({
             event: SERVER_HOST_EVENT.CREATED,
@@ -34,6 +36,7 @@ export class Room {
                 id: host.id,
             },
         });
+
     }
 
     inRoom(id: string) {
@@ -94,6 +97,7 @@ export class Room {
                 options
             },
         });
+        Logger.debug(`${id} joined`, this.id);
     }
 
     private disconnect(disconnected: LipwigSocket) {
@@ -154,6 +158,8 @@ export class Room {
             });
         }
 
+        Logger.debug(`Host reconnected`, this.id);
+
         return true;
     }
 
@@ -186,16 +192,22 @@ export class Room {
             },
         });
 
+        Logger.debug(`${id} reconnected`, this.id);
+
         return true;
     }
 
     close(reason?: string) {
         this.closed = true;
-        console.log('room closing', reason);
         for (const user of this.users) {
             user.close(CLOSE_CODE.CLOSED, reason);
         }
 
+        if (reason) {
+            Logger.debug(`Closed - ${reason}`, this.id);
+        } else {
+            Logger.debug('Closed', this.id);
+        }
 
         if (this.onclose) {
             this.onclose();
@@ -217,6 +229,12 @@ export class Room {
             return;
         }
 
+        if (reason) {
+            Logger.debug(`${user.id} left - ${reason}`, this.id);
+        } else {
+            Logger.debug(`${user.id} left`, this.id);
+        }
+
         this.users.splice(index, 1);
     }
 
@@ -230,6 +248,12 @@ export class Room {
         const index = this.users.indexOf(target);
         if (!target || index === -1) {
             user.error(ERROR_CODE.USERNOTFOUND);
+        }
+
+        if (reason) {
+            Logger.debug(`${id} kicked - ${reason}`, this.id);
+        } else {
+            Logger.debug(`${id} kicked`, this.id);
         }
 
         target.close(CLOSE_CODE.KICKED, reason);
@@ -247,6 +271,7 @@ export class Room {
     }
 
     private handleHost(host: LipwigSocket, data: HostEvents.MessageData) {
+        Logger.debug(`Received '${data.event}' message from host`, this.id);
         for (const id of data.recipients) {
             //TODO: Disconnected message queuing
             const user = this.users.find((value) => id === value.id);
@@ -266,6 +291,7 @@ export class Room {
     }
 
     private handleClient(client: LipwigSocket, data: ClientEvents.MessageData) {
+        Logger.debug(`Received '${data.event}' message from ${client.id}`, this.id);
         this.host.send({
             event: SERVER_HOST_EVENT.MESSAGE,
             data: {
