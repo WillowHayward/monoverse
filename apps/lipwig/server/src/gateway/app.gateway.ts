@@ -12,9 +12,9 @@ import {
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { UseGuards } from '@nestjs/common';
-import { RoomGuard } from '../room/room.guard';
-import { WebSocket } from './app.model';
-import { LipwigSocket } from '../socket/LipwigSocket';
+import { RoomGuard } from '../guards/room.guard';
+import { WebSocket } from '../app/app.model';
+import { LipwigSocket } from '../classes/LipwigSocket';
 
 @WebSocketGateway()
 @UseGuards(RoomGuard)

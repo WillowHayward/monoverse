@@ -1,6 +1,6 @@
 import { ERROR_CODE, SERVER_CLIENT_EVENT, ServerClientEvents, ServerHostEvents, CLOSE_CODE } from '@whc/lipwig/model';
 import { WebSocket } from '../app/app.model';
-import { Room } from '../room/room';
+import { Room } from './Room';
 
 type Callback = (...args: any[]) => void;
 

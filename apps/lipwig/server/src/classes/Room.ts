@@ -9,7 +9,7 @@ import {
     UserOptions,
     CLOSE_CODE,
 } from '@whc/lipwig/model';
-import { LipwigSocket } from '../socket/LipwigSocket';
+import { LipwigSocket } from './LipwigSocket';
 
 export class Room {
     private id = v4();

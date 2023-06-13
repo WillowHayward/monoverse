@@ -1,10 +1,10 @@
 import { Reflector } from '@nestjs/core';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { RoomService } from './room.service';
+import { RoomService } from '../room/room.service';
 import { WebSocket } from '../app/app.model';
 import { CLIENT_EVENT, ERROR_CODE, HOST_EVENT } from '@whc/lipwig/model';
-import { LipwigSocket } from '../socket/LipwigSocket';
+import { LipwigSocket } from '../classes/LipwigSocket';
 
 interface Validator {
     required?: string[]; // Required paramaters on request

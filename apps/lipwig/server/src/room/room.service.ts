@@ -10,8 +10,8 @@ import {
 
 import { generateString } from '@whc/utils';
 
-import { LipwigSocket } from '../socket/LipwigSocket';
-import { Room } from './room';
+import { LipwigSocket } from '../classes/LipwigSocket';
+import { Room } from '../classes/Room';
 
 // TODO: Make @SubscribeHostEvent and @SubscribeClientEvent method decorators
 // TODO: Make exception which sends error?

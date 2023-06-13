@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { AppGateway } from './app.gateway';
+import { AppGateway } from '../gateway/app.gateway';
 import { RoomModule } from '../room/room.module';
 
 @Module({
