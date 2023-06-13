@@ -15,7 +15,7 @@ jest.mock('../app/app.model', () => {
 
 const mockedWebSocket = WebSocket as jest.MockedClass<typeof WebSocket>;
 
-describe('RoomService', () => {
+describe('LipwigSocket', () => {
     let ws: WebSocket;
 
     beforeEach(async () => {
@@ -35,5 +35,10 @@ describe('RoomService', () => {
         expect(ws.on).toBeCalledTimes(2);
     });
 
-    //it('should properly set close listener'
+    it('should initialize as client', () => {
+        const socket = new LipwigSocket(ws);
+        socket.initialize('', false, null);
+
+        expect(ws.on).toBeCalledTimes(2);
+    });
 });
