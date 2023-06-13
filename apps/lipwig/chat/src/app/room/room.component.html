@@ -1,1 +1,19 @@
-<p>room works!</p>
+<ng-container [ngSwitch]="state">
+    <ng-container *ngSwitchCase="RoomState.LOADING">
+        Loading
+    </ng-container>
+    <ng-container *ngSwitchCase="RoomState.NAME_REQUIRED">
+        Please enter a name
+        <lwc-name-input #name></lwc-name-input>
+        <button (click)="connect()">Join</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="RoomState.CONNECTED">
+        <h1>
+            Room {{code}}
+            <button *ngIf="isHost" (click)="close()">Close</button>
+            <button *ngIf="!isHost" (click)="leave()">Leave</button>
+        </h1>
+        <lwc-user-list [isHost]="isHost"></lwc-user-list>
+        <lwc-messages></lwc-messages>
+    </ng-container>
+</ng-container>

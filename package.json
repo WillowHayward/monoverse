@@ -38,7 +38,9 @@
     "command-line-args": "^5.2.0",
     "command-line-usage": "^6.1.1",
     "core-js": "^3.6.5",
+    "events": "^3.3.0",
     "fs-extra": "^11.1.1",
+    "loglevel": "^1.8.1",
     "phaser": "^3.55.2",
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
@@ -51,6 +53,7 @@
     "websocket": "^1.0.34",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5",
+    "ws": "^8.13.0",
     "zone.js": "0.13.0"
   },
   "devDependencies": {

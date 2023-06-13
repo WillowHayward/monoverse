@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { LipwigGateway } from './lipwig.gateway';
+import { AppGateway } from '../gateway/app.gateway';
+import { RoomService } from '../room/room.service';
 
 @Module({
     imports: [],
     controllers: [],
-    providers: [LipwigGateway],
+    providers: [AppGateway, RoomService],
 })
 export class AppModule {}

@@ -1,22 +1,81 @@
 import { Injectable } from '@angular/core';
-import { Client, Host } from '@whc/lipwig/js';
+import { Client, Host, Lipwig } from '@whc/lipwig/js';
+
+import { RoomConfig, UserOptions } from '@whc/lipwig/model';
+
+interface ReconnectData {
+    code: string;
+    id: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class LipwigService {
+    isHost: boolean = false;
 
-    constructor() { }
+    connected: boolean = false;
 
-    public createRoom(name: string): Host {
-        return new Host('ws://localhost:8989', {
-            name
+    constructor() {}
+
+    public async createRoom(
+        name: string,
+        reconnect?: ReconnectData
+    ): Promise<Host> {
+        this.isHost = true;
+
+        const config: RoomConfig = { name };
+
+        if (reconnect) {
+            config.reconnect = reconnect;
+        }
+
+        return Lipwig.create(window.env['LIPWIG_HOST'], config).then((host) => {
+            this.connected = true;
+
+            this.setSessionData(name, host.room, host.id, true);
+
+            return host;
         });
     }
 
-    public joinRoom(name: string, code: string): Client {
-        return new Client('ws://localhost:8989', code, {
-            name
-        });
+    public async joinRoom(
+        name: string,
+        code: string,
+        reconnect?: string
+    ): Promise<Client> {
+        const options: UserOptions = { 
+            data: {
+                name 
+            }
+        };
+
+        if (reconnect) {
+            options.reconnect = reconnect;
+        }
+
+        return Lipwig.join(window.env['LIPWIG_HOST'], code, options).then(
+            (client) => {
+                this.connected = true;
+
+                this.setSessionData(name, client.room, client.id, false);
+
+                return client;
+            }
+        );
+    }
+
+    private setSessionData(
+        name: string,
+        code: string,
+        id: string,
+        isHost: boolean
+    ) {
+        window.sessionStorage.setItem('name', name);
+        window.sessionStorage.setItem('code', code);
+        window.sessionStorage.setItem('id', id);
+
+        const host = isHost ? 'true' : 'false';
+        window.sessionStorage.setItem('host', host);
     }
 }

@@ -1,0 +1,8 @@
+<h2>Messages</h2>
+<ul>
+    <li *ngFor="let message of messages">
+        {{ message }}
+    </li>
+</ul>
+<textarea #message></textarea> 
+<br/><button (click)="send()">Send</button>

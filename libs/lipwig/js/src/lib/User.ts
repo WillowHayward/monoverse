@@ -1,33 +1,54 @@
-/**
+/*
  * @author: WillHayCode
  */
-import { EventManager } from '@whc/event-manager';
+import { EventManager } from './EventManager';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
-import { LipwigMessageEvent, CLIENT_EVENT } from '@whc/lipwig/types';
+import {
+    HOST_EVENT,
+    SERVER_CLIENT_EVENT,
+    HostEvents,
+    ServerClientEvents,
+    UserOptions,
+} from '@whc/lipwig/model';
 
+// TODO: Can the local stuff be moved into Host?
 export class User extends EventManager {
-    public client: LocalClient | undefined;
-    constructor(public id: string, private parent: Host, public local = false) {
+    public client: LocalClient | null = null;
+    public data: {[key: string]: any};
+    constructor(public id: string, private parent: Host, data?: {[key: string]: any}, public local = false) {
         super();
+        if (!data) {
+            data = {};
+        }
+        this.data = data;
     }
 
     public send(event: string, ...args: unknown[]): void {
-        const message: LipwigMessageEvent = {
-            event: CLIENT_EVENT.MESSAGE,
-            data: {
-                event,
-                args,
-                sender: this.parent.id,
-                recipient: [this.id],
-            },
-        };
-
-        if (this.local) {
-            this.client?.handle(message);
+        if (this.local && this.client) {
+            const message: ServerClientEvents.Message = {
+                event: SERVER_CLIENT_EVENT.MESSAGE,
+                data: {
+                    event,
+                    args,
+                },
+            };
+            this.client.handle(message);
         } else {
-            this.parent.sendMessage(message);
+            const message: HostEvents.Message = {
+                event: HOST_EVENT.MESSAGE,
+                data: {
+                    event,
+                    args,
+                    recipients: [this.id],
+                },
+            };
+            this.parent.send(message);
         }
+    }
+
+    public sendToOthers(event: string, ...args: unknown[]): void {
+        this.parent.sendToAllExcept(event, this, ...args);
     }
 
     public assign(name: string): void {
@@ -38,8 +59,27 @@ export class User extends EventManager {
         this.parent.unassign(this, name);
     }
 
-    public kick(reason = ''): void {
-        // TODO: For a local client this won't quite work I believe
-        this.send('kick', this.id, reason);
+    public kick(reason?: string): void {
+        if (this.local && this.client) {
+            this.client.emit('kicked', reason);
+            return;
+        }
+
+        const message: HostEvents.Kick = {
+            event: HOST_EVENT.KICK,
+            data: {
+                id: this.id,
+                reason,
+            },
+        };
+        this.parent.send(message);
+    }
+
+    public ping(): Promise<number> {
+        return this.parent.ping(this.id);
+    }
+
+    public getLocalClient(): LocalClient | null {
+        return this.client;
     }
 }

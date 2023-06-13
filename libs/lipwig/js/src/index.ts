@@ -1,19 +1,10 @@
-/**
- * Primary class to initate interaction with a LipwigCore server
- * @author: WillHayCode
- */
-import { Client } from './lib/Client';
-import { Host } from './lib/Host';
-//import { Admin } from './lib/Admin';
-import { User } from './lib/User';
-import { LocalClient } from './lib/LocalClient';
-import { SocketUser } from './lib/SocketUser';
+export * from './lib/Lipwig';
+export * from './lib/Host';
+export * from './lib/LocalHost';
+export * from './lib/Client';
+export * from './lib/LocalClient';
+export * from './lib/User';
+import * as Logger from 'loglevel';
+//export * from './lib/Admin';
 
-export {
-    Client,
-    Host,
-    //Admin,
-    User,
-    LocalClient,
-    SocketUser,
-};
+Logger.setDefaultLevel(Logger.levels.DEBUG);

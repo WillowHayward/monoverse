@@ -1,0 +1,7 @@
+<h2>Connected</h2>
+<ul>
+    <li *ngFor="let chatter of chatters">
+        <button *ngIf="isHost" (click)="kick(chatter.id)">kick</button>
+        {{chatter.name}} 
+    </li>
+</ul>
