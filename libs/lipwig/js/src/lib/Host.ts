@@ -15,12 +15,14 @@ import { User } from './User';
 import { LocalClient } from './LocalClient';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
+import * as Logger from 'loglevel';
 
 type GroupMap = {
     [index: string]: User[];
 };
 
 export class Host extends EventManager {
+    protected name = 'Host';
     private users: User[] = [];
     private localClients: LocalClient[] = [];
     private groups: GroupMap;
@@ -37,7 +39,7 @@ export class Host extends EventManager {
     constructor(url: string, public config: RoomConfig = {}) {
         super();
 
-        this.socket = new Socket(url);
+        this.socket = new Socket(url, this.name);
 
         this.groups = {};
 
@@ -198,12 +200,14 @@ export class Host extends EventManager {
     }
 
     public handle(message: ServerHostEvents.Event): void {
+        Logger.debug(`[${this.name}] Received '${message.event}' event`);
         let eventName: string = message.event;
         let sender: string | null = null;
         let user: User | undefined;
         const args: unknown[] = [];
         switch (message.event) {
             case SERVER_HOST_EVENT.CREATED:
+                Logger.debug(`[${this.name}] Created room ${message.data.code}`);
                 this.room = message.data.code;
                 this.id = message.data.id;
                 args.push(message.data.code);
@@ -211,6 +215,7 @@ export class Host extends EventManager {
                 this.socket.setData(this.room, message.data.id);
                 break;
             case SERVER_HOST_EVENT.JOINED:
+                Logger.debug(`[${this.name}] ${message.data.id} joined`);
                 const data = message.data;
                 const local = data.id.startsWith('local-');
                 user = new User(data.id, this, data.options?.data, local);
@@ -227,6 +232,7 @@ export class Host extends EventManager {
                 }
                 break;
             case SERVER_HOST_EVENT.MESSAGE:
+                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
                 args.push(...message.data.args);
                 eventName = message.data.event;
                 sender = message.data?.sender || '';
@@ -234,6 +240,7 @@ export class Host extends EventManager {
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_HOST_EVENT.CLIENT_RECONNECTED:
+                Logger.debug(`[${this.name}] ${message.data.id} reconnected`);
                 const reconnected = this.users.find(
                     (user) => message.data.id === user.id
                 );
@@ -243,6 +250,7 @@ export class Host extends EventManager {
                 args.push(reconnected);
                 break;
             case SERVER_HOST_EVENT.RECONNECTED:
+                Logger.debug(`[${this.name}] Reconnected`);
                 this.room = message.data.room;
                 this.id = message.data.id;
                 this.socket.setData(this.room, this.id);
@@ -273,14 +281,25 @@ export class Host extends EventManager {
                 args.push(this.users);
                 break;
             case SERVER_HOST_EVENT.ERROR:
+                if (message.data.message) {
+                    Logger.warn(`[${this.name}] Received error ${message.data.error} - ${message.data.message}`);
+                } else {
+                    Logger.warn(`[${this.name}] Received error ${message.data.error}`);
+                }
                 break;
             case SERVER_HOST_EVENT.CLIENT_DISCONNECTED:
+                Logger.debug(`[${this.name}] ${message.data.id} disconnected`);
                 const disconnected = this.users.find(
                     (user) => user.id === message.data.id
                 );
                 args.push(disconnected);
                 break;
             case SERVER_HOST_EVENT.LEFT:
+                if (message.data.reason) {
+                    Logger.debug(`[${this.name}] ${message.data.id} left - ${message.data.reason}`);
+                } else {
+                    Logger.debug(`[${this.name}] ${message.data.id} left`);
+                }
                 const id = message.data.id;
                 const index = this.users.findIndex(user => id === user.id);
                 if (index === -1) {

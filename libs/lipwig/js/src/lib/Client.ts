@@ -11,8 +11,10 @@ import {
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
+import * as Logger from 'loglevel';
 
 export class Client extends EventManager {
+    protected name = 'Client';
     private socket: Socket;
     public id = '';
 
@@ -29,7 +31,7 @@ export class Client extends EventManager {
     ) {
         super();
 
-        this.socket = new Socket(url);
+        this.socket = new Socket(url, this.name);
 
         this.socket.on('connected', () => {
             this.connected();
@@ -44,14 +46,25 @@ export class Client extends EventManager {
         });
 
         this.socket.on('disconnected', () => {
+            Logger.debug(`[${this.name}] Disconnected`);
             this.emit('disconnected');
         });
 
         this.socket.on('kicked', (reason?: string) => {
+            if (reason) {
+                Logger.debug(`[${this.name}] Kicked - ${reason}`);
+            } else {
+                Logger.debug(`[${this.name}] Kicked`);
+            }
             this.emit('kicked', reason);
         });
 
         this.socket.on('closed', (reason?: string) => {
+            if (reason) {
+                Logger.debug(`[${this.name}] Room closed - ${reason}`);
+            } else {
+                Logger.debug(`[${this.name}] Room closed`);
+            }
             this.emit('closed', reason);
         });
     }
@@ -138,32 +151,43 @@ export class Client extends EventManager {
      * @param event
      */
     public handle(message: ServerClientEvents.Event): void {
+        Logger.debug(`[${this.name}] Received '${message.event}' event`);
         let eventName: string = message.event;
         const args: unknown[] = [];
 
         switch (message.event) {
             case SERVER_CLIENT_EVENT.JOINED:
+                Logger.debug(`[${this.name}] Joined ${this.room}`);
                 this.id = message.data.id;
                 args.push(message.data.id);
 
                 this.socket.setData(this.room, this.id);
                 break;
             case SERVER_CLIENT_EVENT.MESSAGE:
+                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
                 args.push(...message.data.args);
                 eventName = message.data.event;
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
                 break;
             case SERVER_CLIENT_EVENT.RECONNECTED:
+                Logger.debug(`[${this.name}] Reconnected`);
                 this.id = message.data.id;
                 break;
             case SERVER_CLIENT_EVENT.ERROR:
+                if (message.data.message) {
+                    Logger.warn(`[${this.name}] Received error ${message.data.error} - ${message.data.message}`);
+                } else {
+                    Logger.warn(`[${this.name}] Received error ${message.data.error}`);
+                }
                 args.push(message.data.error);
                 args.push(message.data.message);
                 break;
             case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
+                Logger.debug(`[${this.name}] Host Disconnected`);
                 break;
             case SERVER_CLIENT_EVENT.HOST_RECONNECTED:
+                Logger.debug(`[${this.name}] Host Reconnected`);
                 break;
             case SERVER_CLIENT_EVENT.PING_CLIENT:
                 this.socket.send({

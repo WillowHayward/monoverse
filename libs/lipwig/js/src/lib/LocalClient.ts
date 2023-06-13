@@ -10,10 +10,13 @@ import {
     UserOptions,
 } from '@whc/lipwig/model';
 import { Client } from './Client';
+import * as Logger from 'loglevel';
 
 // TODO: If the host gets disconnected, should this also emit disconnected?
+// TODO: For registering with server, get number with 'abcd-efg-hij'.match(/-([^-]*)$/)
 
 export class LocalClient extends Client {
+    protected override name = 'LocalClient';
     constructor(
         public host: Host,
         room: string,
@@ -67,13 +70,16 @@ export class LocalClient extends Client {
     }
 
     private sendToHost(message: ServerHostEvents.Event) {
+        Logger.debug(`[${this.name}] Sending '${message.event}' `);
         // Stringify + parse to prevent editing by reference and to simulate real process
         message = JSON.parse(JSON.stringify(message));
 
         this.host.handle(message);
     }
 
+    // TODO: With a protected sendToHost event in Client, this wouldn't need overriding
     public override handle(message: ServerClientEvents.Event): void {
+        Logger.debug(`[${this.name}] Received '${message.event}' event`);
         message = JSON.parse(JSON.stringify(message));
         let eventName: string = message.event;
 
@@ -81,9 +87,11 @@ export class LocalClient extends Client {
         const args: unknown[] = [];
         switch (message.event) {
             case SERVER_CLIENT_EVENT.JOINED:
+                Logger.debug(`[${this.name}] Joined ${this.room}`);
                 this.id = message.data.id;
                 break;
             case SERVER_CLIENT_EVENT.MESSAGE:
+                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
                 args.push(...message.data.args.concat(message));
                 eventName = message.data.event;
 

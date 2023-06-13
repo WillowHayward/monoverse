@@ -4,4 +4,7 @@ export * from './lib/LocalHost';
 export * from './lib/Client';
 export * from './lib/LocalClient';
 export * from './lib/User';
+import * as Logger from 'loglevel';
 //export * from './lib/Admin';
+
+Logger.setDefaultLevel(Logger.levels.DEBUG);

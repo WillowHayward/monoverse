@@ -6,27 +6,32 @@ import {
     CLOSE_CODE,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
+import * as Logger from 'loglevel';
+// TODO: "this.name" is never Local*
 
 export class Socket extends EventManager {
     private socket?: WebSocket;
-    private retry: boolean;
+    private retry: boolean = true;
     private id?: string;
     private room?: string;
-    constructor(private url: string) {
+    private local: boolean;
+    constructor(private url: string, private name: string) {
         super();
 
-        if (url.length) {
-            console.log(url);
-            // This is a tiny bit hacky, but for the LocalClient functionality this had to be option here or in Client, and this has less potential impact
-            this.socket = new WebSocket(url);
-            this.addListeners();
-            console.log('New WebSocket', this.socket);
+        this.local = this.name.startsWith('Local') || this.url.length === 0;
+        if (this.local) {
+            return;
         }
-        this.retry = true; //TODO: Make this an option on creation
+        console.log(this.url, this.name);
+
+        // This is a tiny bit hacky, but for the LocalClient functionality this had to be option here or in Client, and this has less potential impact
+        this.socket = new WebSocket(url);
+        this.addListeners();
+        Logger.log('New WebSocket', this.socket);
     }
 
     private addListeners(): void {
-        if (!this.socket) {
+        if (this.local || !this.socket) {
             return;
         }
 
@@ -59,7 +64,6 @@ export class Socket extends EventManager {
                     this.emit('disconnected');
 
                     if (!this.room || !this.id) {
-                        console.log('Room or ID not set');
                         // Nothing to reconnect to
                         return;
                     }
@@ -77,6 +81,7 @@ export class Socket extends EventManager {
     }
 
     public send(message: ClientEvents.Event | HostEvents.Event): void {
+        Logger.debug(`[${this.name}] Sending '${message.event}'`);
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         //CONT: Possible return unsent messages from this method
@@ -88,11 +93,12 @@ export class Socket extends EventManager {
             return;
         }
 
+        Logger.debug(`[${this.name}] Attempting to reconnect`);
         console.log('Attempting to reconnect');
         const socket: WebSocket = new WebSocket(this.url);
 
         socket.addEventListener('error', (): void => {
-            console.log('Reconnect failed, retrying');
+            Logger.debug(`[${this.name}] Reconnect failed, retrying in 1000ms`);
             setTimeout(this.autoReconnect, 1000);
         });
 
@@ -106,13 +112,13 @@ export class Socket extends EventManager {
         this.id = id;
     }
 
-    public reconnect(socket: WebSocket): void {
+    private reconnect(socket: WebSocket): void {
         if (!this.room || !this.id) {
             // Nothing to reconnect to
             return;
         }
 
-        console.log('Reconnected');
+        Logger.log(`[${this.name}] Reconnected`);
         this.socket = socket;
         this.addListeners();
         //TODO: Try and make this account for ServerClient and ServerHost split

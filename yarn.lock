@@ -15393,7 +15393,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loglevel@npm:^1.6.8":
+"loglevel@npm:^1.6.8, loglevel@npm:^1.8.1":
   version: 1.8.1
   resolution: "loglevel@npm:1.8.1"
   checksum: a1a62db40291aaeaef2f612334c49e531bff71cc1d01a2acab689ab80d59e092f852ab164a5aedc1a752fdc46b7b162cb097d8a9eb2cf0b299511106c29af61d
@@ -16241,6 +16241,7 @@ __metadata:
     jest-environment-jsdom: 29.4.3
     jest-preset-angular: 13.1.1
     jsonc-eslint-parser: ^2.1.0
+    loglevel: ^1.8.1
     ngx-deploy-npm: ^3.0.7
     nx: 16.3.2
     nx-electron: ^11.4.1

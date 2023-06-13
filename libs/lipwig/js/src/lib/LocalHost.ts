@@ -2,8 +2,11 @@ import { HostEvents, RoomConfig, SERVER_HOST_EVENT, HOST_EVENT, ServerClientEven
 import { Host } from "./Host";
 import { generateString } from '@whc/utils';
 import { v4 } from 'uuid';
+import * as Logger from 'loglevel';
 
+// TODO: Once the event to register a LocalClient with the server is implemented, that may make all of these much simpler
 export class LocalHost extends Host{
+    protected override name = 'LocalHost';
     constructor(public override config: RoomConfig = {}) {
         super('', config);
 
@@ -39,6 +42,7 @@ export class LocalHost extends Host{
     }
 
     private sendToClient(id: string, message: ServerClientEvents.Event) {
+        Logger.debug(`[${this.name}] Sending '${message.event}'`);
         const client = this.getLocalClient(id);
 
         if (!client) {
@@ -56,6 +60,5 @@ export class LocalHost extends Host{
 
     public override handle(message: ServerHostEvents.Event) {
         super.handle(message);
-
     }
 }
