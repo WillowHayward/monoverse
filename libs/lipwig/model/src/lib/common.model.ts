@@ -11,6 +11,7 @@ export type JoinOptions = Partial<{
     data: {
         [index: string]: unknown;
     }
+    password: string;
     reconnect: string;
 }>;
 

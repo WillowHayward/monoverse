@@ -78,8 +78,8 @@ export class ClientService implements Reconnectable {
 
     private setup(client: Client) {
         this.client = client;
-        this.setPingListener();
-        this.setPingServerListener();
+        //this.setPingListener();
+        //this.setPingServerListener();
         this.client.on('disconnected', () => {
             console.log('disconnected');
         });

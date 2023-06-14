@@ -14,6 +14,10 @@ import { Logger } from '@nestjs/common';
 
 export class Room {
     private id = v4();
+
+    private password?: string;
+    private size: number;
+
     private users: LipwigSocket[] = [];
     private localUsers: string[] = [];
     // TODO: This feels hacky
@@ -28,6 +32,12 @@ export class Room {
         // TODO: Room config
         this.initialiseHost(host);
         Logger.debug(`${this.code} created by ${host.id}`, this.id);
+
+        if (config.password && config.password.length) {
+            this.password = config.password;
+        }
+
+        this.size = config.size || 8; //TODO: Turn default into config
 
         host.send({
             event: SERVER_HOST_EVENT.CREATED,
@@ -54,7 +64,6 @@ export class Room {
     private initialiseClient(client: LipwigSocket) {
         const id = v4();
         client.initialize(id, false, this);
-        this.users.push(client);
         client.on('leave', (reason?: string) => {
             this.leave(client, reason);
         });
@@ -78,7 +87,23 @@ export class Room {
     }
 
     join(client: LipwigSocket, options: JoinOptions) {
-        // TODO: Join data
+        if (this.password) {
+            if (!options.password) {
+                client.error(ERROR_CODE.INCORRECTPASSWORD, 'Password required');
+                return;
+            }
+            if (this.password.localeCompare(options.password) !== 0) {
+                client.error(ERROR_CODE.INCORRECTPASSWORD);
+                return;
+            }
+        }
+
+        const currentSize = this.users.length + this.localUsers.length;
+        if (currentSize >= this.size) {
+            client.error(ERROR_CODE.ROOMFULL);
+            return;
+        }
+
         this.initialiseClient(client);
         const id = client.id;
         this.users.push(client);
@@ -359,6 +384,7 @@ export class Room {
     }
 
     localJoin(user: LipwigSocket, id: string) {
+        Logger.debug(`${id} joined (local)`, this.id);
         this.localUsers.push(id);
     }
 
@@ -370,5 +396,6 @@ export class Room {
         }
 
         this.localUsers.splice(index, 1);
+        Logger.debug(`${id} left (local)`, this.id);
     }
 }

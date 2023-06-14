@@ -74,11 +74,11 @@ export class HostService implements Reconnectable {
     }
 
     private setup() {
-        this.setPingServerListener();
+        //this.setPingServerListener();
         this.host.on('joined', (user: User, data: any) => {
             user.send('chatters', this.getChatters());
 
-            this.setPingListener(user);
+            //this.setPingListener(user);
 
 
             this.host.sendToAllExcept('newChatter', user, data.name, user.id);
