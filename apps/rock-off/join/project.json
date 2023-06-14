@@ -44,7 +44,8 @@
         "serve": {
             "executor": "@nx/webpack:dev-server",
             "options": {
-                "buildTarget": "rock-off-join:build"
+                "buildTarget": "rock-off-join:build",
+                "port": 4201
             },
             "configurations": {
                 "production": {
