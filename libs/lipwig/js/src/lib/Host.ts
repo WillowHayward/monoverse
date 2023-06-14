@@ -16,16 +16,13 @@ import { LocalClient } from './LocalClient';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
 import * as Logger from 'loglevel';
-
-type GroupMap = {
-    [index: string]: User[];
-};
+import { Group } from './Group';
 
 export class Host extends EventManager {
     protected name = 'Host';
     private users: User[] = [];
     private localClients: LocalClient[] = [];
-    private groups: GroupMap;
+    private groups: Group[] = [];
 
     private socket: Socket;
     public room = '';
@@ -40,8 +37,6 @@ export class Host extends EventManager {
         super();
 
         this.socket = new Socket(url, this.name);
-
-        this.groups = {};
 
         this.socket.on('connected', () => {
             this.connected();
@@ -70,20 +65,11 @@ export class Host extends EventManager {
      * @return map of all users in room
      */
     public getUsers(): User[] {
-        return this.users; // TODO: This is returning a reference to the original object
+        return this.users.slice();
     }
 
     public getUser(id: string) {
         return this.users.find(user => id === user.id);
-    }
-
-    public getGroup(name: string): User[] {
-        const group: User[] = this.groups[name];
-        if (group === undefined) {
-            return [];
-        }
-
-        return group;
     }
 
     public sendToAll(event: string, ...args: unknown[]) {
@@ -98,6 +84,14 @@ export class Host extends EventManager {
         const recipients = this.users.filter((user) => user !== except);
 
         this.sendTo(event, recipients, ...args);
+    }
+
+    public sendToGroup(event: string, group: string | Group, ...args: unknown[]) {
+        if (typeof group === 'string') {
+            group = this.getGroup(group);
+        }
+
+        group.send(event, ...args);
     }
 
     public sendTo(event: string, users: User | User[], ...args: unknown[]) {
@@ -387,35 +381,29 @@ export class Host extends EventManager {
         return promise;
     }
 
-    public assign(user: User, name: string): void {
-        let group: User[] = this.groups[name];
-        if (group === undefined) {
-            this.groups[name] = [];
-            group = this.groups[name];
+    public getGroup(name: string): Group {
+        let group = this.groups.find(group => group.name === name);
+        if (!group) {
+            group = new Group(this, name);
+            this.groups.push(group);
         }
 
-        if (group.indexOf(user) !== -1) {
-            // Already in group
-            return;
-        }
-
-        group.push(user);
-        user.send('assigned', name);
+        return group;
     }
 
-    public unassign(user: User, name: string): void {
-        const group: User[] = this.groups[name];
-        if (group === undefined) {
-            return;
-        }
+    public getGroups(): Group[] {
+        return this.groups.filter(group => group.size());
+    }
 
-        const position: number = group.indexOf(user);
-        if (position === -1) {
-            // Not in group
-            return;
-        }
+    public assign(user: User, name: string, inform: boolean = false): Group {
+        const group = this.getGroup(name);
+        group.add(user, inform);
+        return group;
+    }
 
-        this.groups[name] = group.splice(position, 1);
-        user.send('unassigned', name);
+    public unassign(user: User, name: string, inform: boolean = false): Group {
+        const group = this.getGroup(name);
+        group.remove(user, inform);
+        return group;
     }
 }

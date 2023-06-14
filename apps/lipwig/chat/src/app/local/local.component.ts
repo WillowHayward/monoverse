@@ -29,18 +29,29 @@ export class LocalComponent implements OnInit {
             host.on('created', code => {
                 this.logs.push(`[Host] Created ${code}`);
                 resolve(code);
+
+                host.getGroup('group').on('group-message', (user: User, message: string) => {
+                    this.logs.push(`[Host] Received message '${message}' from group member ${user.id}`);
+                });
             });
 
-            host.on('joined', user => {
+            host.on('joined', (user: User) => {
                 this.logs.push(`[Host] ${user.id} joined`);
                 setTimeout(() => {
                     user.send('message', `Hello ${user.id}`);
                 }, 2000);
+                setTimeout(() => {
+                    user.assign('group', true);
+                }, 3000);
             });
 
             host.on('message', (user: User, message: string) => {
                 this.logs.push(`[Host] Received message '${message}' from ${user.id}`);
             });
+
+            setTimeout(() => {
+                host.getGroup('group').send('group-message', 'Hello group');
+            }, 4000);
         });
     }
 
@@ -56,6 +67,15 @@ export class LocalComponent implements OnInit {
 
         client.on('message', message => {
             this.logs.push(`[Client] Received message '${message}' from host`);
+        });
+
+        client.on('group-message', message => {
+            this.logs.push(`[Client] Received group message '${message}' from host`);
+            client.send('group-message', 'Go team');
+        });
+
+        client.on('assigned', (group: string) => {
+            this.logs.push(`[Client]${client.id} added to group '${group}'`);
         });
     }
 }
