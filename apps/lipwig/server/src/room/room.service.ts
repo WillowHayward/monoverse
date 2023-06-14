@@ -4,8 +4,8 @@ import {
     ERROR_CODE,
     ClientEvents,
     HostEvents,
-    RoomConfig,
-    UserOptions
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 
 import { generateString } from '@whc/utils';
@@ -39,7 +39,7 @@ export class RoomService {
         return this.getRoom(room).isHost(id);
     }
 
-    create(user: LipwigSocket, config: RoomConfig) {
+    create(user: LipwigSocket, config: CreateOptions) {
         const existingCodes = Object.keys(this.rooms);
 
         if (config.reconnect && existingCodes.includes(config.reconnect.code)) {
@@ -58,7 +58,7 @@ export class RoomService {
         }
     }
 
-    join(user: LipwigSocket, code: string, options?: UserOptions) {
+    join(user: LipwigSocket, code: string, options?: JoinOptions) {
         // TODO: Join Options
         const room = this.getRoom(code);
 

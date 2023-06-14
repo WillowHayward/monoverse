@@ -1,4 +1,4 @@
-import { UserOptions } from "../common.model";
+import { JoinOptions } from "../common.model";
 import { CLIENT_EVENT } from "./client.model";
 
 /**
@@ -15,7 +15,7 @@ export interface Join extends EventStructure {
 
 export interface JoinData {
     code: string;
-    options?: UserOptions;
+    options?: JoinOptions;
 }
 
 export interface Message extends EventStructure {

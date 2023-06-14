@@ -3,11 +3,11 @@ import {
     SERVER_HOST_EVENT,
     SERVER_CLIENT_EVENT,
     ERROR_CODE,
+    CLOSE_CODE,
     HostEvents,
     ClientEvents,
-    RoomConfig,
-    UserOptions,
-    CLOSE_CODE,
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 import { LipwigSocket } from './LipwigSocket';
 import { Logger } from '@nestjs/common';
@@ -23,7 +23,7 @@ export class Room {
     constructor(
         private host: LipwigSocket,
         public code: string,
-        private config: RoomConfig,
+        private config: CreateOptions,
     ) {
         // TODO: Room config
         this.initialiseHost(host);
@@ -77,7 +77,7 @@ export class Room {
         });
     }
 
-    join(client: LipwigSocket, options: UserOptions) {
+    join(client: LipwigSocket, options: JoinOptions) {
         // TODO: Join data
         this.initialiseClient(client);
         const id = client.id;
@@ -94,7 +94,7 @@ export class Room {
             event: SERVER_HOST_EVENT.JOINED,
             data: {
                 id,
-                options
+                data: options?.data
             },
         });
         Logger.debug(`${id} joined`, this.id);

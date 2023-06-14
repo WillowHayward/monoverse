@@ -1,7 +1,6 @@
 // Server -> Host events relating to lipwig core functionality
 import { EventStructure } from './structure.model';
 import { SERVER_HOST_EVENT } from '../common.model';
-import { UserOptions } from '../../../common.model';
 
 export interface Created extends EventStructure {
     event: SERVER_HOST_EVENT.CREATED;
@@ -20,7 +19,7 @@ export interface Joined extends EventStructure {
 
 export interface JoinedData {
     id: string;
-    options?: UserOptions;
+    data?: {[index: string]: any}
 }
 
 export interface Left {

@@ -1,4 +1,4 @@
-import { HostEvents, RoomConfig, SERVER_HOST_EVENT, HOST_EVENT, ServerClientEvents, ServerHostEvents, SERVER_CLIENT_EVENT } from "@whc/lipwig/model";
+import { HostEvents, CreateOptions, SERVER_HOST_EVENT, HOST_EVENT, ServerClientEvents, ServerHostEvents, SERVER_CLIENT_EVENT } from "@whc/lipwig/model";
 import { Host } from "./Host";
 import { generateString } from '@whc/utils';
 import { v4 } from 'uuid';
@@ -7,7 +7,7 @@ import * as Logger from 'loglevel';
 // TODO: Once the event to register a LocalClient with the server is implemented, that may make all of these much simpler
 export class LocalHost extends Host{
     protected override name = 'LocalHost';
-    constructor(public override config: RoomConfig = {}) {
+    constructor(public override config: CreateOptions = {}) {
         super('', config);
 
         const code = generateString(4);

@@ -10,7 +10,6 @@ import {
     SERVER_CLIENT_EVENT,
     HostEvents,
     ServerClientEvents,
-    UserOptions,
 } from '@whc/lipwig/model';
 
 // TODO: Can the local stuff be moved into Host?

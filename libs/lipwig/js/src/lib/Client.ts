@@ -7,7 +7,7 @@ import {
     CLOSE_CODE,
     ClientEvents,
     ServerClientEvents,
-    UserOptions,
+    JoinOptions,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
@@ -27,7 +27,7 @@ export class Client extends EventManager {
     constructor(
         url: string,
         public room: string,
-        public options: UserOptions = {}
+        public options: JoinOptions = {}
     ) {
         super();
 

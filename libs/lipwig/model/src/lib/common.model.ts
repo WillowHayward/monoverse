@@ -1,22 +1,18 @@
-export type RoomOptions = {
+export type CreateOptions = Partial<{
     size: number;
     password: string;
-    name: string;
-    remote: boolean;
-    reconnect?: {
+    reconnect: {
         code: string;
         id: string;
     };
-};
+}>;
 
-export type RoomConfig = Partial<RoomOptions>;
-
-export type UserOptions = {
-    data?: {
+export type JoinOptions = Partial<{
+    data: {
         [index: string]: unknown;
     }
-    reconnect?: string;
-};
+    reconnect: string;
+}>;
 
 export enum ERROR_CODE {
     SUCCESS = 'SUCCESS',

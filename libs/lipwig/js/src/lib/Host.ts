@@ -8,8 +8,8 @@ import {
     CLOSE_CODE,
     HostEvents,
     ServerHostEvents,
-    RoomConfig,
-    UserOptions,
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
@@ -33,7 +33,7 @@ export class Host extends EventManager {
      * @param url       Websocket url of LipwigCore server
      * @param options   Options with which to create room
      */
-    constructor(url: string, public config: RoomConfig = {}) {
+    constructor(url: string, public config: CreateOptions = {}) {
         super();
 
         this.socket = new Socket(url, this.name);
@@ -139,7 +139,7 @@ export class Host extends EventManager {
     }
 
     public createLocalClient(
-        options: UserOptions = {},
+        options: JoinOptions = {},
     ): LocalClient {
         return new LocalClient(this, this.room, options);
     }
@@ -220,9 +220,9 @@ export class Host extends EventManager {
                 Logger.debug(`[${this.name}] ${message.data.id} joined`);
                 const data = message.data;
                 const local = data.id.startsWith('local-');
-                user = new User(data.id, this, data.options?.data, local);
+                user = new User(data.id, this, data.data, local);
                 this.users.push(user);
-                args.push(data.options?.data); //TODO: Potentially just send the data in the end, trim the rest on the server. Currently only 'reconnect' is used.
+                args.push(data.data); 
 
                 if (local) {
                     const client = this.localClients.find(client => data.id === client.id);

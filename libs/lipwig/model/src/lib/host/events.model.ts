@@ -1,4 +1,4 @@
-import { RoomConfig } from "../common.model";
+import { CreateOptions } from "../common.model";
 import { HOST_EVENT } from "./host.model";
 
 interface EventStructure {
@@ -11,7 +11,7 @@ export interface Create extends EventStructure {
 }
 
 export interface CreateData {
-    config?: RoomConfig;
+    config?: CreateOptions;
 }
 
 export interface Message extends EventStructure {

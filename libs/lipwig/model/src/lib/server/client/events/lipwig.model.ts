@@ -1,4 +1,3 @@
-import { UserOptions } from "../../../common.model";
 import { SERVER_CLIENT_EVENT } from "../common.model";
 import { EventStructure } from "./structure.model";
 
@@ -10,7 +9,7 @@ export interface Joined extends EventStructure {
 
 export interface JoinedData {
     id: string;
-    options?: UserOptions;
+    data?: {[index: string]: any}
 }
 
 export interface Message extends EventStructure {

@@ -7,7 +7,7 @@ import {
     SERVER_HOST_EVENT,
     ServerClientEvents,
     ServerHostEvents,
-    UserOptions,
+    JoinOptions,
 } from '@whc/lipwig/model';
 import { Client } from './Client';
 import * as Logger from 'loglevel';
@@ -20,7 +20,7 @@ export class LocalClient extends Client {
     constructor(
         public host: Host,
         room: string,
-        options: UserOptions = {}
+        options: JoinOptions = {}
     ) {
         super('', room, options);
 
@@ -36,7 +36,7 @@ export class LocalClient extends Client {
                 event: SERVER_HOST_EVENT.JOINED,
                 data: {
                     id,
-                    options
+                    data: options?.data
                 }
             });
 
