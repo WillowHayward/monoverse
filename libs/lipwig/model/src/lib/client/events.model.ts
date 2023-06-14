@@ -67,4 +67,5 @@ export interface PongClientData {
 
 
 export type Event = Join | Message | Reconnect | PingServer | PingHost | PongClient;
+export type EventData = JoinData | MessageData | ReconnectData | PingServerData | PingHostData | PongClientData;
 

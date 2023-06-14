@@ -84,4 +84,5 @@ export interface PongHostData {
 
 
 export type Event = Create | Message | Kick | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
+export type EventData = CreateData | MessageData | KickData | /* LocalJoinData | LocalLeaveData | */ PingServerData | PingClientData | PongHostData;
 
