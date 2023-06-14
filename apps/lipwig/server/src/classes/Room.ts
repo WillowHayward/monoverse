@@ -3,19 +3,23 @@ import {
     SERVER_HOST_EVENT,
     SERVER_CLIENT_EVENT,
     ERROR_CODE,
+    CLOSE_CODE,
     HostEvents,
     ClientEvents,
-    RoomConfig,
-    UserOptions,
-    CLOSE_CODE,
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 import { LipwigSocket } from './LipwigSocket';
 import { Logger } from '@nestjs/common';
 
 export class Room {
     private id = v4();
+
+    private password?: string;
+    private size: number;
+
     private users: LipwigSocket[] = [];
-    private local: number = 0;
+    private localUsers: string[] = [];
     // TODO: This feels hacky
     public onclose: () => void;
     public closed: boolean = false;
@@ -23,11 +27,17 @@ export class Room {
     constructor(
         private host: LipwigSocket,
         public code: string,
-        private config: RoomConfig,
+        private config: CreateOptions,
     ) {
         // TODO: Room config
         this.initialiseHost(host);
         Logger.debug(`${this.code} created by ${host.id}`, this.id);
+
+        if (config.password && config.password.length) {
+            this.password = config.password;
+        }
+
+        this.size = config.size || 8; //TODO: Turn default into config
 
         host.send({
             event: SERVER_HOST_EVENT.CREATED,
@@ -54,7 +64,6 @@ export class Room {
     private initialiseClient(client: LipwigSocket) {
         const id = v4();
         client.initialize(id, false, this);
-        this.users.push(client);
         client.on('leave', (reason?: string) => {
             this.leave(client, reason);
         });
@@ -77,8 +86,24 @@ export class Room {
         });
     }
 
-    join(client: LipwigSocket, options: UserOptions) {
-        // TODO: Join data
+    join(client: LipwigSocket, options: JoinOptions) {
+        if (this.password) {
+            if (!options.password) {
+                client.error(ERROR_CODE.INCORRECTPASSWORD, 'Password required');
+                return;
+            }
+            if (this.password.localeCompare(options.password) !== 0) {
+                client.error(ERROR_CODE.INCORRECTPASSWORD);
+                return;
+            }
+        }
+
+        const currentSize = this.users.length + this.localUsers.length;
+        if (currentSize >= this.size) {
+            client.error(ERROR_CODE.ROOMFULL);
+            return;
+        }
+
         this.initialiseClient(client);
         const id = client.id;
         this.users.push(client);
@@ -94,7 +119,7 @@ export class Room {
             event: SERVER_HOST_EVENT.JOINED,
             data: {
                 id,
-                options
+                data: options?.data
             },
         });
         Logger.debug(`${id} joined`, this.id);
@@ -144,7 +169,7 @@ export class Room {
                 room: this.code,
                 id: host.id,
                 users: this.users.map((user) => user.id),
-                local: this.local,
+                local: this.localUsers,
             },
         });
 
@@ -358,9 +383,19 @@ export class Room {
         });
     }
 
-    localJoin(user: LipwigSocket) {
-        this.local++;
+    localJoin(user: LipwigSocket, id: string) {
+        Logger.debug(`${id} joined (local)`, this.id);
+        this.localUsers.push(id);
     }
 
-    localLeave(user: LipwigSocket) {}
+    localLeave(user: LipwigSocket, id: string) {
+        const index = this.localUsers.indexOf(id);
+
+        if (index === -1) {
+            user.error(ERROR_CODE.USERNOTFOUND, `Local user ${id} not found`);
+        }
+
+        this.localUsers.splice(index, 1);
+        Logger.debug(`${id} left (local)`, this.id);
+    }
 }

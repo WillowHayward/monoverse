@@ -4,8 +4,8 @@ import {
     ERROR_CODE,
     ClientEvents,
     HostEvents,
-    RoomConfig,
-    UserOptions
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 
 import { generateString } from '@whc/utils';
@@ -18,6 +18,7 @@ import { Room } from '../classes/Room';
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
+    private roomLimit: number = 0; // 0 for no limit
 
     getRoom(room: string): Room {
         return this.rooms[room];
@@ -39,11 +40,18 @@ export class RoomService {
         return this.getRoom(room).isHost(id);
     }
 
-    create(user: LipwigSocket, config: RoomConfig) {
+    create(user: LipwigSocket, config: CreateOptions) {
         const existingCodes = Object.keys(this.rooms);
 
         if (config.reconnect && existingCodes.includes(config.reconnect.code)) {
             if (this.reconnect(user, config.reconnect.code, config.reconnect.id)) {
+                return;
+            }
+        }
+
+        if (this.roomLimit) {
+            if (existingCodes.length >= this.roomLimit) {
+                // TODO: Implement room limit
                 return;
             }
         }
@@ -58,7 +66,7 @@ export class RoomService {
         }
     }
 
-    join(user: LipwigSocket, code: string, options?: UserOptions) {
+    join(user: LipwigSocket, code: string, options?: JoinOptions) {
         // TODO: Join Options
         const room = this.getRoom(code);
 
@@ -114,13 +122,13 @@ export class RoomService {
         room.kick(user, id, reason);
     }
 
-    localJoin(user: LipwigSocket) {
+    localJoin(user: LipwigSocket, id: string) {
         const room = user.room;
-        room.localJoin(user);
+        room.localJoin(user, id);
     }
 
-    localLeave(user: LipwigSocket) {
+    localLeave(user: LipwigSocket, id: string) {
         const room = user.room;
-        room.localLeave(user);
+        room.localLeave(user, id);
     }
 }

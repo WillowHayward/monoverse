@@ -5,14 +5,14 @@
 //TODO: Update the string to enums from the model
 import {
     ERROR_CODE,
-    RoomConfig,
-    UserOptions,
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 import { Host } from './Host';
 import { Client } from './Client';
 
 export class Lipwig {
-    static create(url: string, config: RoomConfig = {}): Promise<Host> {
+    static create(url: string, config: CreateOptions = {}): Promise<Host> {
         return new Promise((resolve, reject) => {
             const host = new Host(url, config);
             host.on('created', (code: string, ...args: any) => {
@@ -33,7 +33,7 @@ export class Lipwig {
     static join(
         url: string,
         code: string,
-        options: UserOptions = {}
+        options: JoinOptions = {}
     ): Promise<Client> {
         return new Promise((resolve, reject) => {
             const client = new Client(url, code, options);

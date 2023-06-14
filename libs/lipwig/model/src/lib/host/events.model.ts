@@ -1,4 +1,4 @@
-import { RoomConfig } from "../common.model";
+import { CreateOptions } from "../common.model";
 import { HOST_EVENT } from "./host.model";
 
 interface EventStructure {
@@ -11,7 +11,7 @@ export interface Create extends EventStructure {
 }
 
 export interface CreateData {
-    config?: RoomConfig;
+    config?: CreateOptions;
 }
 
 export interface Message extends EventStructure {
@@ -47,10 +47,20 @@ export interface ReconnectData {
 
 export interface LocalJoin extends EventStructure {
     event: HOST_EVENT.LOCAL_JOIN;
+    data: LocalJoinData;
+}
+
+export interface LocalJoinData {
+    id: string;
 }
 
 export interface LocalLeave extends EventStructure {
     event: HOST_EVENT.LOCAL_LEAVE;
+    data: LocalJoinData;
+}
+
+export interface LocalLeaveData {
+    id: string;
 }
 
 export interface PingServer extends EventStructure {
@@ -84,4 +94,5 @@ export interface PongHostData {
 
 
 export type Event = Create | Message | Kick | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
+export type EventData = CreateData | MessageData | KickData | LocalJoinData | LocalLeaveData | PingServerData | PingClientData | PongHostData;
 

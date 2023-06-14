@@ -1,4 +1,4 @@
-import { UserOptions } from "../common.model";
+import { JoinOptions } from "../common.model";
 import { CLIENT_EVENT } from "./client.model";
 
 /**
@@ -15,7 +15,7 @@ export interface Join extends EventStructure {
 
 export interface JoinData {
     code: string;
-    options?: UserOptions;
+    options?: JoinOptions;
 }
 
 export interface Message extends EventStructure {
@@ -67,4 +67,5 @@ export interface PongClientData {
 
 
 export type Event = Join | Message | Reconnect | PingServer | PingHost | PongClient;
+export type EventData = JoinData | MessageData | ReconnectData | PingServerData | PingHostData | PongClientData;
 

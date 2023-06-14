@@ -5,7 +5,6 @@ export class EventManager {
 
     constructor() {
         this.events = new Events();
-
     }
 
     public on(eventName: string, listener: ((...args: any[]) => void)) {

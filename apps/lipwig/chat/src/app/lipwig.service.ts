@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Client, Host, Lipwig } from '@whc/lipwig/js';
 
-import { RoomConfig, UserOptions } from '@whc/lipwig/model';
+import { CreateOptions, JoinOptions } from '@whc/lipwig/model';
 
 interface ReconnectData {
     code: string;
@@ -24,7 +24,7 @@ export class LipwigService {
     ): Promise<Host> {
         this.isHost = true;
 
-        const config: RoomConfig = { name };
+        const config: CreateOptions = {};
 
         if (reconnect) {
             config.reconnect = reconnect;
@@ -44,7 +44,7 @@ export class LipwigService {
         code: string,
         reconnect?: string
     ): Promise<Client> {
-        const options: UserOptions = { 
+        const options: JoinOptions = { 
             data: {
                 name 
             }

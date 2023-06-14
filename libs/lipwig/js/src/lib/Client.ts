@@ -7,7 +7,7 @@ import {
     CLOSE_CODE,
     ClientEvents,
     ServerClientEvents,
-    UserOptions,
+    JoinOptions,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
@@ -27,7 +27,7 @@ export class Client extends EventManager {
     constructor(
         url: string,
         public room: string,
-        public options: UserOptions = {}
+        public options: JoinOptions = {}
     ) {
         super();
 
@@ -190,12 +190,7 @@ export class Client extends EventManager {
                 Logger.debug(`[${this.name}] Host Reconnected`);
                 break;
             case SERVER_CLIENT_EVENT.PING_CLIENT:
-                this.socket.send({
-                    event: CLIENT_EVENT.PONG_CLIENT,
-                    data: {
-                        time: message.data.time
-                    }
-                });
+                this.pingClient(message.data.time);
                 break;
             case SERVER_CLIENT_EVENT.PONG_HOST:
             case SERVER_CLIENT_EVENT.PONG_SERVER:
@@ -207,5 +202,14 @@ export class Client extends EventManager {
         args.push(message);
 
         this.emit(eventName, ...args);
+    }
+
+    protected pingClient(time: number) {
+        this.socket.send({
+            event: CLIENT_EVENT.PONG_CLIENT,
+            data: {
+                time
+            }
+        });
     }
 }

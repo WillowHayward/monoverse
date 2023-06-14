@@ -8,24 +8,21 @@ import {
     CLOSE_CODE,
     HostEvents,
     ServerHostEvents,
-    RoomConfig,
-    UserOptions,
+    CreateOptions,
+    JoinOptions
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from './LocalClient';
 import { EventManager } from './EventManager';
 import { Socket } from './Socket';
 import * as Logger from 'loglevel';
-
-type GroupMap = {
-    [index: string]: User[];
-};
+import { Group } from './Group';
 
 export class Host extends EventManager {
     protected name = 'Host';
     private users: User[] = [];
     private localClients: LocalClient[] = [];
-    private groups: GroupMap;
+    private groups: Group[] = [];
 
     private socket: Socket;
     public room = '';
@@ -36,12 +33,10 @@ export class Host extends EventManager {
      * @param url       Websocket url of LipwigCore server
      * @param options   Options with which to create room
      */
-    constructor(url: string, public config: RoomConfig = {}) {
+    constructor(url: string, public config: CreateOptions = {}) {
         super();
 
         this.socket = new Socket(url, this.name);
-
-        this.groups = {};
 
         this.socket.on('connected', () => {
             this.connected();
@@ -70,20 +65,11 @@ export class Host extends EventManager {
      * @return map of all users in room
      */
     public getUsers(): User[] {
-        return this.users; // TODO: This is returning a reference to the original object
+        return this.users.slice();
     }
 
     public getUser(id: string) {
         return this.users.find(user => id === user.id);
-    }
-
-    public getGroup(name: string): User[] {
-        const group: User[] = this.groups[name];
-        if (group === undefined) {
-            return [];
-        }
-
-        return group;
     }
 
     public sendToAll(event: string, ...args: unknown[]) {
@@ -98,6 +84,14 @@ export class Host extends EventManager {
         const recipients = this.users.filter((user) => user !== except);
 
         this.sendTo(event, recipients, ...args);
+    }
+
+    public sendToGroup(event: string, group: string | Group, ...args: unknown[]) {
+        if (typeof group === 'string') {
+            group = this.getGroup(group);
+        }
+
+        group.send(event, ...args);
     }
 
     public sendTo(event: string, users: User | User[], ...args: unknown[]) {
@@ -145,7 +139,7 @@ export class Host extends EventManager {
     }
 
     public createLocalClient(
-        options: UserOptions = {},
+        options: JoinOptions = {},
     ): LocalClient {
         return new LocalClient(this, this.room, options);
     }
@@ -154,6 +148,14 @@ export class Host extends EventManager {
         if (client.host !== this) {
             return;
         }
+
+        this.send({
+            event: HOST_EVENT.LOCAL_JOIN,
+            data: {
+                id: client.id
+            }
+        });
+
         this.localClients.push(client);
     }
 
@@ -218,9 +220,9 @@ export class Host extends EventManager {
                 Logger.debug(`[${this.name}] ${message.data.id} joined`);
                 const data = message.data;
                 const local = data.id.startsWith('local-');
-                user = new User(data.id, this, data.options?.data, local);
+                user = new User(data.id, this, data.data, local);
                 this.users.push(user);
-                args.push(data.options?.data); //TODO: Potentially just send the data in the end, trim the rest on the server. Currently only 'reconnect' is used.
+                args.push(data.data); 
 
                 if (local) {
                     const client = this.localClients.find(client => data.id === client.id);
@@ -254,10 +256,9 @@ export class Host extends EventManager {
                 this.room = message.data.room;
                 this.id = message.data.id;
                 this.socket.setData(this.room, this.id);
-                if (!message.data.users || !message.data.local) {
-                    // TODO: This shouldn't happen, but should be handled
-                    break;
-                }
+
+                message.data.users = message.data.users || [];
+                message.data.local = message.data.local || [];
 
                 for (const existing of message.data.users) {
                     if (this.users.find((user) => existing === user.id)) {
@@ -268,9 +269,8 @@ export class Host extends EventManager {
                     this.users.push(user);
                 }
 
-                for (let i = 0; i < message.data.local; i++) {
-                    const localID = `local-${this.id}-${i}`;
-                    if (this.users.find((user) => localID === user.id)) {
+                for (const existing of message.data.local) {
+                    if (this.users.find((user) => existing === user.id)) {
                         // Don't need to recreate if non-reload reconnection
                         continue;
                     }
@@ -387,35 +387,29 @@ export class Host extends EventManager {
         return promise;
     }
 
-    public assign(user: User, name: string): void {
-        let group: User[] = this.groups[name];
-        if (group === undefined) {
-            this.groups[name] = [];
-            group = this.groups[name];
+    public getGroup(name: string): Group {
+        let group = this.groups.find(group => group.name === name);
+        if (!group) {
+            group = new Group(this, name);
+            this.groups.push(group);
         }
 
-        if (group.indexOf(user) !== -1) {
-            // Already in group
-            return;
-        }
-
-        group.push(user);
-        user.send('assigned', name);
+        return group;
     }
 
-    public unassign(user: User, name: string): void {
-        const group: User[] = this.groups[name];
-        if (group === undefined) {
-            return;
-        }
+    public getGroups(): Group[] {
+        return this.groups.filter(group => group.size());
+    }
 
-        const position: number = group.indexOf(user);
-        if (position === -1) {
-            // Not in group
-            return;
-        }
+    public assign(user: User, name: string, inform: boolean = false): Group {
+        const group = this.getGroup(name);
+        group.add(user, inform);
+        return group;
+    }
 
-        this.groups[name] = group.splice(position, 1);
-        user.send('unassigned', name);
+    public unassign(user: User, name: string, inform: boolean = false): Group {
+        const group = this.getGroup(name);
+        group.remove(user, inform);
+        return group;
     }
 }

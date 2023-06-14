@@ -23,8 +23,8 @@ export interface Reconnected extends EventStructure {
 export interface ReconnectedData {
     room: string;
     id: string;
-    users?: string[]; // Array of user ids sent to host
-    local?: number; // Number of local users to send to host
+    users?: string[]; // Array of user ids 
+    local?: string[]; // Array of local user ids
 }
 
 export interface ClientReconnected extends EventStructure {

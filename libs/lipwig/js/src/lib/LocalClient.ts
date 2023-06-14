@@ -7,7 +7,7 @@ import {
     SERVER_HOST_EVENT,
     ServerClientEvents,
     ServerHostEvents,
-    UserOptions,
+    JoinOptions,
 } from '@whc/lipwig/model';
 import { Client } from './Client';
 import * as Logger from 'loglevel';
@@ -20,7 +20,7 @@ export class LocalClient extends Client {
     constructor(
         public host: Host,
         room: string,
-        options: UserOptions = {}
+        options: JoinOptions = {}
     ) {
         super('', room, options);
 
@@ -36,7 +36,7 @@ export class LocalClient extends Client {
                 event: SERVER_HOST_EVENT.JOINED,
                 data: {
                     id,
-                    options
+                    data: options?.data
                 }
             });
 
@@ -77,48 +77,23 @@ export class LocalClient extends Client {
         this.host.handle(message);
     }
 
-    // TODO: With a protected sendToHost event in Client, this wouldn't need overriding
     public override handle(message: ServerClientEvents.Event): void {
-        Logger.debug(`[${this.name}] Received '${message.event}' event`);
         message = JSON.parse(JSON.stringify(message));
-        let eventName: string = message.event;
-
-        // In theory this should never be from a socket
-        const args: unknown[] = [];
-        switch (message.event) {
-            case SERVER_CLIENT_EVENT.JOINED:
-                Logger.debug(`[${this.name}] Joined ${this.room}`);
-                this.id = message.data.id;
-                break;
-            case SERVER_CLIENT_EVENT.MESSAGE:
-                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
-                args.push(...message.data.args.concat(message));
-                eventName = message.data.event;
-
-                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
-                break;
-            case SERVER_CLIENT_EVENT.PING_CLIENT:
-                this.sendToHost({
-                    event: SERVER_HOST_EVENT.PONG_CLIENT,
-                    data: {
-                        time: message.data.time,
-                        id: this.id
-                    }
-                });
-                break;
-            case SERVER_CLIENT_EVENT.PONG_HOST:
-            case SERVER_CLIENT_EVENT.PONG_SERVER:
-                const now = (new Date()).getTime();
-                const ping = now - message.data.time;
-                args.push(ping);
-                break;
-        }
-
-        this.emit(eventName, ...args);
+        super.handle(message);
     }
 
     public override ping(full?: boolean): Promise<number> {
         // TODO
         return Promise.resolve(0);
+    }
+
+    protected override pingClient(time: number) {
+        this.sendToHost({
+            event: SERVER_HOST_EVENT.PONG_CLIENT,
+            data: {
+                time,
+                id: this.id
+            }
+        });
     }
 }

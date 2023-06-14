@@ -2,6 +2,7 @@
  * @author: WillHayCode
  */
 import { EventManager } from './EventManager';
+import { Group } from './Group';
 import { Host } from './Host';
 import { LocalClient } from './LocalClient';
 import {
@@ -9,19 +10,27 @@ import {
     SERVER_CLIENT_EVENT,
     HostEvents,
     ServerClientEvents,
-    UserOptions,
 } from '@whc/lipwig/model';
 
 // TODO: Can the local stuff be moved into Host?
 export class User extends EventManager {
     public client: LocalClient | null = null;
     public data: {[key: string]: any};
+    private groups: Group[] = [];
+
     constructor(public id: string, private parent: Host, data?: {[key: string]: any}, public local = false) {
         super();
         if (!data) {
             data = {};
         }
         this.data = data;
+    }
+
+    public override emit(event: string, ...args: any[]) {
+        super.emit(event, ...args);
+        for (const group of this.groups) {
+            group.emit(event, this, ...args);
+        }
     }
 
     public send(event: string, ...args: unknown[]): void {
@@ -51,12 +60,15 @@ export class User extends EventManager {
         this.parent.sendToAllExcept(event, this, ...args);
     }
 
-    public assign(name: string): void {
-        this.parent.assign(this, name);
+    public assign(name: string, inform: boolean = false): void {
+        const group = this.parent.assign(this, name, inform);
+        this.groups.push(group);
     }
 
-    public unassign(name: string): void {
-        this.parent.unassign(this, name);
+    public unassign(name: string, inform: boolean = false): void {
+        const group = this.parent.unassign(this, name, inform);
+        const index = this.groups.indexOf(group);
+        this.groups.splice(index, 1);
     }
 
     public kick(reason?: string): void {
