@@ -81,7 +81,6 @@ export class Socket extends EventManager {
     }
 
     public send(message: ClientEvents.Event | HostEvents.Event): void {
-        Logger.debug(`[${this.name}] Sending '${message.event}'`);
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         //CONT: Possible return unsent messages from this method
