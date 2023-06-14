@@ -148,6 +148,14 @@ export class Host extends EventManager {
         if (client.host !== this) {
             return;
         }
+
+        this.send({
+            event: HOST_EVENT.LOCAL_JOIN,
+            data: {
+                id: client.id
+            }
+        });
+
         this.localClients.push(client);
     }
 
@@ -248,10 +256,9 @@ export class Host extends EventManager {
                 this.room = message.data.room;
                 this.id = message.data.id;
                 this.socket.setData(this.room, this.id);
-                if (!message.data.users || !message.data.local) {
-                    // TODO: This shouldn't happen, but should be handled
-                    break;
-                }
+
+                message.data.users = message.data.users || [];
+                message.data.local = message.data.local || [];
 
                 for (const existing of message.data.users) {
                     if (this.users.find((user) => existing === user.id)) {
@@ -262,9 +269,8 @@ export class Host extends EventManager {
                     this.users.push(user);
                 }
 
-                for (let i = 0; i < message.data.local; i++) {
-                    const localID = `local-${this.id}-${i}`;
-                    if (this.users.find((user) => localID === user.id)) {
+                for (const existing of message.data.local) {
+                    if (this.users.find((user) => existing === user.id)) {
                         // Don't need to recreate if non-reload reconnection
                         continue;
                     }

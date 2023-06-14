@@ -15,7 +15,7 @@ import { Logger } from '@nestjs/common';
 export class Room {
     private id = v4();
     private users: LipwigSocket[] = [];
-    private local: number = 0;
+    private localUsers: string[] = [];
     // TODO: This feels hacky
     public onclose: () => void;
     public closed: boolean = false;
@@ -144,7 +144,7 @@ export class Room {
                 room: this.code,
                 id: host.id,
                 users: this.users.map((user) => user.id),
-                local: this.local,
+                local: this.localUsers,
             },
         });
 
@@ -358,9 +358,17 @@ export class Room {
         });
     }
 
-    localJoin(user: LipwigSocket) {
-        this.local++;
+    localJoin(user: LipwigSocket, id: string) {
+        this.localUsers.push(id);
     }
 
-    localLeave(user: LipwigSocket) {}
+    localLeave(user: LipwigSocket, id: string) {
+        const index = this.localUsers.indexOf(id);
+
+        if (index === -1) {
+            user.error(ERROR_CODE.USERNOTFOUND, `Local user ${id} not found`);
+        }
+
+        this.localUsers.splice(index, 1);
+    }
 }

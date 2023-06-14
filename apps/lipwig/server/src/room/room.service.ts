@@ -114,13 +114,13 @@ export class RoomService {
         room.kick(user, id, reason);
     }
 
-    localJoin(user: LipwigSocket) {
+    localJoin(user: LipwigSocket, id: string) {
         const room = user.room;
-        room.localJoin(user);
+        room.localJoin(user, id);
     }
 
-    localLeave(user: LipwigSocket) {
+    localLeave(user: LipwigSocket, id: string) {
         const room = user.room;
-        room.localLeave(user);
+        room.localLeave(user, id);
     }
 }

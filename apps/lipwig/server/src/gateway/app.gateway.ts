@@ -105,7 +105,14 @@ export class AppGateway implements OnGatewayConnection {
     }
 
     @SubscribeMessage(HOST_EVENT.LOCAL_JOIN)
-    localJoin(socket: WebSocket) {
-        this.rooms.localJoin(socket.socket);
+    localJoin(socket: WebSocket, payload: HostEvents.LocalJoinData) {
+        const id = payload.id;
+        this.rooms.localJoin(socket.socket, id);
+    }
+
+    @SubscribeMessage(HOST_EVENT.LOCAL_LEAVE)
+    localLeave(socket: WebSocket, payload: HostEvents.LocalLeaveData) {
+        const id = payload.id;
+        this.rooms.localLeave(socket.socket, id);
     }
 }
