@@ -4,7 +4,7 @@ export class AppElement extends HTMLElement {
     public static observedAttributes = [];
 
     connectedCallback() {
-        const title = 'rock-off';
+        const title = 'rock-off-join';
         this.innerHTML = `
     <div class="wrapper">
       <div class="container">
