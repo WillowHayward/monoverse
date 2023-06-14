@@ -18,6 +18,7 @@ import { Room } from '../classes/Room';
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
+    private roomLimit: number = 0; // 0 for no limit
 
     getRoom(room: string): Room {
         return this.rooms[room];
@@ -44,6 +45,13 @@ export class RoomService {
 
         if (config.reconnect && existingCodes.includes(config.reconnect.code)) {
             if (this.reconnect(user, config.reconnect.code, config.reconnect.id)) {
+                return;
+            }
+        }
+
+        if (this.roomLimit) {
+            if (existingCodes.length >= this.roomLimit) {
+                // TODO: Implement room limit
                 return;
             }
         }
