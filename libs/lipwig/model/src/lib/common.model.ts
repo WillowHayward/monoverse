@@ -41,3 +41,6 @@ export enum PING_EVENT {
     PING_CLIENT = 'lw-ping-client',
     PONG_CLIENT = 'lw-pong-client',
 }
+
+export const NAUGHTY_WORDS = ['SHIT', 'FUCK', 'CUNT', 'COCK'];
+

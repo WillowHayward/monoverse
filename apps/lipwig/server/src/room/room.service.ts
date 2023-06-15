@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import {
     ERROR_CODE,
+    NAUGHTY_WORDS,
     ClientEvents,
     HostEvents,
     CreateOptions,
@@ -58,7 +59,7 @@ export class RoomService {
         let code: string;
         do {
             code = generateString(4);
-        } while (existingCodes.includes(code));
+        } while (existingCodes.includes(code) || NAUGHTY_WORDS.includes(code)); // TODO: Allow custom ban list
         const room = new Room(user, code, config);
         this.rooms[code] = room;
         room.onclose = () => {
