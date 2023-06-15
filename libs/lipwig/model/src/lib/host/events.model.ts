@@ -14,6 +14,19 @@ export interface CreateData {
     config?: CreateOptions;
 }
 
+export interface Lock extends EventStructure {
+    event: HOST_EVENT.LOCK;
+    data: LockData;
+}
+
+export interface LockData {
+    reason?: string;
+}
+
+export interface Unlock extends EventStructure {
+    event: HOST_EVENT.UNLOCK;
+}
+
 export interface Message extends EventStructure {
     event: HOST_EVENT.MESSAGE;
     data: MessageData;
@@ -93,6 +106,6 @@ export interface PongHostData {
 }
 
 
-export type Event = Create | Message | Kick | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
-export type EventData = CreateData | MessageData | KickData | LocalJoinData | LocalLeaveData | PingServerData | PingClientData | PongHostData;
+export type Event = Create | Lock | Unlock| Message | Kick | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
+export type EventData = CreateData | LockData | MessageData | KickData | LocalJoinData | LocalLeaveData | PingServerData | PingClientData | PongHostData;
 

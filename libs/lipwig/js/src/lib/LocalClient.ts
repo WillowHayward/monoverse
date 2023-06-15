@@ -27,6 +27,11 @@ export class LocalClient extends Client {
         const id = host.getNewLocalClientID();
         this.id = id;
 
+        if (host.locked) {
+            // TODO: Throw failure
+            return;
+        }
+
         host.addLocalClient(this);
 
         // 100 Milliseconds to allow listeners to be set

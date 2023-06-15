@@ -85,6 +85,16 @@ export class RoomService {
         room.join(user, options);
     }
 
+    lock(user: LipwigSocket, reason?: string) {
+        const room = user.room;
+        room.lock(user, reason);
+    }
+
+    unlock(user: LipwigSocket) {
+        const room = user.room;
+        room.unlock(user);
+    }
+
     reconnect(user: LipwigSocket, code: string, id: string): boolean {
         const room = this.getRoom(code);
 

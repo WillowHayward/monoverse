@@ -14,6 +14,8 @@ import { Logger } from '@nestjs/common';
 
 export class Room {
     private id = v4();
+    private locked = false;
+    private lockReason: string | undefined;
 
     private password?: string;
     private size: number;
@@ -98,6 +100,11 @@ export class Room {
             }
         }
 
+        if (this.locked) {
+            client.error(ERROR_CODE.ROOMLOCKED, this.lockReason);
+            return;
+        }
+
         const currentSize = this.users.length + this.localUsers.length;
         if (currentSize >= this.size) {
             client.error(ERROR_CODE.ROOMFULL);
@@ -123,6 +130,16 @@ export class Room {
             },
         });
         Logger.debug(`${id} joined`, this.id);
+    }
+
+    public lock(user: LipwigSocket, reason?: string) {
+        this.locked = true;
+        this.lockReason = reason;
+    }
+
+    public unlock(user: LipwigSocket) {
+        this.locked = false;
+        this.lockReason = undefined;
     }
 
     private disconnect(disconnected: LipwigSocket) {

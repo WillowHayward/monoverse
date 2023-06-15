@@ -7,6 +7,7 @@ import * as Logger from 'loglevel';
 // TODO: Once the event to register a LocalClient with the server is implemented, that may make all of these much simpler
 export class LocalHost extends Host{
     protected override name = 'LocalHost';
+    public lockReason?: string;
     constructor(public override config: CreateOptions = {}) {
         super('', config);
 

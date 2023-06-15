@@ -41,6 +41,17 @@ export class AppGateway implements OnGatewayConnection {
         this.rooms.join(socket.socket, code, options);
     }
 
+    @SubscribeMessage(HOST_EVENT.LOCK)
+    lock(socket: WebSocket, payload: HostEvents.LockData) {
+        const reason = payload.reason;
+        this.rooms.lock(socket.socket, reason);
+    }
+
+    @SubscribeMessage(HOST_EVENT.UNLOCK)
+    unlock(socket: WebSocket) {
+        this.rooms.unlock(socket.socket);
+    }
+
     @SubscribeMessage(HOST_EVENT.RECONNECT)
     @SubscribeMessage(CLIENT_EVENT.RECONNECT)
     reconnect(socket: WebSocket, payload: HostEvents.ReconnectData | ClientEvents.ReconnectData) {

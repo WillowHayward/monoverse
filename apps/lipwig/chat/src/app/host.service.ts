@@ -73,6 +73,14 @@ export class HostService implements Reconnectable {
         this.host.close(reason);
     }
 
+    lock(reason?: string) {
+        this.host.lock(reason);
+    }
+
+    unlock() {
+        this.host.unlock();
+    }
+
     private setup() {
         //this.setPingServerListener();
         this.host.on('joined', (user: User, data: any) => {

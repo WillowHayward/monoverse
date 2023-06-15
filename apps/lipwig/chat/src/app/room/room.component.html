@@ -10,7 +10,11 @@
     <ng-container *ngSwitchCase="RoomState.CONNECTED">
         <h1>
             Room {{code}}
-            <button *ngIf="isHost" (click)="close()">Close</button>
+            <ng-container *ngIf="isHost">
+                <button (click)="close()">Close</button>
+                <button *ngIf="locked" (click)="unlock()">Unlock</button>
+                <button *ngIf="!locked" (click)="lock()">Lock</button>
+            </ng-container>
             <button *ngIf="!isHost" (click)="leave()">Leave</button>
         </h1>
         <lwc-user-list [isHost]="isHost"></lwc-user-list>

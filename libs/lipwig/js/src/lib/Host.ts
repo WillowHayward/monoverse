@@ -28,6 +28,8 @@ export class Host extends EventManager {
     public room = '';
     public id = '';
 
+    public locked = false;
+
     /**
      * Create a new Lipwig room
      * @param url       Websocket url of LipwigCore server
@@ -171,6 +173,23 @@ export class Host extends EventManager {
             count++;
         } while (this.localClients.find(client => client.id === id));
         return id;
+    }
+
+    public lock(reason?: string) {
+        this.locked = true;
+        this.send({
+            event: HOST_EVENT.LOCK,
+            data: {
+                reason
+            }
+        });
+    }
+
+    public unlock() {
+        this.locked = false;
+        this.send({
+            event: HOST_EVENT.UNLOCK,
+        });
     }
 
     public close(reason?: string) {

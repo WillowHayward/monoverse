@@ -8,6 +8,8 @@ import { PING_EVENT } from "../common.model";
 // Events sent from a Host to the Server
 export enum HOST_EVENT {
     CREATE = 'create',
+    LOCK = 'lock',
+    UNLOCK = 'unlock',
     MESSAGE = 'lw-message',
     KICK = 'lw-kick',
     RECONNECT = 'reconnect',
