@@ -1,6 +1,7 @@
 import { GameObjects } from "phaser";
 import { Scene } from "./scene";
 import { Game } from "../game/game";
+import { Button } from "../objects/button";
 
 export class LobbyScene extends Scene {
     private playerList: GameObjects.Text;
@@ -42,6 +43,13 @@ export class LobbyScene extends Scene {
             ...style,
             fontSize: '5vh'
         });
+
+        const btnStart = new Button(this, this.width / 2, this.height, 'Start Game');
+        btnStart.on('click', () => {
+            game.start();
+        });
+        this.add.existing(btnStart);
+        btnStart.y = this.height - 200;
 
         game.on('joined', (name: string) => {
             this.addPlayer(name);

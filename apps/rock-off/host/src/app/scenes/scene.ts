@@ -1,6 +1,6 @@
 import { Scene as PhaserScene } from 'phaser';
 
-export class Scene extends PhaserScene {
+export abstract class Scene extends PhaserScene {
     protected canvas: HTMLCanvasElement;
     protected width: number;
     protected height: number;
