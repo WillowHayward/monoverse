@@ -1,1 +1,1 @@
-import './app/game';
+import './app';

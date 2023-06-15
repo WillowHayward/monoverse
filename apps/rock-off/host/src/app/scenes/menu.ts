@@ -1,3 +1,4 @@
+import { Game } from "../game/game";
 import { Button } from "../objects/button";
 import { Scene } from "./scene";
 
@@ -23,7 +24,7 @@ export class MenuScene extends Scene {
         y += header.displayHeight + 20;
         const btnCreate = new Button(this, this.width / 2, y , 'Create');
         btnCreate.on('click', () => {
-            this.scene.start('Lobby');
+            Game.init(this.game);
         });
         this.add.existing(btnCreate);
         y += btnCreate.displayHeight + 20;
