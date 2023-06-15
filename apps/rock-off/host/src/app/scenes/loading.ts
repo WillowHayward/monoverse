@@ -12,7 +12,6 @@ export class LoadingScene extends Scene {
             fontSize: '20vh',
             color: 'black'
         });
-        loading.x -= loading.displayWidth / 2;
-        loading.y -= loading.displayHeight / 2;
+        loading.setOrigin(0.5, 0.5);
     }
 }

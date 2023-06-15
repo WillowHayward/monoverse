@@ -3,16 +3,13 @@ import { GameObjects, Scene, Types } from "phaser";
 export class Button extends GameObjects.Text {
     constructor(scene: Scene, x: number, y: number, text: string, style: Types.GameObjects.Text.TextStyle = {}) {
         style = {
-            align: 'center',
             fontFamily: 'arial',
             fontSize: '10vh',
             color: 'black',
             ...style
         }
         super(scene, x, y, text, style);
-        if (style.align === 'center') {
-            this.x -= this.displayWidth / 2;
-        }
+        this.setOrigin(0.5, 0.5);
 
         this.setInteractive()
             .on('pointerover', this.pointerOver)

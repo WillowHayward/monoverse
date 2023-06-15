@@ -38,12 +38,13 @@ export class LobbyScene extends Scene {
 
 
         // TODO: Move to client input
-        const btnStart = new Button(this, this.width / 2, this.height, 'Start Game');
+        const btnStart = new Button(this, this.width / 2, this.height - 200, 'Start Game');
         btnStart.on('click', () => {
             game.start();
         });
+        btnStart.setOrigin(0.5, 1);
         this.add.existing(btnStart);
-        btnStart.y = this.height - 200;
+
 
         game.on('joined', (player: Player) => {
             this.addPlayer(player);
