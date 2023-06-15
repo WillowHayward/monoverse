@@ -22,7 +22,12 @@ export class Room {
     private approvals: boolean;
 
     private users: LipwigSocket[] = [];
-    private pending: {client: LipwigSocket; options: JoinOptions}[] = [];
+    private pending: {
+        [id: string]: {
+            client: LipwigSocket;
+            options: JoinOptions
+        }
+    }[] = [];
     private localUsers: string[] = [];
     // TODO: This feels hacky
     public onclose: () => void;
@@ -31,7 +36,7 @@ export class Room {
     constructor(
         private host: LipwigSocket,
         public code: string,
-        private config: CreateOptions,
+        config: CreateOptions,
     ) {
         // TODO: Room config
         this.initialiseHost(host);
@@ -116,16 +121,17 @@ export class Room {
         }
 
         if (this.approvals) {
-            Logger.debug(`${client.id} requested to join`, this.id);
-            this.pending.push({
+            const tempId = v4();
+            Logger.debug(`Client requested to join`, this.id);
+            this.pending[tempId] = {
                 client,
                 options
-            });
+            };
 
             this.host.send({
                 event: SERVER_HOST_EVENT.JOIN_REQUEST,
                 data: {
-                    id: client.id,
+                    id: tempId,
                     data: options.data
                 }
             });
@@ -136,12 +142,11 @@ export class Room {
     }
 
     public joinResponse(client: LipwigSocket, id: string, response: boolean, reason?: string) {
-        const targetIndex = this.pending.findIndex(pending => pending.client.id === id);
-        if (targetIndex === -1) {
+        const target = this.pending[id];
+        if (!target) {
             client.error(ERROR_CODE.USERNOTFOUND);
+            return;
         }
-
-        const target = this.pending[targetIndex];
 
         if (response) {
             this.joinSuccess(target.client, target.options);
@@ -149,7 +154,7 @@ export class Room {
         }
 
         target.client.error(ERROR_CODE.REJECTED, reason);
-        this.pending.splice(targetIndex, 1);
+        delete this.pending[id];
     }
 
     private joinSuccess(client: LipwigSocket, options: JoinOptions) {
