@@ -2,6 +2,7 @@ import { GameObjects } from "phaser";
 import { Game } from "../game/game";
 import { Round } from "../game/round";
 import { Scene } from "./scene";
+import { Button } from "../objects/button";
 
 export class BracketScene extends Scene {
     private info: string[] = []; // TODO: Needs better name (and structure, tbh)
@@ -19,8 +20,17 @@ export class BracketScene extends Scene {
             color: 'black'
         });
 
-        const round = Game.get().getRound();
+        const game = Game.get();
+        const round = game.getRound();
         this.addRound(round);
+
+        // TODO: Move to client input
+        const btnStart = new Button(this, this.width / 2, this.height - 200, 'Start Round');
+        btnStart.on('click', () => {
+            game.startRound();
+        });
+        btnStart.setOrigin(0.5, 1);
+        this.add.existing(btnStart);
     }
 
     private addRound(round: Round) {

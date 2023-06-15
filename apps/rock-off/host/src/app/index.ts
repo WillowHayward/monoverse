@@ -1,10 +1,5 @@
 import * as Phaser from 'phaser';
-import { MenuScene } from './scenes/menu';
-import { LobbyScene } from './scenes/lobby';
-import { LoadingScene } from './scenes/loading';
-import { BracketScene } from './scenes/bracket';
-import { RoundCollectionScene } from './scenes/round-collection';
-import { RoundResultsScene } from './scenes/round-results';
+import { MenuScene, LobbyScene, LoadingScene, BracketScene, RoundCollectionScene, RoundResultsScene } from './scenes';
 
 const width = window.outerWidth;
 const height = window.outerHeight;
