@@ -1,11 +1,23 @@
-import * as Phaser from 'phaser';
+import { Scene } from "./scene";
 
-export class LobbyScene extends Phaser.Scene {
+export class LobbyScene extends Scene {
     constructor() {
-        super();
+        super({key: 'Lobby'});
     }
 
-    preload() {}
+    preload() {
+        super.preload();
+    }
 
-    create() {}
+    create() {
+        let y = 20;
+        const header = this.add.text(this.width / 2, y, 'Lobby', {
+            align: 'center',
+            fontFamily: 'arial',
+            fontSize: '20vh',
+            color: 'black'
+        });
+        header.x -= header.displayWidth / 2;
+    }
 }
+
