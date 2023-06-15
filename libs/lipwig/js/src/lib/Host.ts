@@ -17,6 +17,7 @@ import { EventManager } from './EventManager';
 import { Socket } from './Socket';
 import * as Logger from 'loglevel';
 import { Group } from './Group';
+import { JoinRequest } from './JoinRequest';
 
 export class Host extends EventManager {
     protected name = 'Host';
@@ -251,6 +252,11 @@ export class Host extends EventManager {
                     }
                     user.client = client;
                 }
+                break;
+            case SERVER_HOST_EVENT.JOIN_REQUEST:
+                const request = new JoinRequest(this, message.data.id);
+                args.push(request);
+                args.push(message.data.data || {});
                 break;
             case SERVER_HOST_EVENT.MESSAGE:
                 Logger.debug(`[${this.name}] Received '${message.data.event}' message`);

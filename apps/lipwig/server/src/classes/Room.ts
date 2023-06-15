@@ -19,8 +19,10 @@ export class Room {
 
     private password?: string;
     private size: number;
+    private approvals: boolean;
 
     private users: LipwigSocket[] = [];
+    private pending: {client: LipwigSocket; options: JoinOptions}[] = [];
     private localUsers: string[] = [];
     // TODO: This feels hacky
     public onclose: () => void;
@@ -38,6 +40,8 @@ export class Room {
         if (config.password && config.password.length) {
             this.password = config.password;
         }
+
+        this.approvals = config.approvals || false;
 
         this.size = config.size || 8; //TODO: Turn default into config
 
@@ -111,6 +115,44 @@ export class Room {
             return;
         }
 
+        if (this.approvals) {
+            Logger.debug(`${client.id} requested to join`, this.id);
+            this.pending.push({
+                client,
+                options
+            });
+
+            this.host.send({
+                event: SERVER_HOST_EVENT.JOIN_REQUEST,
+                data: {
+                    id: client.id,
+                    data: options.data
+                }
+            });
+            return;
+        }
+
+        this.joinSuccess(client, options);
+    }
+
+    public joinResponse(client: LipwigSocket, id: string, response: boolean, reason?: string) {
+        const targetIndex = this.pending.findIndex(pending => pending.client.id === id);
+        if (targetIndex === -1) {
+            client.error(ERROR_CODE.USERNOTFOUND);
+        }
+
+        const target = this.pending[targetIndex];
+
+        if (response) {
+            this.joinSuccess(target.client, target.options);
+            return;
+        }
+
+        target.client.error(ERROR_CODE.REJECTED, reason);
+        this.pending.splice(targetIndex, 1);
+    }
+
+    private joinSuccess(client: LipwigSocket, options: JoinOptions) {
         this.initialiseClient(client);
         const id = client.id;
         this.users.push(client);
@@ -135,11 +177,17 @@ export class Room {
     public lock(user: LipwigSocket, reason?: string) {
         this.locked = true;
         this.lockReason = reason;
+        if (reason) {
+            Logger.debug(`Locked - ${reason}`, this.id);
+        } else {
+            Logger.debug('Locked', this.id);
+        }
     }
 
     public unlock(user: LipwigSocket) {
         this.locked = false;
         this.lockReason = undefined;
+        Logger.debug('Unlocked', this.id);
     }
 
     private disconnect(disconnected: LipwigSocket) {

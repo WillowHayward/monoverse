@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LipwigService } from './lipwig.service';
-import { Client, Host, User } from '@whc/lipwig/js';
+import { Client, Host, JoinRequest, User } from '@whc/lipwig/js';
 import { Chatter, Reconnectable } from './app.model';
 import { ClientService } from './client.service';
 
@@ -90,6 +90,15 @@ export class HostService implements Reconnectable {
 
 
             this.host.sendToAllExcept('newChatter', user, data.name, user.id);
+        });
+
+        this.host.on('join-request', (request: JoinRequest, data: {[key: string]: any}) => {
+            const name = data['name'];
+            if (this.host.getUsers().some(user => user.data['name'] === name)) {
+                request.reject(`User with name '${name}' already in room`);
+            } else {
+                request.approve();
+            }
         });
 
         this.host.on('client-reconnected', (user: User) => {
