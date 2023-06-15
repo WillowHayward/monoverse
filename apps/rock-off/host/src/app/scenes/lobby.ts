@@ -4,6 +4,7 @@ import { Game } from "../game/game";
 
 export class LobbyScene extends Scene {
     private playerList: GameObjects.Text;
+    private players: string[] = [];
     constructor() {
         super({key: 'Lobby'});
     }
@@ -19,7 +20,8 @@ export class LobbyScene extends Scene {
             color: 'black'
         }
 
-        const room = Game.getRoom();
+        const game = Game.get();
+        const room = game.getRoom();
 
         let y = 20;
         const header = this.add.text(this.width / 2, y, room, {
@@ -40,6 +42,16 @@ export class LobbyScene extends Scene {
             ...style,
             fontSize: '5vh'
         });
+
+        game.on('joined', (name: string) => {
+            this.addPlayer(name);
+        });
+    }
+
+    addPlayer(name: string) {
+        this.players.push(name);
+        this.playerList.setText(this.players.join('\n'));
+        this.playerList.x = this.width / 2 - this.playerList.displayWidth / 2;
     }
 }
 
