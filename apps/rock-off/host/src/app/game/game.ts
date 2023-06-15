@@ -1,5 +1,5 @@
 import { Game as PhaserGame, Events } from 'phaser';
-import { Host, Lipwig, User } from '@whc/lipwig/js';
+import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
 
 import { Bracket, SingleEliminationBracket } from './brackets';
 import { Player } from './contestants';
@@ -23,13 +23,16 @@ export class Game extends Events.EventEmitter {
 
     public startLobby() {
         this.changeScene('Loading');
-        Lipwig.create(LIPWIG_URL).then(host => {
+        Lipwig.create(LIPWIG_URL, {
+            approvals: true
+        }).then(host => {
             this.setHost(host);
             this.changeScene('Lobby');
         })
     }
 
     public start() {
+        this.host.lock('Game In Progress');
         this.bracket = new SingleEliminationBracket(this.players);
         this.bracket.nextRound()
 
@@ -65,6 +68,15 @@ export class Game extends Events.EventEmitter {
 
     private setHost(host: Host) {
         this.host = host;
+        host.on('join-request', (request: JoinRequest, data: {[key: string]: any}) => {
+            const name = data['name'];
+            if (this.players.some(player => player.name === name)) {
+                request.reject(`Player with name ${name} already in room`);
+            } else {
+                request.approve();
+            }
+        });
+
         host.on('joined', (user: User) => {
             const player = new Player(user);
             this.players.push(player);
