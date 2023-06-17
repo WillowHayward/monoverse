@@ -81,6 +81,21 @@ export class AppGateway implements OnGatewayConnection {
         this.rooms.message(socket.socket, payload);
     }
 
+    @SubscribeMessage(HOST_EVENT.POLL)
+    poll(socket: WebSocket, payload: HostEvents.PollData) {
+        const id = payload.id;
+        const query = payload.query;
+        const recipients = payload.recipients;
+        this.rooms.poll(socket.socket, id, query, recipients);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.POLL_RESPONSE)
+    pollResponse(socket: WebSocket, payload: ClientEvents.PollResponseData) {
+        const id = payload.id;
+        const response = payload.response;
+        this.rooms.pollResponse(socket.socket, id, response);
+    }
+
     @SubscribeMessage(PING_EVENT.PING_SERVER)
     pingServer(socket: WebSocket, payload: HostEvents.PingServerData | ClientEvents.PingServerData) {
         const time = payload.time;

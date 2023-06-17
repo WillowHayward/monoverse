@@ -1,5 +1,6 @@
 import { EventManager } from "../EventManager";
 import { Host } from "./Host";
+import { Poll } from "./Poll";
 import { User } from "./User";
 
 export class Group extends EventManager {
@@ -53,6 +54,10 @@ export class Group extends EventManager {
 
     public send(event: string, ...args: any[]) {
         this.host.sendTo(event, this.users, ...args);
+    }
+
+    public poll(query: string, id?: string): Poll {
+        return this.host.poll(this.users, query, id);
     }
 
     public kick(reason?: string) {

@@ -12,6 +12,13 @@ import {
 import { LipwigSocket } from './LipwigSocket';
 import { Logger } from '@nestjs/common';
 
+interface Poll {
+    id: string;
+    pending: string[];
+    received: string[];
+    open: boolean;
+}
+
 export class Room {
     private id = v4();
     private locked = false;
@@ -29,6 +36,9 @@ export class Room {
         }
     }[] = [];
     private localUsers: string[] = [];
+
+    private polls: Poll[] = [];
+
     // TODO: This feels hacky
     public onclose: () => void;
     public closed: boolean = false;
@@ -396,6 +406,78 @@ export class Room {
             },
         });
     }
+
+    poll(host: LipwigSocket, id: string, query: string, recipients: string[]) {
+        const poll: Poll = {
+            id,
+            pending: recipients,
+            received: [],
+            open: true
+        }
+
+        this.polls.push(poll);
+
+        for (const userId of recipients) {
+            const user = this.users.find(user => user.id === userId)
+            if (!user) {
+                host.error(ERROR_CODE.USERNOTFOUND);
+                continue;
+            }
+
+            user.send({
+                event: SERVER_CLIENT_EVENT.POLL,
+                data: {
+                    id,
+                    query
+                }
+            });
+
+        }
+    }
+
+    pollResponse(user: LipwigSocket, id: string, response: any) {
+        const poll = this.polls.find(poll => poll.id === id);
+        if (!poll) {
+            user.error(ERROR_CODE.POLLNOTFOUND);
+            return;
+        }
+
+        const client = user.id;
+
+        if (poll.received.includes(client)) {
+            user.error(ERROR_CODE.POLLALREADYRESPONSED);
+            return;
+        }
+
+        if (!poll.pending.includes(client)) {
+            user.error(ERROR_CODE.POLLUSERNOTFOUND);
+            return;
+        }
+
+        if (!poll.open) {
+            user.error(ERROR_CODE.POLLCLOSED);
+            return;
+        }
+
+        const userIndex = poll.pending.indexOf(client);
+        poll.pending.splice(userIndex, 1);
+        poll.received.push(client);
+
+        if (!poll.pending.length) {
+            poll.open = false;
+        }
+
+        this.host.send({
+            event: SERVER_HOST_EVENT.POLL_RESPONSE, 
+            data: {
+                id,
+                client,
+                response
+            }
+        });
+    }
+
+
 
     pingHost(socket: LipwigSocket, time: number) {
         const id = socket.id;

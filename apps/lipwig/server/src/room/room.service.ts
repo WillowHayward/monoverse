@@ -113,6 +113,17 @@ export class RoomService {
         room.handle(user, payload);
     }
 
+    poll(user: LipwigSocket, id: string, query: string, recipients: string[]) {
+        const room = user.room;
+        room.poll(user, id, query, recipients);
+    }
+
+    pollResponse(user: LipwigSocket, id: string, response: any) {
+        const room = user.room;
+        room.pollResponse(user, id, response);
+    }
+
+
     pingHost(user: LipwigSocket, time: number) {
         const room = user.room;
         room.pingHost(user, time);

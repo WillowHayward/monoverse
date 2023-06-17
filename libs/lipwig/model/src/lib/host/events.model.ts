@@ -49,6 +49,17 @@ export interface MessageData {
     args: unknown[];
 }
 
+export interface Poll extends EventStructure {
+    event: HOST_EVENT.POLL,
+    data: PollData
+}
+
+export interface PollData {
+    id: string;
+    recipients: string[];
+    query: string;
+}
+
 export interface Kick extends EventStructure {
     event: HOST_EVENT.KICK;
     data: KickData;
@@ -117,6 +128,6 @@ export interface PongHostData {
 }
 
 
-export type Event = Create | JoinResponse | Lock | Unlock| Message | Kick | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
-export type EventData = CreateData | JoinResponseData | LockData | MessageData | KickData | LocalJoinData | LocalLeaveData | PingServerData | PingClientData | PongHostData;
+export type Event = Create | JoinResponse | Lock | Unlock| Message | Kick | Poll | LocalJoin | LocalLeave | PingServer | PingClient | PongHost;
+export type EventData = CreateData | JoinResponseData | LockData | MessageData | KickData | PollData | LocalJoinData | LocalLeaveData | PingServerData | PingClientData | PongHostData;
 

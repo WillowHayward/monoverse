@@ -2,7 +2,7 @@ import {
     Error
 } from './generic.model';
 import {
-    Created, Joined, JoinRequest, Left, Message
+    Created, Joined, JoinRequest, Left, Message, PollResponse
 } from './lipwig.model';
 import {
     Disconnected, ClientDisconnected, Reconnected, ClientReconnected
@@ -19,7 +19,7 @@ export type Event =
     // Generic Events
     Error |
     // Lipwig Events
-    Created | Joined | JoinRequest | Left | Message |
+    Created | Joined | JoinRequest | Left | Message | PollResponse |
     // Connection Events
     Disconnected | ClientDisconnected | Reconnected | ClientReconnected |
     // Ping Events

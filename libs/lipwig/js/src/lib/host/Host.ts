@@ -18,12 +18,14 @@ import { Socket } from '../Socket';
 import * as Logger from 'loglevel';
 import { Group } from './Group';
 import { JoinRequest } from './JoinRequest';
+import { Poll } from './Poll';
 
 export class Host extends EventManager {
     protected name = 'Host';
     private users: User[] = [];
     private localClients: LocalClient[] = [];
     private groups: Group[] = [];
+    private polls: Poll[] = [];
 
     private socket: Socket;
     public room = '';
@@ -139,6 +141,12 @@ export class Host extends EventManager {
     public send(message: HostEvents.Event) {
         this.preSend(message);
         this.socket.send(message);
+    }
+
+    public poll(users: User[], query: string, id?: string): Poll {
+        const poll = new Poll(this, users, query, id);
+        this.polls.push(poll);
+        return poll;
     }
 
     public createLocalClient(
@@ -265,6 +273,23 @@ export class Host extends EventManager {
                 sender = message.data?.sender || '';
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
+                break;
+            case SERVER_HOST_EVENT.POLL_RESPONSE:
+                const pollId = message.data.id;
+                const clientId = message.data.id;
+                const response = message.data.response;
+                Logger.debug(`[${this.name}] Received response to poll ${pollId} from ${clientId}`);
+
+                const poll = this.polls.find(poll => poll.id === pollId);
+                if (!poll) {
+                    // TODO: Handle
+                    return;
+                }
+
+                user = this.users.find(user => user.id === clientId);
+                poll.emit('response', user, response);
+                args.push(poll);
+                args.push(response);
                 break;
             case SERVER_HOST_EVENT.CLIENT_RECONNECTED:
                 Logger.debug(`[${this.name}] ${message.data.id} reconnected`);

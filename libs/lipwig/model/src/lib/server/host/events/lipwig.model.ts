@@ -53,3 +53,14 @@ export interface MessageData {
     args: unknown[];
 }
 
+export interface PollResponse extends EventStructure {
+    event: SERVER_HOST_EVENT.POLL_RESPONSE;
+    data: PollResponseData;
+}
+
+export interface PollResponseData {
+    id: string;
+    client: string;
+    response: any;
+}
+

@@ -12,6 +12,7 @@ export enum HOST_EVENT {
     LOCK = 'lock',
     UNLOCK = 'unlock',
     MESSAGE = 'lw-message',
+    POLL = 'poll',
     KICK = 'lw-kick',
     RECONNECT = 'reconnect',
     LOCAL_JOIN = 'lw-local-join', // Used to register local client

@@ -11,6 +11,7 @@ import {
     HostEvents,
     ServerClientEvents,
 } from '@whc/lipwig/model';
+import { Poll } from './Poll';
 
 // TODO: Can the local stuff be moved into Host?
 export class User extends EventManager {
@@ -58,6 +59,10 @@ export class User extends EventManager {
 
     public sendToOthers(event: string, ...args: unknown[]): void {
         this.parent.sendToAllExcept(event, this, ...args);
+    }
+
+    public poll(query: string, id?: string): Poll {
+        return this.parent.poll([this], query, id);
     }
 
     public assign(name: string, inform: boolean = false): void {

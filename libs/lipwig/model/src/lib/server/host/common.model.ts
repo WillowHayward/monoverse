@@ -10,6 +10,7 @@ export enum SERVER_HOST_EVENT {
     JOIN_REQUEST = 'join-request',
     LEFT = 'left',
     MESSAGE = 'lw-message',
+    POLL_RESPONSE = 'poll-response',
 
     // Connection events
     DISCONNECTED = 'disconnected',

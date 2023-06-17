@@ -28,6 +28,11 @@ export enum ERROR_CODE {
     ROOMLOCKED = 'ROOMLOCKED',
     INCORRECTPASSWORD = 'INCORRECTPASSWORD',
     REJECTED = 'REJECTED',
+    // Poll errors
+    POLLCLOSED = 'POLLCLOSED',
+    POLLALREADYRESPONSED = 'POLLALREADYRESPONSED',
+    POLLUSERNOTFOUND = 'POLLUSERNOTFOUND',
+    POLLNOTFOUND = 'POLLNOTFOUND',
 }
 
 // 3000-3999 reserved close codes https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent/code

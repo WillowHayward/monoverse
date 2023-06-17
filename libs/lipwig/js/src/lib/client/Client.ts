@@ -12,6 +12,7 @@ import {
 import { EventManager } from '../EventManager';
 import { Socket } from '../Socket';
 import * as Logger from 'loglevel';
+import { Query } from './Query';
 
 export class Client extends EventManager {
     protected name = 'Client';
@@ -83,6 +84,16 @@ export class Client extends EventManager {
             },
         };
         this.socket.send(message);
+    }
+
+    public respondToPoll(id: string, response: any) {
+        this.socket.send({
+            event: CLIENT_EVENT.POLL_RESPONSE,
+            data: {
+                id,
+                response
+            }
+        });
     }
 
     public leave(reason?: string) {
@@ -169,6 +180,12 @@ export class Client extends EventManager {
                 eventName = message.data.event;
 
                 this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
+                break;
+            case SERVER_CLIENT_EVENT.POLL:
+                const pollId = message.data.id;
+                const query = message.data.query;
+                const queryObject = new Query(this, pollId);
+                args.push(queryObject, query);
                 break;
             case SERVER_CLIENT_EVENT.RECONNECTED:
                 Logger.debug(`[${this.name}] Reconnected`);
