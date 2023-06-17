@@ -8,8 +8,11 @@ export class Player extends Contestant {
     }
 
     public getMove(): Promise<Move> {
-        const moves = Object.values(Move);
-        const move = moves[Math.floor(Math.random() * moves.length)];
-        return Promise.resolve(move);
+        const poll = this.user.poll('getMove');
+        return new Promise(resolve => {
+            poll.on('response', (user: User, response: Move) => {
+                resolve(response);
+            });
+        });
     }
 }
