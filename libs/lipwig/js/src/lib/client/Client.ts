@@ -9,8 +9,8 @@ import {
     ServerClientEvents,
     JoinOptions,
 } from '@whc/lipwig/model';
-import { EventManager } from './EventManager';
-import { Socket } from './Socket';
+import { EventManager } from '../EventManager';
+import { Socket } from '../Socket';
 import * as Logger from 'loglevel';
 
 export class Client extends EventManager {

@@ -12,9 +12,9 @@ import {
     JoinOptions
 } from '@whc/lipwig/model';
 import { User } from './User';
-import { LocalClient } from './LocalClient';
-import { EventManager } from './EventManager';
-import { Socket } from './Socket';
+import { LocalClient } from '../client';
+import { EventManager } from '../EventManager';
+import { Socket } from '../Socket';
 import * as Logger from 'loglevel';
 import { Group } from './Group';
 import { JoinRequest } from './JoinRequest';

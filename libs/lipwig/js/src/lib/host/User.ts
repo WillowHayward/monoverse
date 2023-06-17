@@ -1,10 +1,10 @@
 /*
  * @author: WillHayCode
  */
-import { EventManager } from './EventManager';
+import { EventManager } from '../EventManager';
 import { Group } from './Group';
 import { Host } from './Host';
-import { LocalClient } from './LocalClient';
+import { LocalClient } from '../client';
 import {
     HOST_EVENT,
     SERVER_CLIENT_EVENT,

@@ -1,4 +1,4 @@
-import { EventManager } from "./EventManager";
+import { EventManager } from "../EventManager";
 import { Host } from "./Host";
 import { User } from "./User";
 

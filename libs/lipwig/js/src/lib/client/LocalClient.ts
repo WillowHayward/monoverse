@@ -1,7 +1,7 @@
 /**
  * @author: WillHayCode
  */
-import { Host } from './Host';
+import { Host } from '../host';
 import {
     SERVER_CLIENT_EVENT,
     SERVER_HOST_EVENT,
