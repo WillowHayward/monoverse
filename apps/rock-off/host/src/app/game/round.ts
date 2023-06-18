@@ -9,7 +9,7 @@ export class Round {
     private winners: Contestant[] = [];
     private losers: Contestant[] = [];
 
-    constructor(contestants: Contestant[], public number: number) {
+    constructor(private contestants: Contestant[], public number: number) {
         if (contestants.length % 2 === 1) {
             // Uneven players, add bot
             const bot = new Bot();
@@ -63,7 +63,10 @@ export class Round {
                 loser
             }
         });
+    }
 
+    public getContestants(): Contestant[] {
+        return this.contestants;
     }
 
     public getPairings(): Pairing[] {

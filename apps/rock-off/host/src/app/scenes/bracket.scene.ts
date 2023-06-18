@@ -50,7 +50,6 @@ export class BracketScene extends Scene {
     private addInfo(info: string) {
         this.info.push(info);
         const text = this.info.join('\n');
-        console.log(text);
 
         this.infoText.setText(text);
     }

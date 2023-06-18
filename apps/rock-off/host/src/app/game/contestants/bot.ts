@@ -12,7 +12,8 @@ export class Bot extends Contestant {
     }
 
     public override getMove(): Promise<Move> {
-        return Promise.resolve(this.profile.tactic);
+        this.currentMove = Promise.resolve(this.profile.tactic);
+        return this.currentMove;
     }
 
     private static getBotProfile(): BotProfile {

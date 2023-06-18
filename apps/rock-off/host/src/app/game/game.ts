@@ -17,7 +17,6 @@ export class Game extends Events.EventEmitter {
 
     private constructor(public game: PhaserGame) {
         super();
-        console.log('creating game');
         this.scene = 'Menu';
     }
 
@@ -42,8 +41,9 @@ export class Game extends Events.EventEmitter {
     public startRound() {
         const round = this.bracket.getCurrentRound();
         round.start().then((results: Result[]) => {
-            console.log(results);
+            this.changeScene('RoundResults');
         });
+        this.changeScene('RoundCollection');
     }
 
     public getRoom(): string {

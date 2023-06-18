@@ -9,10 +9,12 @@ export class Player extends Contestant {
 
     public getMove(): Promise<Move> {
         const poll = this.user.poll('getMove');
-        return new Promise(resolve => {
+        this.currentMove = new Promise(resolve => {
             poll.on('response', (user: User, response: Move) => {
                 resolve(response);
             });
         });
+
+        return this.currentMove;
     }
 }
