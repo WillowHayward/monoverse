@@ -46,6 +46,11 @@ export class Game extends Events.EventEmitter {
         this.changeScene('RoundCollection');
     }
 
+    public startRematches() {
+        const round = this.bracket.getCurrentRound();
+
+    }
+
     public getRoom(): string {
         return this.host.room;
     }
