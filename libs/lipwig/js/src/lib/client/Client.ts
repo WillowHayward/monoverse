@@ -8,6 +8,7 @@ import {
     ClientEvents,
     ServerClientEvents,
     JoinOptions,
+    ERROR_CODE,
 } from '@whc/lipwig/model';
 import { EventManager } from '../EventManager';
 import { Socket } from '../Socket';
@@ -40,6 +41,16 @@ export class Client extends EventManager {
 
         this.socket.on('error', () => {
             // TODO
+        });
+
+        this.socket.on('lw-error', (error: ERROR_CODE, message?: string) => {
+            if (message) {
+                Logger.warn(`[${this.name}] Received error ${error} - ${message}`);
+            } else {
+                Logger.warn(`[${this.name}] Received error ${error}`);
+            }
+
+            this.emit('error', error, message);
         });
 
         this.socket.on('message', (message: ServerClientEvents.Event) => {
@@ -190,15 +201,6 @@ export class Client extends EventManager {
             case SERVER_CLIENT_EVENT.RECONNECTED:
                 Logger.debug(`[${this.name}] Reconnected`);
                 this.id = message.data.id;
-                break;
-            case SERVER_CLIENT_EVENT.ERROR:
-                if (message.data.message) {
-                    Logger.warn(`[${this.name}] Received error ${message.data.error} - ${message.data.message}`);
-                } else {
-                    Logger.warn(`[${this.name}] Received error ${message.data.error}`);
-                }
-                args.push(message.data.error);
-                args.push(message.data.message);
                 break;
             case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
                 Logger.debug(`[${this.name}] Host Disconnected`);

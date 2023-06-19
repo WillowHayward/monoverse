@@ -8,7 +8,8 @@ import {
     HOST_EVENT,
     ClientEvents,
     HostEvents,
-    PING_EVENT
+    PING_EVENT,
+    GENERIC_EVENT
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { Logger, UseGuards } from '@nestjs/common';
@@ -27,6 +28,9 @@ export class AppGateway implements OnGatewayConnection {
         const lipwigSocket = new LipwigSocket(socket);
         socket.socket = lipwigSocket;
     }
+
+    //@SubscribeMessage(GENERIC_EVENT.QUERY)
+    //query(socket: WebSocket, payload: 
 
     @SubscribeMessage(HOST_EVENT.CREATE)
     create(socket: WebSocket, payload: HostEvents.CreateData) {

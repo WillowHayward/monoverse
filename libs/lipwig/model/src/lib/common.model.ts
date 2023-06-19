@@ -16,6 +16,19 @@ export type JoinOptions = Partial<{
     reconnect: string;
 }>;
 
+export interface RoomQuery {
+    room: string;
+    name?: string;
+    protected: boolean; // Password protected
+    capacity: number; // Slots remaining
+    locked: boolean;
+    lockReason?: string;
+}
+
+export enum GENERIC_EVENT {
+    QUERY = 'query'
+}
+
 export enum ERROR_CODE {
     SUCCESS = 'SUCCESS',
     MALFORMED = 'MALFORMED',

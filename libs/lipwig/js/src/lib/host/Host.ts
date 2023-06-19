@@ -9,7 +9,8 @@ import {
     HostEvents,
     ServerHostEvents,
     CreateOptions,
-    JoinOptions
+    JoinOptions,
+    ERROR_CODE
 } from '@whc/lipwig/model';
 import { User } from './User';
 import { LocalClient } from '../client';
@@ -49,6 +50,16 @@ export class Host extends EventManager {
 
         this.socket.on('error', () => {
             // TODO
+        });
+
+        this.socket.on('lw-error', (error: ERROR_CODE, message?: string) => {
+            if (message) {
+                Logger.warn(`[${this.name}] Received error ${error} - ${message}`);
+            } else {
+                Logger.warn(`[${this.name}] Received error ${error}`);
+            }
+
+            this.emit('error', error, message);
         });
 
         this.socket.on('message', (message: ServerHostEvents.Event) => {
@@ -329,13 +340,6 @@ export class Host extends EventManager {
                 }
 
                 args.push(this.users);
-                break;
-            case SERVER_HOST_EVENT.ERROR:
-                if (message.data.message) {
-                    Logger.warn(`[${this.name}] Received error ${message.data.error} - ${message.data.message}`);
-                } else {
-                    Logger.warn(`[${this.name}] Received error ${message.data.error}`);
-                }
                 break;
             case SERVER_HOST_EVENT.CLIENT_DISCONNECTED:
                 Logger.debug(`[${this.name}] ${message.data.id} disconnected`);

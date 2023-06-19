@@ -1,7 +1,8 @@
-import { ERROR_CODE, SERVER_CLIENT_EVENT, ServerClientEvents, ServerHostEvents, CLOSE_CODE } from '@whc/lipwig/model';
+import { ERROR_CODE, SERVER_CLIENT_EVENT, ServerClientEvents, ServerHostEvents, CLOSE_CODE, ServerGenericEvents } from '@whc/lipwig/model';
 import { WebSocket } from '../app/app.model';
 import { Room } from './Room';
 import { Logger } from '@nestjs/common';
+import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 
 type Callback = (...args: any[]) => void;
 
@@ -88,7 +89,7 @@ export class LipwigSocket {
 
     }
 
-    send(message: ServerHostEvents.Event | ServerClientEvents.Event) {
+    send(message: ServerHostEvents.Event | ServerClientEvents.Event | ServerGenericEvents.Event) {
         const context = this.id || 'Uninitialized Socket';
         Logger.debug(`Sending event '${message.event}'`, context);
         const messageString = JSON.stringify(message);
@@ -102,9 +103,9 @@ export class LipwigSocket {
         } else {
             Logger.debug(`Sending error ${error}`, context);
         }
-        // TODO: Try to make this more generic than ServerClient (it's just for type checking but it'd be nice)
-        const errorMessage: ServerClientEvents.Error = {
-            event: SERVER_CLIENT_EVENT.ERROR,
+
+        const errorMessage: ServerGenericEvents.Error = {
+            event: SERVER_GENERIC_EVENTS.ERROR,
             data: {
                 error,
                 message,
