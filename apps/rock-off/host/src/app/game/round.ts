@@ -8,6 +8,7 @@ export class Round {
     private pairings: Pairing[] = [];
     private winners: Contestant[] = [];
     private losers: Contestant[] = [];
+    private results: Promise<Result[]>;
 
     constructor(private contestants: Contestant[], public number: number) {
         if (contestants.length % 2 === 1) {
@@ -30,7 +31,12 @@ export class Round {
             results.push(result);
         }
 
-        return Promise.all(results);
+        this.results = Promise.all(results);
+        return this.results;
+    }
+
+    public getResults(): Promise<Result[]> {
+        return this.results;
     }
 
     private async getResult(pairing: Pairing): Promise<Result> {
@@ -45,7 +51,10 @@ export class Round {
             let winner: Contestant;
             let loser: Contestant;
             if (result === 0) {
-                return { draw: true };
+                return { 
+                    draw: true,
+                    contestants: [a, b]
+                };
             } else if (result === -1) {
                 winner = a;
                 loser = b;
@@ -59,6 +68,9 @@ export class Round {
 
             return {
                 draw: false,
+                contestants: [
+                    a, b
+                ],
                 winner,
                 loser
             }

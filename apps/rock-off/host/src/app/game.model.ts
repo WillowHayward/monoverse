@@ -3,10 +3,14 @@ import { Contestant } from "./game/contestants";
 
 export interface Result {
     draw: boolean;
+    contestants: [Contestant, Contestant],
+    winner?: Contestant;
+    loser?: Contestant;
 }
 
 export interface DecisiveResult extends Result {
     draw: false;
+    contestants: [Contestant, Contestant],
     winner: Contestant;
     loser: Contestant;
 }
