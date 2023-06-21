@@ -9,6 +9,8 @@ export class Round {
     private winners: Contestant[] = [];
     private losers: Contestant[] = [];
     private results: Promise<Result[]>;
+    private rematches: Pairing[] = [];
+    private rematchResults: Promise<Result[]>;
 
     constructor(private contestants: Contestant[], public number: number) {
         if (contestants.length % 2 === 1) {
@@ -32,11 +34,36 @@ export class Round {
         }
 
         this.results = Promise.all(results);
+        this.results.then(results => {
+            console.log(results);
+            const rematches = results.filter(result => result.draw);
+            this.rematches = rematches.map(result => result.contestants);
+            console.log('The Rematches', this.rematches);
+        });
         return this.results;
+    }
+
+    public startRematches(): Promise<Result[]> {
+        const results: Promise<Result>[] = [];
+        for (const pairing of this.rematches) {
+            const result = this.getResult(pairing);
+            results.push(result);
+        }
+
+        this.rematchResults = Promise.all(results);
+        this.rematchResults.then(results => {
+            const rematches = results.filter(result => result.draw);
+            this.rematches = rematches.map(result => result.contestants);
+        });
+        return this.rematchResults;
     }
 
     public getResults(): Promise<Result[]> {
         return this.results;
+    }
+
+    public getRematchResults(): Promise<Result[]> {
+        return this.rematchResults;
     }
 
     private async getResult(pairing: Pairing): Promise<Result> {
@@ -83,6 +110,21 @@ export class Round {
 
     public getPairings(): Pairing[] {
         return this.pairings;
+    }
+
+    public getRematches(): Pairing[] {
+        return this.rematches;
+    }
+
+    public getRematchContestants(): Contestant[] {
+        const rematches = this.getRematches();
+        const contestants: Contestant[] = [];
+        for (const pairing of rematches) {
+            const [a, b] = pairing;
+            contestants.push(a, b);
+        }
+
+        return contestants;
     }
 
     public getWinners(): Contestant[] {

@@ -2,14 +2,14 @@ import { Game } from "../game/game";
 import { Button } from "../objects/button";
 import { Scene } from "./scene";
 
-export class RoundResultsScene extends Scene {
+export class RoundRematchResultsScene extends Scene {
     constructor() {
-        super({key: 'RoundResults'});
+        super({key: 'RoundRematchResults'});
     }
 
     async create() {
         const game = Game.get();
-        const results = await game.getRound().getResults();
+        const results = await game.getRound().getRematchResults();
         let display: string[] = [];
         for (const result of results) {
             const [a, b] = result.contestants;

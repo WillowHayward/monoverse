@@ -4,7 +4,6 @@ import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
 import { Bracket, SingleEliminationBracket } from './brackets';
 import { Player } from './contestants';
 import { Round } from './round';
-import { Result } from '../game.model';
 
 const LIPWIG_URL = 'ws://localhost:8989';
 
@@ -38,9 +37,14 @@ export class Game extends Events.EventEmitter {
         this.changeScene('Bracket');
     }
 
+    public nextRound() {
+        this.bracket.nextRound();
+        this.startRound();
+    }
+
     public startRound() {
         const round = this.bracket.getCurrentRound();
-        round.start().then((results: Result[]) => {
+        round.start().then(() => {
             this.changeScene('RoundResults');
         });
         this.changeScene('RoundCollection');
@@ -48,7 +52,10 @@ export class Game extends Events.EventEmitter {
 
     public startRematches() {
         const round = this.bracket.getCurrentRound();
-
+        round.startRematches().then(() => {
+            this.changeScene('RoundRematchResults');
+        });
+        this.changeScene('RoundRematchCollection');
     }
 
     public getRoom(): string {
