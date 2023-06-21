@@ -24,7 +24,9 @@ export class LipwigService {
     ): Promise<Host> {
         this.isHost = true;
 
-        const config: CreateOptions = {};
+        const config: CreateOptions = {
+            approvals: true
+        };
 
         if (reconnect) {
             config.reconnect = reconnect;

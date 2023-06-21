@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import {
     ERROR_CODE,
+    NAUGHTY_WORDS,
     ClientEvents,
     HostEvents,
     CreateOptions,
@@ -58,7 +59,7 @@ export class RoomService {
         let code: string;
         do {
             code = generateString(4);
-        } while (existingCodes.includes(code));
+        } while (existingCodes.includes(code) || NAUGHTY_WORDS.includes(code)); // TODO: Allow custom ban list
         const room = new Room(user, code, config);
         this.rooms[code] = room;
         room.onclose = () => {
@@ -84,6 +85,21 @@ export class RoomService {
         room.join(user, options);
     }
 
+    joinResponse(user: LipwigSocket, id: string, response: boolean, reason?: string) {
+        const room = user.room;
+        room.joinResponse(user, id, response, reason);
+    }
+
+    lock(user: LipwigSocket, reason?: string) {
+        const room = user.room;
+        room.lock(user, reason);
+    }
+
+    unlock(user: LipwigSocket) {
+        const room = user.room;
+        room.unlock(user);
+    }
+
     reconnect(user: LipwigSocket, code: string, id: string): boolean {
         const room = this.getRoom(code);
 
@@ -96,6 +112,17 @@ export class RoomService {
         const room = user.room;
         room.handle(user, payload);
     }
+
+    poll(user: LipwigSocket, id: string, query: string, recipients: string[]) {
+        const room = user.room;
+        room.poll(user, id, query, recipients);
+    }
+
+    pollResponse(user: LipwigSocket, id: string, response: any) {
+        const room = user.room;
+        room.pollResponse(user, id, response);
+    }
+
 
     pingHost(user: LipwigSocket, time: number) {
         const room = user.room;

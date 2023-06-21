@@ -7,8 +7,10 @@ export enum SERVER_HOST_EVENT {
     // Lipwig events
     CREATED = 'created',
     JOINED = 'joined',
+    JOIN_REQUEST = 'join-request',
     LEFT = 'left',
     MESSAGE = 'lw-message',
+    POLL_RESPONSE = 'poll-response',
 
     // Connection events
     DISCONNECTED = 'disconnected',

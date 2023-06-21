@@ -22,6 +22,7 @@ export class RoomComponent implements OnInit {
     code: string;
 
     isHost = false;
+    locked = false;
 
     RoomState = RoomState;
     state: RoomState = RoomState.LOADING;
@@ -74,6 +75,16 @@ export class RoomComponent implements OnInit {
     close() {
         this.host.close('Room done now');
         this.router.navigate(['/']);
+    }
+
+    lock() {
+        this.locked = true;
+        this.host.lock('Keep \'em out');
+    }
+
+    unlock() {
+        this.locked = false;
+        this.host.unlock();
     }
 
     leave() {

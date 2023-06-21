@@ -7,6 +7,7 @@ import {
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import * as Logger from 'loglevel';
+import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 // TODO: "this.name" is never Local*
 
 export class Socket extends EventManager {
@@ -44,9 +45,13 @@ export class Socket extends EventManager {
         });
 
         this.socket.addEventListener('message', (event: MessageEvent) => {
-            //TODO: Try and make this account for ServerClient and ServerHost split
-            const message: ServerClientEvents.Event = JSON.parse(event.data);
-            this.emit('message', message);
+            const message = JSON.parse(event.data);
+            if (message.event === SERVER_GENERIC_EVENTS.ERROR) {
+                console.log(message);
+                this.emit('lw-error', message.data.error, message.data.message);
+            } else {
+                this.emit('message', message);
+            }
         });
 
         this.socket.addEventListener('close', (event: CloseEvent) => {

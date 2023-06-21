@@ -12,14 +12,33 @@ import {
 import { LipwigSocket } from './LipwigSocket';
 import { Logger } from '@nestjs/common';
 
+interface Poll {
+    id: string;
+    pending: string[];
+    received: string[];
+    open: boolean;
+}
+
 export class Room {
     private id = v4();
+    private locked = false;
+    private lockReason: string | undefined;
 
     private password?: string;
     private size: number;
+    private approvals: boolean;
 
     private users: LipwigSocket[] = [];
+    private pending: {
+        [id: string]: {
+            client: LipwigSocket;
+            options: JoinOptions
+        }
+    }[] = [];
     private localUsers: string[] = [];
+
+    private polls: Poll[] = [];
+
     // TODO: This feels hacky
     public onclose: () => void;
     public closed: boolean = false;
@@ -27,7 +46,7 @@ export class Room {
     constructor(
         private host: LipwigSocket,
         public code: string,
-        private config: CreateOptions,
+        config: CreateOptions,
     ) {
         // TODO: Room config
         this.initialiseHost(host);
@@ -36,6 +55,8 @@ export class Room {
         if (config.password && config.password.length) {
             this.password = config.password;
         }
+
+        this.approvals = config.approvals || false;
 
         this.size = config.size || 8; //TODO: Turn default into config
 
@@ -98,12 +119,55 @@ export class Room {
             }
         }
 
+        if (this.locked) {
+            client.error(ERROR_CODE.ROOMLOCKED, this.lockReason);
+            return;
+        }
+
         const currentSize = this.users.length + this.localUsers.length;
         if (currentSize >= this.size) {
             client.error(ERROR_CODE.ROOMFULL);
             return;
         }
 
+        if (this.approvals) {
+            const tempId = v4();
+            Logger.debug(`Client requested to join`, this.id);
+            this.pending[tempId] = {
+                client,
+                options
+            };
+
+            this.host.send({
+                event: SERVER_HOST_EVENT.JOIN_REQUEST,
+                data: {
+                    id: tempId,
+                    data: options.data
+                }
+            });
+            return;
+        }
+
+        this.joinSuccess(client, options);
+    }
+
+    public joinResponse(client: LipwigSocket, id: string, response: boolean, reason?: string) {
+        const target = this.pending[id];
+        if (!target) {
+            client.error(ERROR_CODE.USERNOTFOUND);
+            return;
+        }
+
+        if (response) {
+            this.joinSuccess(target.client, target.options);
+            return;
+        }
+
+        target.client.error(ERROR_CODE.REJECTED, reason);
+        delete this.pending[id];
+    }
+
+    private joinSuccess(client: LipwigSocket, options: JoinOptions) {
         this.initialiseClient(client);
         const id = client.id;
         this.users.push(client);
@@ -123,6 +187,22 @@ export class Room {
             },
         });
         Logger.debug(`${id} joined`, this.id);
+    }
+
+    public lock(user: LipwigSocket, reason?: string) {
+        this.locked = true;
+        this.lockReason = reason;
+        if (reason) {
+            Logger.debug(`Locked - ${reason}`, this.id);
+        } else {
+            Logger.debug('Locked', this.id);
+        }
+    }
+
+    public unlock(user: LipwigSocket) {
+        this.locked = false;
+        this.lockReason = undefined;
+        Logger.debug('Unlocked', this.id);
     }
 
     private disconnect(disconnected: LipwigSocket) {
@@ -326,6 +406,78 @@ export class Room {
             },
         });
     }
+
+    poll(host: LipwigSocket, id: string, query: string, recipients: string[]) {
+        const poll: Poll = {
+            id,
+            pending: recipients,
+            received: [],
+            open: true
+        }
+
+        this.polls.push(poll);
+
+        for (const userId of recipients) {
+            const user = this.users.find(user => user.id === userId)
+            if (!user) {
+                host.error(ERROR_CODE.USERNOTFOUND);
+                continue;
+            }
+
+            user.send({
+                event: SERVER_CLIENT_EVENT.POLL,
+                data: {
+                    id,
+                    query
+                }
+            });
+
+        }
+    }
+
+    pollResponse(user: LipwigSocket, id: string, response: any) {
+        const poll = this.polls.find(poll => poll.id === id);
+        if (!poll) {
+            user.error(ERROR_CODE.POLLNOTFOUND);
+            return;
+        }
+
+        const client = user.id;
+
+        if (poll.received.includes(client)) {
+            user.error(ERROR_CODE.POLLALREADYRESPONSED);
+            return;
+        }
+
+        if (!poll.pending.includes(client)) {
+            user.error(ERROR_CODE.POLLUSERNOTFOUND);
+            return;
+        }
+
+        if (!poll.open) {
+            user.error(ERROR_CODE.POLLCLOSED);
+            return;
+        }
+
+        const userIndex = poll.pending.indexOf(client);
+        poll.pending.splice(userIndex, 1);
+        poll.received.push(client);
+
+        if (!poll.pending.length) {
+            poll.open = false;
+        }
+
+        this.host.send({
+            event: SERVER_HOST_EVENT.POLL_RESPONSE, 
+            data: {
+                id,
+                client,
+                response
+            }
+        });
+    }
+
+
 
     pingHost(socket: LipwigSocket, time: number) {
         const id = socket.id;

@@ -16199,6 +16199,7 @@ __metadata:
     "@nx/node": 16.3.2
     "@nx/plugin": 16.3.2
     "@nx/web": 16.3.2
+    "@nx/webpack": 16.3.2
     "@nx/workspace": 16.3.2
     "@nxext/sveltekit": ^14.0.0-next.2
     "@schematics/angular": 16.0.5
@@ -16245,7 +16246,7 @@ __metadata:
     ngx-deploy-npm: ^3.0.7
     nx: 16.3.2
     nx-electron: ^11.4.1
-    phaser: ^3.55.2
+    phaser: ^3.60.0
     prettier: 2.8.1
     reflect-metadata: ^0.1.13
     regenerator-runtime: 0.13.7
@@ -17910,7 +17911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"phaser@npm:^3.55.2":
+"phaser@npm:^3.60.0":
   version: 3.60.0
   resolution: "phaser@npm:3.60.0"
   dependencies:

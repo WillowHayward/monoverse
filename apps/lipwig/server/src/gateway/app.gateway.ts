@@ -8,7 +8,8 @@ import {
     HOST_EVENT,
     ClientEvents,
     HostEvents,
-    PING_EVENT
+    PING_EVENT,
+    GENERIC_EVENT
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { Logger, UseGuards } from '@nestjs/common';
@@ -28,6 +29,9 @@ export class AppGateway implements OnGatewayConnection {
         socket.socket = lipwigSocket;
     }
 
+    //@SubscribeMessage(GENERIC_EVENT.QUERY)
+    //query(socket: WebSocket, payload: 
+
     @SubscribeMessage(HOST_EVENT.CREATE)
     create(socket: WebSocket, payload: HostEvents.CreateData) {
         const config = payload.config;
@@ -39,6 +43,25 @@ export class AppGateway implements OnGatewayConnection {
         const code = payload.code;
         const options = payload.options;
         this.rooms.join(socket.socket, code, options);
+    }
+
+    @SubscribeMessage(HOST_EVENT.JOIN_RESPONSE)
+    joinResponse(socket: WebSocket, payload: HostEvents.JoinResponseData) {
+        const id = payload.id;
+        const response = payload.response;
+        const reason = payload.reason;
+        this.rooms.joinResponse(socket.socket, id, response, reason);
+    }
+
+    @SubscribeMessage(HOST_EVENT.LOCK)
+    lock(socket: WebSocket, payload: HostEvents.LockData) {
+        const reason = payload.reason;
+        this.rooms.lock(socket.socket, reason);
+    }
+
+    @SubscribeMessage(HOST_EVENT.UNLOCK)
+    unlock(socket: WebSocket) {
+        this.rooms.unlock(socket.socket);
     }
 
     @SubscribeMessage(HOST_EVENT.RECONNECT)
@@ -60,6 +83,21 @@ export class AppGateway implements OnGatewayConnection {
     @SubscribeMessage(CLIENT_EVENT.MESSAGE)
     message(socket: WebSocket, payload: HostEvents.MessageData | ClientEvents.MessageData) {
         this.rooms.message(socket.socket, payload);
+    }
+
+    @SubscribeMessage(HOST_EVENT.POLL)
+    poll(socket: WebSocket, payload: HostEvents.PollData) {
+        const id = payload.id;
+        const query = payload.query;
+        const recipients = payload.recipients;
+        this.rooms.poll(socket.socket, id, query, recipients);
+    }
+
+    @SubscribeMessage(CLIENT_EVENT.POLL_RESPONSE)
+    pollResponse(socket: WebSocket, payload: ClientEvents.PollResponseData) {
+        const id = payload.id;
+        const response = payload.response;
+        this.rooms.pollResponse(socket.socket, id, response);
     }
 
     @SubscribeMessage(PING_EVENT.PING_SERVER)

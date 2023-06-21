@@ -8,8 +8,8 @@ import {
     CreateOptions,
     JoinOptions
 } from '@whc/lipwig/model';
-import { Host } from './Host';
-import { Client } from './Client';
+import { Host } from './host';
+import { Client } from './client';
 
 export class Lipwig {
     static create(url: string, config: CreateOptions = {}): Promise<Host> {

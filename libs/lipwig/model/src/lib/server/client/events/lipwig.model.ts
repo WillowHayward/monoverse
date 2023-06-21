@@ -22,3 +22,12 @@ export interface MessageData {
     args: unknown[];
 }
 
+export interface Poll extends EventStructure {
+    event: SERVER_CLIENT_EVENT.POLL,
+    data: PollData;
+}
+
+export interface PollData {
+    id: string;
+    query: string;
+}
