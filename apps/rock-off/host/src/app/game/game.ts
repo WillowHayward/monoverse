@@ -2,7 +2,7 @@ import { Game as PhaserGame, Events } from 'phaser';
 import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
 
 import { Bracket, SingleEliminationBracket } from './brackets';
-import { Player } from './contestants';
+import { Contestant, Player } from './contestants';
 import { Round } from './round';
 
 const LIPWIG_URL = 'ws://localhost:8989';
@@ -12,6 +12,7 @@ export class Game extends Events.EventEmitter {
     private scene: string;
     private players: Player[] = [];
     private bracket: Bracket;
+    private winner: Contestant;
     public host: Host;
 
     private constructor(public game: PhaserGame) {
@@ -38,8 +39,13 @@ export class Game extends Events.EventEmitter {
     }
 
     public nextRound() {
+        if (this.bracket.getCurrentRound().getWinners().length === 1) {
+            this.winner = this.bracket.getCurrentRound().getWinners().pop();
+            this.changeScene('Winner');
+            return;
+        }
         this.bracket.nextRound();
-        this.startRound();
+        this.changeScene('Bracket');
     }
 
     public startRound() {
@@ -70,6 +76,10 @@ export class Game extends Events.EventEmitter {
         const players: string[] = this.host.getUsers().map(user => user.data['name']);
 
         return players;
+    }
+
+    public getWinner(): Contestant {
+        return this.winner;
     }
 
     private changeScene(scene: string) {

@@ -35,10 +35,8 @@ export class Round {
 
         this.results = Promise.all(results);
         this.results.then(results => {
-            console.log(results);
             const rematches = results.filter(result => result.draw);
             this.rematches = rematches.map(result => result.contestants);
-            console.log('The Rematches', this.rematches);
         });
         return this.results;
     }

@@ -13,7 +13,6 @@ export class RoundRematchCollectionScene extends Scene {
     create() {
         const game = Game.get();
         const contestants = game.getRound().getRematchContestants();
-        console.log('rematches', contestants);
         for (const contestant of contestants) {
             this.moveStatuses[contestant.name] = false;
             contestant.getCurrentMove().then(() => {
