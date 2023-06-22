@@ -1,8 +1,7 @@
 import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
 import { Round } from "../game/round";
-import { Scene } from "./scene";
-import { Button } from "../objects/button";
+import { Scene, Button } from "@whc/phaser";
 
 export class BracketScene extends Scene {
     private info: string[] = []; // TODO: Needs better name (and structure, tbh)

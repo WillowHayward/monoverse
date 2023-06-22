@@ -22,6 +22,7 @@
             "@whc/lipwig/js": ["libs/lipwig/js/src/index.ts"],
             "@whc/lipwig/model": ["libs/lipwig/model/src/index.ts"],
             "@whc/lipwig/ui": ["libs/lipwig/ui/src/index.ts"],
+            "@whc/phaser": ["libs/phaser/src/index.ts"],
             "@whc/plugin": ["libs/plugin/src/index.ts"],
             "@whc/queen/model": ["libs/queen/model/src/index.ts"],
             "@whc/rock-off/common": ["libs/rock-off/common/src/index.ts"],

@@ -1,5 +1,5 @@
 import { RockOff } from "../game/rock-off";
-import { Scene } from "./scene";
+import { Scene } from "@whc/phaser";
 
 export class WinnerScene extends Scene {
     constructor() {

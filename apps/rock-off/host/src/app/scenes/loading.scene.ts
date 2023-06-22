@@ -1,4 +1,4 @@
-import { Scene } from "./scene";
+import { Scene } from "@whc/phaser";
 
 export class LoadingScene extends Scene {
     constructor() {

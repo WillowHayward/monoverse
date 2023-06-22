@@ -1,7 +1,6 @@
 import { GameObjects } from "phaser";
-import { Scene } from "./scene";
 import { RockOff } from "../game/rock-off";
-import { Button } from "../objects/button";
+import { Button, Scene } from "@whc/phaser";
 import { Player } from "../game/contestants";
 
 export class LobbyScene extends Scene {

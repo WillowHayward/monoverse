@@ -1,6 +1,5 @@
 import { RockOff } from "../game/rock-off";
-import { Button } from "../objects/button";
-import { Scene } from "./scene";
+import { Button, Scene } from "@whc/phaser";
 
 export class RoundRematchResultsScene extends Scene {
     constructor() {
