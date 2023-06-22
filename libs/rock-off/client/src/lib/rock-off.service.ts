@@ -40,6 +40,7 @@ export class RockOffService {
     }
 
     private navigate(page: string) {
-        this.router.navigate([this.client.room, page], { skipLocationChange: true });
+        const room = this.client.room;
+        this.router.navigateByUrl(`${room}/${page}`, { skipLocationChange: true });
     }
 }
