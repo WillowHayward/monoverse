@@ -19,6 +19,8 @@ export class Client extends EventManager {
     protected name = 'Client';
     private socket: Socket;
     public id = '';
+    public roomName?: string;
+    public data: Record<string, any>;
 
     /**
      * Attempt to join an existing Lipwig room
@@ -32,6 +34,8 @@ export class Client extends EventManager {
         public options: JoinOptions = {}
     ) {
         super();
+
+        this.data = options.data || {};
 
         this.socket = new Socket(url, this.name);
 
@@ -181,7 +185,9 @@ export class Client extends EventManager {
             case SERVER_CLIENT_EVENT.JOINED:
                 Logger.debug(`[${this.name}] Joined ${this.room}`);
                 this.id = message.data.id;
+                this.roomName = message.data.name;
                 args.push(message.data.id);
+                args.push(message.data.name);
 
                 this.socket.setData(this.room, this.id);
                 break;

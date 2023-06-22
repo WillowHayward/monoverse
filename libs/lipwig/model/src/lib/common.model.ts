@@ -1,5 +1,6 @@
 export type CreateOptions = Partial<{
     size: number;
+    name: string;
     password: string;
     approvals: boolean; // True for Host manually approving join requests
     reconnect: {

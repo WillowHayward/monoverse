@@ -24,6 +24,7 @@ export class Room {
     private locked = false;
     private lockReason: string | undefined;
 
+    private name?: string;
     private password?: string;
     private size: number;
     private approvals: boolean;
@@ -52,6 +53,7 @@ export class Room {
         this.initialiseHost(host);
         Logger.debug(`${this.code} created by ${host.id}`, this.id);
 
+        this.name = config.name;
         if (config.password && config.password.length) {
             this.password = config.password;
         }
@@ -176,6 +178,7 @@ export class Room {
             event: SERVER_CLIENT_EVENT.JOINED,
             data: {
                 id,
+                name: this.name
             },
         });
 
