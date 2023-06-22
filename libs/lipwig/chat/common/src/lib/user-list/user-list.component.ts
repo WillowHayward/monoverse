@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ClientService } from '../client.service';
-import { Chatter } from '../app.model';
+import { Chatter } from '../chat.model';
 import { HostService } from '../host.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { HostService } from '../host.service';
     styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-    @Input() isHost: boolean;
+    @Input() isHost: boolean = false;
 
     chatters: Chatter[] = [];
     

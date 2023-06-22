@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LipwigService } from '../lipwig.service';
+import { LipwigService } from '@whc/lipwig/angular';
 import { HostService } from '../host.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NameInputComponent } from '../name-input/name-input.component';
 import { ClientService } from '../client.service';
-import { Reconnectable } from '../app.model';
+import { Reconnectable } from '../chat.model';
 
 enum RoomState {
     LOADING,
@@ -27,14 +27,20 @@ export class RoomComponent implements OnInit {
     RoomState = RoomState;
     state: RoomState = RoomState.LOADING;
 
-    constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute, private router: Router) {
+            const initClient = this.lipwig.getClient();
+            if (!initClient) {
+                throw new Error('willow one day this will be your problem to deal with');
+            }
+            this.client.setClient(initClient);
+    }
 
     ngOnInit(): void {
         this.route.params.subscribe((data) => {
             this.code = data['code'];
             if (this.lipwig.connected) {
                 this.state = RoomState.CONNECTED;
-                this.isHost = this.lipwig.isHost;
+                this.isHost = this.lipwig.getHost() !== undefined;
             } else {
                 this.attemptReconnect();
             }
@@ -55,9 +61,9 @@ export class RoomComponent implements OnInit {
                 target = this.client;
             }
 
-            target.reconnect(name, code, id).then(client => {
+            target.reconnect(name, code, id).then(() => {
                 this.state = RoomState.CONNECTED;
-                this.isHost = this.lipwig.isHost;
+                this.isHost = this.lipwig.getHost() !== undefined;
             }).catch(() => {
                 this.state = RoomState.NAME_REQUIRED;
             });
@@ -67,7 +73,7 @@ export class RoomComponent implements OnInit {
     }
 
     connect() {
-        this.client.connect(this.nameInput.name, this.code).then(client => {
+        this.client.connect(this.nameInput.name, this.code).then(() => {
             this.state = RoomState.CONNECTED;
         });
     }

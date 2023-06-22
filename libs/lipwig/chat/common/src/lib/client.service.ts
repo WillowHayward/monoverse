@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Client, Host, User } from '@whc/lipwig/js';
+import { Client } from '@whc/lipwig/js';
 import { Observable } from 'rxjs';
-import { Chatter, Reconnectable } from './app.model';
-import { LipwigService } from './lipwig.service';
+import { Chatter, Reconnectable } from './chat.model';
+import { LipwigService } from '@whc/lipwig/angular';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class ClientService implements Reconnectable {
     private client: Client;
     private chatters: Chatter[] = [];
+    //private url = window.env['LIPWIG_HOST'];
+    private url = 'ws://localhost:8989';
 
     constructor(private lipwig: LipwigService, private router: Router) { }
 
@@ -20,14 +22,18 @@ export class ClientService implements Reconnectable {
     }
 
     async connect(name: string, code: string): Promise<Client> {
-        const client = await this.lipwig.joinRoom(name, code);
+        const client = await this.lipwig.join(this.url, code, {
+            data: { name }
+        });
         this.setClient(client);
 
         return client;
     }
 
-    async reconnect(name: string, code: string, id: string): Promise<Client> {
-        const client = await this.lipwig.joinRoom(name, code, id);
+    async reconnect(code: string, id: string): Promise<Client> {
+        const client = await this.lipwig.join(this.url, code, {
+            reconnect: id
+        });
         this.setClient(client);
 
         return client;

@@ -1,4 +1,4 @@
-import { Client } from "@whc/lipwig/js";
+import type { Client } from "@whc/lipwig/js";
 
 export interface Chatter {
     name: string;

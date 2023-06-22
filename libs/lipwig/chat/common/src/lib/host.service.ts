@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { LipwigService } from './lipwig.service';
+import { LipwigService } from '@whc/lipwig/angular';
 import { Client, Host, JoinRequest, User } from '@whc/lipwig/js';
-import { Chatter, Reconnectable } from './app.model';
+import { Chatter, Reconnectable } from './chat.model';
 import { ClientService } from './client.service';
 
 @Injectable({
@@ -9,14 +9,18 @@ import { ClientService } from './client.service';
 })
 export class HostService implements Reconnectable {
     private host: Host;
+    //private url = window.env['LIPWIG_HOST'];
+    private url = 'ws://localhost:8989';
 
     constructor(private lipwig: LipwigService, private client: ClientService) { }
 
     async connect(name: string): Promise<Client> {
-        const host = await this.lipwig.createRoom(name);
+        const host = await this.lipwig.create(this.url, {
+            name: 'lipwig-chat'
+        });
         this.host = host;
 
-        const local = host.createLocalClient({
+        const local = await this.lipwig.joinLocal({
             data: {
                 name
             }
@@ -28,9 +32,11 @@ export class HostService implements Reconnectable {
         return local;
     }
 
-    async reconnect(name: string, code: string, id: string): Promise<Client> {
-        const host = await this.lipwig.createRoom(name, {
-            code, id
+    async reconnect(code: string, id: string): Promise<Client> {
+        const host = await this.lipwig.create(this.url, {
+            reconnect: {
+                code, id
+            }
         });
         this.host = host;
         this.setup();
@@ -84,7 +90,9 @@ export class HostService implements Reconnectable {
     private setup() {
         //this.setPingServerListener();
         this.host.on('joined', (user: User, data: any) => {
-            user.send('chatters', this.getChatters());
+            setTimeout(() => {
+                user.send('chatters', this.getChatters());
+            }, 1); // TODO: Figure out why the listeners aren't set in time (side effect of localhost?)
 
             //this.setPingListener(user);
 
