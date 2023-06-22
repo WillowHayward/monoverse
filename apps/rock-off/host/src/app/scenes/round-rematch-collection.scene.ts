@@ -1,5 +1,5 @@
 import { GameObjects } from "phaser";
-import { Game } from "../game/game";
+import { RockOff } from "../game/rock-off";
 import { Scene } from "./scene";
 
 export class RoundRematchCollectionScene extends Scene {
@@ -11,7 +11,7 @@ export class RoundRematchCollectionScene extends Scene {
     }
 
     create() {
-        const game = Game.get();
+        const game = RockOff.get();
         const contestants = game.getRound().getRematchContestants();
         for (const contestant of contestants) {
             this.moveStatuses[contestant.name] = false;

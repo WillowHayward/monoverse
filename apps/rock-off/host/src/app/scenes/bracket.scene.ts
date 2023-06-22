@@ -1,5 +1,5 @@
 import { GameObjects } from "phaser";
-import { Game } from "../game/game";
+import { RockOff } from "../game/rock-off";
 import { Round } from "../game/round";
 import { Scene } from "./scene";
 import { Button } from "../objects/button";
@@ -20,7 +20,7 @@ export class BracketScene extends Scene {
             color: 'black'
         });
 
-        const game = Game.get();
+        const game = RockOff.get();
         const round = game.getRound();
         this.addRound(round);
 

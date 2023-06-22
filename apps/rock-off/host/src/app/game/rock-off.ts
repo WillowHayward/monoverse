@@ -1,4 +1,4 @@
-import { Game as PhaserGame, Events } from 'phaser';
+import { Game, Events } from 'phaser';
 import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
 
 import { Bracket, SingleEliminationBracket } from './brackets';
@@ -7,15 +7,15 @@ import { Round } from './round';
 
 const LIPWIG_URL = 'ws://localhost:8989';
 
-export class Game extends Events.EventEmitter {
-    private static singleton: Game;
+export class RockOff extends Events.EventEmitter {
+    private static singleton: RockOff;
     private scene: string;
     private players: Player[] = [];
     private bracket: Bracket;
     private winner: Contestant;
     public host: Host;
 
-    private constructor(public game: PhaserGame) {
+    private constructor(public game: Game) {
         super();
         this.scene = 'Menu';
     }
@@ -106,12 +106,12 @@ export class Game extends Events.EventEmitter {
         });
     }
 
-    static init(game: PhaserGame) {
-        Game.singleton = new Game(game);
-        Game.singleton.startLobby();
+    static init(game: Game) {
+        RockOff.singleton = new RockOff(game);
+        RockOff.singleton.startLobby();
     }
 
-    static get(): Game {
-        return Game.singleton;
+    static get(): RockOff {
+        return RockOff.singleton;
     }
 }

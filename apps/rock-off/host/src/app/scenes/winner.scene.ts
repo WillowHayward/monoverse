@@ -1,4 +1,4 @@
-import { Game } from "../game/game";
+import { RockOff } from "../game/rock-off";
 import { Scene } from "./scene";
 
 export class WinnerScene extends Scene {
@@ -7,7 +7,7 @@ export class WinnerScene extends Scene {
     }
 
     create() {
-        const game = Game.get();
+        const game = RockOff.get();
         const winner = game.getWinner();
         const text = this.add.text(this.width / 2, this.height / 2, `${winner.name} Wins!`, {
             fontFamily: 'arial',

@@ -1,4 +1,4 @@
-import { Game } from "../game/game";
+import { RockOff } from "../game/rock-off";
 import { Button } from "../objects/button";
 import { Scene } from "./scene";
 
@@ -8,7 +8,7 @@ export class RoundRematchResultsScene extends Scene {
     }
 
     async create() {
-        const game = Game.get();
+        const game = RockOff.get();
         const results = await game.getRound().getRematchResults();
         let display: string[] = [];
         for (const result of results) {

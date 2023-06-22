@@ -1,6 +1,6 @@
 import { GameObjects } from "phaser";
 import { Scene } from "./scene";
-import { Game } from "../game/game";
+import { RockOff } from "../game/rock-off";
 import { Button } from "../objects/button";
 import { Player } from "../game/contestants";
 
@@ -28,7 +28,7 @@ export class LobbyScene extends Scene {
             color: 'black'
         }
 
-        const game = Game.get();
+        const game = RockOff.get();
         this.room = game.getRoom();
 
         this.joinText = this.add.text(10, 10, '', {
