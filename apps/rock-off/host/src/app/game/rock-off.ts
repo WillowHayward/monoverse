@@ -23,7 +23,8 @@ export class RockOff extends Events.EventEmitter {
     public startLobby() {
         this.changeScene('Loading');
         Lipwig.create(LIPWIG_URL, {
-            approvals: true
+            name: 'rock-off',
+            approvals: true,
         }).then(host => {
             this.setHost(host);
             this.changeScene('Lobby');
