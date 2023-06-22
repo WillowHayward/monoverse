@@ -1,13 +1,12 @@
-import { Bracket } from "./bracket";
-import { Round } from "../round";
-import { Contestant } from "../contestants";
+import { Round } from "./round";
+import { Contestant } from "./contestants";
 
-export class SingleEliminationBracket extends Bracket {
+export class Bracket {
+    protected rounds: Round[] = [];
     constructor(private contestants: Contestant[]) {
-        super();
     }
 
-    public override nextRound(): Round {
+    public nextRound(): Round {
         let contestants: Contestant[];
         if (this.rounds.length) {
             const lastRound = this.rounds[this.rounds.length - 1];
@@ -20,5 +19,9 @@ export class SingleEliminationBracket extends Bracket {
         this.rounds.push(round);
 
         return round;
+    }
+
+    public getCurrentRound(): Round {
+        return this.rounds[this.rounds.length - 1];
     }
 }

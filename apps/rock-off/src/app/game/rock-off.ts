@@ -1,7 +1,7 @@
 import { Game, Events } from 'phaser';
 import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
 
-import { Bracket, SingleEliminationBracket } from './brackets';
+import { Bracket } from './bracket';
 import { Contestant, Player } from './contestants';
 import { Round } from './round';
 
@@ -33,7 +33,7 @@ export class RockOff extends Events.EventEmitter {
 
     public start() {
         this.host.lock('Game In Progress');
-        this.bracket = new SingleEliminationBracket(this.players);
+        this.bracket = new Bracket(this.players);
         this.bracket.nextRound()
 
         this.changeScene('Bracket');

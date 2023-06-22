@@ -2,6 +2,7 @@ import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
 import { Round } from "../game/round";
 import { Scene, Button } from "@whc/phaser";
+import { defaultTextStyle } from "../game.styles";
 
 export class BracketScene extends Scene {
     private info: string[] = []; // TODO: Needs better name (and structure, tbh)
@@ -13,10 +14,8 @@ export class BracketScene extends Scene {
 
     create() {
         this.infoText = this.add.text(200, 200, '', {
-            align: 'center',
-            fontFamily: 'arial',
+            ...defaultTextStyle,
             fontSize: '5vh',
-            color: 'black'
         });
 
         const game = RockOff.get();
@@ -28,7 +27,6 @@ export class BracketScene extends Scene {
         btnStart.on('click', () => {
             game.startRound();
         });
-        btnStart.setOrigin(0.5, 1);
         this.add.existing(btnStart);
     }
 

@@ -41,7 +41,6 @@ export class LobbyScene extends Scene {
         btnStart.on('click', () => {
             game.start();
         });
-        btnStart.setOrigin(0.5, 1);
         this.add.existing(btnStart);
 
 

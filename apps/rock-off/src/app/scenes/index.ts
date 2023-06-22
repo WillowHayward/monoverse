@@ -1,3 +1,4 @@
+export * from './initial.scene';
 export * from './menu.scene';
 export * from './lobby.scene';
 export * from './loading.scene';
