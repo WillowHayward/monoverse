@@ -17,14 +17,15 @@ export type JoinOptions = Partial<{
     reconnect: string;
 }>;
 
-export interface RoomQuery {
+export type RoomQuery = Partial<{
     room: string;
-    name?: string;
+    exists: boolean;
+    name: string;
     protected: boolean; // Password protected
     capacity: number; // Slots remaining
     locked: boolean;
     lockReason?: string;
-}
+}>
 
 export enum GENERIC_EVENT {
     QUERY = 'query'
@@ -54,6 +55,7 @@ export enum CLOSE_CODE {
     KICKED = 3400,
     CLOSED = 3401,
     LEFT = 3402,
+    QUERY_COMPLETE = 3403,
 }
 
 export enum PING_EVENT {
@@ -64,6 +66,4 @@ export enum PING_EVENT {
     PING_CLIENT = 'lw-ping-client',
     PONG_CLIENT = 'lw-pong-client',
 }
-
-export const NAUGHTY_WORDS = ['SHIT', 'FUCK', 'CUNT', 'COCK'];
 

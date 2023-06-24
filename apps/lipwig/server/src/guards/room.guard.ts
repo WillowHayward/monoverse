@@ -3,7 +3,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { RoomService } from '../room/room.service';
 import { WebSocket } from '../app/app.model';
-import { CLIENT_EVENT, ERROR_CODE, HOST_EVENT } from '@whc/lipwig/model';
+import { CLIENT_EVENT, ERROR_CODE, GENERIC_EVENT, HOST_EVENT } from '@whc/lipwig/model';
 import { LipwigSocket } from '../classes/LipwigSocket';
 
 interface Validator {
@@ -83,6 +83,11 @@ export class RoomGuard implements CanActivate {
     }
 
     private isValidEvent(event: string): event is CLIENT_EVENT {
+        const genericEvents = Object.values(GENERIC_EVENT);
+        if (genericEvents.includes(event as GENERIC_EVENT)) {
+            return true;
+        }
+
         const clientEvents = Object.values(CLIENT_EVENT);
         if (clientEvents.includes(event as CLIENT_EVENT)) {
             return true;
@@ -189,7 +194,7 @@ export class RoomGuard implements CanActivate {
             case CLIENT_EVENT.PING_HOST:
             case CLIENT_EVENT.PONG_CLIENT:
             case CLIENT_EVENT.PING_SERVER:
-            case HOST_EVENT.PING_SERVER: 
+            case HOST_EVENT.PING_SERVER:
                 return {
                     required: ['time']
                 }

@@ -1,8 +1,7 @@
-import { ERROR_CODE, SERVER_CLIENT_EVENT, ServerClientEvents, ServerHostEvents, CLOSE_CODE, ServerGenericEvents } from '@whc/lipwig/model';
+import { ERROR_CODE, SERVER_GENERIC_EVENTS, ServerClientEvents, ServerHostEvents, CLOSE_CODE, ServerGenericEvents } from '@whc/lipwig/model';
 import { WebSocket } from '../app/app.model';
 import { Room } from './Room';
 import { Logger } from '@nestjs/common';
-import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 
 type Callback = (...args: any[]) => void;
 

@@ -6,10 +6,13 @@
 import {
     ERROR_CODE,
     CreateOptions,
-    JoinOptions
+    JoinOptions,
+    RoomQuery,
+    GENERIC_EVENT
 } from '@whc/lipwig/model';
 import { Host } from './host';
 import { Client } from './client';
+import { Socket } from './Socket';
 
 export class Lipwig {
     static create(url: string, config: CreateOptions = {}): Promise<Host> {
@@ -24,9 +27,8 @@ export class Lipwig {
             });
 
             host.once('error', (error: ERROR_CODE, message?: string) => {
-                    reject({ error, message });
-                }
-            );
+                reject({ error, message });
+            });
         });
     }
 
@@ -61,6 +63,24 @@ export class Lipwig {
         return new Promise((resolve, reject) => {
             // TODO
             resolve(null);
+        });
+    }
+
+    static query(url: string, code: string): Promise<RoomQuery> {
+        return new Promise(resolve => {
+            const socket = new Socket(url, 'Query');
+            socket.on('connected', () => {
+                socket.send({
+                    event: GENERIC_EVENT.QUERY,
+                    data: {
+                        room: code
+                    }
+                });
+            });
+
+            socket.on('query-response', (response: RoomQuery) => {
+                resolve(response);
+            });
         });
     }
 }

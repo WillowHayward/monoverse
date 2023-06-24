@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 
-import { CreateOptions, JoinOptions } from '@whc/lipwig/model';
+import { CreateOptions, JoinOptions, RoomQuery } from '@whc/lipwig/model';
 import { Client, Host, Lipwig, LocalClient, LocalHost } from '@whc/lipwig/js';
 
 // TODO: It's an edge case, but accounting for multiple hosts/clients in a single connection could be neat
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LipwigService {
     private host?: Host;
     private client?: Client;
-    public connected: boolean = false;
+    public connected = false;
 
-  constructor() { }
+    public async query(url: string, room: string): Promise<RoomQuery> {
+        return Lipwig.query(url, room);
+    }
 
     public async create(url: string, options: CreateOptions): Promise<Host> {
         const promise = Lipwig.create(url, options);
