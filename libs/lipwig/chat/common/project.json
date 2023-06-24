@@ -2,7 +2,7 @@
     "name": "lipwig-chat-common",
     "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/lipwig/chat/common/src",
-    "prefix": "whc",
+    "prefix": "lwc",
     "tags": [],
     "projectType": "library",
     "targets": {

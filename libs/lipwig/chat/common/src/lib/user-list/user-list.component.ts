@@ -9,7 +9,7 @@ import { HostService } from '../host.service';
     styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-    @Input() isHost: boolean = false;
+    @Input() isHost = false;
 
     chatters: Chatter[] = [];
     

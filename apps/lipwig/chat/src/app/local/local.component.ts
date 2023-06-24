@@ -18,7 +18,7 @@ export class LocalComponent implements OnInit {
         this.createClient(room);
         this.createClient(room);
 
-        return new Promise(() => {});
+        return new Promise(() => null); // TODO: Not sure what this is
     }
 
     private createHost(): Promise<string> {
