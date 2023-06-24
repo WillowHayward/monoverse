@@ -7,11 +7,19 @@ import { RockOffService } from '../rock-off.service';
     styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-    name: string = '';
+    name = '';
+    vip = false;
 
     constructor(private game: RockOffService) { }
 
     ngOnInit(): void {
         this.name = this.game.name;
+        this.game.vip.then(vip => {
+            this.vip = vip;
+        });
+    }
+
+    start() {
+        this.game.start();
     }
 }

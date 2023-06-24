@@ -1,6 +1,6 @@
 import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
-import { Button, Scene } from "@whc/phaser";
+import { Scene } from "@whc/phaser";
 import { Player } from "../game/contestants";
 
 export class LobbyScene extends Scene {
@@ -11,7 +11,7 @@ export class LobbyScene extends Scene {
 
     private joinText: GameObjects.Text;
     constructor() {
-        super({key: 'Lobby'});
+        super({ key: 'Lobby' });
     }
 
     preload() {
@@ -34,15 +34,6 @@ export class LobbyScene extends Scene {
             ...style,
             fontSize: '5vh',
         });
-
-
-        // TODO: Move to client input
-        const btnStart = new Button(this, this.width / 2, this.height - 200, 'Start Game');
-        btnStart.on('click', () => {
-            game.start();
-        });
-        this.add.existing(btnStart);
-
 
         game.on('joined', (player: Player) => {
             this.addPlayer(player);
@@ -109,7 +100,7 @@ export class LobbyScene extends Scene {
         let localY = y;
 
         const localNames = names.shift() || [];
-        for (let i = 0; i < numContestants; i+= 2) {
+        for (let i = 0; i < numContestants; i += 2) {
             const a = localNames[i];
             const b = localNames[i + 1];
             this.drawSingleBracket(x, localY, hSpacing, vSpacing, a, b);
@@ -128,7 +119,7 @@ export class LobbyScene extends Scene {
     // left: string
     // right: string | null (floating)
     // winner: string | null
-    private drawSingleBracket(xOffset: number, yOffset: number, hSpacing: number, vSpacing: number, 
+    private drawSingleBracket(xOffset: number, yOffset: number, hSpacing: number, vSpacing: number,
         name1?: string, name2?: string): number {
         const textStyle = {
             fontFamily: 'arial',

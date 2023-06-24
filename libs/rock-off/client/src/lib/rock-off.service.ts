@@ -5,12 +5,13 @@ import { Client, Query } from '@whc/lipwig/js';
 import { Move } from '@whc/rock-off/common';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RockOffService {
     private client: Client;
     private currentPoll?: Query;
     public name: string;
+    public vip: Promise<boolean>;
     constructor(lipwig: LipwigService, private router: Router) {
         const client = lipwig.getClient();
         if (!client) {
@@ -19,6 +20,16 @@ export class RockOffService {
 
         this.client = client;
         this.name = client.data['name'] || '';
+
+        this.vip = new Promise<boolean>(resolve => {
+            client.once('vip', () => {
+                resolve(true);
+            });
+        });
+
+        client.on('wait', () => {
+            this.navigate('wait');
+        });
 
         client.on('poll', query => {
             this.currentPoll = query;
@@ -30,9 +41,13 @@ export class RockOffService {
         });
     }
 
+    public start() {
+        this.client.send('start');
+    }
+
     public play(move: Move) {
         if (!this.currentPoll) {
-            throw new Error('willow handle this');
+            throw new Error('willow handle this'); //TODO
         }
 
         this.currentPoll.respond(move);
