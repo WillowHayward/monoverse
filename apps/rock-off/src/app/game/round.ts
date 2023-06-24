@@ -57,11 +57,10 @@ export class Round {
     }
 
     public getResults(): Promise<Result[]> {
+        if (this.rematchResults) {
+            return this.rematchResults;
+        }
         return this.results;
-    }
-
-    public getRematchResults(): Promise<Result[]> {
-        return this.rematchResults;
     }
 
     private async getResult(pairing: Pairing): Promise<Result> {
@@ -76,7 +75,7 @@ export class Round {
             let winner: Contestant;
             let loser: Contestant;
             if (result === 0) {
-                return { 
+                return {
                     draw: true,
                     contestants: [a, b]
                 };
@@ -107,22 +106,10 @@ export class Round {
     }
 
     public getPairings(): Pairing[] {
-        return this.pairings;
-    }
-
-    public getRematches(): Pairing[] {
-        return this.rematches;
-    }
-
-    public getRematchContestants(): Contestant[] {
-        const rematches = this.getRematches();
-        const contestants: Contestant[] = [];
-        for (const pairing of rematches) {
-            const [a, b] = pairing;
-            contestants.push(a, b);
+        if (this.rematches.length) {
+            return this.rematches;
         }
-
-        return contestants;
+        return this.pairings;
     }
 
     public getWinners(): Contestant[] {

@@ -53,17 +53,17 @@ export class RockOff extends Events.EventEmitter {
     public startRound() {
         const round = this.bracket.getCurrentRound();
         round.start().then(() => {
-            this.changeScene('RoundResults');
+            this.changeScene('Results');
         });
-        this.changeScene('RoundCollection');
+        this.changeScene('Collection');
     }
 
     public startRematches() {
         const round = this.bracket.getCurrentRound();
         round.startRematches().then(() => {
-            this.changeScene('RoundRematchResults');
+            this.changeScene('Results');
         });
-        this.changeScene('RoundRematchCollection');
+        this.changeScene('Collection');
     }
 
     public getRoom(): string {
@@ -92,7 +92,7 @@ export class RockOff extends Events.EventEmitter {
 
     private setHost(host: Host) {
         this.host = host;
-        host.on('join-request', (request: JoinRequest, data: {[key: string]: any}) => {
+        host.on('join-request', (request: JoinRequest, data: { [key: string]: any }) => {
             const name = data['name'];
             if (this.players.some(player => player.name === name)) {
                 request.reject(`Player with name ${name} already in room`);

@@ -2,9 +2,9 @@ import { defaultTextStyle } from "../game.styles";
 import { RockOff } from "../game/rock-off";
 import { Button, Scene, SecondsTimer } from "@whc/phaser";
 
-export class RoundResultsScene extends Scene {
+export class ResultsScene extends Scene {
     constructor() {
-        super({key: 'RoundResults'});
+        super({key: 'Results'});
     }
 
     async create() {
