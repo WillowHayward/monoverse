@@ -39,7 +39,7 @@ export class CollectionScene extends Scene {
             const text: string[] = [];
             for (const name in pairing) {
                 const status = pairing[name];
-                text.push(`${name}(${status ? 'Waiting' : 'Submitted'})`);
+                text.push(`${name}(${status ? 'Submitted' : 'Waiting'})`);
             }
             statuses.push(text.join(' vs '));
         }
