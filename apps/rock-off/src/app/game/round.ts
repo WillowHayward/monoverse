@@ -130,21 +130,20 @@ export class Round {
             case Move.ROCK:
                 if (b === Move.SCISSORS) {
                     return -1;
-                } else {
-                    return 1;
                 }
+                break;
             case Move.PAPER:
                 if (b === Move.ROCK) {
                     return -1;
-                } else {
-                    return 1;
                 }
+                break;
             case Move.SCISSORS:
                 if (b === Move.PAPER) {
                     return -1;
-                } else {
-                    return 1;
                 }
+                break;
         }
+
+        return 1;
     }
 }
