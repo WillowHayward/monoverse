@@ -11,7 +11,6 @@ import { JoinComponent } from './join/join.component';
     imports: [
         BrowserModule,
         FormsModule,
-        //RockOffClientModule,
         RouterModule.forRoot(appRoutes, {
             initialNavigation: 'enabledBlocking',
         }),

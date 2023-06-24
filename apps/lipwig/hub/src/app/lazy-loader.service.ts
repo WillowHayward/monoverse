@@ -1,40 +1,63 @@
 import { Injectable } from '@angular/core';
-import { LoadChildrenCallback, Router } from '@angular/router';
-
+import { Route, Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LazyLoaderService {
-    private callbacks: Record<string, LoadChildrenCallback> = {
-        'rock-off': () => import('@whc/rock-off/client').then(mod => mod.RockOffClientModule),
-        'lipwig-chat': () => import('@whc/lipwig/chat/client').then(mod => mod.LipwigChatClientModule),
-    }
-  constructor(private router: Router) { }
 
-    async navigate(code: string, roomName?: string): Promise<void> {
-        if (!roomName) {
-            throw new Error();
-        }
-
-        const config = this.router.config;
-        let route = config.find(route => route.path === ':code');
-
-        if (!route) {
-            route = {
-                path: ':code',
+    private apps: Record<string, {
+        routes: () => Promise<Route[]>;
+        name: string;
+    }> = {
+            'rock-off': {
+                routes: () => import('@whc/rock-off/client').then(mod => mod.rockOffClientRoutes),
+                name: 'Rock Off'
+            },
+            'lipwig-chat': {
+                routes: () => import('@whc/lipwig/chat/client').then(mod => mod.lipwigChatClientRoutes),
+                name: 'Lipwig Chat'
             }
-            config.push(route);
         }
 
-        const callback = this.callbacks[roomName];
-        if (!callback) {
+    private routes: Promise<Route[]>;
+
+    constructor(private router: Router) { }
+
+    getAppName(roomName: string): string {
+        if (!this.apps[roomName]) {
             throw new Error(`Application '${roomName}' not recognized`);
         }
 
-        route.loadChildren = callback;
+        return this.apps[roomName].name;
+    }
 
-        this.router.resetConfig(config);
-        this.router.navigate([code]);
+    async preload(roomName: string) {
+        if (!this.apps[roomName]) {
+            throw new Error(`Application '${roomName}' not recognized`);
+        }
+
+        const callback = this.apps[roomName].routes;
+        this.routes = callback();
+        this.routes.then(routes => {
+            const config = this.router.config;
+            let route = config.find(route => route.path === ':code');
+
+            if (!route) {
+                route = {
+                    path: ':code',
+                }
+                config.push(route);
+            }
+
+            route.children = routes;
+            this.router.resetConfig(config);
+        });
+    }
+
+    async navigate(code: string): Promise<void> {
+        this.routes.then(() => {
+            this.router.navigate([code], { skipLocationChange: true });
+        });
     }
 }
