@@ -1,7 +1,7 @@
 import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
 import { Round } from "../game/round";
-import { Scene, Button } from "@whc/phaser";
+import { Scene, SecondsTimer } from "@whc/phaser";
 import { defaultTextStyle } from "../game.styles";
 
 export class BracketScene extends Scene {
@@ -22,12 +22,15 @@ export class BracketScene extends Scene {
         const round = game.getRound();
         this.addRound(round);
 
-        // TODO: Move to client input
-        const btnStart = new Button(this, this.width / 2, this.height - 200, 'Start Round');
-        btnStart.on('click', () => {
+        const timer = new SecondsTimer(this, this.width / 2, this.height - 100, 10, {
+            ...defaultTextStyle,
+            fontSize: '10vh'
+        }, 'Round starting in ');
+        timer.setOrigin(0.5, 1);
+        this.add.existing(timer);
+        timer.on('done', () => {
             game.startRound();
         });
-        this.add.existing(btnStart);
     }
 
     private addRound(round: Round) {

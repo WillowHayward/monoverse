@@ -1,5 +1,6 @@
+import { defaultTextStyle } from "../game.styles";
 import { RockOff } from "../game/rock-off";
-import { Button, Scene } from "@whc/phaser";
+import { Button, Scene, SecondsTimer } from "@whc/phaser";
 
 export class RoundRematchResultsScene extends Scene {
     constructor() {
@@ -27,18 +28,27 @@ export class RoundRematchResultsScene extends Scene {
             color: 'black'
         });
 
+        let timerPrefix: string;
+        let timerCallback: () => void;
         if (results.some(result => result.draw)) {
-            const btnRematches = new Button(this, this.width / 2, this.height - 200, 'Run Rematches');
-            btnRematches.on('click', () => {
+            timerPrefix = 'Running rematches in ';
+            timerCallback = () => {
                 game.startRematches();
-            });
-            this.add.existing(btnRematches);
+            }
         } else {
-            const btnNext = new Button(this, this.width / 2, this.height - 200, 'Next Round');
-            btnNext.on('click', () => {
+            timerPrefix = 'Next round in ';
+            timerCallback = () => {
                 game.nextRound();
-            });
-            this.add.existing(btnNext);
+            }
         }
+        const timer = new SecondsTimer(this, this.width / 2, this.height - 100, 10, {
+            ...defaultTextStyle,
+            fontSize: '10vh'
+        }, timerPrefix);
+        timer.setOrigin(0.5, 1);
+        this.add.existing(timer);
+        timer.on('done', () => {
+            timerCallback();
+        });
     }
 }
