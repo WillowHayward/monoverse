@@ -43,7 +43,7 @@ export class Room {
 
     // TODO: This feels hacky
     public onclose: () => void;
-    public closed: boolean = false;
+    public closed = false;
 
     constructor(
         private host: LipwigSocket,

@@ -10,7 +10,7 @@ export class ResultsScene extends Scene {
     async create() {
         const game = RockOff.get();
         const results = await game.getRound().getResults();
-        let display: string[] = [];
+        const display: string[] = [];
         for (const result of results) {
             const [a, b] = result.contestants;
             let displayString = `${a.name} vs ${b.name}:`;

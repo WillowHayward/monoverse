@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RockOffService } from '../rock-off.service';
 
 @Component({
@@ -6,8 +6,8 @@ import { RockOffService } from '../rock-off.service';
     templateUrl: './eliminated.component.html',
     styleUrls: ['./eliminated.component.scss'],
 })
-export class EliminatedComponent {
-    name: string = '';
+export class EliminatedComponent implements OnInit {
+    name = '';
 
     constructor(private game: RockOffService) { }
 

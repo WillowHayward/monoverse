@@ -77,9 +77,9 @@ export class LobbyScene extends Scene {
 
 
         // TODO: Tighten this (and subfunctions) up to be centered
-        let x = 300;
-        let y = border;
-        let hSpacing = 30;
+        const x = 300;
+        const y = border;
+        const hSpacing = 30;
         const textStyle = {
             fontFamily: 'arial',
             color: 'black',

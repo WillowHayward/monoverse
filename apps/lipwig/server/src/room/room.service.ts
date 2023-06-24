@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import {
+    SERVER_GENERIC_EVENTS,
     ERROR_CODE,
     ClientEvents,
     HostEvents,
@@ -14,14 +15,13 @@ import { generateString } from '@whc/utils';
 import { LipwigSocket } from '../classes/LipwigSocket';
 import { Room } from '../classes/Room';
 import { BANNED_WORDS } from '../app/app.model';
-import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 
 // TODO: Make @SubscribeHostEvent and @SubscribeClientEvent method decorators
 // TODO: Make exception which sends error?
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
-    private roomLimit: number = 0; // 0 for no limit
+    private roomLimit = 0; // 0 for no limit
 
     getRoom(room: string): Room {
         return this.rooms[room];
