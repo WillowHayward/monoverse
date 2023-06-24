@@ -65,12 +65,12 @@ export class User extends EventManager {
         return this.parent.poll([this], query, id);
     }
 
-    public assign(name: string, inform: boolean = false): void {
+    public assign(name: string, inform = false): void {
         const group = this.parent.assign(this, name, inform);
         this.groups.push(group);
     }
 
-    public unassign(name: string, inform: boolean = false): void {
+    public unassign(name: string, inform = false): void {
         const group = this.parent.unassign(this, name, inform);
         const index = this.groups.indexOf(group);
         this.groups.splice(index, 1);

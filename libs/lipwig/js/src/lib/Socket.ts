@@ -1,19 +1,18 @@
 import {
     CLIENT_EVENT,
+    SERVER_GENERIC_EVENTS,
+    CLOSE_CODE,
     ClientEvents,
     HostEvents,
-    ServerClientEvents,
-    CLOSE_CODE,
     GenericEvents,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import * as Logger from 'loglevel';
-import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 // TODO: "this.name" is never Local*
 
 export class Socket extends EventManager {
     private socket?: WebSocket;
-    private retry: boolean = true;
+    private retry = true;
     private id?: string;
     private room?: string;
     private local: boolean;

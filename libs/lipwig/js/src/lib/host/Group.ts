@@ -10,7 +10,7 @@ export class Group extends EventManager {
         super();
     }
 
-    public add(user: User, inform: boolean = false) {
+    public add(user: User, inform = false) {
         if (this.users.includes(user)) {
             return;
         }
@@ -22,7 +22,7 @@ export class Group extends EventManager {
         console.log(this.users);
     }
 
-    public remove(user: User, inform: boolean = false) {
+    public remove(user: User, inform = false) {
         const index = this.users.indexOf(user);
         if (index === -1) {
             return;
@@ -38,7 +38,7 @@ export class Group extends EventManager {
         return this.users.indexOf(user) !== -1;
     }
 
-    public clear(inform: boolean = false) {
+    public clear(inform = false) {
         for (const user of this.users) {
             this.remove(user, inform);
         }

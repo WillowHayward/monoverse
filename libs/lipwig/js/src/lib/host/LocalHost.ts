@@ -56,7 +56,7 @@ export class LocalHost extends Host{
     }
 
     public override close(reason?: string) {
-
+        // TODO
     }
 
     public override handle(message: ServerHostEvents.Event) {
