@@ -102,17 +102,10 @@ export class RockOff extends Events.EventEmitter {
         });
 
         host.once('joined', (user: User) => {
-            setTimeout(() => {
-                /* BUG: Similar to lipwig-chat, this needs a delay to allow the client to set listeners.
-                 * I think this is a byproduct of the order in which lipwig-hub loads - it loads the
-                 * module _after_ join. This might be fixable by querying first and running the lazy-loading
-                 * then, but I'm not quite sure
-                */
-                user.send('vip');
-                user.once('start', () => {
-                    this.start();
-                });
-            }, 500);
+            user.send('vip');
+            user.once('start', () => {
+                this.start();
+            });
         });
 
         host.on('joined', (user: User) => {
