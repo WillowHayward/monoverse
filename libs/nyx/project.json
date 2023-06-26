@@ -42,7 +42,8 @@
             "options": {
                 "lintFilePatterns": [
                     "libs/nyx/**/*.ts",
-                    "libs/nyx/package.json"
+                    "libs/nyx/package.json",
+                    "libs/nyx/generators.json"
                 ]
             }
         },

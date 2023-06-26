@@ -1,0 +1,9 @@
+{
+    "generators": {
+        "collect": {
+            "factory": "./src/generators/collect/generator",
+            "schema": "./src/generators/collect/schema.json",
+            "description": "collect generator"
+        }
+    }
+}
