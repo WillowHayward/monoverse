@@ -1,10 +1,10 @@
-import * as Events from 'events';
+import { EventEmitter } from 'events';
 
 export class EventManager {
-    protected events: Events;
+    protected events: EventEmitter;
 
     constructor() {
-        this.events = new Events();
+        this.events = new EventEmitter();
     }
 
     public on(eventName: string, listener: ((...args: any[]) => void)) {

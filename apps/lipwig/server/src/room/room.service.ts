@@ -1,25 +1,27 @@
 import { Injectable } from '@nestjs/common';
 
 import {
+    SERVER_GENERIC_EVENTS,
     ERROR_CODE,
-    NAUGHTY_WORDS,
     ClientEvents,
     HostEvents,
     CreateOptions,
-    JoinOptions
+    JoinOptions,
+    RoomQuery
 } from '@whc/lipwig/model';
 
 import { generateString } from '@whc/utils';
 
 import { LipwigSocket } from '../classes/LipwigSocket';
 import { Room } from '../classes/Room';
+import { BANNED_WORDS } from '../app/app.model';
 
 // TODO: Make @SubscribeHostEvent and @SubscribeClientEvent method decorators
 // TODO: Make exception which sends error?
 @Injectable()
 export class RoomService {
     private rooms: { [code: string]: Room } = {};
-    private roomLimit: number = 0; // 0 for no limit
+    private roomLimit = 0; // 0 for no limit
 
     getRoom(room: string): Room {
         return this.rooms[room];
@@ -41,6 +43,24 @@ export class RoomService {
         return this.getRoom(room).isHost(id);
     }
 
+    query(socket: LipwigSocket, code: string) {
+        let response: RoomQuery;
+        if (!this.roomExists(code)) {
+            response = {
+                exists: false,
+                room: code
+            }
+        } else {
+            const room = this.getRoom(code);
+            response = room.query();
+        }
+
+        socket.send({
+            event: SERVER_GENERIC_EVENTS.QUERY_RESPONSE,
+            data: response
+        });
+    }
+
     create(user: LipwigSocket, config: CreateOptions) {
         const existingCodes = Object.keys(this.rooms);
 
@@ -59,7 +79,7 @@ export class RoomService {
         let code: string;
         do {
             code = generateString(4);
-        } while (existingCodes.includes(code) || NAUGHTY_WORDS.includes(code)); // TODO: Allow custom ban list
+        } while (existingCodes.includes(code) || BANNED_WORDS.includes(code)); // TODO: Allow custom ban list
         const room = new Room(user, code, config);
         this.rooms[code] = room;
         room.onclose = () => {

@@ -1,2 +1,2 @@
-export * from './generic.events';
+export * as ServerGenericEvents from './generic.events';
 export * from './generic.model';

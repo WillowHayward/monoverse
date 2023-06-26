@@ -1,0 +1,12 @@
+<form #joinForm="ngForm" (ngSubmit)="onJoin()">
+    <h1>Name</h1>
+    <input [(ngModel)]="join.name" name="name" type="text" />
+    <h1>Code</h1>
+    <input [(ngModel)]="join.code" name="code" type="text" />
+    <p>
+        <button type="submit" [disabled]="!canJoin">Join</button>
+    </p>
+</form>
+<p *ngIf="roomInfo">
+    {{roomInfo}}
+</p>

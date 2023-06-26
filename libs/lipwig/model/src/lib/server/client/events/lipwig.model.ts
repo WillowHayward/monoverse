@@ -9,6 +9,7 @@ export interface Joined extends EventStructure {
 
 export interface JoinedData {
     id: string;
+    name?: string;
     data?: {[index: string]: any}
 }
 

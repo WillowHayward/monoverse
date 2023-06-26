@@ -1,12 +1,12 @@
-export class JSDeck {
-    private cards: any[];
-    private position: number = 0;
+export class JSDeck<T> {
+    private cards: T[];
+    private position = 0;
     private cardOrder: number[];
-    constructor(cards: any[] = []) {
+    constructor(cards: T[] = []) {
         this.cards = cards;
     }
 
-    public add(card: any, count: number = 1) {
+    public add(card: T, count = 1) {
         let i: number;
         for (i = 0; i < count; i++) {
             this.cards.push(card);
@@ -36,9 +36,9 @@ export class JSDeck {
         }
     }
 
-    private shuffleArray(arr: any[]): any[] {
+    private shuffleArray(arr: T[]): T[] {
         arr = arr.slice(); // Clone array
-        let ret = [];
+        const ret = [];
         let value;
         let rand;
         while (arr.length > 0) {
@@ -50,10 +50,10 @@ export class JSDeck {
         return ret;
     }
 
-    public draw(count?: number): any {
+    public draw(count?: number): T | T[] | null | null[]{
         let i;
 
-        if (count === undefined) {
+        if (!count) {
             let card = null;
             if (this.position < this.cards.length) {
                 card = this.cards[this.position];
@@ -63,9 +63,9 @@ export class JSDeck {
             return card;
         }
 
-        let cards = [];
+        const cards: T[] | null[] = [];
         for (i = 0; i < count; i++) {
-            cards.push(this.draw());
+            cards.push(this.draw()); // TODO: Finish this
         }
 
         return cards;

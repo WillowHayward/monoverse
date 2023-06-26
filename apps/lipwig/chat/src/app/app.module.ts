@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
+import { LipwigChatCommonModule, RoomComponent } from '@whc/lipwig/chat/common';
 
 import { AppComponent } from './app.component';
 import { LobbyComponent } from './lobby/lobby.component';
-import { RoomComponent } from './room/room.component';
 import { CommonModule } from '@angular/common';
-import { NameInputComponent } from './name-input/name-input.component';
-import { MessagesComponent } from './messages/messages.component';
-import { UserListComponent } from './user-list/user-list.component';
 import { LocalComponent } from './local/local.component';
 
 const routes: Routes = [
@@ -31,16 +28,12 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         LobbyComponent,
-        RoomComponent,
-        NameInputComponent,
-        MessagesComponent,
-        UserListComponent,
         LocalComponent,
     ],
     imports: [
         BrowserModule,
         CommonModule,
-        FormsModule,
+        LipwigChatCommonModule,
         RouterModule.forRoot(routes),
     ],
     providers: [],

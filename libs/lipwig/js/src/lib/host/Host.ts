@@ -144,7 +144,7 @@ export class Host extends EventManager {
             const index = this.users.findIndex(user => id === user.id);
             if (index === -1) {
                 // TODO: user not found
-            } 
+            }
             this.users.splice(index, 1);
         }
     }
@@ -245,141 +245,43 @@ export class Host extends EventManager {
         let eventName: string = message.event;
         let sender: string | null = null;
         let user: User | undefined;
-        const args: unknown[] = [];
+        let args: unknown[] = [];
         switch (message.event) {
             case SERVER_HOST_EVENT.CREATED:
-                Logger.debug(`[${this.name}] Created room ${message.data.code}`);
-                this.room = message.data.code;
-                this.id = message.data.id;
-                args.push(message.data.code);
-
-                this.socket.setData(this.room, message.data.id);
+                args = this.handleCreated(message.data.id, message.data.code);
                 break;
             case SERVER_HOST_EVENT.JOINED:
-                Logger.debug(`[${this.name}] ${message.data.id} joined`);
-                const data = message.data;
-                const local = data.id.startsWith('local-');
-                user = new User(data.id, this, data.data, local);
-                this.users.push(user);
-                args.push(data.data); 
-
-                if (local) {
-                    const client = this.localClients.find(client => data.id === client.id);
-                    if (!client) {
-                        // TODO: Handle
-                        return;
-                    }
-                    user.client = client;
-                }
+                [user, args] = this.handleJoined(message.data.id, message.data.data);
                 break;
             case SERVER_HOST_EVENT.JOIN_REQUEST:
-                const request = new JoinRequest(this, message.data.id);
-                args.push(request);
-                args.push(message.data.data || {});
+                args = this.handleJoinRequest(message.data.id, message.data.data);
                 break;
             case SERVER_HOST_EVENT.MESSAGE:
-                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
-                args.push(...message.data.args);
-                eventName = message.data.event;
-                sender = message.data?.sender || '';
-
-                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
+                [eventName, sender, args] = this.handleMessage(message.data.event, message.data.args, message.data.sender);
                 break;
             case SERVER_HOST_EVENT.POLL_RESPONSE:
-                const pollId = message.data.id;
-                const clientId = message.data.id;
-                const response = message.data.response;
-                Logger.debug(`[${this.name}] Received response to poll ${pollId} from ${clientId}`);
-
-                const poll = this.polls.find(poll => poll.id === pollId);
-                if (!poll) {
-                    // TODO: Handle
-                    return;
-                }
-
-                user = this.users.find(user => user.id === clientId);
-                poll.emit('response', user, response);
-                args.push(poll);
-                args.push(response);
+                [user, args] = this.handlePollResponse(message.data.id, message.data.client, message.data.response);
                 break;
             case SERVER_HOST_EVENT.CLIENT_RECONNECTED:
-                Logger.debug(`[${this.name}] ${message.data.id} reconnected`);
-                const reconnected = this.users.find(
-                    (user) => message.data.id === user.id
-                );
-                if (!reconnected) {
-                    // TODO: Handle this. Malformed error?
-                }
-                args.push(reconnected);
+                args = this.handleClientReconected(message.data.id);
                 break;
             case SERVER_HOST_EVENT.RECONNECTED:
-                Logger.debug(`[${this.name}] Reconnected`);
-                this.room = message.data.room;
-                this.id = message.data.id;
-                this.socket.setData(this.room, this.id);
-
-                message.data.users = message.data.users || [];
-                message.data.local = message.data.local || [];
-
-                for (const existing of message.data.users) {
-                    if (this.users.find((user) => existing === user.id)) {
-                        // Don't need to recreate if non-reload reconnection
-                        continue;
-                    }
-                    const user: User = new User(existing, this);
-                    this.users.push(user);
-                }
-
-                for (const existing of message.data.local) {
-                    if (this.users.find((user) => existing === user.id)) {
-                        // Don't need to recreate if non-reload reconnection
-                        continue;
-                    }
-                    // TODO: finish this
-                    //this.c
-                }
-
-                args.push(this.users);
+                args = this.handleReconnected(message.data.id, message.data.room, message.data.users, message.data.local);
                 break;
             case SERVER_HOST_EVENT.CLIENT_DISCONNECTED:
-                Logger.debug(`[${this.name}] ${message.data.id} disconnected`);
-                const disconnected = this.users.find(
-                    (user) => user.id === message.data.id
-                );
-                args.push(disconnected);
+                args = this.handleClientDisconnected(message.data.id);
                 break;
             case SERVER_HOST_EVENT.LEFT:
-                if (message.data.reason) {
-                    Logger.debug(`[${this.name}] ${message.data.id} left - ${message.data.reason}`);
-                } else {
-                    Logger.debug(`[${this.name}] ${message.data.id} left`);
-                }
-                const id = message.data.id;
-                const index = this.users.findIndex(user => id === user.id);
-                if (index === -1) {
-                    // TODO: user not found
-                } 
-                user = this.users[index];
-                this.users.splice(index, 1);
-                args.push(message.data.reason);
+                [user, args] = this.handleLeft(message.data.id, message.data.reason);
                 break;
             case SERVER_HOST_EVENT.PING_HOST:
-                this.send({
-                    event: HOST_EVENT.PONG_HOST,
-                    data: message.data
-                });
-                user = this.users.find(value => value.id === message.data.id);
+                user = this.handlePingHost(message.data.id, message.data.time);
                 break;
             case SERVER_HOST_EVENT.PONG_SERVER:
+                args = this.handlePongServer(message.data.time);
+                break;
             case SERVER_HOST_EVENT.PONG_CLIENT:
-                const now = (new Date()).getTime();
-                const ping = now - message.data.time;
-                args.push(ping);
-
-                if (message.event === SERVER_HOST_EVENT.PONG_CLIENT) {
-                    user = this.users.find(user => user.id === message.data.id);
-                    this.emit(`${SERVER_HOST_EVENT.PONG_CLIENT}-${message.data.id}`, ping);
-                }
+                [user, args] = this.handlePongClient(message.data.id, message.data.time);
                 break;
         }
 
@@ -394,6 +296,166 @@ export class Host extends EventManager {
         }
 
         this.emit(eventName, ...args, this);
+    }
+
+    private handleCreated(id: string, room: string): [string] {
+        Logger.debug(`[${this.name}] Created room ${room}`);
+        this.room = room;
+        this.id = id;
+
+        this.socket.setData(this.room, id);
+        return [room];
+    }
+
+    private handleJoined(id: string, data: Record<string, unknown> = {}): [User, [User, Record<string, unknown>]] {
+        Logger.debug(`[${this.name}] ${id} joined`);
+        const local = id.startsWith('local-');
+        const user = new User(id, this, data, local);
+        this.users.push(user);
+
+        if (local) {
+            const client = this.localClients.find(client => id === client.id);
+            if (!client) {
+                throw new Error('Something went wrong'); //TODO
+            }
+            user.client = client;
+        }
+        return [user, [user, data]];
+    }
+
+    private handleJoinRequest(id: string, data: Record<string, unknown> = {}): [JoinRequest, Record<string, unknown>] {
+        const request = new JoinRequest(this, id);
+        return [request, data];
+    }
+
+    private handleMessage(event: string, args: unknown[], sender = ''): [string, string, unknown[]] {
+        Logger.debug(`[${this.name}] Received '${event}' message`);
+
+        this.emit(SERVER_HOST_EVENT.MESSAGE, event, ...args, this); // Emit 'lw-message' event on all messages
+        return [event, sender, args];
+    }
+
+    private handlePollResponse(id: string, client: string, response: unknown): [User, [Poll, unknown]] {
+        Logger.debug(`[${this.name}] Received response to poll ${id} from ${client}`);
+
+        const poll = this.polls.find(poll => poll.id === id);
+        if (!poll) {
+            throw new Error(`Could not find poll ${id}`);
+        }
+
+        const user = this.users.find(user => user.id === client);
+
+        if (!user) {
+            throw new Error(`Could not find user ${client}`);
+        }
+
+        poll.emit('response', user, response);
+        return [user, [poll, response]];
+    }
+
+    private handleClientReconected(id: string): [User] {
+        Logger.debug(`[${this.name}] ${id} reconnected`);
+        const reconnected = this.users.find(
+            (user) => id === user.id
+        );
+        if (!reconnected) {
+            throw new Error(`Could not find user ${id}`);
+        }
+        return [reconnected];
+    }
+
+    private handleReconnected(id: string, room: string, users: string[] = [], local: string[] = []): [User[]] {
+        Logger.debug(`[${this.name}] Reconnected`);
+        this.room = room;
+        this.id = id;
+        this.socket.setData(this.room, this.id);
+
+        for (const existing of users) {
+            if (this.users.find((user) => existing === user.id)) {
+                // Don't need to recreate if non-reload reconnection
+                continue;
+            }
+            const user: User = new User(existing, this);
+            this.users.push(user);
+        }
+
+        for (const existing of local) {
+            if (this.users.find((user) => existing === user.id)) {
+                // Don't need to recreate if non-reload reconnection
+                continue;
+            }
+            // TODO: finish this
+            //this.c
+        }
+
+        return [this.users];
+    }
+
+    private handleClientDisconnected(id: string): [User] {
+        Logger.debug(`[${this.name}] ${id} disconnected`);
+        const disconnected = this.users.find(
+            (user) => user.id === id
+        );
+
+        if (!disconnected) {
+            throw new Error(`Could not find user ${id}`);
+        }
+
+        return [disconnected];
+    }
+
+    private handleLeft(id: string, reason?: string): [User, [string | undefined]] {
+        if (reason) {
+            Logger.debug(`[${this.name}] ${id} left - ${reason}`);
+        } else {
+            Logger.debug(`[${this.name}] ${id} left`);
+        }
+        const index = this.users.findIndex(user => id === user.id);
+        if (index === -1) {
+            throw new Error(`Could not find user ${id}`);
+        }
+
+        const user = this.users[index];
+        this.users.splice(index, 1);
+        return [user, [reason]];
+    }
+
+    private handlePingHost(id: string, time: number): User {
+        this.send({
+            event: HOST_EVENT.PONG_HOST,
+            data: { id, time }
+        });
+        const user = this.users.find(value => value.id === id);
+
+        if (!user) {
+            throw new Error(`Could not find user ${id}`);
+        }
+
+        return user;
+    }
+
+    private handlePongServer(then: number): [number] {
+        const ping = this.handlePong(then);
+        return [ping];
+    }
+
+    private handlePongClient(id: string, then: number): [User, [number]] {
+        const ping = this.handlePong(then);
+        const user = this.users.find(user => user.id === id);
+
+        if (!user) {
+            throw new Error(`Could not find user ${id}`);
+        }
+
+        this.emit(`${SERVER_HOST_EVENT.PONG_CLIENT}-${id}`, ping);
+
+        return [user, [ping]];
+    }
+
+    private handlePong(then: number): number {
+        const now = (new Date()).getTime();
+        const ping = now - then;
+        return ping;
     }
 
     private pingServer(now: number): Promise<number> {
@@ -455,13 +517,13 @@ export class Host extends EventManager {
         return this.groups.filter(group => group.size());
     }
 
-    public assign(user: User, name: string, inform: boolean = false): Group {
+    public assign(user: User, name: string, inform = false): Group {
         const group = this.getGroup(name);
         group.add(user, inform);
         return group;
     }
 
-    public unassign(user: User, name: string, inform: boolean = false): Group {
+    public unassign(user: User, name: string, inform = false): Group {
         const group = this.getGroup(name);
         group.remove(user, inform);
         return group;

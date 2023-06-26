@@ -1,0 +1,77 @@
+{
+    "name": "rock-off",
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/rock-off/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/webpack:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/rock-off",
+                "compiler": "babel",
+                "main": "apps/rock-off/src/main.ts",
+                "tsConfig": "apps/rock-off/tsconfig.app.json",
+                "webpackConfig": "apps/rock-off/webpack.config.js",
+                "assets": [
+                    "apps/rock-off/src/favicon.ico",
+                    "apps/rock-off/src/assets"
+                ],
+                "index": "apps/rock-off/src/index.html",
+                "baseHref": "/",
+                "styles": ["apps/rock-off/src/styles.css"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/rock-off/src/environments/environment.ts",
+                            "with": "apps/rock-off/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nx/webpack:dev-server",
+            "options": {
+                "buildTarget": "rock-off:build"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "rock-off:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nx/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/rock-off/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "apps/rock-off/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        }
+    }
+}

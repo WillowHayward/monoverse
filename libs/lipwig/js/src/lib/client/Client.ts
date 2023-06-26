@@ -19,6 +19,8 @@ export class Client extends EventManager {
     protected name = 'Client';
     private socket: Socket;
     public id = '';
+    public roomName?: string;
+    public data: Record<string, any>;
 
     /**
      * Attempt to join an existing Lipwig room
@@ -32,6 +34,8 @@ export class Client extends EventManager {
         public options: JoinOptions = {}
     ) {
         super();
+
+        this.data = options.data || {};
 
         this.socket = new Socket(url, this.name);
 
@@ -111,7 +115,7 @@ export class Client extends EventManager {
         this.socket.close(CLOSE_CODE.LEFT, reason);
     }
 
-    public ping(full: boolean = true): Promise<number> {
+    public ping(full = true): Promise<number> {
         const now = (new Date()).getTime();
 
         if (full) {
@@ -175,32 +179,20 @@ export class Client extends EventManager {
     public handle(message: ServerClientEvents.Event): void {
         Logger.debug(`[${this.name}] Received '${message.event}' event`);
         let eventName: string = message.event;
-        const args: unknown[] = [];
+        let args: unknown[] = [];
 
         switch (message.event) {
             case SERVER_CLIENT_EVENT.JOINED:
-                Logger.debug(`[${this.name}] Joined ${this.room}`);
-                this.id = message.data.id;
-                args.push(message.data.id);
-
-                this.socket.setData(this.room, this.id);
+                args = this.handleJoined(message.data.id, message.data.name);
                 break;
             case SERVER_CLIENT_EVENT.MESSAGE:
-                Logger.debug(`[${this.name}] Received '${message.data.event}' message`);
-                args.push(...message.data.args);
-                eventName = message.data.event;
-
-                this.emit(message.event, eventName, ...args, this); // Emit 'lw-message' event on all messages
+                [eventName, args] = this.handleMessage(message.data.event, message.data.args);
                 break;
             case SERVER_CLIENT_EVENT.POLL:
-                const pollId = message.data.id;
-                const query = message.data.query;
-                const queryObject = new Query(this, pollId);
-                args.push(queryObject, query);
+                args = this.handlePoll(message.data.id, message.data.query);
                 break;
             case SERVER_CLIENT_EVENT.RECONNECTED:
-                Logger.debug(`[${this.name}] Reconnected`);
-                this.id = message.data.id;
+                this.handleReconnected(message.data.id);
                 break;
             case SERVER_CLIENT_EVENT.HOST_DISCONNECTED:
                 Logger.debug(`[${this.name}] Host Disconnected`);
@@ -213,14 +205,47 @@ export class Client extends EventManager {
                 break;
             case SERVER_CLIENT_EVENT.PONG_HOST:
             case SERVER_CLIENT_EVENT.PONG_SERVER:
-                const now = (new Date()).getTime();
-                const ping = now - message.data.time;
-                args.push(ping);
+                args = this.handlePong(message.data.time);
                 break;
         }
         args.push(message);
 
         this.emit(eventName, ...args);
+    }
+
+    private handleJoined(id: string, roomName?: string): [string, string | undefined] {
+        Logger.debug(`[${this.name}] Joined ${this.room}`);
+        this.id = id;
+        this.roomName = roomName;
+
+        this.socket.setData(this.room, this.id);
+
+        return [id, roomName];
+    }
+
+    private handleMessage(event: string, args: unknown[]): [string, unknown[]] {
+        Logger.debug(`[${this.name}] Received '${event}' message`);
+        this.emit(SERVER_CLIENT_EVENT.MESSAGE, event, ...args, this); // Emit 'lw-message' event on all messages
+
+        return [event, args];
+    }
+
+    private handlePoll(id: string, query: string): [Query, string] {
+        const queryObject = new Query(this, id);
+
+        return [queryObject, query];
+    }
+
+    private handleReconnected(id: string) {
+        Logger.debug(`[${this.name}] Reconnected`);
+        this.id = id;
+    }
+
+    private handlePong(then: number): [number] {
+        const now = (new Date()).getTime();
+        const ping = now - then;
+
+        return [ping];
     }
 
     protected pingClient(time: number) {

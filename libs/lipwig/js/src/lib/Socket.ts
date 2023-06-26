@@ -1,18 +1,18 @@
 import {
     CLIENT_EVENT,
+    SERVER_GENERIC_EVENTS,
+    CLOSE_CODE,
     ClientEvents,
     HostEvents,
-    ServerClientEvents,
-    CLOSE_CODE,
+    GenericEvents,
 } from '@whc/lipwig/model';
 import { EventManager } from './EventManager';
 import * as Logger from 'loglevel';
-import { SERVER_GENERIC_EVENTS } from 'libs/lipwig/model/src/lib/server/generic';
 // TODO: "this.name" is never Local*
 
 export class Socket extends EventManager {
     private socket?: WebSocket;
-    private retry: boolean = true;
+    private retry = true;
     private id?: string;
     private room?: string;
     private local: boolean;
@@ -49,6 +49,9 @@ export class Socket extends EventManager {
             if (message.event === SERVER_GENERIC_EVENTS.ERROR) {
                 console.log(message);
                 this.emit('lw-error', message.data.error, message.data.message);
+            } else if (message.event === SERVER_GENERIC_EVENTS.QUERY_RESPONSE) {
+                this.emit('query-response', message.data);
+                this.close(CLOSE_CODE.QUERY_COMPLETE); // TODO: Close as server w/ response as reason?
             } else {
                 this.emit('message', message);
             }
@@ -85,7 +88,7 @@ export class Socket extends EventManager {
         this.socket?.close(code, data);
     }
 
-    public send(message: ClientEvents.Event | HostEvents.Event): void {
+    public send(message: GenericEvents.Event | ClientEvents.Event | HostEvents.Event): void {
         //TODO: Add in contingency system for messages sent during a disconnection
         //CONT: A queue of messages to be sent in bulk on resumption of connection
         //CONT: Possible return unsent messages from this method

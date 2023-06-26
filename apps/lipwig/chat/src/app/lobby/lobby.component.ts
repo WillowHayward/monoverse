@@ -1,8 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NameInputComponent } from '../name-input/name-input.component';
-import { HostService } from '../host.service';
-import { ClientService } from '../client.service';
+import { HostService, ClientService, NameInputComponent } from '@whc/lipwig/chat/common';
 
 @Component({
     selector: 'lwc-lobby',

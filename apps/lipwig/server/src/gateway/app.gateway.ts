@@ -4,12 +4,13 @@ import {
     OnGatewayConnection,
 } from '@nestjs/websockets';
 import {
+    GENERIC_EVENT,
     CLIENT_EVENT,
     HOST_EVENT,
+    PING_EVENT,
+    GenericEvents,
     ClientEvents,
     HostEvents,
-    PING_EVENT,
-    GENERIC_EVENT
 } from '@whc/lipwig/model';
 import { RoomService } from '../room/room.service';
 import { Logger, UseGuards } from '@nestjs/common';
@@ -29,8 +30,12 @@ export class AppGateway implements OnGatewayConnection {
         socket.socket = lipwigSocket;
     }
 
-    //@SubscribeMessage(GENERIC_EVENT.QUERY)
-    //query(socket: WebSocket, payload: 
+    // TODO: Should this be a HTTP request?
+    @SubscribeMessage(GENERIC_EVENT.QUERY)
+    query(socket: WebSocket, payload: GenericEvents.QueryData) {
+        const code = payload.room;
+        this.rooms.query(socket.socket, code);
+    }
 
     @SubscribeMessage(HOST_EVENT.CREATE)
     create(socket: WebSocket, payload: HostEvents.CreateData) {

@@ -7,7 +7,8 @@ import {
     HostEvents,
     ClientEvents,
     CreateOptions,
-    JoinOptions
+    JoinOptions,
+    RoomQuery
 } from '@whc/lipwig/model';
 import { LipwigSocket } from './LipwigSocket';
 import { Logger } from '@nestjs/common';
@@ -24,8 +25,10 @@ export class Room {
     private locked = false;
     private lockReason: string | undefined;
 
+    private name?: string;
     private password?: string;
     private size: number;
+    private required: string[];
     private approvals: boolean;
 
     private users: LipwigSocket[] = [];
@@ -41,7 +44,7 @@ export class Room {
 
     // TODO: This feels hacky
     public onclose: () => void;
-    public closed: boolean = false;
+    public closed = false;
 
     constructor(
         private host: LipwigSocket,
@@ -52,10 +55,12 @@ export class Room {
         this.initialiseHost(host);
         Logger.debug(`${this.code} created by ${host.id}`, this.id);
 
+        this.name = config.name;
         if (config.password && config.password.length) {
             this.password = config.password;
         }
 
+        this.required = config.required || [];
         this.approvals = config.approvals || false;
 
         this.size = config.size || 8; //TODO: Turn default into config
@@ -80,6 +85,24 @@ export class Room {
 
     isHost(id: string) {
         return id === this.host.id;
+    }
+
+    query(): RoomQuery {
+        let isProtected = false;
+        const currentSize = this.users.length + this.localUsers.length; // TODO: THis is duplicated, could be a function
+        const capacity = this.size - currentSize;
+        if (this.password && this.password.length > 0) {
+            isProtected = true;
+        }
+        return {
+            exists: true,
+            room: this.code,
+            name: this.name,
+            protected: isProtected,
+            capacity,
+            locked: this.locked,
+            lockReason: this.lockReason
+        }
     }
 
     private initialiseClient(client: LipwigSocket) {
@@ -130,6 +153,18 @@ export class Room {
             return;
         }
 
+        const missing: string[] = [];
+        for (const param of this.required) {
+            if (!(param in options.data)) {
+                missing.push(param);
+            }
+        }
+
+        if (missing.length) {
+            client.error(ERROR_CODE.MISSINGPARAM, `Join request missing the following parameters: ${missing.join(', ')}`);
+            return;
+        }
+
         if (this.approvals) {
             const tempId = v4();
             Logger.debug(`Client requested to join`, this.id);
@@ -176,6 +211,7 @@ export class Room {
             event: SERVER_CLIENT_EVENT.JOINED,
             data: {
                 id,
+                name: this.name
             },
         });
 
@@ -468,7 +504,7 @@ export class Room {
         }
 
         this.host.send({
-            event: SERVER_HOST_EVENT.POLL_RESPONSE, 
+            event: SERVER_HOST_EVENT.POLL_RESPONSE,
             data: {
                 id,
                 client,
@@ -498,7 +534,7 @@ export class Room {
             socket.error(ERROR_CODE.USERNOTFOUND);
             return;
         }
-        
+
         user.send({
             event: SERVER_CLIENT_EVENT.PONG_HOST,
             data: {
