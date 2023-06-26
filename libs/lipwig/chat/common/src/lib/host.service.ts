@@ -91,9 +91,7 @@ export class HostService implements Reconnectable {
     private setup() {
         //this.setPingServerListener();
         this.host.on('joined', (user: User, data: any) => {
-            setTimeout(() => {
-                user.send('chatters', this.getChatters());
-            }, 1); // TODO: Figure out why the listeners aren't set in time (side effect of localhost?)
+            user.send('chatters', this.getChatters());
 
             //this.setPingListener(user);
 
