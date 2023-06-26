@@ -16,7 +16,8 @@ export class HostService implements Reconnectable {
 
     async connect(name: string): Promise<Client> {
         const host = await this.lipwig.create(this.url, {
-            name: 'lipwig-chat'
+            name: 'lipwig-chat',
+            required: ['name']
         });
         this.host = host;
 

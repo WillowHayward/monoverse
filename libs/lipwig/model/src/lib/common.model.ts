@@ -3,6 +3,7 @@ export type CreateOptions = Partial<{
     name: string;
     password: string;
     approvals: boolean; // True for Host manually approving join requests
+    required: string[]; // List of required paramaters to join a room
     reconnect: {
         code: string;
         id: string;
@@ -42,6 +43,7 @@ export enum ERROR_CODE {
     ROOMCLOSED = 'ROOMCLOSED',
     ROOMLOCKED = 'ROOMLOCKED',
     INCORRECTPASSWORD = 'INCORRECTPASSWORD',
+    MISSINGPARAM = 'MISSINGPARAM',
     REJECTED = 'REJECTED',
     // Poll errors
     POLLCLOSED = 'POLLCLOSED',

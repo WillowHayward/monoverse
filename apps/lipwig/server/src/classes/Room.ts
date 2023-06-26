@@ -28,6 +28,7 @@ export class Room {
     private name?: string;
     private password?: string;
     private size: number;
+    private required: string[];
     private approvals: boolean;
 
     private users: LipwigSocket[] = [];
@@ -59,6 +60,7 @@ export class Room {
             this.password = config.password;
         }
 
+        this.required = config.required || [];
         this.approvals = config.approvals || false;
 
         this.size = config.size || 8; //TODO: Turn default into config
@@ -148,6 +150,18 @@ export class Room {
         const currentSize = this.users.length + this.localUsers.length;
         if (currentSize >= this.size) {
             client.error(ERROR_CODE.ROOMFULL);
+            return;
+        }
+
+        const missing: string[] = [];
+        for (const param of this.required) {
+            if (!(param in options.data)) {
+                missing.push(param);
+            }
+        }
+
+        if (missing.length) {
+            client.error(ERROR_CODE.MISSINGPARAM, `Join request missing the following parameters: ${missing.join(', ')}`);
             return;
         }
 
