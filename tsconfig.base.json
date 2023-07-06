@@ -19,8 +19,6 @@
             "@whc/character": ["libs/character/src/index.ts"],
             "@whc/deck": ["libs/deck/src/index.ts"],
             "@whc/fps": ["libs/fps/src/index.ts"],
-            "@whc/lipwig/chat/client": ["libs/lipwig/chat/client/src/index.ts"],
-            "@whc/lipwig/chat/common": ["libs/lipwig/chat/common/src/index.ts"],
             "@whc/lipwig/ui": ["libs/lipwig/ui/src/index.ts"],
             "@whc/phaser": ["libs/phaser/src/index.ts"],
             "@whc/plugin": ["libs/plugin/src/index.ts"],

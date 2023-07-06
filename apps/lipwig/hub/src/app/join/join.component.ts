@@ -18,7 +18,6 @@ export class JoinComponent implements OnInit {
 
     constructor(private lipwig: LipwigService, private lazy: LazyLoaderService) {
         lazy.register('rock-off', 'Rock Off', () => import('@whc/rock-off/client').then(mod => mod.rockOffClientRoutes));
-        lazy.register('lipwig-chat', 'Lipwig Chat', () => import('@whc/lipwig/chat/client').then(mod => mod.lipwigChatClientRoutes));
     }
 
     ngOnInit(): void {
