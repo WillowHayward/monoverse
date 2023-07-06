@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LipwigService } from '@whc/lipwig/angular';
-import { LazyLoaderService } from '../lazy-loader.service';
+import { LipwigService, LazyLoaderService } from '@lipwig/angular';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -17,7 +16,10 @@ export class JoinComponent implements OnInit {
         code: ''
     }
 
-    constructor(private lipwig: LipwigService, private lazy: LazyLoaderService) { }
+    constructor(private lipwig: LipwigService, private lazy: LazyLoaderService) {
+        lazy.register('rock-off', 'Rock Off', () => import('@whc/rock-off/client').then(mod => mod.rockOffClientRoutes));
+        lazy.register('lipwig-chat', 'Lipwig Chat', () => import('@whc/lipwig/chat/client').then(mod => mod.lipwigChatClientRoutes));
+    }
 
     ngOnInit(): void {
         const lwHost = 'ws://localhost:8989';

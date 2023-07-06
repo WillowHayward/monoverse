@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Host, LocalClient, LocalHost, User } from '@whc/lipwig/js';
+import { Host, LocalClient, LocalHost, User } from '@lipwig/js';
 
 @Component({
     selector: 'lwc-local',

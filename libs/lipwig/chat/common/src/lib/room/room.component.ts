@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LipwigService } from '@whc/lipwig/angular';
+import { LipwigService } from '@lipwig/angular';
 import { HostService } from '../host.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NameInputComponent } from '../name-input/name-input.component';
@@ -28,11 +28,11 @@ export class RoomComponent implements OnInit {
     state: RoomState = RoomState.LOADING;
 
     constructor(private lipwig: LipwigService, private host: HostService, private client: ClientService, private route: ActivatedRoute, private router: Router) {
-            const initClient = this.lipwig.getClient();
-            if (!initClient) {
-                throw new Error('willow one day this will be your problem to deal with');
-            }
-            this.client.setClient(initClient);
+        const initClient = this.lipwig.getClient();
+        if (!initClient) {
+            throw new Error('willow one day this will be your problem to deal with');
+        }
+        this.client.setClient(initClient);
     }
 
     ngOnInit(): void {
@@ -52,7 +52,7 @@ export class RoomComponent implements OnInit {
         const code = window.sessionStorage.getItem('code');
         const id = window.sessionStorage.getItem('id');
         const isHost = window.sessionStorage.getItem('host') === 'true' ? true : false;
-        
+
         if (name && code === this.code && id) {
             let target: Reconnectable;
             if (isHost) {

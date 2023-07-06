@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Host } from '@whc/lipwig/js';
+import { Host } from '@lipwig/js';
 
 @Component({
     selector: 'lwt-control-panel',

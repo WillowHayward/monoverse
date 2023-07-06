@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Client } from '@whc/lipwig/js';
+import { Client } from '@lipwig/js';
 import { Observable } from 'rxjs';
 import { Chatter, Reconnectable } from './chat.model';
-import { LipwigService } from '@whc/lipwig/angular';
+import { LipwigService } from '@lipwig/angular';
 import { Router } from '@angular/router';
 
 @Injectable({

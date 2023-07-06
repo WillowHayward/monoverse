@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Host, Client, User } from '@whc/lipwig/js';
+import { Host, Client, User } from '@lipwig/js';
 import { EVENTS_ALL, SERVER_EVENT } from '@whc/lipwig/model';
 
 @Component({

@@ -3378,6 +3378,54 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lipwig/angular@npm:0.2.7":
+  version: 0.2.7
+  resolution: "@lipwig/angular@npm:0.2.7"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+    "@angular/router": 16.1.3
+    "@lipwig/js": 0.2.7
+    "@lipwig/model": 0.2.6
+  checksum: 7b7bd9bdb3cc9ef0692c6dd1f2e365c60c9319c8b99c1db6fd70ddb43d1a6992af3d75ced1c5d38a0778c2ffb2d514bd1c57ee8f630456dd882910a220e15f87
+  languageName: node
+  linkType: hard
+
+"@lipwig/js@npm:0.2.7":
+  version: 0.2.7
+  resolution: "@lipwig/js@npm:0.2.7"
+  dependencies:
+    "@lipwig/model": 0.2.7
+    "@lipwig/utils": 0.2.7
+    events: 3.3.0
+    loglevel: ^1.8.1
+    uuid: ^9.0.0
+  peerDependencies:
+    tslib: 2.5.3
+  checksum: b96bf8e3f49abbac917ae73422662006d3b043a0233626e886d34d1cb834febd2531432f2546c19b2293851db61535dfcb124e6aa2fb0782ea0fa1f48f9705a3
+  languageName: node
+  linkType: hard
+
+"@lipwig/model@npm:0.2.7":
+  version: 0.2.7
+  resolution: "@lipwig/model@npm:0.2.7"
+  peerDependencies:
+    tslib: 2.5.3
+  checksum: 3058779f3787fc578b5e6875ff9613f0d5f11c1d08f8e57ec90f6b5e474fecf6727fd7aa9b00ef6cd41faada5509d0a461431b474313fdf8b68764f61a5baf7f
+  languageName: node
+  linkType: hard
+
+"@lipwig/utils@npm:0.2.7":
+  version: 0.2.7
+  resolution: "@lipwig/utils@npm:0.2.7"
+  peerDependencies:
+    tslib: 2.5.3
+  checksum: 0b8abb10ca391ce31b5e4ef5847161335da829f781f89ab08eb238fd952431d2a8ea93f90a5119c2880d40124d07ca6a767ab2286346972afd4cc76aca20f562
+  languageName: node
+  linkType: hard
+
 "@lukeed/csprng@npm:^1.0.0":
   version: 1.1.0
   resolution: "@lukeed/csprng@npm:1.1.0"
@@ -11164,7 +11212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"events@npm:^3.0.0, events@npm:^3.2.0, events@npm:^3.3.0":
+"events@npm:3.3.0, events@npm:^3.0.0, events@npm:^3.2.0, events@npm:^3.3.0":
   version: 3.3.0
   resolution: "events@npm:3.3.0"
   checksum: f6f487ad2198aa41d878fa31452f1a3c00958f46e9019286ff4787c84aac329332ab45c9cdc8c445928fc6d7ded294b9e005a7fce9426488518017831b272780
@@ -16184,6 +16232,8 @@ __metadata:
     "@commitlint/cli": ^15.0.0
     "@commitlint/config-angular": ^15.0.0
     "@jscutlery/semver": ^2.15.0
+    "@lipwig/angular": 0.2.7
+    "@lipwig/js": 0.2.7
     "@nativescript/nx": ^2.0.8
     "@nestjs/axios": ^2.0.0
     "@nestjs/common": 9.4.2

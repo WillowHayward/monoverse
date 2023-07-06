@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LipwigService } from '@whc/lipwig/angular';
-import { Client, Host, JoinRequest, User } from '@whc/lipwig/js';
+import { LipwigService } from '@lipwig/angular';
+import { Client, Host, JoinRequest, User } from '@lipwig/js';
 import { Chatter, Reconnectable } from './chat.model';
 import { ClientService } from './client.service';
 

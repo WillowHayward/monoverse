@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LipwigService } from '@whc/lipwig/angular';
-import { Client, Query } from '@whc/lipwig/js';
+import { LipwigService } from '@lipwig/angular';
+import { Client, Query } from '@lipwig/js';
 import { Move } from '@whc/rock-off/common';
 
 @Injectable({

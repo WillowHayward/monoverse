@@ -1,5 +1,5 @@
 import { Game, Events } from 'phaser';
-import { Host, JoinRequest, Lipwig, User } from '@whc/lipwig/js';
+import { Host, JoinRequest, Lipwig, User } from '@lipwig/js';
 
 import { Bracket } from './bracket';
 import { Contestant, Player } from './contestants';
