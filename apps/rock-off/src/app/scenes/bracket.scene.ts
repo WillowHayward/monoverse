@@ -5,6 +5,7 @@ import { Scene, SecondsTimer } from "@whc/phaser";
 import { defaultTextStyle } from "../game.styles";
 import { GAME_STATE, SceneKeys } from "../game.model";
 
+// TODO: Each new round, animate the winners moving up the bracket
 export class BracketScene extends Scene {
     private info: string[] = []; // TODO: Needs better name (and structure, tbh)
     private infoText: GameObjects.Text;
@@ -15,32 +16,33 @@ export class BracketScene extends Scene {
     }
 
     create() {
-        this.infoText = this.add.text(200, 200, '', {
+        this.infoText = this.add.text(this.width / 2, this.height / 2, '', {
             ...defaultTextStyle,
-            fontSize: '5vh',
+            fontSize: '10vh',
         });
+        this.infoText.setOrigin(0.5, 0.5);
 
         const game = RockOff.get();
         const round = game.getRound();
         this.addRound(round);
 
-        const timer = new SecondsTimer(this, this.width / 2, this.height - 100, 10, {
+        const timer = new SecondsTimer(this, this.width / 2, this.height / 2 + this.infoText.height, 3, {
             ...defaultTextStyle,
-            fontSize: '10vh'
+            fontSize: '5vh'
         }, 'Round starting in ');
         timer.setOrigin(0.5, 1);
         this.add.existing(timer);
         timer.on('done', () => {
-            game.startRound();
+            game.showMatch();
         });
     }
 
     private addRound(round: Round) {
-        const pairings = round.getPairings();
+        const matches = round.getMatches();
         const listings: string[] = [];
 
-        for (const pairing of pairings) {
-            const [a, b] = pairing;
+        for (const match of matches) {
+            const [a, b] = match.getContestants();
             listings.push(`${a.name} v. ${b.name}`);
         }
 

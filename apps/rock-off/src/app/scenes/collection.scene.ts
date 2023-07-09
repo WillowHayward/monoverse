@@ -4,7 +4,7 @@ import { Scene } from "@whc/phaser";
 import { GAME_STATE, SceneKeys } from "../game.model";
 
 export class CollectionScene extends Scene {
-    private moveStatuses: {[name: string]: boolean}[] = [];
+    private statuses: {[name: string]: boolean} = {};
     private moveStatusDisplay: GameObjects.Text;
 
     constructor() {
@@ -13,20 +13,16 @@ export class CollectionScene extends Scene {
     }
 
     create() {
-        this.moveStatuses = [];
         const game = RockOff.get();
-        const pairings = game.getRound().getPairings();
-        for (const pairing of pairings) {
-            const statuses = {}
-
-            for (const contestant of pairing) {
-                statuses[contestant.name] = false;
-                contestant.getCurrentMove().then(() => {
-                    statuses[contestant.name] = true;
-                    this.drawMoveStatuses();
-                });
-            }
-            this.moveStatuses.push(statuses);
+        const round = game.getRound();
+        const match = round.getCurrentMatch();
+        const contestants = match.getContestants();
+        for (const contestant of contestants) {
+            this.statuses[contestant.name] = false;
+            contestant.getCurrentMove().then(() => {
+                this.statuses[contestant.name] = true;
+                this.drawMoveStatuses();
+            });
         }
         this.drawMoveStatuses();
     }
@@ -36,20 +32,17 @@ export class CollectionScene extends Scene {
             this.moveStatusDisplay.destroy();
         }
 
-        const statuses: string[] = [];
-        for (const pairing of this.moveStatuses) {
-            const text: string[] = [];
-            for (const name in pairing) {
-                const status = pairing[name];
-                text.push(`${name}(${status ? 'Submitted' : 'Waiting'})`);
-            }
-            statuses.push(text.join(' vs '));
+        const text: string[] = [];
+        for (const name in this.statuses) {
+            const status = this.statuses[name];
+            text.push(`${name}(${status ? 'Submitted' : 'Waiting'})`);
         }
 
-        this.moveStatusDisplay = this.add.text(50, 50, statuses.join('\n'), {
+        this.moveStatusDisplay = this.add.text(this.width / 2, this.height / 2, text.join(' vs '), {
             fontFamily: 'arial',
-            fontSize: '5vh',
+            fontSize: '10vh',
             color: 'black'
         });
+        this.moveStatusDisplay.setOrigin(0.5, 0.5);
     }
 }

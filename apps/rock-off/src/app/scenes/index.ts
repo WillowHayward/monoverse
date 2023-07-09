@@ -6,3 +6,6 @@ export * from './bracket.scene';
 export * from './collection.scene';
 export * from './results.scene';
 export * from './winner.scene';
+export * from './intro.scene';
+export * from './match.scene';
+export * from './coinflip.scene';

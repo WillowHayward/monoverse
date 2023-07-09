@@ -6,48 +6,45 @@ import { Button, Scene, SecondsTimer } from "@whc/phaser";
 export class ResultsScene extends Scene {
     constructor() {
         const key = SceneKeys[GAME_STATE.RESULT];
-        super({key});
+        super({ key });
     }
 
     async create() {
         const game = RockOff.get();
-        const results = await game.getRound().getResults();
-        const display: string[] = [];
-        for (const result of results) {
-            const [a, b] = result.contestants;
-            let displayString = `${a.name} vs ${b.name}:`;
-            if (result.draw) {
-                displayString += 'Draw! Rematch';
-            } else {
-                displayString += `${result.winner.name} wins!`;
-            }
-            display.push(displayString);
-        }
+        const round = game.getRound();
+        const match = round.getCurrentMatch();
+        const result = await match.getResult();
+        let display: string;
 
-        this.add.text(50, 50, display.join('\n'), {
-            fontFamily: 'arial',
-            fontSize: '5vh',
-            color: 'black'
-        });
-
-        let timerPrefix: string;
         let timerCallback: () => void;
-        if (results.some(result => result.draw)) {
-            timerPrefix = 'Running rematches in ';
+        let timerPrefix: string;
+
+        if (result.winner) {
+            display = `${result.winner.name} beat ${result.loser.name}`;
+            timerPrefix = 'Next Match In ';
             timerCallback = () => {
-                game.startRematches();
+                game.nextMatch();
             }
         } else {
-            timerPrefix = 'Next round in ';
+            display = 'Draw! Rematch';
+            timerPrefix = 'Rematch In ';
             timerCallback = () => {
-                game.nextRound();
+                game.startMatch();
             }
         }
-        const timer = new SecondsTimer(this, this.width / 2, this.height - 100, 10, {
+
+        const displayText = this.add.text(this.width / 2, this.height / 2, display, {
+            fontFamily: 'arial',
+            fontSize: '10vh',
+            color: 'black'
+        });
+        displayText.setOrigin(0.5, 0.5);
+
+        const timer = new SecondsTimer(this, this.width / 2, this.height / 2 + displayText.height, 3, {
             ...defaultTextStyle,
-            fontSize: '10vh'
+            fontSize: '5vh'
         }, timerPrefix);
-        timer.setOrigin(0.5, 1);
+        timer.setOrigin(0.5, 0.5);
         this.add.existing(timer);
         timer.on('done', () => {
             timerCallback();

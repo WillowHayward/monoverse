@@ -2,7 +2,6 @@ import { Move } from "@whc/rock-off/common";
 import { Contestant } from "./game/contestants";
 
 export interface Result {
-    draw: boolean;
     contestants: [Contestant, Contestant],
     winner?: Contestant;
     loser?: Contestant;
@@ -25,8 +24,9 @@ export enum GAME_STATE {
     LOBBY,
     INTRO,
     BRACKET,
-    MATCHUP,
+    MATCH,
     COLLECTION,
+    COINFLIP,
     RESULT,
     WINNER,
 }
@@ -36,8 +36,9 @@ export const SceneKeys  = {
     [GAME_STATE.LOBBY]: 'Lobby',
     [GAME_STATE.INTRO]: 'Intro',
     [GAME_STATE.BRACKET]: 'Bracket',
-    [GAME_STATE.MATCHUP]: 'Matchup',
+    [GAME_STATE.MATCH]: 'Match',
     [GAME_STATE.COLLECTION]: 'Collection',
+    [GAME_STATE.COINFLIP]: 'CoinFlip',
     [GAME_STATE.RESULT]: 'Result',
     [GAME_STATE.WINNER]: 'Winner',
 }

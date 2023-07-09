@@ -42,35 +42,43 @@ export class RockOff extends Events.EventEmitter {
 
     public startGame() {
         this.bracket = new Bracket(this.players);
-        this.bracket.nextRound()
-
-        this.setState(GAME_STATE.BRACKET);
+        this.nextRound();
     }
 
     public nextRound() {
-        if (this.bracket.getCurrentRound().getWinners().length === 1) {
+        if (this.bracket.next()) {
+            this.setState(GAME_STATE.BRACKET);
+        } else {
             this.winner = this.bracket.getCurrentRound().getWinners().pop();
             this.setState(GAME_STATE.WINNER);
-            return;
         }
-        this.bracket.nextRound();
-        this.setState(GAME_STATE.BRACKET);
     }
 
-    public startRound() {
-        const round = this.bracket.getCurrentRound();
-        round.start().then(() => {
-            this.setState(GAME_STATE.RESULT);
-        });
-        this.setState(GAME_STATE.COLLECTION); // TODO: Add matchup here
+    public showMatch() {
+        this.setState(GAME_STATE.MATCH);
     }
 
-    public startRematches() {
+    // Used for matches and rematches
+    public startMatch() {
         const round = this.bracket.getCurrentRound();
-        round.startRematches().then(() => {
+        const match = round.getCurrentMatch();
+        match.reset(); // For rematches
+        match.getResult().then(() => {
             this.setState(GAME_STATE.RESULT);
         });
+
         this.setState(GAME_STATE.COLLECTION);
+    }
+
+    public nextMatch() {
+        const round = this.bracket.getCurrentRound();
+        const next = round.next();
+        if (next) {
+            console.log(next);
+            this.showMatch();
+        } else {
+            this.nextRound();
+        }
     }
 
     public getRoom(): string {
