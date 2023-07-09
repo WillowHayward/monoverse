@@ -3,13 +3,15 @@ import { RockOff } from "../game/rock-off";
 import { Round } from "../game/round";
 import { Scene, SecondsTimer } from "@whc/phaser";
 import { defaultTextStyle } from "../game.styles";
+import { GAME_STATE, SceneKeys } from "../game.model";
 
 export class BracketScene extends Scene {
     private info: string[] = []; // TODO: Needs better name (and structure, tbh)
     private infoText: GameObjects.Text;
 
     constructor() {
-        super({key: 'Bracket'});
+        const key = SceneKeys[GAME_STATE.BRACKET];
+        super({key});
     }
 
     create() {

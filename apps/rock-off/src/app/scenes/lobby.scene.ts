@@ -2,6 +2,7 @@ import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
 import { Scene } from "@whc/phaser";
 import { Player } from "../game/contestants";
+import { GAME_STATE, SceneKeys } from "../game.model";
 
 export class LobbyScene extends Scene {
     private players: Player[] = [];
@@ -11,7 +12,8 @@ export class LobbyScene extends Scene {
 
     private joinText: GameObjects.Text;
     constructor() {
-        super({ key: 'Lobby' });
+        const key = SceneKeys[GAME_STATE.LOBBY];
+        super({key});
     }
 
     preload() {

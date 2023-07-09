@@ -1,8 +1,10 @@
 import { Scene } from "@whc/phaser";
+import { GAME_STATE, SceneKeys } from "../game.model";
 
 export class LoadingScene extends Scene {
     constructor() {
-        super({key: 'Loading'});
+        const key = SceneKeys[GAME_STATE.LOADING];
+        super({key});
     }
 
     create() {

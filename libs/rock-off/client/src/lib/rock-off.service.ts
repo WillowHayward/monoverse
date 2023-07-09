@@ -43,6 +43,7 @@ export class RockOffService {
 
     public start() {
         this.client.send('start');
+        this.navigate('wait');
     }
 
     public play(move: Move) {

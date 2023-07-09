@@ -1,13 +1,15 @@
 import { GameObjects } from "phaser";
 import { RockOff } from "../game/rock-off";
 import { Scene } from "@whc/phaser";
+import { GAME_STATE, SceneKeys } from "../game.model";
 
 export class CollectionScene extends Scene {
     private moveStatuses: {[name: string]: boolean}[] = [];
     private moveStatusDisplay: GameObjects.Text;
 
     constructor() {
-        super({key: 'Collection'});
+        const key = SceneKeys[GAME_STATE.COLLECTION];
+        super({key});
     }
 
     create() {

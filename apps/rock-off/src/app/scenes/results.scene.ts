@@ -1,10 +1,12 @@
+import { GAME_STATE, SceneKeys } from "../game.model";
 import { defaultTextStyle } from "../game.styles";
 import { RockOff } from "../game/rock-off";
 import { Button, Scene, SecondsTimer } from "@whc/phaser";
 
 export class ResultsScene extends Scene {
     constructor() {
-        super({key: 'Results'});
+        const key = SceneKeys[GAME_STATE.RESULT];
+        super({key});
     }
 
     async create() {

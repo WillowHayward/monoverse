@@ -4,12 +4,14 @@ import { Host, JoinRequest, Lipwig, User } from '@lipwig/js';
 import { Bracket } from './bracket';
 import { Contestant, Player } from './contestants';
 import { Round } from './round';
+import { GAME_STATE, SceneKeys } from '../game.model';
 
-const LIPWIG_URL = 'ws://localhost:8989';
+const LIPWIG_URL = 'wss://lipwig-next.whc.fyi';
+//const LIPWIG_URL = 'ws://localhost:8989';
 
 export class RockOff extends Events.EventEmitter {
     private static singleton: RockOff;
-    private scene: string;
+    private state: GAME_STATE;
     private players: Player[] = [];
     private bracket: Bracket;
     private winner: Contestant;
@@ -17,53 +19,58 @@ export class RockOff extends Events.EventEmitter {
 
     private constructor(public game: Game) {
         super();
-        this.scene = 'Menu';
+        this.setState(GAME_STATE.LOADING);
+        this.startLobby();
     }
 
     public startLobby() {
-        this.changeScene('Loading');
         Lipwig.create(LIPWIG_URL, {
             name: 'rock-off',
             approvals: true,
         }).then(host => {
             this.setHost(host);
-            this.changeScene('Lobby');
+            this.setState(GAME_STATE.LOBBY);
         })
     }
 
-    public start() {
+    public startIntro() {
         this.host.lock('Game In Progress');
         this.host.sendToAll('wait');
+
+        this.setState(GAME_STATE.INTRO);
+    }
+
+    public startGame() {
         this.bracket = new Bracket(this.players);
         this.bracket.nextRound()
 
-        this.changeScene('Bracket');
+        this.setState(GAME_STATE.BRACKET);
     }
 
     public nextRound() {
         if (this.bracket.getCurrentRound().getWinners().length === 1) {
             this.winner = this.bracket.getCurrentRound().getWinners().pop();
-            this.changeScene('Winner');
+            this.setState(GAME_STATE.WINNER);
             return;
         }
         this.bracket.nextRound();
-        this.changeScene('Bracket');
+        this.setState(GAME_STATE.BRACKET);
     }
 
     public startRound() {
         const round = this.bracket.getCurrentRound();
         round.start().then(() => {
-            this.changeScene('Results');
+            this.setState(GAME_STATE.RESULT);
         });
-        this.changeScene('Collection');
+        this.setState(GAME_STATE.COLLECTION); // TODO: Add matchup here
     }
 
     public startRematches() {
         const round = this.bracket.getCurrentRound();
         round.startRematches().then(() => {
-            this.changeScene('Results');
+            this.setState(GAME_STATE.RESULT);
         });
-        this.changeScene('Collection');
+        this.setState(GAME_STATE.COLLECTION);
     }
 
     public getRoom(): string {
@@ -84,10 +91,12 @@ export class RockOff extends Events.EventEmitter {
         return this.winner;
     }
 
-    private changeScene(scene: string) {
-        this.game.scene.stop(this.scene);
-        this.scene = scene;
-        this.game.scene.start(this.scene);
+    private setState(state: GAME_STATE) {
+        if (this.state !== undefined) {
+            this.game.scene.stop(SceneKeys[this.state]);
+        }
+        this.state = state;
+        this.game.scene.start(SceneKeys[this.state]);
     }
 
     private setHost(host: Host) {
@@ -104,7 +113,7 @@ export class RockOff extends Events.EventEmitter {
         host.once('joined', (user: User) => {
             user.send('vip');
             user.once('start', () => {
-                this.start();
+                this.startGame();
             });
         });
 
@@ -117,7 +126,7 @@ export class RockOff extends Events.EventEmitter {
 
     static init(game: Game) {
         RockOff.singleton = new RockOff(game);
-        RockOff.singleton.startLobby();
+        RockOff.singleton.game.scene.stop('Menu');
     }
 
     static get(): RockOff {

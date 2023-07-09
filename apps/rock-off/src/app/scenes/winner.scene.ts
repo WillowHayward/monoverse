@@ -1,9 +1,11 @@
+import { GAME_STATE, SceneKeys } from "../game.model";
 import { RockOff } from "../game/rock-off";
 import { Scene } from "@whc/phaser";
 
 export class WinnerScene extends Scene {
     constructor() {
-        super({key: 'Winner'});
+        const key = SceneKeys[GAME_STATE.WINNER];
+        super({key});
     }
 
     create() {
