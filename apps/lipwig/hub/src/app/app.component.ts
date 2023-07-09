@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LipwigService } from '@lipwig/angular';
 
 @Component({
     selector: 'lwh-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'lipwig-hub';
+
+    constructor(lipwig: LipwigService) {
+        lipwig.setUrl('wss://lipwig-next.whc.fyi');
+    }
 }

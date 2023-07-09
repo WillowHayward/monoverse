@@ -21,14 +21,13 @@ export class JoinComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const lwHost = 'ws://localhost:8989';
         this.joinForm.valueChanges?.subscribe(value => {
             if (!value.code) {
                 return;
             }
 
             if (value.code.length === 4) {
-                this.lipwig.query(lwHost, value.code).then(response => {
+                this.lipwig.query(value.code).then(response => {
                     if (response.room !== value.code) {
                         // Query for another code
                         return;
@@ -71,12 +70,10 @@ export class JoinComponent implements OnInit {
 
 
     onJoin() {
-        const lwHost = 'ws://localhost:8989';
         console.log(this.join);
-        const url = lwHost;
         const name = this.join.name;
         const code = this.join.code;
-        this.lipwig.join(url, code, {
+        this.lipwig.join(code, {
             data: {
                 name
             }
