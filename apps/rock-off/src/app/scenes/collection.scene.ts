@@ -13,6 +13,7 @@ export class CollectionScene extends Scene {
     }
 
     create() {
+        this.statuses = {};
         const game = RockOff.get();
         const round = game.getRound();
         const match = round.getCurrentMatch();

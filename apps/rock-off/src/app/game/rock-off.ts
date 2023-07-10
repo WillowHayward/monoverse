@@ -121,7 +121,7 @@ export class RockOff extends Events.EventEmitter {
         host.once('joined', (user: User) => {
             user.send('vip');
             user.once('start', () => {
-                this.startGame();
+                this.startIntro();
             });
         });
 

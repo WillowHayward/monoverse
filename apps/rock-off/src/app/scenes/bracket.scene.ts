@@ -16,6 +16,7 @@ export class BracketScene extends Scene {
     }
 
     create() {
+        this.info = [];
         this.infoText = this.add.text(this.width / 2, this.height / 2, '', {
             ...defaultTextStyle,
             fontSize: '10vh',
