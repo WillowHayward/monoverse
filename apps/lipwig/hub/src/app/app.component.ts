@@ -10,6 +10,6 @@ export class AppComponent {
     title = 'lipwig-hub';
 
     constructor(lipwig: LipwigService) {
-        lipwig.setUrl('wss://lipwig-next.whc.fyi');
+        lipwig.setUrl('wss://lipwig.next.whc.fyi');
     }
 }
